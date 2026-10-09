@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Invoice Generator — Free Online | SabKuch</title><meta name="description" content="Create professional invoices free and print to PDF. No signup — freelancer invoice maker."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/invoice-generator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Invoice Generator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create professional invoices free and print to PDF. No signup — freelancer invoice maker.", "url": "https://sabkuchtools.github.io/sabkuch/invoice-generator.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this invoice generator really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — create unlimited invoices and print or save them as PDF straight from your browser, with no account and no watermarks."}}, {"@type": "Question", "name": "How do I save my invoice as a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Click 'Print / Save as PDF' and choose 'Save as PDF' in your browser's print dialog. The invoice is formatted to print cleanly."}}, {"@type": "Question", "name": "Is my business data private?", "acceptedAnswer": {"@type": "Answer", "text": "Completely. The invoice is built locally in your browser — your client details and prices are never uploaded or stored anywhere."}}]}
+</script><style>
+.inv-doc{background:#fff;color:#111;border:1px solid #e5e7eb;border-radius:14px;padding:28px;margin-top:8px}
+.inv-doc table{width:100%;border-collapse:collapse;margin-top:16px}
+.inv-doc th,.inv-doc td{padding:8px;border-bottom:1px solid #e5e7eb;text-align:left;font-size:.92rem}
+.inv-doc th{background:#f8fafc}
+.inv-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.inv-totals{margin-top:14px;text-align:right;font-size:.95rem}
+.inv-totals b{font-size:1.15rem}
+.item-row{display:grid;grid-template-columns:1fr 70px 90px 90px 34px;gap:8px;align-items:end;margin-bottom:8px}
+@media print{
+  body *{visibility:hidden}
+  #invPrint,#invPrint *{visibility:visible}
+  #invPrint{position:absolute;left:0;top:0;width:100%}
+  .inv-doc{border:none;border-radius:0;margin:0}
+}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link active" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="generators.html">← Back to Generators</a>
+<h1>Invoice Generator</h1><p class="tool-desc">Build a clean, professional invoice with line items, tax and discount — then print or save as PDF straight from your browser. Your data never leaves your device.</p>
+<div class="tool-panel">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="ivBiz">Your business name</label><input type="text" id="ivBiz" placeholder="Acme Studio"></div>
+<div class="field"><label for="ivClient">Client name</label><input type="text" id="ivClient" placeholder="Client Ltd."></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="ivBizAddr">Your address</label><textarea id="ivBizAddr" style="min-height:64px" placeholder="Street, City"></textarea></div>
+<div class="field"><label for="ivClientAddr">Client address</label><textarea id="ivClientAddr" style="min-height:64px" placeholder="Street, City"></textarea></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
+<div class="field"><label for="ivNo">Invoice #</label><input type="text" id="ivNo" value="INV-0001"></div>
+<div class="field"><label for="ivIssue">Issue date</label><input type="date" id="ivIssue"></div>
+<div class="field"><label for="ivDue">Due date</label><input type="date" id="ivDue"></div>
+<div class="field"><label for="ivCur">Currency</label><select id="ivCur"><option>USD</option><option>EUR</option><option>GBP</option><option>PKR</option><option>INR</option><option>AED</option><option>SAR</option><option>CAD</option><option>AUD</option></select></div>
+</div>
+<div class="field"><label>Line items</label><div id="ivItems"></div>
+<div class="btn-row"><button class="btn btn-ghost" id="ivAdd" type="button">+ Add item</button></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="ivTax">Tax (%)</label><input type="number" id="ivTax" value="0" min="0" step="any"></div>
+<div class="field"><label for="ivDisc">Discount (flat amount)</label><input type="number" id="ivDisc" value="0" min="0" step="any"></div>
+</div>
+<div class="field"><label for="ivNotes">Notes / payment terms</label><textarea id="ivNotes" style="min-height:64px" placeholder="Payment due within 14 days…"></textarea></div>
+<div class="btn-row"><button class="btn" id="ivPrint" type="button">Print / Save as PDF</button>
+<button class="btn btn-ghost" id="ivReset" type="button">Reset</button></div>
+<div id="invPrint"><div class="inv-doc" id="ivPreview" style="margin-top:20px"></div></div>
+</div>
+</div><section class="faq-section"><h2>Invoice Generator — FAQs</h2>
+<details class="faq-item"><summary>Is this invoice generator really free?</summary><p>Yes — create unlimited invoices and print or save them as PDF straight from your browser, with no account and no watermarks.</p></details>
+<details class="faq-item"><summary>How do I save my invoice as a PDF?</summary><p>Click 'Print / Save as PDF' and choose 'Save as PDF' in your browser's print dialog. The invoice is formatted to print cleanly.</p></details>
+<details class="faq-item"><summary>Is my business data private?</summary><p>Completely. The invoice is built locally in your browser — your client details and prices are never uploaded or stored anywhere.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="currency-converter.html"><span>Currency Converter</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="unit-converter.html"><span>Unit Converter</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="qr-generator.html"><span>QR Generator</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="password-generator.html"><span>Password Generator</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  var SYM = {USD:'$',EUR:'\u20AC',GBP:'\u00A3',PKR:'Rs ',INR:'\u20B9',AED:'AED ',SAR:'SAR ',CAD:'CA$',AUD:'A$'};
+  var itemsBox = document.getElementById('ivItems');
+  function money(n, cur) { return (SYM[cur] || '') + (Math.round(n * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+  function escH(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function addRow(d, q, r) {
+    var row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = '<div class="field" style="margin:0"><input type="text" placeholder="Description" value="' + escH(d || '') + '"></div>' +
+      '<div class="field" style="margin:0"><input type="number" placeholder="Qty" min="0" step="any" value="' + (q || 1) + '"></div>' +
+      '<div class="field" style="margin:0"><input type="number" placeholder="Rate" min="0" step="any" value="' + (r || 0) + '"></div>' +
+      '<div class="field" style="margin:0"><input type="text" readonly tabindex="-1" style="background:var(--soft)"></div>' +
+      '<button class="btn btn-ghost" type="button" style="padding:8px 10px" aria-label="Remove item">×</button>';
+    var ins = row.querySelectorAll('input');
+    ins[3].value = '';
+    row.querySelector('button').addEventListener('click', function () { row.remove(); render(); });
+    [ins[0], ins[1], ins[2]].forEach(function (el) { el.addEventListener('input', render); });
+    itemsBox.appendChild(row);
+    return row;
+  }
+  function readItems() {
+    var rows = itemsBox.querySelectorAll('.item-row'), out = [];
+    rows.forEach(function (row) {
+      var ins = row.querySelectorAll('input');
+      var q = parseFloat(ins[1].value) || 0, r = parseFloat(ins[2].value) || 0;
+      var amt = q * r;
+      ins[3].value = amt ? (Math.round(amt * 100) / 100).toLocaleString('en-US') : '';
+      out.push({d: ins[0].value, q: q, r: r, amt: amt});
+    });
+    return out;
+  }
+  function val(id) { return document.getElementById(id).value; }
+  function render() {
+    var cur = val('ivCur'), items = readItems();
+    var sub = items.reduce(function (s, it) { return s + it.amt; }, 0);
+    var tax = sub * ((parseFloat(val('ivTax')) || 0) / 100);
+    var disc = parseFloat(val('ivDisc')) || 0;
+    var total = Math.max(0, sub + tax - disc);
+    var rows = items.map(function (it, i) {
+      return '<tr><td>' + (escH(it.d) || 'Item ' + (i + 1)) + '</td><td>' + it.q + '</td><td>' + money(it.r, cur) +
+             '</td><td style="text-align:right">' + money(it.amt, cur) + '</td></tr>';
+    }).join('');
+    document.getElementById('ivPreview').innerHTML =
+      '<div class="inv-row"><div><h2 style="margin:0 0 4px">INVOICE</h2>' +
+      '<div style="font-weight:700">' + (escH(val('ivBiz')) || 'Your Business') + '</div>' +
+      '<div style="white-space:pre-line;font-size:.9rem;color:#444">' + escH(val('ivBizAddr')) + '</div></div>' +
+      '<div style="text-align:right;font-size:.9rem"><div><b>Invoice #:</b> ' + escH(val('ivNo')) + '</div>' +
+      '<div><b>Issued:</b> ' + escH(val('ivIssue')) + '</div><div><b>Due:</b> ' + escH(val('ivDue')) + '</div></div></div>' +
+      '<div style="margin-top:12px;font-size:.9rem"><b>Bill to:</b><br>' + (escH(val('ivClient')) || 'Client') +
+      '<div style="white-space:pre-line;color:#444">' + escH(val('ivClientAddr')) + '</div></div>' +
+      '<table><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th style="text-align:right">Amount</th></tr></thead>' +
+      '<tbody>' + (rows || '<tr><td colspan="4" style="color:#888">No items yet</td></tr>') + '</tbody></table>' +
+      '<div class="inv-totals"><div>Subtotal: ' + money(sub, cur) + '</div>' +
+      '<div>Tax (' + (parseFloat(val('ivTax')) || 0) + '%): ' + money(tax, cur) + '</div>' +
+      '<div>Discount: ' + money(disc, cur) + '</div>' +
+      '<div style="margin-top:6px"><b>Total due: ' + money(total, cur) + '</b></div></div>' +
+      (val('ivNotes') ? '<div style="margin-top:14px;font-size:.88rem;color:#444"><b>Notes:</b><br><span style="white-space:pre-line">' + escH(val('ivNotes')) + '</span></div>' : '');
+  }
+  ['ivBiz','ivBizAddr','ivClient','ivClientAddr','ivNo','ivIssue','ivDue','ivCur','ivTax','ivDisc','ivNotes'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input', render); el.addEventListener('change', render);
+  });
+  document.getElementById('ivAdd').addEventListener('click', function () { addRow('', 1, 0); render(); });
+  document.getElementById('ivPrint').addEventListener('click', function () { render(); window.print(); });
+  document.getElementById('ivReset').addEventListener('click', function () {
+    itemsBox.innerHTML = ''; addRow('Service', 1, 100); render();
+  });
+  var today = new Date().toISOString().slice(0, 10);
+  document.getElementById('ivIssue').value = today;
+  document.getElementById('ivDue').value = today;
+  addRow('Service', 1, 100);
+  render();
+})();
+</script>
+</body></html>

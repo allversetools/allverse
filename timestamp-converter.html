@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Timestamp Converter — Free Online | SabKuch</title><meta name="description" content="Convert Unix timestamps to dates and back. Free epoch converter with live clock — no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/timestamp-converter.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Timestamp Converter", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert Unix timestamps to dates and back. Free epoch converter with live clock — no signup.", "url": "https://sabkuchtools.github.io/sabkuch/timestamp-converter.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a Unix timestamp?", "acceptedAnswer": {"@type": "Answer", "text": "The number of seconds since 00:00:00 UTC on 1 January 1970. It is how computers store dates in databases, APIs and log files."}}, {"@type": "Question", "name": "How do I know if a timestamp is in seconds or milliseconds?", "acceptedAnswer": {"@type": "Answer", "text": "Count the digits: 10 digits means seconds, 13 means milliseconds. This tool detects it automatically."}}, {"@type": "Question", "name": "Why does the same timestamp show different times?", "acceptedAnswer": {"@type": "Answer", "text": "Timestamps are timezone-free; the displayed time depends on the timezone used to read them. This tool shows both UTC and your local time."}}]}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link active" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="developer-tools.html">← Back to Developer Tools</a>
+<h1>Timestamp Converter</h1><p class="tool-desc">Decode those 10-digit numbers from APIs and logs, or turn any date into a Unix timestamp. Auto-detects seconds vs milliseconds. All in your browser.</p>
+<div class="tool-panel">
+<p style="font-weight:600;margin-bottom:18px">Current Unix time: <b id="tsNow" style="font-family:monospace">—</b>
+<button class="btn btn-ghost" id="tsNowCopy" type="button" style="margin-left:8px">Copy</button></p>
+<div class="field"><label>Timestamp → date</label></div>
+<div class="field"><label for="tsIn">Unix timestamp</label><input type="text" id="tsIn" placeholder="e.g. 1728384000" inputmode="numeric"></div>
+<div class="result-box show"><div class="stat-grid">
+<div class="stat"><b id="tsUtc" style="font-size:.85rem">—</b><span>UTC</span></div>
+<div class="stat"><b id="tsLocal" style="font-size:.85rem">—</b><span>Your time</span></div>
+<div class="stat"><b id="tsIso" style="font-size:.85rem">—</b><span>ISO 8601</span></div>
+<div class="stat"><b id="tsRel" style="font-size:.85rem">—</b><span>Relative</span></div>
+</div></div>
+<div class="field" style="margin-top:26px"><label>Date → timestamp</label></div>
+<div class="field"><label for="tsDate">Pick a date &amp; time</label><input type="datetime-local" id="tsDate"></div>
+<div class="result-box show"><div class="stat-grid">
+<div class="stat"><b id="tsSec" style="font-size:.85rem">—</b><span>Unix seconds</span></div>
+<div class="stat"><b id="tsMs" style="font-size:.85rem">—</b><span>Unix milliseconds</span></div>
+</div></div>
+</div>
+</div><section class="faq-section"><h2>Timestamp Converter — FAQs</h2>
+<details class="faq-item"><summary>What is a Unix timestamp?</summary><p>The number of seconds since 00:00:00 UTC on 1 January 1970. It is how computers store dates in databases, APIs and log files.</p></details>
+<details class="faq-item"><summary>How do I know if a timestamp is in seconds or milliseconds?</summary><p>Count the digits: 10 digits means seconds, 13 means milliseconds. This tool detects it automatically.</p></details>
+<details class="faq-item"><summary>Why does the same timestamp show different times?</summary><p>Timestamps are timezone-free; the displayed time depends on the timezone used to read them. This tool shows both UTC and your local time.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="uuid-generator.html"><span>UUID Generator</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="date-difference.html"><span>Date Difference</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="countdown-timer.html"><span>Countdown Timer</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="json-formatter.html"><span>JSON Formatter</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  function rel(d) {
+    var s = Math.round((Date.now() - d.getTime()) / 1000), a = Math.abs(s);
+    var u = a < 60 ? [a, 'second'] : a < 3600 ? [Math.round(a / 60), 'minute'] :
+            a < 86400 ? [Math.round(a / 3600), 'hour'] : a < 2592000 ? [Math.round(a / 86400), 'day'] :
+            a < 31536000 ? [Math.round(a / 2592000), 'month'] : [Math.round(a / 31536000), 'year'];
+    var t = u[0] + ' ' + u[1] + (u[0] === 1 ? '' : 's');
+    return s >= 0 ? t + ' ago' : 'in ' + t;
+  }
+  function tick() {
+    var el = document.getElementById('tsNow');
+    if (el) el.textContent = Math.floor(Date.now() / 1000);
+  }
+  tick(); setInterval(tick, 1000);
+  document.getElementById('tsNowCopy').addEventListener('click', function () {
+    if (window.SK && window.SK.copy) window.SK.copy(document.getElementById('tsNow').textContent);
+  });
+  function fromTs() {
+    var raw = document.getElementById('tsIn').value.trim().replace(/[^0-9]/g, '');
+    var set = function (id, t) { document.getElementById(id).textContent = t; };
+    if (!raw) { ['tsUtc','tsLocal','tsIso','tsRel'].forEach(function (id) { set(id, '—'); }); return; }
+    var ms = raw.length > 10 ? parseInt(raw, 10) : parseInt(raw, 10) * 1000;
+    var d = new Date(ms);
+    if (isNaN(d.getTime())) { ['tsUtc','tsLocal','tsIso','tsRel'].forEach(function (id) { set(id, 'invalid'); }); return; }
+    set('tsUtc', d.toUTCString()); set('tsLocal', d.toLocaleString()); set('tsIso', d.toISOString()); set('tsRel', rel(d));
+  }
+  function fromDate() {
+    var v = document.getElementById('tsDate').value;
+    var set = function (id, t) { document.getElementById(id).textContent = t; };
+    if (!v) { set('tsSec','—'); set('tsMs','—'); return; }
+    var ms = new Date(v).getTime();
+    if (isNaN(ms)) { set('tsSec','invalid'); set('tsMs','invalid'); return; }
+    set('tsSec', String(Math.floor(ms / 1000))); set('tsMs', String(ms));
+  }
+  document.getElementById('tsIn').addEventListener('input', fromTs);
+  document.getElementById('tsDate').addEventListener('input', fromDate);
+  document.getElementById('tsDate').addEventListener('change', fromDate);
+  fromTs(); fromDate(); /* initial state */
+})();
+</script>
+</body></html>

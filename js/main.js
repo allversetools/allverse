@@ -36,7 +36,17 @@
     { name: 'Hashtag Generator', href: 'hashtag-generator.html', cat: 'Social Media', keys: 'instagram tiktok tags' },
     { name: 'Bio Maker', href: 'bio-maker.html', cat: 'Social Media', keys: 'profile instagram about' },
     { name: 'Random Picker', href: 'random-picker.html', cat: 'Fun Tools', keys: 'random draw pick winner' },
-    { name: 'Dice Roller', href: 'dice-roller.html', cat: 'Fun Tools', keys: 'dice roll game' }
+    { name: 'Dice Roller', href: 'dice-roller.html', cat: 'Fun Tools', keys: 'dice roll game' },
+    { name: 'Percentage Calculator', href: 'percentage-calculator.html', cat: 'Calculators', keys: 'percent discount increase' },
+    { name: 'EMI Calculator', href: 'emi-calculator.html', cat: 'Calculators', keys: 'loan monthly installment interest' },
+    { name: 'Discount Calculator', href: 'discount-calculator.html', cat: 'Calculators', keys: 'sale price savings off' },
+    { name: 'UTM Link Builder', href: 'utm-builder.html', cat: 'Developer Tools', keys: 'utm campaign url tracking analytics' },
+    { name: 'UUID Generator', href: 'uuid-generator.html', cat: 'Developer Tools', keys: 'guid unique id random' },
+    { name: 'Timestamp Converter', href: 'timestamp-converter.html', cat: 'Developer Tools', keys: 'epoch unix time date' },
+    { name: 'URL Encoder Decoder', href: 'url-encoder-decoder.html', cat: 'Developer Tools', keys: 'encode decode uri percent' },
+    { name: 'Slug Generator', href: 'slug-generator.html', cat: 'Text Tools', keys: 'url slug permalink kebab' },
+    { name: 'Invoice Generator', href: 'invoice-generator.html', cat: 'Generators', keys: 'invoice bill pdf freelance' },
+    { name: 'Lorem Ipsum Generator', href: 'lorem-ipsum.html', cat: 'Text Tools', keys: 'lorem ipsum dummy placeholder text' }
   ];
   function toolByHref(href) {
     for (var i = 0; i < TOOLS.length; i++) if (TOOLS[i].href === href) return TOOLS[i];

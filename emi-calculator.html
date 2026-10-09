@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EMI Calculator — Free Online | SabKuch</title><meta name="description" content="Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/emi-calculator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "EMI Calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/emi-calculator.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is EMI calculated?", "acceptedAnswer": {"@type": "Answer", "text": "EMI = [P × R × (1+R)^N] / [(1+R)^N − 1], where P is the loan amount, R the monthly interest rate and N the tenure in months."}}, {"@type": "Question", "name": "Does a longer tenure reduce my EMI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but you pay more total interest over time. This calculator shows both the monthly EMI and the total interest so you can find the right balance."}}, {"@type": "Question", "name": "What is the difference between flat and reducing interest rates?", "acceptedAnswer": {"@type": "Answer", "text": "Most loans use a reducing-balance rate (interest charged on the outstanding amount). A 'flat' rate quote looks lower but costs more — always compare using the EMI."}}]}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link active" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="calculators.html">← Back to Calculators</a>
+<h1>EMI Calculator</h1><p class="tool-desc">Plan any loan — home, car or personal. Enter the amount, interest rate and tenure to see your monthly EMI, total interest and total payable. All calculations happen in your browser.</p>
+<div class="tool-panel">
+<div class="field"><label for="emiP">Loan amount</label><input type="number" id="emiP" value="500000" min="0" step="any"></div>
+<div class="field"><label for="emiR">Annual interest rate (%)</label><input type="number" id="emiR" value="10" min="0" step="any"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="emiT">Tenure</label><input type="number" id="emiT" value="5" min="0" step="any"></div>
+<div class="field"><label for="emiU">Tenure unit</label><select id="emiU"><option value="12">Years</option><option value="1">Months</option></select></div>
+</div>
+<div class="result-box show"><h4>Your loan plan</h4><div class="stat-grid">
+<div class="stat"><b id="emiMonthly">—</b><span>Monthly EMI</span></div>
+<div class="stat"><b id="emiInterest">—</b><span>Total interest</span></div>
+<div class="stat"><b id="emiTotal">—</b><span>Total payable</span></div>
+</div></div>
+</div>
+</div><section class="faq-section"><h2>EMI Calculator — FAQs</h2>
+<details class="faq-item"><summary>How is EMI calculated?</summary><p>EMI = [P × R × (1+R)^N] / [(1+R)^N − 1], where P is the loan amount, R the monthly interest rate and N the tenure in months.</p></details>
+<details class="faq-item"><summary>Does a longer tenure reduce my EMI?</summary><p>Yes, but you pay more total interest over time. This calculator shows both the monthly EMI and the total interest so you can find the right balance.</p></details>
+<details class="faq-item"><summary>What is the difference between flat and reducing interest rates?</summary><p>Most loans use a reducing-balance rate (interest charged on the outstanding amount). A 'flat' rate quote looks lower but costs more — always compare using the EMI.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="percentage-calculator.html"><span>Percentage Calculator</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="discount-calculator.html"><span>Discount Calculator</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="currency-converter.html"><span>Currency Converter</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="age-calculator.html"><span>Age Calculator</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  function num(id) { var v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; }
+  function money(n) { if (n === null || !isFinite(n)) return '—'; return (Math.round(n * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+  function set(id, t) { document.getElementById(id).textContent = t; }
+  function update() {
+    var P = num('emiP'), annual = num('emiR'), t = num('emiT');
+    var per = parseFloat(document.getElementById('emiU').value) || 12;
+    if (P === null || annual === null || t === null || P <= 0 || t <= 0 || annual < 0) {
+      set('emiMonthly','—'); set('emiInterest','—'); set('emiTotal','—'); return;
+    }
+    var n = Math.round(t * per), r = annual / 12 / 100, emi;
+    if (r === 0) { emi = P / n; }
+    else { var f = Math.pow(1 + r, n); emi = P * r * f / (f - 1); }
+    var total = emi * n;
+    set('emiMonthly', money(emi)); set('emiInterest', money(total - P)); set('emiTotal', money(total));
+  }
+  ['emiP','emiR','emiT','emiU'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', update);
+    document.getElementById(id).addEventListener('change', update);
+  });
+  update();
+})();
+</script>
+</body></html>
