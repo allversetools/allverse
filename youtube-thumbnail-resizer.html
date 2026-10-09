@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Free YouTube Thumbnail Resizer (1280×720) — SabKuch</title><meta name="description" content="Resize any image to YouTube's perfect 1280×720 thumbnail size in your browser. Free, no signup, no watermark."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/youtube-thumbnail-resizer.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"YouTube Thumbnail Resizer","applicationCategory":"UtilitiesApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Resize any image to YouTube's perfect 1280×720 thumbnail size in your browser. Free, no signup, no watermark.","url":"https://sabkuchtools.github.io/sabkuch/youtube-thumbnail-resizer.html"}</script></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label><button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link active" href="image-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4M7 4L3 8M7 4l4 4"/><path d="M17 8v12M17 20l4-4M17 20l-4-4"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.2"/><circle cx="15.5" cy="8.5" r="1.2"/><circle cx="8.5" cy="15.5" r="1.2"/><circle cx="15.5" cy="15.5" r="1.2"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4.2M8.6 13.4l6.8 4.2"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="image-tools.html">← Back to Image Tools</a>
+<h1>YouTube Thumbnail Resizer</h1><p class="tool-desc">Resize any image to YouTube's perfect 1280 × 720 thumbnail size. Free, private, no watermark.</p>
+<div class="tool-panel">
+  <div class="field">
+    <label for="fileInput">Choose an image</label>
+    <input type="file" id="fileInput" accept="image/*">
+    <p class="field-hint">Or drag &amp; drop an image anywhere on this panel. Your file never leaves your device.</p>
+  </div>
+  <div class="field">
+    <label for="fitMode">Fit mode</label>
+    <select id="fitMode">
+      <option value="cover" selected>Fill 1280×720 (crop edges)</option>
+      <option value="contain">Fit inside (letterbox)</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="format">Output format</label>
+    <select id="format">
+      <option value="image/jpeg" selected>JPEG (smaller file)</option>
+      <option value="image/png">PNG (best quality)</option>
+    </select>
+  </div>
+  <p class="err-note" id="err" hidden></p>
+</div>
+<div class="result-panel" id="result" hidden>
+  <h4>Your 1280 × 720 thumbnail</h4>
+  <div class="preview-wrap"><canvas id="outCanvas" width="1280" height="720"></canvas></div>
+  <p class="stat-line" id="statLine"></p>
+  <div class="btn-row" style="justify-content:center; margin-top:18px;">
+    <button class="btn magnetic" id="dlBtn" type="button">Download Thumbnail</button>
+  </div>
+</div>
+<div class="info-block">
+  <h3>How to use</h3>
+  <ol>
+    <li>Pick an image (or drag &amp; drop it).</li>
+    <li>Choose fill (crops to exact 16:9) or fit (adds letterbox bars).</li>
+    <li>Download — ready to upload to YouTube Studio.</li>
+  </ol>
+  <h3>Why 1280 × 720?</h3>
+  <p>YouTube recommends 1280 × 720 px (16:9) thumbnails under 2 MB. This tool outputs exactly that size.</p>
+</div>
+</div></main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+  var TW = 1280, TH = 720;
+  var fileInput = document.getElementById('fileInput');
+  var fitMode = document.getElementById('fitMode');
+  var format = document.getElementById('format');
+  var result = document.getElementById('result');
+  var canvas = document.getElementById('outCanvas');
+  var dlBtn = document.getElementById('dlBtn');
+  var err = document.getElementById('err');
+  var statLine = document.getElementById('statLine');
+  var panel = document.querySelector('.tool-panel');
+  var img = null, imgName = 'thumbnail';
+
+  function showError(m) { err.textContent = m; err.hidden = false; }
+  function hideError() { err.hidden = true; }
+
+  function render() {
+    if (!img) return;
+    hideError();
+    var ctx = canvas.getContext('2d');
+    var mode = fitMode.value;
+    ctx.clearRect(0, 0, TW, TH);
+    var iw = img.naturalWidth, ih = img.naturalHeight;
+    if (mode === 'cover') {
+      var s = Math.max(TW / iw, TH / ih);
+      var dw = iw * s, dh = ih * s;
+      ctx.drawImage(img, (TW - dw) / 2, (TH - dh) / 2, dw, dh);
+    } else {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, TW, TH);
+      var s2 = Math.min(TW / iw, TH / ih);
+      var dw2 = iw * s2, dh2 = ih * s2;
+      ctx.drawImage(img, (TW - dw2) / 2, (TH - dh2) / 2, dw2, dh2);
+    }
+    result.hidden = false;
+  }
+
+  function loadFile(file) {
+    hideError();
+    if (!file || !file.type.match(/^image\//)) { showError('Please choose an image file.'); return; }
+    if (file.size > 15 * 1024 * 1024) { showError('Image is larger than 15 MB — please use a smaller file.'); return; }
+    imgName = (file.name || 'thumbnail').replace(/\.[^.]+$/, '');
+    var url = URL.createObjectURL(file);
+    var im = new Image();
+    im.onload = function () { img = im; URL.revokeObjectURL(url); render(); if (window.SK) SK.toast('Image loaded — preview ready'); };
+    im.onerror = function () { showError('Could not read that image.'); URL.revokeObjectURL(url); };
+    im.src = url;
+  }
+
+  if (fileInput) fileInput.addEventListener('change', function () { if (fileInput.files[0]) loadFile(fileInput.files[0]); });
+  if (fitMode) fitMode.addEventListener('change', render);
+  if (panel) {
+    ['dragover', 'dragenter'].forEach(function (ev) {
+      panel.addEventListener(ev, function (e) { e.preventDefault(); panel.classList.add('drag-on'); });
+    });
+    ['dragleave', 'drop'].forEach(function (ev) {
+      panel.addEventListener(ev, function (e) { e.preventDefault(); panel.classList.remove('drag-on'); });
+    });
+    panel.addEventListener('drop', function (e) {
+      var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) loadFile(f);
+    });
+  }
+  if (dlBtn) dlBtn.addEventListener('click', function () {
+    if (!img) { showError('Load an image first.'); return; }
+    var fmt = format.value;
+    var ext = fmt === 'image/png' ? 'png' : 'jpg';
+    try {
+      var url = fmt === 'image/png' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.92);
+      // size check
+      var bytes = Math.round((url.length - 22) * 3 / 4);
+      if (statLine) statLine.textContent = 'Output: 1280 × 720 · ~' + (bytes / 1024).toFixed(0) + ' KB' + (bytes > 2 * 1024 * 1024 ? ' — over YouTube\'s 2 MB limit, try JPEG' : ' — within YouTube\'s 2 MB limit ✓');
+      if (window.SK && window.SK.download) window.SK.download(url, imgName + '-1280x720.' + ext);
+    } catch (e) { showError('Could not export the image.'); }
+  });
+})();
+</script>
+</body></html>

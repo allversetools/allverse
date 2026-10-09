@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Maker – Free Instagram & TikTok Bio Generator | SabKuch</title>
+<meta name="description" content="Free bio maker for Instagram, TikTok and Twitter. Enter your name, role and interests, pick a style, and get 3 copy-ready bios instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/bio-maker.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Bio Maker – Free Instagram & TikTok Bio Generator | SabKuch", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free bio maker for Instagram, TikTok and Twitter. Enter your name, role and interests, pick a style, and get 3 copy-ready bios instantly.", "url": "https://sabkuchtools.github.io/sabkuch/bio-maker.html"}</script></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><span class="si">🖼️</span>Image Tools</a>
+<a class="side-link" href="text-tools.html"><span class="si">📝</span>Text Tools</a>
+<a class="side-link" href="calculators.html"><span class="si">🧮</span>Calculators</a>
+<a class="side-link" href="converters.html"><span class="si">🔄</span>Converters</a>
+<a class="side-link" href="generators.html"><span class="si">⚙️</span>Generators</a>
+<a class="side-link" href="developer-tools.html"><span class="si">💻</span>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><span class="si">🎨</span>Color Tools</a>
+<a class="side-link" href="date-time.html"><span class="si">🕐</span>Date &amp; Time</a>
+<a class="side-link active" href="social-media.html"><span class="si">📱</span>Social Media</a>
+<a class="side-link" href="fun-tools.html"><span class="si">🎲</span>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="social-media.html">← Back to Social Media</a>
+<h1>✨ Bio Maker</h1>
+<p class="tool-desc">Create a perfect profile bio in seconds. Fill in your details, choose a style, and pick your favorite from 3 options.</p>
+<div class="tool-panel">
+<div class="field-row">
+<div class="field"><label for="name">Your name</label><input type="text" id="name" placeholder="e.g. Amaan" maxlength="30"></div>
+<div class="field"><label for="role">Role / Profession</label><input type="text" id="role" placeholder="e.g. Video Editor" maxlength="40"></div>
+</div>
+<div class="field"><label for="interest">Interest / Hobby</label><input type="text" id="interest" placeholder="e.g. cricket, photography" maxlength="40"></div>
+<div class="field"><label for="style">Bio style</label><select id="style">
+<option value="professional">Professional</option>
+<option value="funny">Funny</option>
+<option value="minimalist">Minimalist</option>
+<option value="aesthetic">Aesthetic</option>
+</select></div>
+<div class="btn-row"><button class="btn" id="genBtn">Generate Bios</button></div>
+<div class="result-box" id="resultBox">
+<h4>Your bios</h4>
+<div id="bioList"></div>
+</div>
+</div>
+</div></main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<div class="toast" id="toast">Copied!</div>
+<script src="js/main.js"></script>
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function showToast(msg){
+    var t = $("toast"); if(!t) return;
+    t.textContent = msg || "Copied!";
+    t.classList.add("show");
+    if(t._timer) clearTimeout(t._timer);
+    t._timer = setTimeout(function(){ t.classList.remove("show"); }, 1600);
+  }
+  function copyText(text, msg){
+    var done = function(){ showToast(msg || "Copied!"); };
+    if(window.SK && typeof window.SK.copy === "function"){ try{ window.SK.copy(text); }catch(e){} done(); return; }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text); done(); });
+      return;
+    }
+    fallbackCopy(text); done();
+  }
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+  }
+  var toggle = $("menuToggle"), sidebar = $("sidebar");
+  if(toggle && sidebar){ toggle.addEventListener("click", function(){ sidebar.classList.toggle("open"); }); }
+
+  function v(el, fb){ var s = el && el.value ? el.value.trim() : ""; return s || fb; }
+  var templates = {
+    professional: function(n,r,i){ return [
+      "👋 " + n + " | " + r + "\nPassionate about " + i + ".\n📩 Let's connect and create something great!",
+      "💼 " + r + "\n" + n + " • Turning " + i + " into results.\n📬 Open for collaborations",
+      "✨ " + n + " — " + r + "\nSharing my journey in " + i + ".\n👇 Follow along"
+    ]; },
+    funny: function(n,r,i){ return [
+      "⚠️ Warning: " + n + " may cause uncontrollable laughter 😂\nProfessional " + r + " by day, " + i + " addict by night 🍕",
+      "👋 I'm " + n + ".\nI do " + r + " stuff so you don't have to.\nFueled by " + i + " and bad decisions 🤡",
+      "🎪 " + n + " here — " + r + " with zero chill.\nMy love language is " + i + ". Don't @ me 😎"
+    ]; },
+    minimalist: function(n,r,i){ return [
+      n + "\n" + r + " · " + i,
+      n + " — " + r + "\n" + i + " enthusiast",
+      r + " | " + i + "\n— " + n
+    ]; },
+    aesthetic: function(n,r,i){ return [
+      "✦ " + n + " ✦\n𖤐 " + r + "\n˗ˏˋ " + i + " lover ˎˊ˗",
+      "⋆｡‧˚ʚ " + n + " ɞ˚‧｡⋆\n✧ " + r + " ✧\n♡ " + i + " ♡",
+      "˚₊· ͟͟͞͞➳❥ " + n + "\n꒰ " + r + " ꒱\n⋆ " + i + " soul ⋆"
+    ]; }
+  };
+  var genBtn = $("genBtn"), resultBox = $("resultBox"), bioList = $("bioList");
+  function render(){
+    var n = v($("name"), "Your Name"), r = v($("role"), "Creator"), i = v($("interest"), "good vibes");
+    var s = $("style") ? $("style").value : "professional";
+    var fn = templates[s] || templates.professional;
+    var bios = fn(n, r, i);
+    if(!bioList || !resultBox) return;
+    bioList.innerHTML = "";
+    bios.forEach(function(bio){
+      var card = document.createElement("div");
+      card.className = "bio-card";
+      var p = document.createElement("p");
+      p.textContent = bio;
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "bio-copy"; btn.textContent = "📋 Copy";
+      btn.addEventListener("click", function(){ copyText(bio, "Bio copied!"); });
+      card.appendChild(p); card.appendChild(btn);
+      bioList.appendChild(card);
+    });
+    resultBox.classList.add("show");
+  }
+  if(genBtn){ genBtn.addEventListener("click", render); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dice Roller – Free Online Dice Roller (1–6 Dice) | SabKuch</title>
+<meta name="description" content="Free online dice roller. Roll 1 to 6 dice with a fun 3D-style animation, see the total instantly. Great for board games and decisions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/dice-roller.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Dice Roller – Free Online Dice Roller (1–6 Dice) | SabKuch", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free online dice roller. Roll 1 to 6 dice with a fun 3D-style animation, see the total instantly. Great for board games and decisions.", "url": "https://sabkuchtools.github.io/sabkuch/dice-roller.html"}</script></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><span class="si">🖼️</span>Image Tools</a>
+<a class="side-link" href="text-tools.html"><span class="si">📝</span>Text Tools</a>
+<a class="side-link" href="calculators.html"><span class="si">🧮</span>Calculators</a>
+<a class="side-link" href="converters.html"><span class="si">🔄</span>Converters</a>
+<a class="side-link" href="generators.html"><span class="si">⚙️</span>Generators</a>
+<a class="side-link" href="developer-tools.html"><span class="si">💻</span>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><span class="si">🎨</span>Color Tools</a>
+<a class="side-link" href="date-time.html"><span class="si">🕐</span>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><span class="si">📱</span>Social Media</a>
+<a class="side-link active" href="fun-tools.html"><span class="si">🎲</span>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="fun-tools.html">← Back to Fun Tools</a>
+<h1>🎲 Dice Roller</h1>
+<p class="tool-desc">Roll up to 6 dice with a fun animated shake. Perfect for board games, D&D nights and quick decisions.</p>
+<div class="tool-panel">
+<div class="field-row">
+<div class="field"><label for="diceCount">Number of dice</label><select id="diceCount">
+<option value="1">1 die</option>
+<option value="2" selected>2 dice</option>
+<option value="3">3 dice</option>
+<option value="4">4 dice</option>
+<option value="5">5 dice</option>
+<option value="6">6 dice</option>
+</select></div>
+</div>
+<div class="btn-row"><button class="btn" id="rollBtn">🎲 Roll Dice</button></div>
+<div class="result-box" id="resultBox">
+<h4>Result</h4>
+<div class="dice-stage" id="diceStage"></div>
+<div class="total-box"><div class="t-label">Total</div><div class="t-value" id="totalValue">–</div></div>
+</div>
+</div>
+</div></main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<div class="toast" id="toast">Rolled!</div>
+<script src="js/main.js"></script>
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  var toggle = $("menuToggle"), sidebar = $("sidebar");
+  if(toggle && sidebar){ toggle.addEventListener("click", function(){ sidebar.classList.toggle("open"); }); }
+
+  var pipMap = {
+    1: [[2,2]],
+    2: [[1,1],[3,3]],
+    3: [[1,1],[2,2],[3,3]],
+    4: [[1,1],[1,3],[3,1],[3,3]],
+    5: [[1,1],[1,3],[2,2],[3,1],[3,3]],
+    6: [[1,1],[1,3],[2,1],[2,3],[3,1],[3,3]]
+  };
+  function renderDie(el, val){
+    if(!el) return;
+    el.innerHTML = "";
+    var cells = pipMap[val] || pipMap[1];
+    cells.forEach(function(p){
+      var s = document.createElement("span");
+      s.className = "pip";
+      s.style.gridRow = p[0];
+      s.style.gridColumn = p[1];
+      el.appendChild(s);
+    });
+  }
+  function randDie(){ return 1 + Math.floor(Math.random()*6); }
+
+  var rollBtn = $("rollBtn"), diceCount = $("diceCount"),
+      diceStage = $("diceStage"), totalValue = $("totalValue"), resultBox = $("resultBox");
+  var diceEls = [], rolling = false;
+
+  function buildDice(n){
+    if(!diceStage) return;
+    diceStage.innerHTML = "";
+    diceEls = [];
+    for(var i=0;i<n;i++){
+      var d = document.createElement("div");
+      d.className = "die";
+      renderDie(d, randDie());
+      diceStage.appendChild(d);
+      diceEls.push(d);
+    }
+  }
+  function getCount(){
+    var n = diceCount ? parseInt(diceCount.value, 10) : 2;
+    if(isNaN(n) || n < 1) n = 1;
+    if(n > 6) n = 6;
+    return n;
+  }
+  buildDice(getCount());
+  if(diceCount){ diceCount.addEventListener("change", function(){
+    if(rolling) return;
+    buildDice(getCount());
+    if(totalValue) totalValue.textContent = "–";
+  }); }
+  if(rollBtn){ rollBtn.addEventListener("click", function(){
+    if(rolling || !diceStage) return;
+    var n = getCount();
+    if(diceEls.length !== n) buildDice(n);
+    if(resultBox) resultBox.classList.add("show");
+    rolling = true; rollBtn.disabled = true;
+    diceEls.forEach(function(d){ d.classList.add("rolling"); });
+    var ticks = 8, i = 0, finals = [];
+    for(var f=0; f<n; f++){ finals.push(randDie()); }
+    var timer = setInterval(function(){
+      i++;
+      diceEls.forEach(function(d){ renderDie(d, randDie()); });
+      if(i >= ticks){
+        clearInterval(timer);
+        var total = 0;
+        diceEls.forEach(function(d, k){
+          d.classList.remove("rolling");
+          renderDie(d, finals[k]);
+          total += finals[k];
+        });
+        if(totalValue) totalValue.textContent = total;
+        rolling = false; rollBtn.disabled = false;
+      }
+    }, 87);
+  }); }
+})();
+</script>
+</body>
+</html>

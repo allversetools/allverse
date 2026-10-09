@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sabkuchtools.github.io/sabkuch/sitemap.xml

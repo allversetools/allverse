@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Unit Converter — Length, Weight &amp; Temperature | SabKuch</title><meta name="description" content="Convert length, weight and temperature units instantly — km to miles, kg to pounds, Celsius to Fahrenheit and more. Free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/unit-converter.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Unit Converter", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert length, weight and temperature units instantly — km to miles, kg to pounds, Celsius to Fahrenheit and more. Free, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/unit-converter.html"}</script></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg viewBox="0 0 24 24"><path d="M4 7V5h16v2M9 20h6M12 5v15"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link active" href="converters.html"><svg viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M2 12h4m12 0h4M5 5l3 3m7 7l3 3M5 19l3-3m7-7l3-3"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="15.5" cy="10" r="1.2"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a5 5 0 018-4 5 5 0 018 4c0 5.5-8 11-8 11z"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="converters.html">← Back to Converters</a>
+<h1>Unit Converter</h1>
+<p class="tool-desc">Convert between length, weight and temperature units. The result updates live as you type or change units.</p>
+<div class="tool-panel">
+<div class="field"><label for="convType">Measurement type</label>
+<select id="convType">
+<option value="length">Length</option>
+<option value="weight">Weight</option>
+<option value="temperature">Temperature</option>
+</select></div>
+<div class="field-row">
+<div class="field"><label for="amount">Value</label><input id="amount" type="number" step="any" placeholder="e.g. 100"></div>
+</div>
+<div class="field-row">
+<div class="field"><label for="fromUnit">From</label><select id="fromUnit"></select></div>
+<div class="field"><label for="toUnit">To</label><select id="toUnit"></select></div>
+</div>
+</div>
+<div class="result-panel" id="result" hidden>
+<div class="result-label" id="convLabel">Result</div>
+<div class="result-value" id="convValue">–</div>
+</div>
+</div></main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function(){
+  var type=document.getElementById('convType'), amt=document.getElementById('amount');
+  var from=document.getElementById('fromUnit'), to=document.getElementById('toUnit');
+  var res=document.getElementById('result');
+  if(!type||!amt||!from||!to||!res) return;
+  var UNITS={
+    length:{km:1000,m:1,cm:0.01,mm:0.001,mi:1609.344,yd:0.9144,ft:0.3048,in:0.0254},
+    weight:{kg:1,g:0.001,lb:0.453592,oz:0.0283495},
+    temperature:{C:1,F:1,K:1}
+  };
+  function populate(){
+    var t=type.value, u=Object.keys(UNITS[t]);
+    from.innerHTML=''; to.innerHTML='';
+    u.forEach(function(k){ from.appendChild(new Option(k.toUpperCase(),k)); to.appendChild(new Option(k.toUpperCase(),k)); });
+    if(t==='length'){ from.value='m'; to.value='km'; }
+    if(t==='weight'){ from.value='kg'; to.value='lb'; }
+    if(t==='temperature'){ from.value='C'; to.value='F'; }
+  }
+  function toC(v,u){ if(u==='C')return v; if(u==='F')return (v-32)*5/9; return v-273.15; }
+  function fromC(v,u){ if(u==='C')return v; if(u==='F')return v*9/5+32; return v+273.15; }
+  function trim(n){ return parseFloat(n.toPrecision(4)).toString(); }
+  function convert(){
+    var v=parseFloat(amt.value), t=type.value;
+    var lbl=document.getElementById('convLabel'), out=document.getElementById('convValue');
+    if(!isFinite(v)){ res.hidden=true; return; }
+    var r;
+    if(t==='temperature'){ r=fromC(toC(v,from.value),to.value); }
+    else{ var f=UNITS[t]; r=v*f[from.value]/f[to.value]; }
+    if(!isFinite(r)){ res.hidden=true; return; }
+    res.hidden=false;
+    if(lbl) lbl.textContent=v+' '+from.value.toUpperCase()+' =';
+    if(out) out.textContent=trim(r)+' '+to.value.toUpperCase();
+  }
+  type.addEventListener('change',function(){ populate(); convert(); });
+  [amt,from,to].forEach(function(el){ el.addEventListener('input',convert); el.addEventListener('change',convert); });
+  populate(); convert();
+})();
+</script>
+</body></html>

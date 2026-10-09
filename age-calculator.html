@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Age Calculator — Exact Age in Years, Months &amp; Days | SabKuch</title><meta name="description" content="Calculate your exact age in years, months and days. See total months, weeks, days and days until your next birthday — free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/age-calculator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Age Calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Calculate your exact age in years, months and days. See total months, weeks, days and days until your next birthday — free, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/age-calculator.html"}</script></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg viewBox="0 0 24 24"><path d="M4 7V5h16v2M9 20h6M12 5v15"/></svg>Text Tools</a>
+<a class="side-link active" href="calculators.html"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M2 12h4m12 0h4M5 5l3 3m7 7l3 3M5 19l3-3m7-7l3-3"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="15.5" cy="10" r="1.2"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a5 5 0 018-4 5 5 0 018 4c0 5.5-8 11-8 11z"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="calculators.html">← Back to Calculators</a>
+<h1>Age Calculator</h1>
+<p class="tool-desc">Find out your exact age in years, months and days, plus totals and the countdown to your next birthday.</p>
+<div class="tool-panel">
+<div class="field"><label for="dob">Date of birth</label><input id="dob" type="date"></div>
+<button class="btn" id="calcBtn" type="button">Calculate Age</button>
+</div>
+<div class="result-panel" id="result" hidden>
+<div class="result-label">Your age</div>
+<div class="result-value" id="ageValue">–</div>
+<div class="stat-grid" id="statGrid"></div>
+<p class="result-note" id="ageNote"></p>
+</div>
+</div></main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function(){
+  var dob=document.getElementById('dob'), btn=document.getElementById('calcBtn');
+  var res=document.getElementById('result');
+  if(!dob||!btn||!res) return;
+  var t=new Date(); dob.max=t.toISOString().slice(0,10);
+  function daysIn(m,y){ return new Date(y,m+1,0).getDate(); }
+  btn.addEventListener('click',function(){
+    var note=document.getElementById('ageNote');
+    if(!dob.value){ showErr('Please select your date of birth.'); return; }
+    var d=new Date(dob.value+'T00:00:00');
+    var now=new Date(); now.setHours(0,0,0,0);
+    if(isNaN(d.getTime())){ showErr('That date is not valid.'); return; }
+    if(d>now){ showErr('Date of birth cannot be in the future.'); return; }
+    var y=now.getFullYear()-d.getFullYear(), mo=now.getMonth()-d.getMonth(), da=now.getDate()-d.getDate();
+    if(da<0){ mo--; da+=daysIn(now.getMonth()-1,now.getFullYear()); }
+    if(mo<0){ y--; mo+=12; }
+    var totalDays=Math.floor((now-d)/86400000);
+    var totalMonths=y*12+mo;
+    var totalWeeks=Math.floor(totalDays/7);
+    var nb=new Date(now.getFullYear(),d.getMonth(),d.getDate());
+    if(nb<now) nb=new Date(now.getFullYear()+1,d.getMonth(),d.getDate());
+    var untilBday=Math.ceil((nb-now)/86400000);
+    document.getElementById('ageValue').textContent=y+' years, '+mo+' months, '+da+' days';
+    var g=document.getElementById('statGrid'); g.innerHTML='';
+    [['Total months',totalMonths],['Total weeks',totalWeeks],['Total days',totalDays],['Days to next birthday',untilBday]].forEach(function(s){
+      var dv=document.createElement('div'); dv.className='stat';
+      var v=document.createElement('div'); v.className='stat-value'; v.textContent=s[1].toLocaleString('en-US');
+      var l=document.createElement('div'); l.className='stat-label'; l.textContent=s[0];
+      dv.appendChild(v); dv.appendChild(l); g.appendChild(dv);
+    });
+    if(note) note.textContent='';
+    res.hidden=false;
+    function showErr(m){ document.getElementById('ageValue').textContent='–'; var g2=document.getElementById('statGrid'); if(g2) g2.innerHTML=''; if(note) note.textContent=m; res.hidden=false; }
+  });
+})();
+</script>
+</body></html>

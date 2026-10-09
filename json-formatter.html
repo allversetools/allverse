@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Free JSON Formatter &amp; Validator — SabKuch</title><meta name="description" content="Format, minify, and validate JSON online with 2-space beautify and error position highlighting — free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/json-formatter.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Free JSON Formatter &amp; Validator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Format, minify, and validate JSON online with 2-space beautify and error position highlighting — free, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/json-formatter.html"}</script></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4M7 4L3 8M7 4l4 4"/><path d="M17 8v12M17 20l4-4M17 20l-4-4"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.2"/><circle cx="15.5" cy="8.5" r="1.2"/><circle cx="8.5" cy="15.5" r="1.2"/><circle cx="15.5" cy="15.5" r="1.2"/></svg>Generators</a>
+<a class="side-link active" href="developer-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4.2M8.6 13.4l6.8 4.2"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="developer-tools.html">← Back to Developer Tools</a>
+<h1>JSON Formatter &amp; Validator</h1><p class="tool-desc">Beautify, minify, and validate JSON. Everything runs in your browser — your data never leaves the page.</p>
+<div class="tool-panel">
+  <div class="field">
+    <label for="jsonIn">JSON Input</label>
+    <textarea id="jsonIn" placeholder='{"name":"SabKuch","tools":["formatter","validator"]}'></textarea>
+  </div>
+  <div class="btn-row">
+    <button class="btn" id="fmtBtn" type="button">Format (2-space)</button>
+    <button class="btn secondary" id="minBtn" type="button">Minify</button>
+    <button class="btn secondary" id="valBtn" type="button">Validate</button>
+    <button class="btn secondary" id="clrBtn" type="button">Clear</button>
+  </div>
+</div>
+<div class="result-panel" id="result" hidden>
+  <h4>Output</h4>
+  <pre class="json-out" id="jsonOut"></pre>
+  <p class="validate-msg" id="valMsg"></p>
+  <div class="btn-row" style="margin-top:14px;">
+    <button class="btn secondary" id="copyBtn" type="button">Copy Output</button>
+  </div>
+</div>
+</div></main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+  var jsonIn = document.getElementById('jsonIn');
+  var jsonOut = document.getElementById('jsonOut');
+  var result = document.getElementById('result');
+  var valMsg = document.getElementById('valMsg');
+  var fmtBtn = document.getElementById('fmtBtn');
+  var minBtn = document.getElementById('minBtn');
+  var valBtn = document.getElementById('valBtn');
+  var clrBtn = document.getElementById('clrBtn');
+  var copyBtn = document.getElementById('copyBtn');
+
+  function setMsg(text, cls) {
+    if (!valMsg) return;
+    valMsg.textContent = text || '';
+    valMsg.className = 'validate-msg' + (cls ? ' ' + cls : '');
+  }
+
+  function parseInput() {
+    if (!jsonIn) return { error: 'No input.' };
+    var raw = jsonIn.value;
+    if (!raw.trim()) return { error: 'Input is empty. Paste some JSON first.' };
+    try {
+      return { value: JSON.parse(raw), raw: raw };
+    } catch (e) {
+      var detail = e && e.message ? e.message : 'Invalid JSON.';
+      var m = /position (\d+)/i.exec(detail);
+      if (m && raw) {
+        var pos = parseInt(m[1], 10);
+        var from = Math.max(0, pos - 24);
+        var to = Math.min(raw.length, pos + 24);
+        var snippet = raw.slice(from, to).replace(/\n/g, '⏎');
+        detail += ' — near "…' + snippet + '…"';
+      }
+      return { error: detail };
+    }
+  }
+
+  function showResult() {
+    if (result) result.hidden = false;
+  }
+
+  if (fmtBtn) fmtBtn.addEventListener('click', function () {
+    var r = parseInput();
+    if (r.error) { showResult(); if (jsonOut) jsonOut.textContent = ''; setMsg('Invalid JSON: ' + r.error, 'err'); return; }
+    if (jsonOut) jsonOut.textContent = JSON.stringify(r.value, null, 2);
+    setMsg('Formatted ✓', 'ok');
+    showResult();
+  });
+
+  if (minBtn) minBtn.addEventListener('click', function () {
+    var r = parseInput();
+    if (r.error) { showResult(); if (jsonOut) jsonOut.textContent = ''; setMsg('Invalid JSON: ' + r.error, 'err'); return; }
+    if (jsonOut) jsonOut.textContent = JSON.stringify(r.value);
+    setMsg('Minified ✓', 'ok');
+    showResult();
+  });
+
+  if (valBtn) valBtn.addEventListener('click', function () {
+    var r = parseInput();
+    showResult();
+    if (r.error) {
+      if (jsonOut) jsonOut.textContent = '';
+      setMsg('Invalid JSON: ' + r.error, 'err');
+    } else {
+      if (jsonOut) jsonOut.textContent = JSON.stringify(r.value, null, 2);
+      setMsg('Valid JSON ✓', 'ok');
+    }
+  });
+
+  if (clrBtn) clrBtn.addEventListener('click', function () {
+    if (jsonIn) jsonIn.value = '';
+    if (jsonOut) jsonOut.textContent = '';
+    setMsg('');
+    if (result) result.hidden = true;
+  });
+
+  if (copyBtn && jsonOut) {
+    copyBtn.addEventListener('click', function () {
+      var text = jsonOut.textContent || '';
+      if (!text) return;
+      var btn = copyBtn;
+      if (window.SK && window.SK.copy) {
+        if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+        window.SK.copy(text).then(function (ok) {
+          btn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+          setTimeout(function () { btn.textContent = btn.dataset.orig; }, 1600);
+        });
+      }
+    });
+  }
+})();
+</script>
+</body></html>

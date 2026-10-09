@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Free Color Picker — SabKuch</title><meta name="description" content="Pick any color and get instant HEX, RGB, and HSL values with shades and one-click copy — free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/color-picker.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Free Color Picker", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Pick any color and get instant HEX, RGB, and HSL values with shades and one-click copy — free, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/color-picker.html"}</script></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="image-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4M7 4L3 8M7 4l4 4"/><path d="M17 8v12M17 20l4-4M17 20l-4-4"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.2"/><circle cx="15.5" cy="8.5" r="1.2"/><circle cx="8.5" cy="15.5" r="1.2"/><circle cx="15.5" cy="15.5" r="1.2"/></svg>Generators</a>
+<a class="side-link active" href="developer-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4.2M8.6 13.4l6.8 4.2"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<a class="back-link" href="developer-tools.html">← Back to Developer Tools</a>
+<h1>Color Picker</h1><p class="tool-desc">Pick a color and instantly get its HEX, RGB, and HSL values — edit any field and the rest sync automatically.</p>
+<div class="tool-panel">
+  <div class="field">
+    <label for="colorNative">Pick a Color</label>
+    <div class="color-row">
+      <input type="color" class="color-big" id="colorNative" value="#2563eb">
+      <div style="flex:1; min-width:220px;">
+        <div class="copy-field" style="margin-bottom:10px;">
+          <input type="text" id="hexIn" value="#2563eb" aria-label="HEX value">
+          <button class="btn secondary" id="hexCopy" type="button">Copy</button>
+        </div>
+        <div class="copy-field" style="margin-bottom:10px;">
+          <input type="text" id="rgbIn" value="37, 99, 235" aria-label="RGB value">
+          <button class="btn secondary" id="rgbCopy" type="button">Copy</button>
+        </div>
+        <div class="copy-field">
+          <input type="text" id="hslIn" value="221, 83%, 53%" aria-label="HSL value">
+          <button class="btn secondary" id="hslCopy" type="button">Copy</button>
+        </div>
+      </div>
+    </div>
+    <p class="hint" id="colorHint" hidden>⚠ That value isn't valid — use e.g. #2563eb, 37, 99, 235, or 221, 83%, 53%.</p>
+  </div>
+  <div class="field">
+    <label>Auto Shades — click a swatch to load it</label>
+    <div class="swatches" id="shades"></div>
+  </div>
+</div>
+</div></main></div>
+<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+  var native = document.getElementById('colorNative');
+  var hexIn = document.getElementById('hexIn');
+  var rgbIn = document.getElementById('rgbIn');
+  var hslIn = document.getElementById('hslIn');
+  var shades = document.getElementById('shades');
+  var colorHint = document.getElementById('colorHint');
+
+  function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
+
+  function toHex2(n) {
+    var s = clamp(Math.round(n), 0, 255).toString(16);
+    return s.length === 1 ? '0' + s : s;
+  }
+
+  function hexToRgb(hex) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    if (!/^[0-9a-fA-F]{6}$/.test(hex)) return null;
+    return {
+      r: parseInt(hex.slice(0, 2), 16),
+      g: parseInt(hex.slice(2, 4), 16),
+      b: parseInt(hex.slice(4, 6), 16)
+    };
+  }
+
+  function rgbToHex(r, g, b) {
+    return '#' + toHex2(r) + toHex2(g) + toHex2(b);
+  }
+
+  function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h = 0, s = 0, l = (max + min) / 2;
+    if (max !== min) {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+      else if (max === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60;
+    }
+    return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) };
+  }
+
+  function hslToRgb(h, s, l) {
+    h = ((h % 360) + 360) % 360 / 360;
+    s = clamp(s, 0, 100) / 100;
+    l = clamp(l, 0, 100) / 100;
+    if (s === 0) {
+      var v = Math.round(l * 255);
+      return { r: v, g: v, b: v };
+    }
+    function hue2rgb(p, q, t) {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    }
+    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    var p = 2 * l - q;
+    return {
+      r: Math.round(hue2rgb(p, q, h + 1 / 3) * 255),
+      g: Math.round(hue2rgb(p, q, h) * 255),
+      b: Math.round(hue2rgb(p, q, h - 1 / 3) * 255)
+    };
+  }
+
+  function mix(hex, target, amt) {
+    var a = hexToRgb(hex), b = hexToRgb(target);
+    if (!a || !b) return hex;
+    return rgbToHex(
+      a.r + (b.r - a.r) * amt,
+      a.g + (b.g - a.g) * amt,
+      a.b + (b.b - a.b) * amt
+    );
+  }
+
+  function renderShades(hex) {
+    if (!shades) return;
+    shades.innerHTML = '';
+    var factors = [-0.45, -0.22, 0, 0.22, 0.45];
+    factors.forEach(function (f) {
+      var h = f === 0 ? hex : (f < 0 ? mix(hex, '#000000', -f) : mix(hex, '#ffffff', f));
+      var d = document.createElement('div');
+      d.className = 'swatch';
+      d.style.background = h;
+      d.title = 'Load ' + h;
+      var sp = document.createElement('span');
+      sp.textContent = h;
+      d.appendChild(sp);
+      d.addEventListener('click', function () { setFromHex(h); });
+      shades.appendChild(d);
+    });
+  }
+
+  function setFromHex(hex, source) {
+    var rgb = hexToRgb(hex);
+    if (!rgb) {
+      if (colorHint) colorHint.hidden = false;
+      return;
+    }
+    if (colorHint) colorHint.hidden = true;
+    var hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    var norm = rgbToHex(rgb.r, rgb.g, rgb.b);
+    if (hexIn && source !== hexIn) hexIn.value = norm;
+    if (rgbIn && source !== rgbIn) rgbIn.value = rgb.r + ', ' + rgb.g + ', ' + rgb.b;
+    if (hslIn && source !== hslIn) hslIn.value = hsl.h + ', ' + hsl.s + '%, ' + hsl.l + '%';
+    if (native) native.value = norm;
+    renderShades(norm);
+  }
+
+  function parseRgbInput(str) {
+    var m = str.replace(/[a-z()%]/gi, '').split(/[,\s]+/).filter(Boolean);
+    if (m.length < 3) return null;
+    var r = parseInt(m[0], 10), g = parseInt(m[1], 10), b = parseInt(m[2], 10);
+    if ([r, g, b].some(isNaN)) return null;
+    return rgbToHex(clamp(r, 0, 255), clamp(g, 0, 255), clamp(b, 0, 255));
+  }
+
+  function parseHslInput(str) {
+    var m = str.replace(/[^0-9.,\s]/g, '').split(/[,\s]+/).filter(Boolean);
+    if (m.length < 3) return null;
+    var h = parseFloat(m[0]), s = parseFloat(m[1]), l = parseFloat(m[2]);
+    if ([h, s, l].some(isNaN)) return null;
+    var rgb = hslToRgb(h, s, l);
+    return rgbToHex(rgb.r, rgb.g, rgb.b);
+  }
+
+  if (native) native.addEventListener('input', function () { setFromHex(native.value, native); });
+  if (hexIn) hexIn.addEventListener('change', function () {
+    var v = hexIn.value.trim();
+    var rgb = hexToRgb(v);
+    if (rgb) setFromHex(rgbToHex(rgb.r, rgb.g, rgb.b));
+    else if (colorHint) colorHint.hidden = false;
+  });
+  if (rgbIn) rgbIn.addEventListener('change', function () {
+    var h = parseRgbInput(rgbIn.value.trim());
+    if (h) setFromHex(h); else if (colorHint) colorHint.hidden = false;
+  });
+  if (hslIn) hslIn.addEventListener('change', function () {
+    var h = parseHslInput(hslIn.value.trim());
+    if (h) setFromHex(h); else if (colorHint) colorHint.hidden = false;
+  });
+
+  function wireCopy(btnId, inputEl) {
+    var btn = document.getElementById(btnId);
+    if (!btn || !inputEl) return;
+    btn.addEventListener('click', function () {
+      if (window.SK && window.SK.copy) {
+        if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+        window.SK.copy(inputEl.value).then(function (ok) {
+          btn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+          setTimeout(function () { btn.textContent = btn.dataset.orig; }, 1600);
+        });
+      }
+    });
+  }
+  wireCopy('hexCopy', hexIn);
+  wireCopy('rgbCopy', rgbIn);
+  wireCopy('hslCopy', hslIn);
+
+  setFromHex('#2563eb'); // initial state
+})();
+</script>
+</body></html>
