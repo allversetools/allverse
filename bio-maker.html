@@ -5,12 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bio Maker – Free Instagram & TikTok Bio Generator | SabKuch</title>
 <meta name="description" content="Free bio maker for Instagram, TikTok and Twitter. Enter your name, role and interests, pick a style, and get 3 copy-ready bios instantly.">
+<meta property="og:title" content="Bio Maker – Free Instagram &amp; TikTok Bio Generator | SabKuch">
+<meta property="og:description" content="Free bio maker for Instagram, TikTok and Twitter. Enter your name, role and interests, pick a style, and get 3 copy-ready bios instantly.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/bio-maker.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bio Maker – Free Instagram &amp; TikTok Bio Generator | SabKuch">
+<meta name="twitter:description" content="Free bio maker for Instagram, TikTok and Twitter. Enter your name, role and interests, pick a style, and get 3 copy-ready bios instantly.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
 <link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/bio-maker.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Bio Maker – Free Instagram & TikTok Bio Generator | SabKuch", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free bio maker for Instagram, TikTok and Twitter. Enter your name, role and interests, pick a style, and get 3 copy-ready bios instantly.", "url": "https://sabkuchtools.github.io/sabkuch/bio-maker.html"}</script><script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does the Bio Maker do?", "acceptedAnswer": {"@type": "Answer", "text": "It helps you craft a sharp social media bio — enter details, get polished bio text ready to copy."}}, {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free, no signup required."}}, {"@type": "Question", "name": "Which platforms is it for?", "acceptedAnswer": {"@type": "Answer", "text": "Instagram, TikTok, X, LinkedIn — anywhere you need a short profile bio."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Social Media", "item": "https://sabkuchtools.github.io/sabkuch/social-media.html"}, {"@type": "ListItem", "position": 3, "name": "Bio Maker"}]}
 </script>
 </head>
 <body>
@@ -29,9 +40,11 @@
 <a class="side-link" href="fun-tools.html"><span class="si">🎲</span>Fun Tools</a>
 </nav></aside>
 <main class="main"><div class="tool-wrap">
-<a class="back-link" href="social-media.html">← Back to Social Media</a>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="social-media.html">Social Media</a><span>›</span><span>Bio Maker</span></nav>
 <h1>✨ Bio Maker</h1>
 <p class="tool-desc">Create a perfect profile bio in seconds. Fill in your details, choose a style, and pick your favorite from 3 options.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
 <div class="tool-panel">
 <div class="field-row">
 <div class="field"><label for="name">Your name</label><input type="text" id="name" placeholder="e.g. Amaan" maxlength="30"></div>
@@ -63,7 +76,11 @@
 <a class="mini-tool" href="qr-generator.html"><span>QR Generator</span><span class="mini-go">→</span></a>
 </div></section>
 </main></div>
-<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
 <div class="toast" id="toast">Copied!</div>
 <script src="js/main.js"></script>
 <script>

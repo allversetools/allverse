@@ -1,5 +1,16 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Contrast Checker — WCAG AA &amp; AAA | SabKuch</title><meta name="description" content="Check text contrast against WCAG AA and AAA standards. Get the exact contrast ratio, pass/fail badges, and a live preview. Free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/contrast-checker.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Contrast Checker", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Check text contrast against WCAG AA and AAA standards. Get the exact contrast ratio, pass/fail badges, and a live preview. Free, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/contrast-checker.html"}</script><script type="application/ld+json">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Contrast Checker — WCAG AA &amp; AAA | SabKuch</title><meta name="description" content="Check text contrast against WCAG AA and AAA standards. Get the exact contrast ratio, pass/fail badges, and a live preview. Free, no signup.">
+<meta property="og:title" content="Contrast Checker — WCAG AA &amp;amp; AAA | SabKuch">
+<meta property="og:description" content="Check text contrast against WCAG AA and AAA standards. Get the exact contrast ratio, pass/fail badges, and a live preview. Free, no signup.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/contrast-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contrast Checker — WCAG AA &amp;amp; AAA | SabKuch">
+<meta name="twitter:description" content="Check text contrast against WCAG AA and AAA standards. Get the exact contrast ratio, pass/fail badges, and a live preview. Free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/contrast-checker.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Contrast Checker", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Check text contrast against WCAG AA and AAA standards. Get the exact contrast ratio, pass/fail badges, and a live preview. Free, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/contrast-checker.html"}</script><script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is color contrast checking?", "acceptedAnswer": {"@type": "Answer", "text": "It measures the contrast ratio between text and background colors against WCAG accessibility guidelines (AA/AAA)."}}, {"@type": "Question", "name": "Why does contrast matter?", "acceptedAnswer": {"@type": "Answer", "text": "Good contrast keeps text readable for everyone, including people with visual impairments."}}, {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free, instant results, no signup."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Color Tools", "item": "https://sabkuchtools.github.io/sabkuch/color-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Contrast Checker"}]}
 </script>
 </head>
 <body>
@@ -18,8 +29,10 @@
 <a class="side-link" href="fun-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Fun Tools</a>
 </nav></aside>
 <main class="main"><div class="tool-wrap">
-<a class="back-link" href="color-tools.html">← Back to Color Tools</a>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="color-tools.html">Color Tools</a><span>›</span><span>Contrast Checker</span></nav>
 <h1>Contrast Checker</h1><p class="tool-desc">Check whether your text color is readable on its background. Get the exact WCAG contrast ratio plus AA and AAA pass/fail badges.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
 <div class="tool-panel">
 <div class="color-row">
 <div class="color-field"><label for="fgColor">Text color</label><div class="color-pick"><input type="color" id="fgColor" value="#ffffff"><span class="color-hex" id="fgHex">#FFFFFF</span></div></div>
@@ -53,7 +66,11 @@
 <a class="mini-tool" href="qr-generator.html"><span>QR Generator</span><span class="mini-go">→</span></a>
 </div></section>
 </main></div>
-<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
 <script src="js/main.js"></script>
 <script>
 (function () {

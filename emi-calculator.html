@@ -1,5 +1,16 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EMI Calculator — Free Online | SabKuch</title><meta name="description" content="Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/emi-calculator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "EMI Calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/emi-calculator.html"}</script><script type="application/ld+json">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EMI Calculator — Free Online | SabKuch</title><meta name="description" content="Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup.">
+<meta property="og:title" content="EMI Calculator — Free Online | SabKuch">
+<meta property="og:description" content="Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/emi-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EMI Calculator — Free Online | SabKuch">
+<meta name="twitter:description" content="Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/emi-calculator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "EMI Calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Calculate loan EMI, total interest and total payable instantly. Free EMI calculator, no signup.", "url": "https://sabkuchtools.github.io/sabkuch/emi-calculator.html"}</script><script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is EMI calculated?", "acceptedAnswer": {"@type": "Answer", "text": "EMI = [P × R × (1+R)^N] / [(1+R)^N − 1], where P is the loan amount, R the monthly interest rate and N the tenure in months."}}, {"@type": "Question", "name": "Does a longer tenure reduce my EMI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but you pay more total interest over time. This calculator shows both the monthly EMI and the total interest so you can find the right balance."}}, {"@type": "Question", "name": "What is the difference between flat and reducing interest rates?", "acceptedAnswer": {"@type": "Answer", "text": "Most loans use a reducing-balance rate (interest charged on the outstanding amount). A 'flat' rate quote looks lower but costs more — always compare using the EMI."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://sabkuchtools.github.io/sabkuch/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "EMI Calculator"}]}
 </script>
 </head>
 <body>
@@ -18,8 +29,10 @@
 <a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
 </nav></aside>
 <main class="main"><div class="tool-wrap">
-<a class="back-link" href="calculators.html">← Back to Calculators</a>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="calculators.html">Calculators</a><span>›</span><span>EMI Calculator</span></nav>
 <h1>EMI Calculator</h1><p class="tool-desc">Plan any loan — home, car or personal. Enter the amount, interest rate and tenure to see your monthly EMI, total interest and total payable. All calculations happen in your browser.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
 <div class="tool-panel">
 <div class="field"><label for="emiP">Loan amount</label><input type="number" id="emiP" value="500000" min="0" step="any"></div>
 <div class="field"><label for="emiR">Annual interest rate (%)</label><input type="number" id="emiR" value="10" min="0" step="any"></div>
@@ -40,13 +53,17 @@
 </section>
 <section class="more-tools"><h2>Try More Free Tools</h2>
 <div class="mini-grid">
-<a class="mini-tool" href="percentage-calculator.html"><span>Percentage Calculator</span><span class="mini-go">→</span></a>
-<a class="mini-tool" href="discount-calculator.html"><span>Discount Calculator</span><span class="mini-go">→</span></a>
-<a class="mini-tool" href="currency-converter.html"><span>Currency Converter</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="bmi-calculator.html"><span>BMI Calculator</span><span class="mini-go">→</span></a>
 <a class="mini-tool" href="age-calculator.html"><span>Age Calculator</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="image-compressor.html"><span>Image Compressor</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="word-counter.html"><span>Word Counter</span><span class="mini-go">→</span></a>
 </div></section>
 </main></div>
-<footer class="site-footer"><p>© 2026 SabKuch · Free online tools, no signup. · <a href="index.html">Home</a></p></footer>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
 <script src="js/main.js"></script>
 <script>
 (function () {

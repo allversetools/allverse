@@ -1191,3 +1191,22 @@ a.logo {
 .mini-tool:hover { transform: translateY(-2px); border-color: rgba(37,99,235,.4); box-shadow: 0 10px 22px rgba(15,23,42,.1); }
 .mini-go { color: var(--blue); }
 [data-theme="dark"] .mini-tool { background: #131c31; }
+
+/* ---------- V4.1: breadcrumbs, share, footer, prose ---------- */
+.crumbs { font-size: .85rem; color: var(--muted); margin-bottom: 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.crumbs a { color: var(--blue); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.share-row { display: flex; gap: 10px; margin: 14px 0 4px; flex-wrap: wrap; }
+.share-btn { padding: 10px 18px; border-radius: 10px; border: 1px solid var(--border); background: var(--blue); color: #fff; font-weight: 600; font-size: .9rem; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.share-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(37,99,235,.3); }
+.share-btn.ghost { background: var(--soft); color: var(--text); }
+[data-theme="dark"] .share-btn.ghost { background: #131c31; }
+.foot-links, .foot-gh { margin-top: 8px; font-size: .9rem; }
+.foot-links a, .foot-gh a { color: var(--muted); text-decoration: none; margin: 0 2px; }
+.foot-links a:hover, .foot-gh a:hover { color: var(--blue); text-decoration: underline; }
+.prose { max-width: 760px; }
+.prose h1 { margin-bottom: 16px; }
+.prose p, .prose li { color: var(--muted); line-height: 1.7; }
+.prose ul { padding-left: 22px; margin: 12px 0; }
+.prose li { margin-bottom: 8px; }
+.prose a { color: var(--blue); }
