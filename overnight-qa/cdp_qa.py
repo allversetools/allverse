@@ -79,7 +79,7 @@ def main():
         '--disable-gpu', '--ignore-certificate-errors',
         '--disable-features=LocalNetworkAccessChecks',
         f'--remote-debugging-port={dbg}', '--remote-allow-origins=*',
-        '--user-data-dir=/tmp/cdpqa']
+        f'--user-data-dir=/tmp/cdpqa-{os.getpid()}']
     if _proxy:
         _flags.append(f'--proxy-server={_proxy}')
     _flags.append(start_url)
