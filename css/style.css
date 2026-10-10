@@ -1918,3 +1918,45 @@ body { transition: background-color .45s ease, color .45s ease; }
   .sp-status{animation:sp-blink 1.6s ease-in-out infinite}
   @keyframes sp-blink{0%,100%{opacity:1}50%{opacity:.25}}
 }
+
+/* ---- hourly-improve run 6: dot-expansion + sliding-arrow micro-interactions ---- */
+/* One easing curve for every interactive state */
+:root{--ease:cubic-bezier(.22,1,.36,1)}
+.btn{transition:background .28s var(--ease),box-shadow .28s var(--ease),transform .12s var(--ease)}
+.view-all{transition:color .28s var(--ease)}
+.side-link{transition:background .28s var(--ease),color .28s var(--ease)}
+
+/* Dot-expansion on sidebar category rows: a tiny accent dot in the left
+   gutter grows into a pill marker on hover */
+.side-link{position:relative}
+.side-link::before{
+  content:"";position:absolute;left:-10px;top:50%;margin-top:-3px;
+  width:6px;height:6px;border-radius:999px;background:var(--accent);
+  transform:scale(0);opacity:0;
+  transition:transform .34s var(--ease),opacity .2s var(--ease),width .34s var(--ease);
+}
+.side-link:hover::before{transform:scale(1);opacity:1;width:15px}
+.side-link.active::before{transform:scale(1);opacity:1;width:15px}
+
+/* Dot-expansion on buttons: a dot blooms behind the label into a soft fill wash */
+.btn-primary::before,.btn-ghost::before{
+  content:"";position:absolute;left:50%;top:50%;
+  width:10px;height:10px;border-radius:999px;
+  transform:translate(-50%,-50%) scale(0);pointer-events:none;
+  transition:transform .5s var(--ease);
+}
+.btn-primary::before{background:rgba(255,255,255,.22)}
+.btn-ghost::before{background:rgba(37,99,235,.14)}
+.btn-primary:hover::before,.btn-ghost:hover::before{transform:translate(-50%,-50%) scale(16)}
+
+/* "View all →" arrows slide in from the left on hover */
+.va-arrow{display:inline-block;transform:translateX(-7px);opacity:0;
+  transition:transform .34s var(--ease),opacity .3s var(--ease)}
+.view-all:hover .va-arrow{transform:translateX(0);opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  .side-link::before,.btn-primary::before,.btn-ghost::before,.va-arrow{transition:none}
+  .va-arrow{transform:none;opacity:1}
+  .side-link:hover::before{transform:scale(1)}
+}
+[data-theme="dark"] .btn-ghost::before{background:rgba(107,155,255,.2)}
