@@ -58,6 +58,8 @@
 <option>Fitness</option><option>Finance</option><option>Comedy</option><option>Education</option><option>Travel</option>
 </select></div>
 <div class="btn-row"><button class="btn btn-primary" id="thBtn" type="button">✨ Create Thumbnail</button></div>
+<p class="form-err" id="thErr" hidden style="color:#b91c1c;margin:.5rem 0 0"></p>
+<p class="hint" id="thStatus" hidden style="margin:.5rem 0 0"></p>
 <div class="result-panel" id="thResult" hidden>
 <h4>Your thumbnail background (1280×720)</h4>
 <div style="text-align:center"><img id="thImg" alt="AI thumbnail background" style="max-width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15)"></div>
@@ -89,22 +91,62 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('thBtn'),res=$('thResult'),img=$('thImg');
+var btn=$('thBtn'),res=$('thResult'),img=$('thImg'),err=$('thErr'),status=$('thStatus');
+function showErr(m){err.hidden=false;err.textContent='⚠️ '+m;}
+function clearErr(){err.hidden=true;err.textContent='';}
 function makeUrl(){
   var t=$('thTitle').value.trim(); if(!t){return null;}
   var prompt='dramatic YouTube thumbnail background art about "'+t+'", '+$('thNiche').value+' theme, ultra vibrant colors, high contrast, dynamic composition, expressive, eye-catching, no text, no words, 16:9';
   return SK_AI.pollinationsImage(prompt,{width:1280,height:720});
 }
+var statusTimer=null;
+function setStatus(on){
+  if(statusTimer){clearInterval(statusTimer);statusTimer=null;}
+  if(!on){status.hidden=true;return;}
+  var s=0;status.hidden=false;status.textContent='🎨 Creating your thumbnail… (usually 20–60 seconds)';
+  statusTimer=setInterval(function(){s+=5;status.textContent='🎨 Still creating… '+s+'s elapsed. Please wait.';},5000);
+}
 function load(url){
-  SK_AI.setBusy(btn,true,'🎨 Creating thumbnail…'); res.hidden=false; img.style.opacity='.4';
+  clearErr();setStatus(true);
+  SK_AI.setBusy(btn,true,'🎨 Creating thumbnail…');res.hidden=false;img.style.opacity='.4';
   var pre=new Image();
-  pre.onload=function(){img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);};
-  pre.onerror=function(){SK_AI.setBusy(btn,false);SK_AI.showError(res,'Masla hua / Failed. Dobara try karein.');};
+  pre.onload=function(){img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);setStatus(false);};
+  pre.onerror=function(){SK_AI.setBusy(btn,false);setStatus(false);showErr('Masla hua / Failed to generate. Dobara try karein.');};
   pre.src=url;
 }
-btn.onclick=function(){var u=makeUrl(); if(u) load(u);};
+btn.onclick=function(){
+  var t=$('thTitle').value.trim();
+  if(!t){clearErr();showErr('Pehle video ka title likhein / Please enter a video title.');$('thTitle').focus();return;}
+  var u=makeUrl(); if(u) load(u);
+};
 $('thVar').onclick=function(){var u=makeUrl(); if(u) load(u);};
-$('thDl').onclick=function(){var a=document.createElement('a');a.href=img.src;a.download='allverse-thumbnail.jpg';a.target='_blank';document.body.appendChild(a);a.click();a.remove();};
+function fallbackOpen(){window.open(img.src,'_blank');}
+$('thDl').onclick=function(){
+  if(!img.src){showErr('Pehle thumbnail banayein / Generate a thumbnail first.');return;}
+  var dl=$('thDl');SK_AI.setBusy(dl,true,'⬇ Preparing…');
+  /* True 1280×720 download: draw onto canvas (Pollinations returns 1024×576),
+     export as blob so the file actually downloads on phones too. */
+  var pre=new Image();pre.crossOrigin='anonymous';
+  pre.onload=function(){
+    try{
+      var c=document.createElement('canvas');c.width=1280;c.height=720;
+      var x=c.getContext('2d');
+      var iw=pre.naturalWidth||1024,ih=pre.naturalHeight||576;
+      var s=Math.max(1280/iw,720/ih),dw=iw*s,dh=ih*s;
+      x.drawImage(pre,(1280-dw)/2,(720-dh)/2,dw,dh);
+      c.toBlob(function(b){
+        SK_AI.setBusy(dl,false);
+        if(!b){fallbackOpen();return;}
+        var url=URL.createObjectURL(b);
+        var a=document.createElement('a');a.href=url;a.download='allverse-thumbnail-1280x720.jpg';
+        document.body.appendChild(a);a.click();
+        setTimeout(function(){URL.revokeObjectURL(url);a.remove();},4000);
+      },'image/jpeg',0.92);
+    }catch(e){SK_AI.setBusy(dl,false);fallbackOpen();}
+  };
+  pre.onerror=function(){SK_AI.setBusy(dl,false);fallbackOpen();};
+  pre.src=img.src;
+};
 })();
 </script>
 </body></html>
