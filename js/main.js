@@ -321,7 +321,7 @@
   /* ---------- 7. Dark mode (iOS-style switch) ----------
      Switch ON  (checked, knob right) = Light / white screen
      Switch OFF (unchecked, knob left) = Dark  / black screen  */
-  var themeSwitch = document.getElementById('themeToggle');
+  var themeSwitches = document.querySelectorAll('.themeToggle, #themeToggle');
   var themeLabel = document.getElementById('themeLabel');
   function currentTheme() {
     try {
@@ -332,16 +332,45 @@
   }
   function applyTheme(t) {
     document.documentElement.setAttribute('data-theme', t);
-    if (themeSwitch) themeSwitch.checked = (t === 'light');
+    themeSwitches.forEach(function (s) { s.checked = (t === 'light'); });
     if (themeLabel) themeLabel.textContent = (t === 'light') ? 'Light' : 'Dark';
     try { localStorage.setItem('sk_theme', t); } catch (e) {}
   }
   applyTheme(currentTheme());
-  if (themeSwitch) {
-    themeSwitch.addEventListener('change', function () {
-      applyTheme(themeSwitch.checked ? 'light' : 'dark');
+  themeSwitches.forEach(function (sw) {
+    sw.addEventListener('change', function () {
+      applyTheme(sw.checked ? 'light' : 'dark');
     });
-  }
+  });
+
+  /* ---------- 7b. Sidebar category tool counts ----------
+     True per-category totals (audited from category pages). */
+  (function () {
+    try {
+      var COUNTS = {
+        'ai tools': 15, 'image tools': 3, 'text tools': 4, 'calculators': 5,
+        'converters': 2, 'generators': 4, 'developer tools': 6, 'color tools': 2,
+        'date & time': 2, 'social media': 2, 'fun tools': 2, 'seo tools': 4,
+        'finance tools': 4, 'health tools': 4, 'pdf tools': 3, 'writing tools': 4,
+        'marketing tools': 4, 'education tools': 4, 'security tools': 3,
+        'business tools': 4, 'everyday tools': 4, 'pakistan utilities': 6,
+        'islamic tools': 5, 'resume tools': 4, 'video tools': 3, 'audio tools': 3,
+        'font tools': 3, 'meme tools': 2, 'travel tools': 3, 'real estate tools': 4,
+        'wedding tools': 4, 'sports tools': 4, 'cooking tools': 4
+      };
+      document.querySelectorAll('.side-link').forEach(function (a) {
+        if (a.querySelector('.side-count')) return;
+        var label = (a.textContent || '').toLowerCase().trim();
+        var n = COUNTS[label] || 0;
+        if (n) {
+          var s = document.createElement('span');
+          s.className = 'side-count';
+          s.textContent = n;
+          a.appendChild(s);
+        }
+      });
+    } catch (e) {}
+  })();
 
   /* ---------- 8. Spotlight grid tracking (Gemini) ---------- */
   if (HOVERABLE && !REDUCED) {

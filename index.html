@@ -11,7 +11,7 @@
 <header class="site-header"><div class="header-inner">
 <a class="logo" href="index.html"><span class="logo-mark">S</span>AllVerse</a>
 <div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…  (Ctrl+K)" autocomplete="off"></div>
-<label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" class="themeToggle" aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
 <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
 </div></header>
 <div class="layout">
@@ -49,11 +49,23 @@
 <a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
 <a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
 <a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
-</nav></aside>
+</nav>
+<div class="side-theme">
+<p class="side-title">Theme</p>
+<label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch"><input type="checkbox" class="themeToggle" aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+</div>
+</aside>
 <main class="main">
-<section class="hero"><div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
-<h1>All Your <span class="grad">Daily Tools</span> in One Place</h1>
-<p class="lead">134 free online tools. No signup, no watermarks — just open and use.</p>
+<section class="hero">
+<div class="hero-scene" aria-hidden="true">
+  <div class="hs-layer hs-l1" data-depth="26"><svg viewBox="0 0 560 420"><defs><linearGradient id="hsg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#dfe4d4" stop-opacity=".55"/></linearGradient></defs><path d="M60 300 C 90 180, 200 120, 300 150 C 420 185, 430 90, 520 70 C 470 160, 480 260, 400 320 C 310 385, 150 380, 60 300 Z" fill="url(#hsg1)"/></svg></div>
+  <div class="hs-layer hs-l2" data-depth="52"><svg viewBox="0 0 380 300"><defs><linearGradient id="hsg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4ec" stop-opacity=".9"/><stop offset="1" stop-color="#c9d2ba" stop-opacity=".5"/></linearGradient></defs><path d="M40 220 C 70 120, 170 80, 240 110 C 320 145, 320 60, 360 40 C 330 130, 340 210, 270 250 C 200 290, 80 290, 40 220 Z" fill="url(#hsg2)"/></svg></div>
+  <div class="hs-layer hs-l3" data-depth="84"><svg viewBox="0 0 240 200"><defs><linearGradient id="hsg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".85"/><stop offset="1" stop-color="#b9c4a8" stop-opacity=".45"/></linearGradient></defs><ellipse cx="120" cy="100" rx="95" ry="62" fill="url(#hsg3)" transform="rotate(-18 120 100)"/></svg></div>
+  <div class="hs-spot" id="hsSpot"></div>
+</div>
+<p class="hero-eyebrow reveal">Free &bull; Online &bull; No login</p>
+<h1 class="reveal">Every Tool<br>You Need.</h1>
+<p class="lead reveal">134 free online tools. No signup, no watermarks — just open and use.</p>
 <div class="smart-paste">
 <input id="smartPasteInput" type="text" placeholder="Paste anything — JSON, color, link, date, number…" autocomplete="off" spellcheck="false" aria-label="Smart paste: paste anything to find the right tool">
 <div class="sp-chips" id="smartPasteChips"></div>
@@ -61,17 +73,24 @@
 </div>
 <div class="hero-stats reveal">
 <div class="hero-stat"><b>134</b><span>Free tools</span></div>
-<div class="hero-stat"><b>22</b><span>Categories</span></div>
+<div class="hero-stat"><b>33</b><span>Categories</span></div>
 <div class="hero-stat"><b>100%</b><span>Free · No signup</span></div>
 </div>
-<div class="hero-stage"><div class="stage-inner" id="stageInner">
-<a class="float-card fc1" href="image-resizer.html"><span class="fc-icon">🖼️</span><span>Image Resizer</span></a>
-<a class="float-card fc2" href="qr-generator.html"><span class="fc-icon">⚡</span><span>QR Generator</span></a>
-<a class="float-card fc3" href="word-counter.html"><span class="fc-icon">📝</span><span>Word Counter</span></a>
-<a class="float-card fc4" href="password-generator.html"><span class="fc-icon">🔐</span><span>Password Generator</span></a>
-<a class="float-card fc5" href="bmi-calculator.html"><span class="fc-icon">🧮</span><span>BMI Calculator</span></a>
-</div></div>
 </section>
+
+<section class="pop-section reveal" id="popularSection">
+<div class="pop-head"><h2>Popular Tools</h2><a class="view-all" href="#all-tools">View all &rarr;</a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-name="ai image generator text to image photo create" href="ai-image-generator.html"><span class="card-icon" style="font-size:1.6rem">🎨</span><h3>AI Image Generator</h3><p>Text &rarr; stunning AI images in any style</p><span class="tag-pill">Free &bull; AI</span></a>
+<a class="tool-card tilt reveal" data-name="remove background image transparent" href="image-tools.html"><span class="card-icon" style="font-size:1.6rem">✂️</span><h3>Background Remover</h3><p>AI removes image backgrounds in one click</p><span class="tag-pill">Free &bull; AI</span></a>
+<a class="tool-card tilt reveal" data-name="pdf tools merge split compress" href="pdf-tools.html"><span class="card-icon" style="font-size:1.6rem">📄</span><h3>PDF Tools</h3><p>Merge, split &amp; compress PDFs instantly</p><span class="tag-pill">Free &bull; Fast</span></a>
+<a class="tool-card tilt reveal" data-name="qr generator code scan" href="qr-generator.html"><span class="card-icon" style="font-size:1.6rem">⚡</span><h3>QR Generator</h3><p>Create custom QR codes in seconds</p><span class="tag-pill">Free &bull; Fast</span></a>
+<a class="tool-card tilt reveal" data-name="word counter characters" href="word-counter.html"><span class="card-icon" style="font-size:1.6rem">📝</span><h3>Word Counter</h3><p>Count words, characters &amp; reading time</p><span class="tag-pill">Free &bull; Fast</span></a>
+<a class="tool-card tilt reveal" data-name="audio trimmer cut mp3" href="audio-trimmer.html"><span class="card-icon" style="font-size:1.6rem">🎙️</span><h3>Audio Trim</h3><p>Trim and compress audio files fast</p><span class="tag-pill">Free &bull; Fast</span></a>
+</div>
+</section>
+
+<div id="all-tools" aria-hidden="true"></div>
 
 <section id="favSection" class="reveal" hidden>
 <p class="section-label">★ Your favorites</p>
@@ -527,6 +546,7 @@
 
 </main></div>
 <footer class="site-footer">
+<p class="foot-line">134 tools — free forever &bull; no registration required</p>
 <p>© 2026 AllVerse · Free online tools, no signup.</p>
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
 <p class="foot-gh"><a href="https://github.com/sabkuchtools/allverse">⭐ Open source on GitHub</a></p>

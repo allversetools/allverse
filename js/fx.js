@@ -222,3 +222,44 @@
     input.addEventListener('input', function () { render(detect(input.value)); });
   })();
 })();
+
+/* ---------- Hero 3D scene: mouse parallax + cursor spotlight (lusion-style) ---------- */
+(function () {
+  'use strict';
+  var scene = document.querySelector('.hero-scene');
+  if (!scene) return;
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var HOVERABLE = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  if (REDUCED || !HOVERABLE) return;
+  var layers = Array.prototype.slice.call(scene.querySelectorAll('.hs-layer'));
+  var spot = document.getElementById('hsSpot');
+  var hero = scene.closest('.hero') || document.body;
+  var raf = null, tx = 0, ty = 0, cx = 0, cy = 0;
+  function render() {
+    raf = null;
+    cx += (tx - cx) * 0.08;
+    cy += (ty - cy) * 0.08;
+    layers.forEach(function (el) {
+      var d = parseFloat(el.getAttribute('data-depth') || '30');
+      el.style.transform = 'translate(' + (-cx * d).toFixed(1) + 'px,' + (-cy * d).toFixed(1) + 'px)';
+    });
+    if (spot) {
+      var r = hero.getBoundingClientRect();
+      spot.style.left = ((cx * 900) + r.width * 0.62) + 'px';
+      spot.style.top = ((cy * 700) + r.height * 0.35) + 'px';
+    }
+    if (Math.abs(tx - cx) > 0.0005 || Math.abs(ty - cy) > 0.0005) {
+      raf = requestAnimationFrame(render);
+    }
+  }
+  hero.addEventListener('mousemove', function (e) {
+    var r = hero.getBoundingClientRect();
+    tx = (e.clientX - r.left) / r.width - 0.5;
+    ty = (e.clientY - r.top) / r.height - 0.5;
+    if (!raf) raf = requestAnimationFrame(render);
+  });
+  hero.addEventListener('mouseleave', function () {
+    tx = 0; ty = 0;
+    if (!raf) raf = requestAnimationFrame(render);
+  });
+})();
