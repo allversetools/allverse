@@ -1569,3 +1569,91 @@ body[data-cat="date-time"] .stat b.fx-flip { display: inline-block; animation: f
   .result-panel.fx-glow, body[data-cat="converters"] .result-panel.fx-slide,
   body[data-cat="date-time"] .stat b.fx-flip, .fx-spark { animation: none !important; }
 }
+
+/* ============================================================
+   SabKuch — Google-style search dropdown
+   ============================================================ */
+.sk-search-drop {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--card, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, .16), 0 2px 8px rgba(15, 23, 42, .08);
+  overflow: hidden;
+  max-height: 380px;
+  overflow-y: auto;
+  text-align: left;
+}
+[data-theme="dark"] .sk-search-drop {
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .5), 0 2px 8px rgba(0, 0, 0, .35);
+}
+.sk-sr-label {
+  padding: 10px 16px 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted, #64748b);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sk-sr-clear {
+  border: none;
+  background: none;
+  color: var(--blue, #2563eb);
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+.sk-sr-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background .12s;
+}
+.sk-sr-item:hover, .sk-sr-item.active {
+  background: var(--soft, #f1f5f9);
+}
+.sk-sr-icon {
+  font-size: 1.25rem;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--soft, #f1f5f9);
+  border-radius: 10px;
+}
+.sk-sr-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.sk-sr-name {
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--ink, #0f172a);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sk-sr-name mark {
+  background: rgba(37, 99, 235, .18);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+.sk-sr-cat { font-size: .76rem; color: var(--muted, #64748b); }
+.sk-sr-go { color: var(--muted, #64748b); font-weight: 700; }
+.sk-sr-empty { padding: 14px 16px 4px; font-size: .9rem; color: var(--muted, #64748b); }
+.sk-sr-dym { padding: 4px 16px 14px; font-size: .92rem; color: var(--ink, #0f172a); }
+.sk-sr-dym a { color: var(--blue, #2563eb); text-decoration: none; font-weight: 600; }
+@media (max-width: 640px) {
+  .sk-search-drop { border-radius: 14px; max-height: 320px; }
+  .sk-sr-item { padding: 12px 14px; }
+}

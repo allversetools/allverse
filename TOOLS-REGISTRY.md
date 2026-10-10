@@ -2,7 +2,7 @@
 
 Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 
-## Categories (22)
+## Categories (23)
 
 | File | Label |
 |---|---|
@@ -28,8 +28,9 @@ Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 | everyday-tools.html | Everyday Tools |
 | pakistan-tools.html | Pakistan Utilities |
 | islamic-tools.html | Islamic Tools |
+| ai-tools.html | AI Tools |
 
-## Tools (81)
+## Tools (96)
 
 | income-tax-calculator-pakistan.html | pakistan-tools.html | pakistan-tools.html |
 | electricity-bill-calculator.html | pakistan-tools.html | pakistan-tools.html |
@@ -42,6 +43,22 @@ Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 | tasbeeh-counter.html | islamic-tools.html | islamic-tools.html |
 | hijri-converter.html | islamic-tools.html | islamic-tools.html |
 | zakat-calculator.html | islamic-tools.html | islamic-tools.html |
+
+| ai-image-generator.html | ai-tools.html | ai-tools.html |
+| ai-logo-maker.html | ai-tools.html | ai-tools.html |
+| ai-thumbnail-maker.html | ai-tools.html | ai-tools.html |
+| ai-wallpaper-generator.html | ai-tools.html | ai-tools.html |
+| ai-story-writer.html | ai-tools.html | ai-tools.html |
+| ai-caption-generator.html | ai-tools.html | ai-tools.html |
+| ai-name-generator.html | ai-tools.html | ai-tools.html |
+| ai-shayari-generator.html | ai-tools.html | ai-tools.html |
+| ai-business-idea-generator.html | ai-tools.html | ai-tools.html |
+| ai-interview-questions.html | ai-tools.html | ai-tools.html |
+| ai-text-summarizer.html | ai-tools.html | ai-tools.html |
+| ai-translator.html | ai-tools.html | ai-tools.html |
+| ai-chat.html | ai-tools.html | ai-tools.html |
+| ai-paraphraser.html | ai-tools.html | ai-tools.html |
+| text-to-speech-studio.html | ai-tools.html | ai-tools.html |
 
 | File | Category page | Back link target |
 |---|---|---|

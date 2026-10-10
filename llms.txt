@@ -1,6 +1,6 @@
 # SabKuch
 Free online tools — no signup, no watermarks. Everything runs in the user's browser; files never leave the device.
 URL: https://sabkuchtools.github.io/sabkuch/
-81 tools across 22 categories: Image Tools, Text Tools, Calculators, Converters, Generators, Developer Tools, Color Tools, Date & Time, Social Media, Fun Tools, SEO Tools, Finance Tools, Health Tools, PDF Tools, Writing Tools, Marketing Tools, Education Tools, Security Tools, Business Tools, Everyday Tools.
+96 tools across 23 categories: Image Tools, Text Tools, Calculators, Converters, Generators, Developer Tools, Color Tools, Date & Time, Social Media, Fun Tools, SEO Tools, Finance Tools, Health Tools, PDF Tools, Writing Tools, Marketing Tools, Education Tools, Security Tools, Business Tools, Everyday Tools, AI Tools.
 Popular: Image Compressor, Word Counter, QR Generator, Password Generator, BMI Calculator, Unit Converter, SIP Calculator, Merge PDF, Readability Checker, GPA Calculator, Pomodoro Timer, Password Strength Checker.
 Open source: https://github.com/sabkuchtools/sabkuch

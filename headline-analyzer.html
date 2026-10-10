@@ -10,6 +10,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a good headline score?", "acceptedAnswer": {"@type": "Answer", "text": "70+ is strong, 50–70 is average and can be improved, below 50 needs work. Aim for balanced word types, ~6 words and a number."}}, {"@type": "Question", "name": "Why does word balance matter?", "acceptedAnswer": {"@type": "Answer", "text": "Headlines mixing common words (readers skim these), uncommon words (catch attention), emotional words (drive clicks) and power words (prompt action) consistently outperform plain ones."}}, {"@type": "Question", "name": "Should my headline include a number?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — headlines with numbers get noticeably higher click-through. Odd numbers like 7 or 9 tend to perform best."}}, {"@type": "Question", "name": "How long should a headline be?", "acceptedAnswer": {"@type": "Answer", "text": "Around 6 words and under 60 characters — long enough to promise value, short enough to display fully in search and social feeds."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Writing Tools", "item": "https://sabkuchtools.github.io/sabkuch/writing-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Headline Analyzer"}]}</script></head><body><header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
 <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header><div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
 <a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
 <a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
 <a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
@@ -38,6 +39,8 @@
 <input id="haText" type="text" maxlength="160" placeholder="e.g. 7 Proven Ways to Double Your Productivity">
 </div>
 <button class="btn btn-primary" id="haBtn" type="button">Analyze headline</button>
+<button class="btn btn-ghost" id="haAiBtn" type="button" style="margin-left:8px">✨ AI Improve</button>
+<div class="result-panel" id="haAiResult" hidden style="margin-top:14px"><h4>✨ AI-improved headlines</h4><div id="haAiOut" style="white-space:pre-wrap;line-height:1.7"></div></div>
 <div class="result-panel" id="haResult" hidden>
 <h4>Headline score</h4>
 <div class="stat-row">
@@ -65,6 +68,8 @@
 <p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
 </footer>
 <script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function () {
@@ -113,6 +118,21 @@
   }
   btn.addEventListener('click', analyze);
   input.addEventListener('input', analyze);
+})();
+
+/* AI improve (SabKuch AI) */
+(function(){
+  var btn=document.getElementById('haAiBtn'), res=document.getElementById('haAiResult'), out=document.getElementById('haAiOut');
+  if(!btn||!window.SK_AI) return;
+  btn.addEventListener('click', function(){
+    var t=document.getElementById('haText').value.trim();
+    if(!t){ out.textContent='Pehle headline likhein / Enter a headline first.'; res.hidden=false; return; }
+    SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+    SK_AI.chat('Rewrite this headline to be more click-worthy. Give me 3 improved versions, numbered, each under 70 characters: "'+t+'"',
+      'You are a headline copywriting expert.').then(function(txt){
+      SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
+    }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.showError(res,e.message); });
+  });
 })();
 </script>
 </body></html>

@@ -28,6 +28,7 @@
 <header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
 <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
 <div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
 <a class="side-link" href="image-tools.html"><span class="si">🖼️</span>Image Tools</a>
 <a class="side-link" href="text-tools.html"><span class="si">📝</span>Text Tools</a>
 <a class="side-link" href="calculators.html"><span class="si">🧮</span>Calculators</a>
@@ -69,7 +70,9 @@
 <option value="minimalist">Minimalist</option>
 <option value="aesthetic">Aesthetic</option>
 </select></div>
-<div class="btn-row"><button class="btn" id="genBtn">Generate Bios</button></div>
+<div class="btn-row"><button class="btn" id="genBtn">Generate Bios</button>
+<button class="btn btn-ghost" id="aiBioBtn" type="button" style="margin-left:8px">✨ AI Generate Bio</button></div>
+<div class="result-panel" id="aiBioResult" hidden><h4>✨ AI bio</h4><div id="aiBioOut" style="white-space:pre-wrap;line-height:1.7"></div></div>
 <div class="result-box" id="resultBox">
 <h4>Your bios</h4>
 <div id="bioList"></div>
@@ -95,6 +98,8 @@
 </footer>
 <div class="toast" id="toast">Copied!</div>
 <script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -172,6 +177,24 @@
     resultBox.classList.add("show");
   }
   if(genBtn){ genBtn.addEventListener("click", render); }
+})();
+
+/* AI bio (SabKuch AI) */
+(function(){
+  var btn=document.getElementById('aiBioBtn'), res=document.getElementById('aiBioResult'), out=document.getElementById('aiBioOut');
+  if(!btn||!window.SK_AI) return;
+  btn.addEventListener('click', function(){
+    var name=(document.getElementById('name')||{}).value||'';
+    var role=(document.getElementById('role')||{}).value||'';
+    var interest=(document.getElementById('interest')||{}).value||'';
+    var style=(document.getElementById('style')||{}).value||'professional';
+    if(!name.trim()&&!role.trim()){ out.textContent='Pehle naam ya role likhein / Enter name or role first.'; res.hidden=false; return; }
+    SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+    SK_AI.chat('Write 3 '+style+' social media bios for: name="'+name+'", role="'+role+'", interests="'+interest+'". Short, with 1-2 emojis each. Numbered.',
+      'You write punchy social media bios.').then(function(txt){
+      SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
+    }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.showError(res,e.message); });
+  });
 })();
 </script>
 </body>

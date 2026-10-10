@@ -96,7 +96,25 @@
     { name: 'Tasbeeh Counter', href: 'tasbeeh-counter.html', cat: 'Islamic Tools', keys: 'tasbeeh counter dhikr tasbih digital counter allahumma tasbeeh ginna zikr karo' },
     { name: 'Hijri Converter', href: 'hijri-converter.html', cat: 'Islamic Tools', keys: 'hijri calendar converter islamic date gregorian to hijri lunar date hijri tarikh chand tabdeel' },
     { name: 'Zakat Calculator', href: 'zakat-calculator.html', cat: 'Islamic Tools', keys: 'zakat calculator 2.5 percent nisab gold silver cash wealth zakat hisaab nikaalo' },
+    { name: 'AI Image Generator', href: 'ai-image-generator.html', cat: 'AI Tools', keys: 'ai image generator text to image photo banao tasveer ai se' },
+    { name: 'AI Logo Maker', href: 'ai-logo-maker.html', cat: 'AI Tools', keys: 'ai logo maker brand business logo design banao' },
+    { name: 'AI Thumbnail Maker', href: 'ai-thumbnail-maker.html', cat: 'AI Tools', keys: 'ai thumbnail maker youtube video thumbnail banao' },
+    { name: 'AI Wallpaper Generator', href: 'ai-wallpaper-generator.html', cat: 'AI Tools', keys: 'ai wallpaper generator hd background tasveer banao' },
+    { name: 'AI Story Writer', href: 'ai-story-writer.html', cat: 'AI Tools', keys: 'ai story writer kahani likho story generate' },
+    { name: 'AI Caption Generator', href: 'ai-caption-generator.html', cat: 'AI Tools', keys: 'ai caption generator instagram tiktok caption hashtag likho' },
+    { name: 'AI Name Generator', href: 'ai-name-generator.html', cat: 'AI Tools', keys: 'ai name generator brand baby channel naam ideas banao' },
+    { name: 'AI Shayari Generator', href: 'ai-shayari-generator.html', cat: 'AI Tools', keys: 'ai shayari generator urdu poetry roman urdu sher likho' },
+    { name: 'AI Business Idea Generator', href: 'ai-business-idea-generator.html', cat: 'AI Tools', keys: 'ai business idea generator startup karobar ideas plan banao' },
+    { name: 'AI Interview Questions', href: 'ai-interview-questions.html', cat: 'AI Tools', keys: 'ai interview questions job sawal jawab tayyari' },
+    { name: 'AI Text Summarizer', href: 'ai-text-summarizer.html', cat: 'AI Tools', keys: 'ai text summarizer khulasa summarize karo' },
+    { name: 'AI Translator', href: 'ai-translator.html', cat: 'AI Tools', keys: 'ai translator tarjuma translate english urdu' },
+    { name: 'AI Chat', href: 'ai-chat.html', cat: 'AI Tools', keys: 'ai chat assistant chatbot sawal jawab' },
+    { name: 'AI Paraphraser', href: 'ai-paraphraser.html', cat: 'AI Tools', keys: 'ai paraphraser rewrite rephrase dobara likho' },
+    { name: 'Text to Speech Studio', href: 'text-to-speech-studio.html', cat: 'AI Tools', keys: 'text to speech studio voice suno awaz banao tts' },
   ];
+
+  /* Expose registry for search.js (Google-style smart search) */
+  window.SK_TOOLS = TOOLS;
   function toolByHref(href) {
     for (var i = 0; i < TOOLS.length; i++) if (TOOLS[i].href === href) return TOOLS[i];
     return null;
