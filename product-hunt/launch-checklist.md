@@ -12,7 +12,7 @@
   - Name: `AllVerse`
   - Tagline: from `tagline.txt`
   - Description: short version from `description.txt`
-  - Link: `https://sabkuchtools.github.io/allverse/`
+  - Link: `https://allversetools.github.io/allverse/`
   - Topics: from `topics.txt`
   - Thumbnail: `thumbnail.png` (240×240)
   - Gallery: upload the 4 screenshots in order

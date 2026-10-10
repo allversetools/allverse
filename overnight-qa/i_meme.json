@@ -1,0 +1,1 @@
+[{"ms":800,"type":"wait"},{"js":"JSON.stringify({thumbs:document.getElementById('tplThumbs').children.length,canvas:document.getElementById('mmCanvas').toDataURL().length})","type":"eval"},{"sel":"#mmTop","text":"WHEN QA FINDS NO BUGS","type":"fill"},{"ms":600,"type":"wait"},{"js":"JSON.stringify({canvas:document.getElementById('mmCanvas').toDataURL().length})","type":"eval"}]

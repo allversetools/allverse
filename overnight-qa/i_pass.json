@@ -1,0 +1,1 @@
+[{"sel":"#genBtn","type":"click"},{"ms":600,"type":"wait"},{"js":"JSON.stringify({len:document.getElementById('passOut').value.length,label:document.getElementById('strengthLabel').textContent})","type":"eval"}]

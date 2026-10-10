@@ -1,0 +1,1 @@
+[{"sel":"#glmName","text":"Ahmed Raza","type":"fill"},{"sel":"#glmAdd","type":"click"},{"ms":600,"type":"wait"},{"js":"JSON.stringify({tot:document.getElementById('glmTot').textContent,rows:document.querySelectorAll('#glmList > *').length,list:document.getElementById('glmList').textContent.slice(0,60)})","type":"eval"}]

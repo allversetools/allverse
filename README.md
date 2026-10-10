@@ -28,7 +28,7 @@ QR generator, which needs its CDN script over http/https.)
 2. Push this folder's contents to the repo root (so `index.html` is at `/`).
 3. Repo → **Settings → Pages** → Source: **Deploy from a branch** →
    Branch: `main`, folder: `/ (root)` → Save.
-4. Your site is live at `https://sabkuchtools.github.io/allverse/` within a minute or two.
+4. Your site is live at `https://allversetools.github.io/allverse/` within a minute or two.
 
 Custom domain (optional): add a `CNAME` file with your domain, then point your
 DNS A-records at GitHub Pages IPs (see GitHub docs).

@@ -1,0 +1,1 @@
+[{"sel":"#mtTitle","text":"My Test Page","type":"fill"},{"sel":"#mtDesc","text":"A great description of my page.","type":"fill"},{"ms":600,"type":"wait"},{"js":"JSON.stringify({out:document.getElementById('mtOut').value.slice(0,120),count:document.getElementById('mtTitleCount').textContent})","type":"eval"}]

@@ -1,0 +1,1 @@
+[{"sel":"#hgText","text":"hello","type":"fill"},{"ms":800,"type":"wait"},{"js":"document.getElementById('hgOut').textContent","type":"eval"},{"sel":"#hgText","text":"","type":"fill"},{"ms":600,"type":"wait"},{"js":"JSON.stringify({msg:document.getElementById('hgMsg').textContent,out:document.getElementById('hgOut').textContent})","type":"eval"}]

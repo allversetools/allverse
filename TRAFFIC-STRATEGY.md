@@ -1,6 +1,6 @@
 # AllVerse Traffic + Monetization Strategy
 
-**Site:** https://sabkuchtools.github.io/allverse/
+**Site:** https://allversetools.github.io/allverse/
 **Status (Oct 2026):** 96 tools, 23 categories, 125 pages, GitHub Pages, $0 budget
 **Goal:** Maximum traffic → Google AdSense revenue
 **Owner time budget:** ~5 hrs/week
@@ -117,7 +117,7 @@ Pinterest is a visual SEARCH engine, not social media. Pins rank for months. Zer
 ### 3.1 AdSense application timing
 **Apply when ALL of these are true:**
 - [ ] Domain age ≥ 45–60 days (site launched Oct 2026 → apply Dec 2026 earliest)
-- [ ] ≥ 25–30 pages indexed in Google (check: site:sabkuchtools.github.io/allverse)
+- [ ] ≥ 25–30 pages indexed in Google (check: site:allversetools.github.io/allverse)
 - [ ] ≥ 30–50 daily organic visitors (GSC → Performance)
 - [ ] About, Contact, Privacy Policy, Terms pages live and linked
 - [ ] No broken links, mobile-friendly, fast load (already true)

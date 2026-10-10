@@ -1,0 +1,1 @@
+[{"sel":"#ipDownload","type":"click"},{"ms":600,"type":"wait"},{"js":"document.getElementById('ipMsg').textContent","type":"eval"}]

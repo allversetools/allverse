@@ -1,0 +1,1 @@
+[{"sel":"#kdText","text":"cricket cricket match cricket","type":"fill"},{"sel":"#kdKeyword","text":"cricket","type":"fill"},{"ms":600,"type":"wait"},{"js":"JSON.stringify({occ:document.getElementById('kdOcc').textContent,dens:document.getElementById('kdDensity').textContent,words:document.getElementById('kdWords').textContent})","type":"eval"}]

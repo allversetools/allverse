@@ -1,6 +1,6 @@
 # Gallery screenshots (4 needed)
 
-Capture these from the LIVE site https://sabkuchtools.github.io/allverse/ at desktop
+Capture these from the LIVE site https://allversetools.github.io/allverse/ at desktop
 viewport (1280×800 or similar). Save as PNG in this folder, in this order:
 
 1. `1-homepage.png` — homepage hero: logo, tagline, search bar, category cards

@@ -1,0 +1,1 @@
+[{"sel":"#liGen","type":"click"},{"ms":600,"type":"wait"},{"js":"JSON.stringify({len:document.getElementById('liOut').textContent.length,paras:document.querySelectorAll('#liOut p').length})","type":"eval"}]
