@@ -65,6 +65,7 @@
 <div class="result-panel" id="wpResult" hidden>
 <h4>Your wallpaper (1920×1080)</h4>
 <div style="text-align:center"><img id="wpImg" alt="AI wallpaper" style="max-width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15)"></div>
+<p id="wpErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0;text-align:center"></p>
 <div class="btn-row" style="margin-top:12px"><button class="btn" id="wpDl" type="button">⬇ Download</button>
 <button class="btn btn-ghost" id="wpVar" type="button">🎲 New Variation</button></div>
 </div>
@@ -92,22 +93,41 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('wpBtn'),res=$('wpResult'),img=$('wpImg');
+var btn=$('wpBtn'),res=$('wpResult'),img=$('wpImg'),err=$('wpErr');
+if(!btn||!res||!img) return;
+function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } res.hidden=false; }
+function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
 function makeUrl(){
   var t=$('wpTheme').value.trim(); if(!t){return null;}
   var prompt='breathtaking wallpaper, '+t+', '+$('wpMood').value+' mood, ultra detailed, 8k, cinematic, no text';
   return SK_AI.pollinationsImage(prompt,{width:1920,height:1080});
 }
 function load(url){
-  SK_AI.setBusy(btn,true,'🎨 Painting your wallpaper…'); res.hidden=false; img.style.opacity='.4';
+  SK_AI.setBusy(btn,true,'🎨 Painting your wallpaper…'); clearErr(); res.hidden=false; img.style.opacity='.4';
   var pre=new Image();
   pre.onload=function(){img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);};
-  pre.onerror=function(){SK_AI.setBusy(btn,false);SK_AI.showError(res,'Masla hua / Failed. Dobara try karein.');};
+  pre.onerror=function(){SK_AI.setBusy(btn,false);img.style.opacity='1';showErr('Masla hua / Failed. Dobara try karein.');};
   pre.src=url;
 }
-btn.onclick=function(){var u=makeUrl(); if(u) load(u);};
-$('wpVar').onclick=function(){var u=makeUrl(); if(u) load(u);};
-$('wpDl').onclick=function(){var a=document.createElement('a');a.href=img.src;a.download='allverse-wallpaper.jpg';a.target='_blank';document.body.appendChild(a);a.click();a.remove();};
+btn.onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle theme likhein / Please enter a theme first.');}};
+$('wpVar').onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle theme likhein / Please enter a theme first.');}};
+var dlBtn=$('wpDl');
+if(dlBtn) dlBtn.onclick=function(){
+  var src=img.src;
+  if(!src||!img.naturalWidth){showErr('Pehle wallpaper generate karein / Generate a wallpaper first.');return;}
+  clearErr();
+  var oldLabel=dlBtn.textContent; dlBtn.disabled=true; dlBtn.textContent='⏳ Preparing…';
+  fetch(src,{mode:'cors'}).then(function(r){ if(!r.ok) throw new Error('net'); return r.blob(); }).then(function(b){
+    var u=URL.createObjectURL(b);
+    var a=document.createElement('a'); a.href=u; a.download='allverse-wallpaper.jpg';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(u);},5000);
+    dlBtn.disabled=false; dlBtn.textContent=oldLabel;
+  }).catch(function(){
+    dlBtn.disabled=false; dlBtn.textContent=oldLabel;
+    window.open(src,'_blank');
+  });
+};
 })();
 </script>
 </body></html>

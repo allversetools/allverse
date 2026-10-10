@@ -108,10 +108,10 @@ btn.onclick=function(){
   var fail=function(e){SK_AI.setBusy(btn,false);SK_AI.showError(res,e.message);};
   if('Summarizer' in window){
     summarizeOnDevice(text,length).then(done).catch(function(){
-      SK_AI.chat('Summarize this text ('+length+'):n\n'+text,'You write crisp summaries.').then(done).catch(fail);
+      SK_AI.chat('Summarize this text ('+length+'):\n\n'+text,'You write crisp summaries.').then(done).catch(fail);
     });
   }else{
-    SK_AI.chat('Summarize this text ('+length+'):n\n'+text,'You write crisp summaries.').then(done).catch(fail);
+    SK_AI.chat('Summarize this text ('+length+'):\n\n'+text,'You write crisp summaries.').then(done).catch(fail);
   }
 };
 $('smCopy').onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};

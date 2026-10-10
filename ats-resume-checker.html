@@ -76,6 +76,7 @@
 <div class="field"><label for="atsResume">Your resume text</label><textarea id="atsResume" style="min-height:240px" placeholder="Paste your full resume text here (copy it from your PDF or Word file)…"></textarea></div>
 <div class="field"><label for="atsJd">Job description <span style="font-weight:400;color:#777">(optional — unlocks keyword-match scoring)</span></label><textarea id="atsJd" style="min-height:140px" placeholder="Paste the job posting here for keyword-gap analysis…"></textarea></div>
 <div class="btn-row"><button class="btn" id="atsGo" type="button">🔍 Analyze Resume</button><button class="btn btn-ghost" id="atsClear" type="button">Clear</button></div>
+<p id="atsErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0"></p>
 <div class="result-box" id="atsOut" style="margin-top:18px">
 <h4>ATS Report</h4>
 <div class="ats-score-wrap">
@@ -153,7 +154,13 @@
 
   function analyze() {
     var resume = $('atsResume').value, jd = $('atsJd').value;
-    if (!resume.trim()) { $('atsOut').classList.remove('show'); return; }
+    var errEl = $('atsErr');
+    if (!resume.trim()) {
+      $('atsOut').classList.remove('show');
+      if (errEl) { errEl.textContent = '⚠️ Pehle resume paste karein / Paste your resume first.'; errEl.hidden = false; }
+      return;
+    }
+    if (errEl) { errEl.textContent = ''; errEl.hidden = true; }
     var low = resume.toLowerCase(), rwords = words(resume), wc = rwords.length;
     var checks = [], fixes = [], stats = [];
     var total = 0, max = 0;
@@ -290,6 +297,7 @@
   $('atsClear').addEventListener('click', function () {
     $('atsResume').value = ''; $('atsJd').value = '';
     $('atsOut').classList.remove('show');
+    var e = $('atsErr'); if (e) { e.textContent = ''; e.hidden = true; }
   });
 })();
 </script>
