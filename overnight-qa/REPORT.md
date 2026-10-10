@@ -21,4 +21,12 @@ Fix (commit 8a8ad95): canvas blob download producing a TRUE 1280×720 JPEG (cove
 
 | Tool | Status | Note |
 |------|--------|------|
-<!-- filled below from batch reports -->
+| ai-thumbnail-maker.html | FIXED | **Flagship (user-reported).** Download button was fake (cross-origin `download` attr ignored → opened new tab, looked broken on phone). Now: true 1280×720 JPEG via canvas blob download; title validation; elapsed-time progress; graceful new-tab fallback. Endpoint curl-verified 200. |
+| ab-test-calculator.html | FIXED | Pooled z-test hand-verified (p=0.0496 → B wins at 95%). Was: empty/invalid input silently did nothing → visible error now. |
+| age-calculator.html | FIXED | Math hand-verified (36y 4m 25d, 13,297 days). Two FAQs were factually wrong (claimed nonexistent features) → corrected in HTML + JSON-LD. |
+| ai-business-idea-generator.html | FIXED | showError wiped result panel on API failure (tool dead until reload) → dedicated error element, retry-safe. |
+| ai-caption-generator.html | FIXED | Same panel-wipe bug → dedicated error element, retry-safe. |
+| ai-chat.html | PASS | Errors already in dedicated bubble; empty send ignored; mobile fine. |
+| ai-image-generator.html | FIXED | Empty prompt silent → error shown; panel-wipe on load failure → fixed; broken cross-origin download → fetch→blob download (CORS verified). |
+| ai-interview-questions.html | FIXED | Same panel-wipe bug → dedicated error element, retry-safe. |
+| ai-logo-maker.html | FIXED | Same three bugs as image-generator (silent empty input, panel wipe, broken download) → all fixed. |

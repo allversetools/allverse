@@ -57,6 +57,7 @@
 <div class="result-panel" id="iqResult" hidden>
 <h4>Interview prep</h4>
 <div id="iqOut" style="white-space:pre-wrap;line-height:1.7"></div>
+<p id="iqErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0"></p>
 <div class="btn-row" style="margin-top:12px"><button class="btn btn-ghost" id="iqCopy" type="button">⧉ Copy All</button></div>
 </div>
 </div></div><section class="faq-section"><h2>AI Interview Questions — FAQs</h2>
@@ -83,16 +84,19 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('iqBtn'),res=$('iqResult'),out=$('iqOut');
+var btn=$('iqBtn'),res=$('iqResult'),out=$('iqOut'),err=$('iqErr'),copyBtn=$('iqCopy');
+function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } }
+function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
+if(!btn||!res||!out) return;
 btn.onclick=function(){
   var job=$('iqJob').value.trim(); if(!job){out.textContent='Pehle job title likhein / Enter a job title first.';res.hidden=false;return;}
   var prompt='I am preparing for a "'+job+'" job interview in Pakistan. Give me 8 likely interview questions with strong 2-3 line sample answers each. Number them. Practical and realistic.';
-  SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+  SK_AI.setBusy(btn,true); res.hidden=false; clearErr(); out.textContent='';
   SK_AI.chat(prompt,'You are an HR interview coach.').then(function(txt){
     SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
-  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.showError(res,e.message);});
+  }).catch(function(e){SK_AI.setBusy(btn,false);showErr(e.message);});
 };
-$('iqCopy').onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};
+if(copyBtn) copyBtn.onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};
 })();
 </script>
 </body></html>

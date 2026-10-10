@@ -181,10 +181,22 @@
       if (btn.dataset._label) btn.textContent = btn.dataset._label;
     }
   }
+  /* Writes an error into a dedicated paragraph INSIDE el without wiping
+     el's existing content (old version replaced innerHTML, which destroyed
+     result panels and their buttons on every AI error). */
   function showError(el, msg) {
     if (!el) return;
     el.hidden = false;
-    el.innerHTML = '<p style="color:#b91c1c">⚠️ ' + escapeHtml(msg) + '</p>';
+    var p = el.querySelector('[data-sk-err]');
+    if (!p) {
+      p = document.createElement('p');
+      p.setAttribute('data-sk-err', '1');
+      p.style.color = '#b91c1c';
+      p.style.margin = '.5rem 0';
+      if (el.firstChild) el.insertBefore(p, el.firstChild);
+      else el.appendChild(p);
+    }
+    p.textContent = '⚠️ ' + msg;
   }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {

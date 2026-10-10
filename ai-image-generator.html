@@ -74,6 +74,7 @@
 <div class="result-panel" id="igResult" hidden>
 <h4>Your AI image</h4>
 <div style="text-align:center"><img id="igImg" alt="AI generated image" style="max-width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15)"></div>
+<p id="igErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0;text-align:center"></p>
 <div class="btn-row" style="margin-top:12px"><button class="btn" id="igDl" type="button">⬇ Download</button>
 <button class="btn btn-ghost" id="igVar" type="button">🎲 New Variation</button></div>
 </div>
@@ -101,26 +102,42 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('igBtn'),res=$('igResult'),img=$('igImg');
+var btn=$('igBtn'),res=$('igResult'),img=$('igImg'),err=$('igErr');
+if(!btn||!res||!img) return;
+function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } res.hidden=false; }
+function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
 function makeUrl(){
-  var p=$('igPrompt').value.trim(); if(!p){img.alt='Please enter a prompt first';return null;}
+  var p=$('igPrompt').value.trim(); if(!p){return null;}
   var style=$('igStyle').value, sz=$('igSize').value.split('x');
   var full=p+', '+style;
   return SK_AI.pollinationsImage(full,{width:+sz[0],height:+sz[1]});
 }
 function load(url){
   SK_AI.setBusy(btn,true,'🎨 Creating your image…');
-  res.hidden=false; img.style.opacity='.4';
+  clearErr(); res.hidden=false; img.style.opacity='.4';
   var pre=new Image();
   pre.onload=function(){img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);res.scrollIntoView({behavior:'smooth',block:'nearest'});};
-  pre.onerror=function(){SK_AI.setBusy(btn,false);SK_AI.showError(res,'Image banane mein masla hua / Failed to generate. Dobara try karein.');};
+  pre.onerror=function(){SK_AI.setBusy(btn,false);img.style.opacity='1';showErr('Image banane mein masla hua / Failed to generate. Dobara try karein.');};
   pre.src=url;
 }
-btn.onclick=function(){var u=makeUrl(); if(u) load(u);};
-$('igVar').onclick=function(){var u=makeUrl(); if(u) load(u);};
-$('igDl').onclick=function(){
-  var a=document.createElement('a'); a.href=img.src; a.download='allverse-ai-image.jpg';
-  a.target='_blank'; document.body.appendChild(a); a.click(); a.remove();
+btn.onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle image describe karein / Please describe your image first.');}};
+$('igVar').onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle image describe karein / Please describe your image first.');}};
+var dlBtn=$('igDl');
+if(dlBtn) dlBtn.onclick=function(){
+  var src=img.src;
+  if(!src||!img.naturalWidth){showErr('Pehle image generate karein / Generate an image first.');return;}
+  clearErr();
+  var oldLabel=dlBtn.textContent; dlBtn.disabled=true; dlBtn.textContent='⏳ Preparing…';
+  fetch(src,{mode:'cors'}).then(function(r){ if(!r.ok) throw new Error('net'); return r.blob(); }).then(function(b){
+    var u=URL.createObjectURL(b);
+    var a=document.createElement('a'); a.href=u; a.download='allverse-ai-image.jpg';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(u);},5000);
+    dlBtn.disabled=false; dlBtn.textContent=oldLabel;
+  }).catch(function(){
+    dlBtn.disabled=false; dlBtn.textContent=oldLabel;
+    window.open(src,'_blank');
+  });
 };
 })();
 </script>

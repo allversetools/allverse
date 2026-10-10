@@ -53,6 +53,7 @@
 <div class="field"><label for="abCb">Conversions — Version B</label><input id="abCb" type="number" min="0" step="1" placeholder="e.g. 150"></div>
 </div>
 <button class="btn btn-primary" id="abBtn" type="button">Run test</button>
+<p id="abErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0"></p>
 <div class="result-panel" id="abResult" hidden>
 <h4>Results</h4>
 <div class="stat-row">
@@ -88,6 +89,8 @@
       btn = document.getElementById('abBtn'), res = document.getElementById('abResult');
   if (!va || !ca || !vb || !cb || !btn || !res) return;
   function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+  function showErr(m) { var e = document.getElementById('abErr'); if (e) { e.textContent = m; e.hidden = false; } }
+  function clearErr() { var e = document.getElementById('abErr'); if (e) { e.textContent = ''; e.hidden = true; } }
   function ncdf(x) {
     var t = 1 / (1 + 0.2316419 * Math.abs(x));
     var d = 0.3989423 * Math.exp(-x * x / 2);
@@ -97,7 +100,12 @@
   btn.addEventListener('click', function () {
     var nA = parseFloat(va.value) || 0, cA = parseFloat(ca.value) || 0,
         nB = parseFloat(vb.value) || 0, cB = parseFloat(cb.value) || 0;
-    if (!(nA > 0 && nB > 0) || cA > nA || cB > nB) { res.hidden = true; return; }
+    if (!(nA > 0 && nB > 0) || cA > nA || cB > nB) {
+      res.hidden = true;
+      showErr('Please enter visitors and conversions for both versions — conversions can\u2019t exceed visitors.');
+      return;
+    }
+    clearErr();
     var rA = cA / nA, rB = cB / nB;
     var uplift = rA > 0 ? (rB - rA) / rA * 100 : (rB > 0 ? 100 : 0);
     var p = (cA + cB) / (nA + nB);

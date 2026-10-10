@@ -70,6 +70,7 @@
 <div class="result-panel" id="lgResult" hidden>
 <h4>Your logo</h4>
 <div style="text-align:center;background:#fff;border-radius:12px;padding:16px"><img id="lgImg" alt="AI generated logo" style="max-width:100%;max-height:380px"></div>
+<p id="lgErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0;text-align:center"></p>
 <div class="btn-row" style="margin-top:12px"><button class="btn" id="lgDl" type="button">⬇ Download</button>
 <button class="btn btn-ghost" id="lgVar" type="button">🎲 New Variation</button></div>
 </div>
@@ -97,22 +98,41 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('lgBtn'),res=$('lgResult'),img=$('lgImg');
+var btn=$('lgBtn'),res=$('lgResult'),img=$('lgImg'),err=$('lgErr');
+if(!btn||!res||!img) return;
+function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } res.hidden=false; }
+function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
 function makeUrl(){
   var n=$('lgName').value.trim(); if(!n){return null;}
   var prompt='professional logo design for "'+n+'", '+$('lgInd').value+' business, '+$('lgStyle').value+' style, clean vector logo, centered, simple, memorable, white background, no photo';
   return SK_AI.pollinationsImage(prompt,{width:1024,height:1024});
 }
 function load(url){
-  SK_AI.setBusy(btn,true,'🎨 Designing your logo…'); res.hidden=false; img.style.opacity='.4';
+  SK_AI.setBusy(btn,true,'🎨 Designing your logo…'); clearErr(); res.hidden=false; img.style.opacity='.4';
   var pre=new Image();
   pre.onload=function(){img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);};
-  pre.onerror=function(){SK_AI.setBusy(btn,false);SK_AI.showError(res,'Logo banane mein masla hua / Failed. Dobara try karein.');};
+  pre.onerror=function(){SK_AI.setBusy(btn,false);img.style.opacity='1';showErr('Logo banane mein masla hua / Failed. Dobara try karein.');};
   pre.src=url;
 }
-btn.onclick=function(){var u=makeUrl(); if(u) load(u);};
-$('lgVar').onclick=function(){var u=makeUrl(); if(u) load(u);};
-$('lgDl').onclick=function(){var a=document.createElement('a');a.href=img.src;a.download='allverse-logo.jpg';a.target='_blank';document.body.appendChild(a);a.click();a.remove();};
+btn.onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle brand name likhein / Enter a brand name first.');}};
+$('lgVar').onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle brand name likhein / Enter a brand name first.');}};
+var dlBtn=$('lgDl');
+if(dlBtn) dlBtn.onclick=function(){
+  var src=img.src;
+  if(!src||!img.naturalWidth){showErr('Pehle logo generate karein / Create a logo first.');return;}
+  clearErr();
+  var oldLabel=dlBtn.textContent; dlBtn.disabled=true; dlBtn.textContent='⏳ Preparing…';
+  fetch(src,{mode:'cors'}).then(function(r){ if(!r.ok) throw new Error('net'); return r.blob(); }).then(function(b){
+    var u=URL.createObjectURL(b);
+    var a=document.createElement('a'); a.href=u; a.download='allverse-logo.jpg';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(u);},5000);
+    dlBtn.disabled=false; dlBtn.textContent=oldLabel;
+  }).catch(function(){
+    dlBtn.disabled=false; dlBtn.textContent=oldLabel;
+    window.open(src,'_blank');
+  });
+};
 })();
 </script>
 </body></html>
