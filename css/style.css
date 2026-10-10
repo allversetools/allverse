@@ -1363,3 +1363,209 @@ a.logo {
   .tool-card .card-icon, .hero-stat, .cat-card { transition: none; }
   .tool-card:hover .card-icon { transform: none; }
 }
+
+/* ============================================================
+   SabKuch 3D design-system upgrade (2026-10-09)
+   APPENDED — existing rules above are untouched.
+   1. View transitions  2. Layered 3D shadows  3. Category
+   materials  4. Result moments  5. Smart paste  6. Trust
+   badge  7. Mobile bottom nav  8. Reduced-motion guards
+   ============================================================ */
+
+/* ---------- 3.1 View transitions ---------- */
+@view-transition { navigation: auto; }
+
+/* ---------- 3.2 Layered 3D shadows (base system) ---------- */
+.tool-card, .tool-panel, .stat, .btn {
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, .05),
+    0 8px 20px -6px rgba(15, 23, 42, .12),
+    0 22px 44px -14px rgba(15, 23, 42, .16),
+    inset 0 1px 0 rgba(255, 255, 255, .85);
+  transition:
+    transform .2s cubic-bezier(.34, 1.56, .64, 1),
+    box-shadow .22s ease;
+}
+.tool-card:active, .tool-panel:active, .stat:active, .btn:active {
+  transform: translateY(3px) scale(.98);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, .06),
+    0 3px 8px -4px rgba(15, 23, 42, .14),
+    inset 0 1px 0 rgba(255, 255, 255, .85);
+  transition: transform .14s cubic-bezier(.34, 1.56, .64, 1), box-shadow .14s ease;
+}
+[data-theme="dark"] .tool-card,
+[data-theme="dark"] .tool-panel,
+[data-theme="dark"] .stat,
+[data-theme="dark"] .btn {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, .35),
+    0 10px 24px -6px rgba(0, 0, 0, .5),
+    0 26px 50px -14px rgba(0, 0, 0, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+[data-theme="dark"] .tool-card:active,
+[data-theme="dark"] .tool-panel:active,
+[data-theme="dark"] .stat:active,
+[data-theme="dark"] .btn:active {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, .4),
+    0 4px 10px -4px rgba(0, 0, 0, .5),
+    inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+
+/* ---------- 3.3 Category materials ---------- */
+/* rubber-press keys: calculators / finance / business */
+body[data-cat="calculators"] .btn, body[data-cat="finance"] .btn, body[data-cat="business"] .btn,
+.cat-section[data-cat="calculators"] .tool-card, .cat-section[data-cat="finance"] .tool-card, .cat-section[data-cat="business"] .tool-card {
+  box-shadow:
+    0 2px 0 rgba(15, 23, 42, .18),
+    0 10px 22px -8px rgba(15, 23, 42, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .85),
+    inset 0 -3px 6px rgba(15, 23, 42, .08);
+}
+body[data-cat="calculators"] .btn:active, body[data-cat="finance"] .btn:active, body[data-cat="business"] .btn:active,
+.cat-section[data-cat="calculators"] .tool-card:active, .cat-section[data-cat="finance"] .tool-card:active, .cat-section[data-cat="business"] .tool-card:active {
+  transform: translateY(5px) scale(.97);
+  box-shadow:
+    inset 0 4px 12px rgba(15, 23, 42, .28),
+    inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+/* frosted glass cards: image / pdf */
+body[data-cat="image"] .tool-panel, body[data-cat="pdf"] .tool-panel {
+  background: rgba(255, 255, 255, .62);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, .65);
+}
+[data-theme="dark"] body[data-cat="image"] .tool-panel, [data-theme="dark"] body[data-cat="pdf"] .tool-panel {
+  background: rgba(22, 32, 58, .62);
+  border: 1px solid rgba(148, 163, 184, .18);
+}
+/* terminal glow: developer */
+body[data-cat="developer"] .tool-panel {
+  box-shadow:
+    0 0 0 1px rgba(34, 197, 94, .25),
+    0 0 28px rgba(34, 197, 94, .22),
+    0 18px 40px -14px rgba(0, 0, 0, .35),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+body[data-cat="developer"] .result-panel {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  border-left: 3px solid #22c55e;
+}
+/* tap-point gradient bleed: color */
+body[data-cat="color"] .tool-panel {
+  background-image: radial-gradient(circle 220px at var(--tx, 50%) var(--ty, 30%), rgba(168, 85, 247, .22), transparent 70%);
+}
+/* bouncy springs: fun / everyday */
+body[data-cat="fun"] .tool-card, body[data-cat="everyday"] .tool-card,
+.cat-section[data-cat="fun"] .tool-card, .cat-section[data-cat="everyday"] .tool-card {
+  transition: transform .34s cubic-bezier(.34, 2.1, .64, 1), box-shadow .26s ease;
+}
+body[data-cat="fun"] .tool-card:hover, body[data-cat="everyday"] .tool-card:hover,
+.cat-section[data-cat="fun"] .tool-card:hover, .cat-section[data-cat="everyday"] .tool-card:hover {
+  transform: translateY(-7px) scale(1.03) rotate(-.4deg);
+}
+
+/* ---------- 3.4 Result moments ---------- */
+@keyframes fx-slide-in { from { transform: translateX(56px); opacity: 0; } to { transform: none; opacity: 1; } }
+body[data-cat="converters"] .result-panel.fx-slide { animation: fx-slide-in .45s cubic-bezier(.34, 1.3, .64, 1); }
+@keyframes fx-glow-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, .55); }
+  100% { box-shadow: 0 0 0 18px rgba(59, 130, 246, 0); }
+}
+.result-panel.fx-glow { animation: fx-glow-pulse .9s ease-out 1; }
+@keyframes fx-flip { 0% { transform: rotateX(0); } 45% { transform: rotateX(-92deg); } 100% { transform: rotateX(0); } }
+body[data-cat="date-time"] .stat b.fx-flip { display: inline-block; animation: fx-flip .5s cubic-bezier(.34, 1.3, .64, 1); }
+.fx-spark {
+  position: absolute; width: 7px; height: 7px; border-radius: 50%;
+  pointer-events: none; z-index: 60;
+  background: radial-gradient(circle, #fde047, #f59e0b);
+  animation: fx-spark-fly .7s ease-out forwards;
+}
+@keyframes fx-spark-fly {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--sx), var(--sy)) scale(.15); opacity: 0; }
+}
+
+/* ---------- 3.5 Smart paste (hero) ---------- */
+.smart-paste {
+  margin: 26px auto 0; max-width: 620px; padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff, #f6f9ff);
+  border: 1px solid rgba(59, 130, 246, .25);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, .06),
+    0 12px 32px -8px rgba(59, 130, 246, .35),
+    0 0 0 4px rgba(59, 130, 246, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+[data-theme="dark"] .smart-paste {
+  background: linear-gradient(180deg, #16203a, #101a30);
+  border-color: rgba(96, 165, 250, .3);
+  box-shadow:
+    0 12px 32px -8px rgba(0, 0, 0, .6),
+    0 0 0 4px rgba(96, 165, 250, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+.smart-paste input {
+  width: 100%; padding: 13px 16px; font-size: .98rem;
+  border-radius: 14px; border: 1px solid rgba(59, 130, 246, .35);
+  background: var(--surface, #fff); color: inherit; outline: none;
+}
+.smart-paste input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, .18); }
+.sp-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; justify-content: center; }
+.sp-chips:empty { display: none; }
+.sp-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 999px; font-size: .84rem; font-weight: 600;
+  background: linear-gradient(180deg, #3b82f6, #2563eb); color: #fff; text-decoration: none;
+  box-shadow: 0 4px 12px -3px rgba(37, 99, 235, .5), inset 0 1px 0 rgba(255, 255, 255, .35);
+  transition: transform .18s cubic-bezier(.34, 1.56, .64, 1);
+}
+.sp-chip:hover { transform: translateY(-2px) scale(1.04); }
+.sp-chip:active { transform: translateY(2px) scale(.97); }
+.sp-hint { font-size: .78rem; color: var(--muted, #64748b); margin-top: 8px; }
+
+/* ---------- 3.6 Trust badge ---------- */
+.trust-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: 0 0 14px; padding: 9px 16px; border-radius: 999px;
+  font-size: .82rem; font-weight: 600; color: #166534;
+  background: linear-gradient(180deg, #f0fdf4, #dcfce7);
+  border: 1px solid rgba(34, 197, 94, .4);
+  box-shadow: 0 4px 14px -4px rgba(34, 197, 94, .35), inset 0 1px 0 rgba(255, 255, 255, .8);
+}
+[data-theme="dark"] .trust-pill { color: #bbf7d0; background: linear-gradient(180deg, #052e1b, #064e2b); }
+
+/* ---------- 3.7 Mobile bottom nav ---------- */
+.fx-bottomnav {
+  display: none; position: fixed; left: 12px; right: 12px; bottom: 12px;
+  z-index: 200; padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .72);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, .3);
+  box-shadow: 0 12px 32px -8px rgba(15, 23, 42, .3), inset 0 1px 0 rgba(255, 255, 255, .7);
+  justify-content: space-around;
+}
+[data-theme="dark"] .fx-bottomnav { background: rgba(16, 26, 48, .78); }
+.fx-bottomnav a, .fx-bottomnav button {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 4px; border: 0; background: none; color: inherit; cursor: pointer;
+  font-size: .68rem; font-weight: 600; text-decoration: none; border-radius: 12px;
+}
+.fx-bottomnav .bn-ico { font-size: 1.25rem; line-height: 1; }
+.fx-bottomnav a:active, .fx-bottomnav button:active { background: rgba(59, 130, 246, .14); }
+@media (max-width: 900px) {
+  .fx-bottomnav { display: flex; }
+  body { padding-bottom: 92px; }
+}
+
+/* ---------- 3.8 Reduced motion: kill all fx ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .tool-card, .tool-panel, .stat, .btn, .sp-chip { transition: none !important; }
+  .tool-card:active, .tool-panel:active, .stat:active, .btn:active { transform: none !important; }
+  .result-panel.fx-glow, body[data-cat="converters"] .result-panel.fx-slide,
+  body[data-cat="date-time"] .stat b.fx-flip, .fx-spark { animation: none !important; }
+}

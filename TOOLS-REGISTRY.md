@@ -2,7 +2,7 @@
 
 Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 
-## Categories (20)
+## Categories (22)
 
 | File | Label |
 |---|---|
@@ -26,8 +26,22 @@ Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 | security-tools.html | Security Tools |
 | business-tools.html | Business Tools |
 | everyday-tools.html | Everyday Tools |
+| pakistan-tools.html | Pakistan Utilities |
+| islamic-tools.html | Islamic Tools |
 
-## Tools (70)
+## Tools (81)
+
+| income-tax-calculator-pakistan.html | pakistan-tools.html | pakistan-tools.html |
+| electricity-bill-calculator.html | pakistan-tools.html | pakistan-tools.html |
+| pta-tax-calculator.html | pakistan-tools.html | pakistan-tools.html |
+| gold-rate-calculator.html | pakistan-tools.html | pakistan-tools.html |
+| cnic-photo-maker.html | pakistan-tools.html | pakistan-tools.html |
+| roman-urdu-to-urdu.html | pakistan-tools.html | pakistan-tools.html |
+| prayer-times.html | islamic-tools.html | islamic-tools.html |
+| qibla-direction.html | islamic-tools.html | islamic-tools.html |
+| tasbeeh-counter.html | islamic-tools.html | islamic-tools.html |
+| hijri-converter.html | islamic-tools.html | islamic-tools.html |
+| zakat-calculator.html | islamic-tools.html | islamic-tools.html |
 
 | File | Category page | Back link target |
 |---|---|---|
@@ -134,3 +148,10 @@ Every page lives at the repo root. Add a tool = add 1 file + 1 card.
   and `window.SK.download(url, filename)`. TOOLS array powers the Ctrl+K palette, favorites, recently-used.
 - Keep page scripts null-guarded and IIFE/function scoped.
 - Never delete `google4dbd6ae1567ddd05.html` (Search Console verification).
+
+## Round 3 additions (2026-10-10)
+
+- New files: `js/fx.js` (3D effects, haptics, count-up, copy-morph, trust badge, mobile bottom nav, smart paste, category materials — loaded on every page after main.js), `js/pwa.js` (SW registration + install prompt after 2nd tool use), `manifest.json`, `sw.js` (cache-first), `images/icon-192.png`, `images/icon-512.png`, `images/icon-maskable-512.png`, `.github/workflows/indexnow.yml` (pings IndexNow with all sitemap URLs on push to master), IndexNow key file `<32hex>.txt` (do not delete/rename).
+- New pages skip FAQPage JSON-LD (Google killed FAQ rich results May 2026) — visible FAQ accordions only, keep SoftwareApplication + BreadcrumbList.
+- Search matches `data-roman` (Roman Urdu keywords) on cards + TOOLS `keys` in main.js.
+- EMI/BMI/percentage support #hash shareable result links; EMI/compound/BMI/percentage/age have "Show working" details.
