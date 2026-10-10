@@ -10,7 +10,7 @@ search, smart-paste and tool cards functional, keep mobile responsive, keep it
 fast (CSS-only motion, no heavy libraries). Never break tool functionality.
 
 - [x] 1. Strict monochrome foundation + one electric accent — Tighten the palette toward disciplined neutrals (crisp bone-white light mode, deep charcoal dark mode) and reserve ONE electric accent color strictly for interactive states (hovers, active filters, focus rings, CTAs). Remove scattered soft tints so the accent feels intentional. [done 2026-10-10, run 1: accent #2563eb light / #6b9bff dark; neutral icon tiles, removed sage/pink/purple/yellow tints; verified live]
-- [ ] 2. Mono micro-labels + massive display type — Add a crisp monospace font for micro-labels (eyebrow "FREE • ONLINE • NO LOGIN", Ctrl+K hint, stat pills, sidebar counts) and scale the hero headline up to a commanding, ultra-tight display size.
+- [x] 2. Mono micro-labels + massive display type — Add a crisp monospace font for micro-labels (eyebrow "FREE • ONLINE • NO LOGIN", Ctrl+K hint, stat pills, sidebar counts) and scale the hero headline up to a commanding, ultra-tight display size.
 - [ ] 3. Replace emoji card icons with monoline SVG glyphs — Swap emojis in tool cards for uniform thin-stroke SVG icons in subtly tinted tiles, consistent across all cards.
 - [ ] 4. Hairline borders + grid discipline — Replace chunky shadows with 1px hairline borders that lock sidebar, search, and cards into a precise grid; sharper, more architectural feel.
 - [ ] 5. Smart-paste card → command-bar terminal — Restyle the paste box as a sleek command-palette input: single hairline border, mono status text, blinking caret, power-user feel.
