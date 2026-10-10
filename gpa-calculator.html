@@ -84,6 +84,7 @@
   function addRow() {
     if (rows.children.length >= 12) return;
     var d = document.createElement('div');
+    d.className = 'gpa-row';
     d.style.cssText = 'display:grid;grid-template-columns:1fr 76px 108px 34px;gap:8px;margin-bottom:8px;align-items:end';
     d.innerHTML = '<div class="field" style="margin:0"><input type="text" class="gpa-name" placeholder="Course name" aria-label="Course name"></div>'
       + '<div class="field" style="margin:0"><input type="number" class="gpa-cred" min="0" step="any" placeholder="Cr." aria-label="Credits"></div>'
@@ -98,7 +99,7 @@
   addBtn.addEventListener('click', addRow);
   calcBtn.addEventListener('click', function () {
     var pts = 0, creds = 0;
-    var list = rows.querySelectorAll('div[style]');
+    var list = rows.querySelectorAll('.gpa-row');
     for (var i = 0; i < list.length; i++) {
       var cr = list[i].querySelector('.gpa-cred'), gr = list[i].querySelector('.gpa-grade');
       var c = cr ? parseFloat(cr.value) || 0 : 0, g = gr ? parseFloat(gr.value) : 0;

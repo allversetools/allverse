@@ -17,6 +17,10 @@
 .inv-totals{margin-top:14px;text-align:right;font-size:.95rem}
 .inv-totals b{font-size:1.15rem}
 .item-row{display:grid;grid-template-columns:1fr 70px 90px 90px 34px;gap:8px;align-items:end;margin-bottom:8px}
+@media (max-width:520px){
+  .inv-meta{grid-template-columns:1fr 1fr !important}
+  .item-row{grid-template-columns:1fr 56px 76px 76px 30px}
+}
 @media print{
   body *{visibility:hidden}
   #invPrint,#invPrint *{visibility:visible}
@@ -80,7 +84,7 @@
 <div class="field"><label for="ivBizAddr">Your address</label><textarea id="ivBizAddr" style="min-height:64px" placeholder="Street, City"></textarea></div>
 <div class="field"><label for="ivClientAddr">Client address</label><textarea id="ivClientAddr" style="min-height:64px" placeholder="Street, City"></textarea></div>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
+<div class="inv-meta" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
 <div class="field"><label for="ivNo">Invoice #</label><input type="text" id="ivNo" value="INV-0001"></div>
 <div class="field"><label for="ivIssue">Issue date</label><input type="date" id="ivIssue"></div>
 <div class="field"><label for="ivDue">Due date</label><input type="date" id="ivDue"></div>
