@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>YouTube Timestamp Link Generator — Free Online | SabKuch</title><meta name="description" content="Turn any YouTube URL + timestamp into a shareable link that starts at the exact second. Plus embed code and a chapters formatter. Free.">
+<meta property="og:title" content="YouTube Timestamp Link Generator — Free Online | SabKuch">
+<meta property="og:description" content="Turn any YouTube URL + timestamp into a shareable link that starts at the exact second. Plus embed code and a chapters formatter. Free.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/video-timestamp-link.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YouTube Timestamp Link Generator — Free Online | SabKuch">
+<meta name="twitter:description" content="Turn any YouTube URL + timestamp into a shareable link that starts at the exact second. Plus embed code and a chapters formatter. Free."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/video-timestamp-link.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "YouTube Timestamp Link Generator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Turn any YouTube URL + timestamp into a shareable link that starts at the exact second. Plus embed code and a chapters formatter. Free.", "url": "https://sabkuchtools.github.io/sabkuch/video-timestamp-link.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do YouTube timestamp links work?", "acceptedAnswer": {"@type": "Answer", "text": "A timestamp link adds ?t= (seconds) to the video URL — e.g. youtu.be/abc123?t=90 starts at 1:30. Anyone opening it starts watching at that exact moment."}}, {"@type": "Question", "name": "What are the YouTube chapter rules?", "acceptedAnswer": {"@type": "Answer", "text": "Chapters need at least 3 timestamps in ascending order, the first at 0:00, and each chapter at least 10 seconds long. The formatter below checks all three rules."}}, {"@type": "Question", "name": "Do timestamp links work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — tapping a timestamp link opens the YouTube app (or mobile browser) and starts playback at that exact second on both iOS and Android."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Video Tools", "item": "https://sabkuchtools.github.io/sabkuch/video-tools.html"}, {"@type": "ListItem", "position": 3, "name": "YouTube Timestamp Link"}]}
+</script>
+<style>
+.yt-linkrow{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}
+.yt-linkrow code{flex:1;background:#f4f6fa;border:1px solid #e2e5ea;border-radius:8px;padding:9px 12px;font-size:.82rem;word-break:break-all;overflow-wrap:anywhere}
+.yt-linkrow .btn{flex:none}
+.yt-out-label{font-size:.8rem;font-weight:700;color:#555;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.6px}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+<a class="side-link" href="seo-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO Tools</a>
+<a class="side-link" href="finance-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finance Tools</a>
+<a class="side-link" href="health-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Health Tools</a>
+<a class="side-link" href="pdf-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF Tools</a>
+<a class="side-link" href="writing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Writing Tools</a>
+<a class="side-link" href="marketing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>Marketing Tools</a>
+<a class="side-link" href="education-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Education Tools</a>
+<a class="side-link" href="security-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Tools</a>
+<a class="side-link" href="business-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Business Tools</a>
+<a class="side-link" href="everyday-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="pakistan-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="islamic-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link active" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M10 10l5 3-5 3z"/></svg>Video Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg>Video Tools</a>
+<a class="side-link" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>Audio Tools</a>
+<a class="side-link" href="font-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Font Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Meme Tools</a>
+<a class="side-link" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5c1-1 1-2.6 0-3.6s-2.6-1-3.6 0L12.4 7.4 4.2 5.6c-.5-.1-1 .1-1.2.6l-.3.6c-.2.5 0 1 .6 1.2L9 9l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 1.1 5.7c.1.6.7.9 1.2.6l.6-.3c.5-.2.7-.7.6-1.2z"/></svg>Travel Tools</a>
+<a class="side-link" href="real-estate-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Real Estate Tools</a>
+<a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
+<a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+<a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="video-tools.html">Video Tools</a><span>›</span><span>YouTube Timestamp Link</span></nav>
+<h1>YouTube Timestamp Link</h1><p class="tool-desc">Paste any YouTube URL, set the exact moment, and get shareable links that start playing right there — plus embed code and a chapter-list formatter.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
+<div class="tool-panel">
+<div class="field"><label for="ytUrl">YouTube video URL</label><input id="ytUrl" type="url" placeholder="https://www.youtube.com/watch?v=…  or  https://youtu.be/…"></div>
+<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="ytTime">Start time</label><input id="ytTime" type="text" placeholder="e.g. 1:23  or  90  or  1m23s"></div>
+<div class="field"><label for="ytEnd">End time <span style="font-weight:400;color:#777">(optional — embed only)</span></label><input id="ytEnd" type="text" placeholder="e.g. 2:10"></div>
+</div>
+<div class="btn-row"><button class="btn" id="ytGo" type="button">⏱️ Generate Links</button><button class="btn btn-ghost" id="ytTest" type="button">▶ Test link</button></div>
+<p class="hint" id="ytMsg" role="status"></p>
+<div class="result-box" id="ytOut" style="margin-top:14px">
+<h4>Your timestamped links</h4>
+<div class="yt-out-label">Short link — best for chat &amp; social</div>
+<div class="yt-linkrow"><code id="ytShort">–</code><button class="btn btn-ghost" type="button" data-copy="ytShort">Copy</button></div>
+<div class="yt-out-label">Full link</div>
+<div class="yt-linkrow"><code id="ytFull">–</code><button class="btn btn-ghost" type="button" data-copy="ytFull">Copy</button></div>
+<div class="yt-out-label">Embed code <span style="font-weight:400;text-transform:none;letter-spacing:0">(for websites)</span></div>
+<div class="yt-linkrow"><code id="ytEmbed">–</code><button class="btn btn-ghost" type="button" data-copy="ytEmbed">Copy</button></div>
+</div>
+</div>
+
+<div class="tool-panel" style="margin-top:18px">
+<h3 style="margin-top:0">📑 Chapters formatter</h3>
+<p class="tool-desc">Paste your chapter list (one per line, time anywhere in the line). Get back a valid, sorted YouTube chapter list with the rules checked.</p>
+<div class="field"><label for="ytChaps">Your chapters</label><textarea id="ytChaps" style="min-height:130px" placeholder="0:00 Intro&#10;1:45 The main point&#10;04:20 Wrap up"></textarea></div>
+<div class="btn-row"><button class="btn" id="ytChGo" type="button">✓ Format &amp; Validate</button></div>
+<p class="hint" id="ytChMsg" role="status"></p>
+<div class="result-box" id="ytChOut" style="margin-top:14px">
+<h4>Formatted chapters</h4>
+<div class="yt-linkrow"><code id="ytChText" style="white-space:pre-wrap">–</code><button class="btn btn-ghost" type="button" data-copy="ytChText">Copy</button></div>
+<div id="ytChRules" style="margin-top:8px;font-size:.88rem"></div>
+</div>
+</div>
+</div><section class="faq-section"><h2>YouTube Timestamp Link — FAQs</h2>
+<details class="faq-item"><summary>How do YouTube timestamp links work?</summary><p>A timestamp link adds ?t= (seconds) to the video URL — e.g. youtu.be/abc123?t=90 starts at 1:30. Anyone opening it starts watching at that exact moment.</p></details>
+<details class="faq-item"><summary>What are the YouTube chapter rules?</summary><p>Chapters need at least 3 timestamps in ascending order, the first at 0:00, and each chapter at least 10 seconds long. The formatter above checks all three rules.</p></details>
+<details class="faq-item"><summary>Do timestamp links work on mobile?</summary><p>Yes — tapping a timestamp link opens the YouTube app (or mobile browser) and starts playback at that exact second on both iOS and Android.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="video-to-gif.html"><span>Video to GIF</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="video-metadata-viewer.html"><span>Video Metadata Viewer</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="youtube-thumbnail-resizer.html"><span>YouTube Thumbnail Resizer</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="qr-generator.html"><span>QR Generator</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+  function msg(t) { var m = $('ytMsg'); if (m) m.textContent = t || ''; }
+
+  function parseVideoId(url) {
+    url = (url || '').trim();
+    var m = url.match(/(?:youtube\.com\/(?:watch\?[^#]*v=|shorts\/|embed\/|live\/|v\/)|youtu\.be\/|youtube\.com\/attribution_link\?.*v%3D)([A-Za-z0-9_-]{11})/);
+    if (m) return m[1];
+    if (/^[A-Za-z0-9_-]{11}$/.test(url)) return url;
+    return null;
+  }
+  function parseTime(s) {
+    s = (s || '').trim().toLowerCase();
+    if (!s) return null;
+    var m = s.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+(?:\.\d+)?)s?)?$/);
+    if (m && (m[1] || m[2] || m[3])) {
+      return Math.floor((parseInt(m[1] || '0', 10) * 3600) + (parseInt(m[2] || '0', 10) * 60) + parseFloat(m[3] || '0'));
+    }
+    m = s.match(/^(?:(\d+):)?([0-5]?\d):([0-5]\d(?:\.\d+)?)$/);
+    if (m) return Math.floor((parseInt(m[1] || '0', 10) * 3600) + parseInt(m[2], 10) * 60 + parseFloat(m[3]));
+    return null;
+  }
+  function fmtHMS(sec) {
+    var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+    var out = '';
+    if (h) out += h + 'h';
+    if (m || h) out += m + 'm';
+    out += s + 's';
+    return out;
+  }
+
+  var lastShort = '';
+  function generate() {
+    var id = parseVideoId($('ytUrl').value);
+    if (!id) { msg('Could not find a YouTube video ID in that URL. Paste a watch, youtu.be, Shorts or embed link.'); return; }
+    var t = parseTime($('ytTime').value);
+    if (t == null || t < 0) { msg('Enter a start time like 90, 1:23 or 1m23s.'); return; }
+    var endRaw = $('ytEnd').value.trim(), end = endRaw ? parseTime(endRaw) : null;
+    if (endRaw && (end == null || end <= t)) { msg('End time must be after the start time (or leave it empty).'); return; }
+    var short = 'https://youtu.be/' + id + '?t=' + t;
+    var full = 'https://www.youtube.com/watch?v=' + id + '&t=' + fmtHMS(t);
+    var embedUrl = 'https://www.youtube.com/embed/' + id + '?start=' + t + (end ? '&end=' + end : '');
+    var embed = '<iframe width="560" height="315" src="' + embedUrl + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    lastShort = short;
+    $('ytShort').textContent = short;
+    $('ytFull').textContent = full;
+    $('ytEmbed').textContent = embed;
+    $('ytOut').classList.add('show');
+    msg('✓ Links generated — ' + (t === 0 ? 'starting at the beginning' : 'starting at ' + fmtHMS(t)) + '.');
+  }
+  $('ytGo').addEventListener('click', generate);
+  $('ytTest').addEventListener('click', function () {
+    generate();
+    if (lastShort) window.open(lastShort, '_blank', 'noopener');
+  });
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = $(b.getAttribute('data-copy')).textContent;
+      function done(ok) { b.textContent = ok ? '✓ Copied!' : 'Copy'; if (ok) setTimeout(function () { b.textContent = 'Copy'; }, 1500); }
+      if (navigator.clipboard && t && t !== '–') navigator.clipboard.writeText(t).then(function () { done(true); }, function () { done(false); });
+      else done(false);
+    });
+  });
+
+  /* ---- chapters formatter ---- */
+  function parseChapTime(line) {
+    var m = line.match(/(\d+):([0-5]\d)(?::([0-5]\d))?/);
+    if (!m) return null;
+    var sec = m[3] !== undefined ? parseInt(m[1], 10) * 3600 + parseInt(m[2], 10) * 60 + parseInt(m[3], 10)
+                                : parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+    return { sec: sec, token: m[0], idx: line.indexOf(m[0]) };
+  }
+  function fmtChap(sec) {
+    var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+    function p(n) { return (n < 10 ? '0' : '') + n; }
+    return (h ? h + ':' + p(m) : m) + ':' + p(s);
+  }
+  $('ytChGo').addEventListener('click', function () {
+    var lines = $('ytChaps').value.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+    var items = [], bad = [];
+    lines.forEach(function (ln) {
+      var p = parseChapTime(ln);
+      if (!p) { bad.push(ln); return; }
+      var title = (ln.slice(0, p.idx) + ' ' + ln.slice(p.idx + p.token.length)).trim().replace(/\s{2,}/g, ' ').replace(/^[-–—:]+/, '').trim() || 'Chapter';
+      items.push({ sec: p.sec, title: title });
+    });
+    var cmsg = $('ytChMsg');
+    if (bad.length) { cmsg.textContent = 'Could not find a timestamp in: "' + bad[0] + '"'; return; }
+    if (items.length < 3) { cmsg.textContent = 'YouTube needs at least 3 chapters — add more lines.'; return; }
+    items.sort(function (a, b) { return a.sec - b.sec; });
+    var rules = [], seen = {};
+    if (items[0].sec !== 0) rules.push({ ok: false, t: 'First chapter must start at 0:00' });
+    else rules.push({ ok: true, t: 'First chapter starts at 0:00 ✓' });
+    var asc = true, gaps = true;
+    for (var i = 1; i < items.length; i++) {
+      if (items[i].sec <= items[i - 1].sec) asc = false;
+      if (items[i].sec - items[i - 1].sec < 10) gaps = false;
+    }
+    rules.push(asc ? { ok: true, t: 'Timestamps in ascending order ✓' } : { ok: false, t: 'Timestamps must be in ascending order' });
+    rules.push(gaps ? { ok: true, t: 'Every chapter is 10+ seconds ✓' } : { ok: false, t: 'Each chapter must be at least 10 seconds long' });
+    var dupes = items.filter(function (it) { if (seen[it.sec]) return true; seen[it.sec] = 1; return false; });
+    if (dupes.length) rules.push({ ok: false, t: 'Duplicate timestamps found' });
+    var out = items.map(function (it) { return fmtChap(it.sec) + ' ' + it.title; }).join('\n');
+    $('ytChText').textContent = out;
+    $('ytChOut').classList.add('show');
+    $('ytChRules').innerHTML = rules.map(function (r) {
+      return '<div style="color:' + (r.ok ? '#157347' : '#c0392b') + '">' + (r.ok ? '✓' : '✕') + ' ' + r.t + '</div>';
+    }).join('');
+    var allOk = rules.every(function (r) { return r.ok; });
+    cmsg.textContent = allOk ? '✓ Valid! Paste this into your video description.' : 'Fix the ✕ items above, then re-run.';
+  });
+})();
+</script>
+</body></html>

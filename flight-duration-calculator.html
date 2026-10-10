@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Flight Duration Calculator — Flight Time & Distance | SabKuch</title><meta name="description" content="Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup.">
+<meta property="og:title" content="Flight Duration Calculator — Flight Time & Distance | SabKuch">
+<meta property="og:description" content="Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/flight-duration-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flight Duration Calculator — Flight Time & Distance | SabKuch">
+<meta name="twitter:description" content="Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/flight-duration-calculator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flight Duration Calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup.", "url": "https://sabkuchtools.github.io/sabkuch/flight-duration-calculator.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is the flight time estimated?", "acceptedAnswer": {"@type": "Answer", "text": "Using the great-circle (shortest) distance between the two airports divided by a typical cruise speed, plus a taxi/climb/descent buffer. Real flights vary with winds, routing and air traffic."}}, {"@type": "Question", "name": "Which cruise speed should I pick?", "acceptedAnswer": {"@type": "Answer", "text": "Short-haul (~750 km/h) for regional jets, medium (~820 km/h) for typical A320/B737 flights, long-haul (~900 km/h) for wide-body jets like the A350 or 777."}}, {"@type": "Question", "name": "Does it account for time zones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — arrival is shown in the destination's local time using standard UTC offsets, with a +1d badge when you land the next day. Daylight saving is not applied."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Travel Tools", "item": "https://sabkuchtools.github.io/sabkuch/travel-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Flight Duration Calculator"}]}
+</script>
+<style>
+.fd-route{display:flex;gap:.6rem;align-items:flex-end;flex-wrap:wrap}
+.fd-route .field{flex:1 1 200px}
+#fdSwap{align-self:center;margin-bottom:1rem}
+.fd-note{font-size:.82rem;color:var(--muted);margin-top:.75rem;line-height:1.5}
+.fd-err{display:none;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;border-radius:10px;padding:.6rem .9rem;font-size:.9rem;margin-bottom:1rem}
+[data-theme="dark"] .fd-err{background:#3b0f0f;border-color:#7f1d1d;color:#fca5a5}
+input[type=range]{width:100%}
+</style></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10"/><path d="M7 12h7"/><path d="M8.5 16.5s1.2 1.8 3.5 1.8 3.5-1.8 3.5-1.8"/></svg>Meme Tools</a>
+<a class="side-link active" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>Travel Tools</a>
+<a class="side-link" href="seo-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO Tools</a>
+<a class="side-link" href="finance-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finance Tools</a>
+<a class="side-link" href="health-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Health Tools</a>
+<a class="side-link" href="pdf-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF Tools</a>
+<a class="side-link" href="writing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Writing Tools</a>
+<a class="side-link" href="marketing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>Marketing Tools</a>
+<a class="side-link" href="education-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Education Tools</a>
+<a class="side-link" href="security-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Tools</a>
+<a class="side-link" href="business-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Business Tools</a>
+<a class="side-link" href="everyday-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="pakistan-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="islamic-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg>Video Tools</a>
+<a class="side-link" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>Audio Tools</a>
+<a class="side-link" href="font-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Font Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Meme Tools</a>
+<a class="side-link" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5c1-1 1-2.6 0-3.6s-2.6-1-3.6 0L12.4 7.4 4.2 5.6c-.5-.1-1 .1-1.2.6l-.3.6c-.2.5 0 1 .6 1.2L9 9l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 1.1 5.7c.1.6.7.9 1.2.6l.6-.3c.5-.2.7-.7.6-1.2z"/></svg>Travel Tools</a>
+<a class="side-link" href="real-estate-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Real Estate Tools</a>
+<a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
+<a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+<a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="travel-tools.html">Travel Tools</a><span>›</span><span>Flight Duration Calculator</span></nav>
+<h1>Flight Duration Calculator</h1><p class="tool-desc">Estimated non-stop flight time, distance and local arrival time between major airports worldwide.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
+<div class="tool-panel">
+<div class="fd-err" id="fdErr" role="alert"></div>
+<div class="fd-route">
+<div class="field"><label for="fdFrom">From</label><input type="text" id="fdFrom" list="fdAirports" placeholder="City or airport code…" autocomplete="off" value="KHI"></div>
+<button class="btn btn-ghost" id="fdSwap" type="button" title="Swap origin and destination">⇄</button>
+<div class="field"><label for="fdTo">To</label><input type="text" id="fdTo" list="fdAirports" placeholder="City or airport code…" autocomplete="off" value="DXB"></div>
+</div>
+<datalist id="fdAirports"></datalist>
+<div class="fd-route" style="margin-top:.25rem">
+<div class="field"><label for="fdSpeed">Aircraft / route type</label><select id="fdSpeed">
+<option value="750">Short-haul · ~750 km/h (regional jets)</option>
+<option value="820" selected>Medium-haul · ~820 km/h (A320 / B737)</option>
+<option value="900">Long-haul · ~900 km/h (A350 / B777 / 787)</option>
+</select></div>
+<div class="field"><label for="fdDep">Departure time (origin local)</label><input type="time" id="fdDep"></div>
+</div>
+<div class="field" style="margin-top:.25rem"><label for="fdBuffer">Taxi / climb / descent buffer: <b id="fdBufferVal">30 min</b></label><input type="range" id="fdBuffer" min="0" max="60" step="5" value="30"></div>
+<div class="result-box show" id="fdResult" style="margin-top:1rem">
+<h4 id="fdRouteTitle">Karachi → Dubai</h4>
+<div class="stat-grid">
+<div class="stat"><b id="fdTime">–</b><span>Est. flight time</span></div>
+<div class="stat"><b id="fdDist">–</b><span>Distance (great-circle)</span></div>
+<div class="stat"><b id="fdArr">–</b><span>Arrival (destination local)</span></div>
+<div class="stat"><b id="fdTz">–</b><span>Time zone difference</span></div>
+</div>
+<p class="fd-note" id="fdNote"></p>
+</div>
+</div>
+</div><section class="faq-section"><h2>Flight Duration Calculator — FAQs</h2>
+<details class="faq-item"><summary>How is the flight time estimated?</summary><p>Using the great-circle (shortest) distance between the two airports divided by a typical cruise speed, plus a taxi/climb/descent buffer. Real flights vary with winds, routing and air traffic.</p></details>
+<details class="faq-item"><summary>Which cruise speed should I pick?</summary><p>Short-haul (~750 km/h) for regional jets, medium (~820 km/h) for typical A320/B737 flights, long-haul (~900 km/h) for wide-body jets like the A350 or 777.</p></details>
+<details class="faq-item"><summary>Does it account for time zones?</summary><p>Yes — arrival is shown in the destination's local time using standard UTC offsets, with a +1d badge when you land the next day. Daylight saving is not applied.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="packing-checklist.html"><span>Packing Checklist</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="travel-budget-planner.html"><span>Travel Budget Planner</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="time-zone-converter.html"><span>Time Zone Converter</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="currency-converter.html"><span>Currency Converter</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+(function(){
+/* code, city, country, lat, lon, standard UTC offset */
+var AP=[
+["JFK","New York","USA",40.64,-73.78,-5],["LAX","Los Angeles","USA",33.94,-118.41,-8],
+["SFO","San Francisco","USA",37.62,-122.38,-8],["ORD","Chicago","USA",41.97,-87.91,-6],
+["DFW","Dallas","USA",32.90,-97.04,-6],["ATL","Atlanta","USA",33.64,-84.43,-5],
+["MIA","Miami","USA",25.79,-80.29,-5],["YYZ","Toronto","Canada",43.68,-79.63,-5],
+["YVR","Vancouver","Canada",49.19,-123.18,-8],["MEX","Mexico City","Mexico",19.44,-99.07,-6],
+["GRU","São Paulo","Brazil",-23.44,-46.47,-3],["LHR","London","UK",51.47,-0.45,0],
+["CDG","Paris","France",49.01,2.55,1],["FRA","Frankfurt","Germany",50.03,8.56,1],
+["AMS","Amsterdam","Netherlands",52.31,4.76,1],["MAD","Madrid","Spain",40.47,-3.57,1],
+["FCO","Rome","Italy",41.80,12.25,1],["ZRH","Zurich","Switzerland",47.46,8.55,1],
+["IST","Istanbul","Turkey",41.26,28.74,3],["DXB","Dubai","UAE",25.25,55.36,4],
+["DOH","Doha","Qatar",25.27,51.61,3],["RUH","Riyadh","Saudi Arabia",24.96,46.70,3],
+["JED","Jeddah","Saudi Arabia",21.68,39.16,3],["CAI","Cairo","Egypt",30.12,31.41,2],
+["ADD","Addis Ababa","Ethiopia",8.98,38.80,3],["NBO","Nairobi","Kenya",-1.32,36.90,3],
+["KHI","Karachi","Pakistan",24.91,67.16,5],["LHE","Lahore","Pakistan",31.52,74.40,5],
+["ISB","Islamabad","Pakistan",33.55,73.10,5],["DEL","New Delhi","India",28.57,77.10,5.5],
+["BOM","Mumbai","India",19.09,72.87,5.5],["SIN","Singapore","Singapore",1.36,103.99,8],
+["HKG","Hong Kong","Hong Kong",22.31,113.91,8],["PEK","Beijing","China",40.08,116.59,8],
+["ICN","Seoul","South Korea",37.46,126.44,9],["NRT","Tokyo","Japan",35.77,140.39,9],
+["SYD","Sydney","Australia",-33.95,151.18,10],["MEL","Melbourne","Australia",-37.67,144.84,10]];
+function $(id){return document.getElementById(id);}
+var dl=$("fdAirports");
+AP.forEach(function(a){var o=document.createElement("option");o.value=a[0]+" — "+a[1]+", "+a[2];dl.appendChild(o);});
+function find(q){
+  q=(q||"").trim().toLowerCase();if(!q)return null;
+  var best=null;
+  for(var i=0;i<AP.length;i++){var a=AP[i];
+    if(a[0].toLowerCase()===q||a[1].toLowerCase()===q)return a;}
+  for(var j=0;j<AP.length;j++){var b=AP[j],hay=(b[0]+" "+b[1]+" "+b[2]).toLowerCase();
+    if(hay.indexOf(q)>-1){best=b;break;}}
+  return best;
+}
+function haversine(a,b){
+  var R=6371,dLa=(b[3]-a[3])*Math.PI/180,dLo=(b[4]-a[4])*Math.PI/180;
+  var la1=a[3]*Math.PI/180,la2=b[3]*Math.PI/180;
+  var h=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(la1)*Math.cos(la2)*Math.sin(dLo/2)*Math.sin(dLo/2);
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+function fmtDur(mins){
+  var h=Math.floor(mins/60),m=Math.round(mins%60);
+  if(m===60){h++;m=0;}
+  return h>0?h+"h "+(m<10?"0":"")+m+"m":m+"m";
+}
+function fmtClock(totalMin){
+  totalMin=((totalMin%1440)+1440)%1440;
+  var h=Math.floor(totalMin/60),m=Math.floor(totalMin%60);
+  return (h<10?"0":"")+h+":"+(m<10?"0":"")+m;
+}
+function err(msg){var e=$("fdErr");e.textContent=msg;e.style.display=msg?"block":"none";}
+function calc(){
+  var A=find($("fdFrom").value),B=find($("fdTo").value);
+  if(!A){err("Origin not recognized — pick an airport from the suggestions.");return;}
+  if(!B){err("Destination not recognized — pick an airport from the suggestions.");return;}
+  if(A[0]===B[0]){err("Origin and destination are the same airport — pick two different airports.");return;}
+  err("");
+  var km=haversine(A,B),speed=+$("fdSpeed").value,buf=+$("fdBuffer").value;
+  var cruiseMin=km/speed*60,totalMin=cruiseMin+buf;
+  var mi=km*0.621371,nm=km/1.852;
+  $("fdRouteTitle").textContent=A[1]+" → "+B[1];
+  $("fdTime").textContent=fmtDur(totalMin);
+  $("fdDist").textContent=Math.round(km).toLocaleString()+" km";
+  /* arrival local time */
+  var depT=$("fdDep").value,depMin;
+  if(depT){var p=depT.split(":");depMin=+p[0]*60+(+p[1]);}
+  else{var n=new Date();depMin=n.getHours()*60+n.getMinutes();}
+  var tzDiff=B[5]-A[5];
+  var arrMin=depMin+totalMin+tzDiff*60;
+  var dayOff=Math.floor(arrMin/1440),badge=dayOff>0?" +"+dayOff+"d":(dayOff<0?" "+dayOff+"d":"");
+  $("fdArr").textContent=fmtClock(arrMin)+badge;
+  var tzTxt=tzDiff===0?"Same time zone":(tzDiff>0?"+":"")+tzDiff+"h "+(tzDiff>0?"ahead":"behind");
+  $("fdTz").textContent=tzTxt;
+  var notes=[];
+  notes.push("Cruise: "+fmtDur(cruiseMin)+" at "+speed+" km/h + "+buf+" min taxi/climb/descent buffer.");
+  notes.push("Also: "+Math.round(mi).toLocaleString()+" miles · "+Math.round(nm).toLocaleString()+" nautical miles.");
+  if(Math.abs(tzDiff)>=3)notes.push("⏰ "+Math.abs(tzDiff)+"h time difference — expect some jet lag; hydrate and adjust sleep a day early.");
+  else if(totalMin>=480)notes.push("🌙 Long-haul flight (8h+) — cross several time zones; plan for jet lag.");
+  if(totalMin<90)notes.push("✈️ Short hop — most of this trip is taxi, climb and descent.");
+  notes.push("Estimate only: winds, routing and air-traffic control change real flight times.");
+  $("fdNote").innerHTML=notes.join("<br>");
+}
+$("fdBuffer").addEventListener("input",function(){$("fdBufferVal").textContent=this.value+" min";calc();});
+["fdFrom","fdTo"].forEach(function(id){$(id).addEventListener("change",calc);$(id).addEventListener("input",calc);});
+$("fdSpeed").addEventListener("change",calc);
+$("fdDep").addEventListener("change",calc);
+$("fdSwap").onclick=function(){var a=$("fdFrom").value;$("fdFrom").value=$("fdTo").value;$("fdTo").value=a;calc();};
+calc();
+})();
+</script>
+</body></html>

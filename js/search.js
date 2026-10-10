@@ -26,7 +26,11 @@
     'Health Tools': '❤️', 'PDF Tools': '📄', 'Writing Tools': '✍️',
     'Marketing Tools': '📣', 'Education Tools': '🎓', 'Security Tools': '🔒',
     'Business Tools': '💼', 'Everyday Tools': '🛠️',
-    'Pakistan Utilities': '🇵🇰', 'Islamic Tools': '☪️', 'AI Tools': '🤖'
+    'Pakistan Utilities': '🇵🇰', 'Islamic Tools': '☪️', 'AI Tools': '🤖',
+    'Resume Tools': '📝', 'Video Tools': '🎬', 'Audio Tools': '🎙️',
+    'Font Tools': '🔤', 'Meme Tools': '😂', 'Travel Tools': '✈️',
+    'Real Estate Tools': '🏠', 'Wedding Tools': '💒',
+    'Sports Tools': '🏆', 'Cooking Tools': '🍳'
   };
 
   var TRENDING = [

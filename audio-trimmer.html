@@ -1,0 +1,419 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Audio Trimmer — Free Online | SabKuch</title><meta name="description" content="Trim and cut audio online with a visual waveform editor, fade in/out, loop preview and free WAV export. No upload — works fully in your browser.">
+<meta property="og:title" content="Audio Trimmer — Free Online | SabKuch">
+<meta property="og:description" content="Trim and cut audio online with a visual waveform editor, fade in/out, loop preview and free WAV export. No upload — works fully in your browser.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/audio-trimmer.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Audio Trimmer — Free Online | SabKuch">
+<meta name="twitter:description" content="Trim and cut audio online with a visual waveform editor, fade in/out, loop preview and free WAV export. No upload — works fully in your browser."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/audio-trimmer.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Audio Trimmer","applicationCategory":"UtilitiesApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Trim and cut audio online with a visual waveform editor, fade in/out, loop preview and free WAV export. No upload — works fully in your browser.","url":"https://sabkuchtools.github.io/sabkuch/audio-trimmer.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sabkuchtools.github.io/sabkuch/index.html"},{"@type":"ListItem","position":2,"name":"Audio Tools","item":"https://sabkuchtools.github.io/sabkuch/audio-tools.html"},{"@type":"ListItem","position":3,"name":"Audio Trimmer"}]}</script>
+<style>
+
+.at-drop{border:2px dashed var(--border);border-radius:14px;padding:26px 18px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:var(--soft)}
+.at-drop:hover,.at-drop.over{border-color:var(--blue);background:rgba(37,99,235,.06)}
+.at-drop p{margin:0;color:var(--muted)}
+.at-drop .btn{margin-top:10px}
+.at-wavewrap{position:relative;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--soft);margin:6px 0 12px}
+#atWave{display:block;width:100%;height:180px;cursor:ew-resize;touch-action:none}
+.at-times{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.at-times{grid-template-columns:1fr}}
+.at-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:14px 0}
+.at-mode{display:flex;gap:8px}
+.at-mode label{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 6px;text-align:center;font-size:.88rem;cursor:pointer;font-weight:600;color:var(--muted)}
+.at-mode input{display:none}
+.at-mode input:checked+span{color:var(--blue)}
+.at-mode label:has(input:checked){border-color:var(--blue);background:rgba(37,99,235,.07)}
+.at-check{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:600}
+.at-check input{width:18px;height:18px;accent-color:var(--blue)}
+.at-zoom{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.at-zoom .mini{border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:8px;padding:6px 12px;font-size:.85rem;cursor:pointer;font-weight:600}
+.at-zoom .mini:hover{border-color:var(--blue)}
+.at-zoom input[type=range]{flex:1;min-width:120px}
+.hint{color:var(--muted);font-size:.88rem}
+#atDl{text-decoration:none}
+select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font:inherit;background:var(--bg);color:var(--text)}
+
+</style></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+<a class="side-link" href="seo-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO Tools</a>
+<a class="side-link" href="finance-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finance Tools</a>
+<a class="side-link" href="health-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Health Tools</a>
+<a class="side-link" href="pdf-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF Tools</a>
+<a class="side-link" href="writing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Writing Tools</a>
+<a class="side-link" href="marketing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>Marketing Tools</a>
+<a class="side-link" href="education-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Education Tools</a>
+<a class="side-link" href="security-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Tools</a>
+<a class="side-link" href="business-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Business Tools</a>
+<a class="side-link" href="everyday-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="pakistan-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="islamic-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link active" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Audio Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg>Video Tools</a>
+<a class="side-link" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>Audio Tools</a>
+<a class="side-link" href="font-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Font Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Meme Tools</a>
+<a class="side-link" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5c1-1 1-2.6 0-3.6s-2.6-1-3.6 0L12.4 7.4 4.2 5.6c-.5-.1-1 .1-1.2.6l-.3.6c-.2.5 0 1 .6 1.2L9 9l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 1.1 5.7c.1.6.7.9 1.2.6l.6-.3c.5-.2.7-.7.6-1.2z"/></svg>Travel Tools</a>
+<a class="side-link" href="real-estate-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Real Estate Tools</a>
+<a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
+<a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+<a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
+</nav></aside><main class="main"><div class="tool-wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="audio-tools.html">Audio Tools</a><span>›</span><span>Audio Trimmer</span></nav>
+<h1>Audio Trimmer</h1><p class="tool-desc">Cut and trim MP3, WAV and more with a visual waveform editor — fades, loop preview and free WAV export. Files never leave your device.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
+<div class="tool-panel">
+<div class="field"><label>Audio file</label>
+<div class="at-drop" id="atDrop"><p><b>Drop an audio file here</b><br>or</p><button class="btn btn-ghost" id="atBrowse" type="button">Choose file</button><input type="file" id="atFile" accept="audio/*" hidden></div>
+<p class="hint" id="atFileInfo" style="margin-top:8px">MP3, WAV, OGG, M4A, FLAC — decoded privately in your browser.</p>
+</div>
+<div id="atEditor" hidden>
+<div class="at-zoom">
+<button class="mini" id="atZoomOut" type="button">− Zoom</button>
+<button class="mini" id="atZoomIn" type="button">+ Zoom</button>
+<button class="mini" id="atZoomFit" type="button">Fit</button>
+<input type="range" id="atScroll" min="0" max="0" step="0.01" value="0" aria-label="Scroll waveform">
+</div>
+<div class="at-wavewrap"><canvas id="atWave"></canvas></div>
+<div class="at-times">
+<div class="field"><label for="atStartN">Start (seconds)</label><input type="range" id="atStartR" min="0" max="1" step="0.01" value="0"><input type="number" id="atStartN" min="0" step="0.1" value="0"></div>
+<div class="field"><label for="atEndN">End (seconds)</label><input type="range" id="atEndR" min="0" max="1" step="0.01" value="1"><input type="number" id="atEndN" min="0" step="0.1" value="1"></div>
+</div>
+<div class="at-opts">
+<div class="field"><label>Mode</label><div class="at-mode">
+<label><input type="radio" name="atMode" value="keep" checked><span>✂ Keep selection</span></label>
+<label><input type="radio" name="atMode" value="remove"><span>🗑 Remove selection</span></label>
+</div></div>
+<div class="field"><label for="atFadeIn">Fade in (<span id="atFadeInV">0</span>s)</label><input type="range" id="atFadeIn" min="0" max="5" step="0.1" value="0"></div>
+<div class="field"><label for="atFadeOut">Fade out (<span id="atFadeOutV">0</span>s)</label><input type="range" id="atFadeOut" min="0" max="5" step="0.1" value="0"></div>
+<div class="field"><label for="atSpeed">Preview speed</label><select class="at-sel" id="atSpeed"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>
+<div class="field"><label>&nbsp;</label><label class="at-check"><input type="checkbox" id="atLoop" checked> Loop selection preview</label></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-primary" id="atPlaySel" type="button">▶ Play selection</button>
+<button class="btn btn-ghost" id="atPlayAll" type="button">▶ Play full</button>
+<button class="btn btn-ghost" id="atStop" type="button">⏹ Stop</button>
+<button class="btn btn-ghost" id="atExport" type="button">⬇ Export WAV</button>
+</div>
+<div class="result-box show" style="margin-top:16px">
+<h4>Trim result</h4>
+<div class="stat-grid">
+<div class="stat"><b id="atOrig">—</b><span>Original length</span></div>
+<div class="stat"><b id="atSelLen">—</b><span>Selection length</span></div>
+<div class="stat"><b id="atOutLen">—</b><span>Output length</span></div>
+<div class="stat"><b id="atOutSize">—</b><span>Est. WAV size</span></div>
+</div>
+<div class="btn-row" style="margin-top:12px"><a id="atDl" class="btn btn-primary" hidden download>⬇ Download trimmed WAV</a><span class="hint" id="atExpHint">Set your selection, then Export.</span></div>
+</div>
+</div>
+</div>
+</div><section class="faq-section"><h2>Audio Trimmer — FAQs</h2>
+<details class="faq-item"><summary>Is the Audio Trimmer really free?</summary><p>Yes — free, no signup, no watermark and no file-size games. Trim as many files as you like.</p></details>
+<details class="faq-item"><summary>Are my audio files uploaded anywhere?</summary><p>No. Your file is decoded and processed locally with the Web Audio API — nothing ever leaves your device.</p></details>
+<details class="faq-item"><summary>What formats can I import and export?</summary><p>Import MP3, WAV, OGG, M4A, FLAC and anything your browser can play. Export is studio-quality 16-bit WAV.</p></details>
+</section><section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="voice-recorder.html"><span>Voice Recorder</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="metronome.html"><span>Metronome</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="text-to-speech-studio.html"><span>Text to Speech Studio</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="image-compressor.html"><span>Image Compressor</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div><footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var drop = $('atDrop'), fileIn = $('atFile'), browse = $('atBrowse'), info = $('atFileInfo');
+  var editor = $('atEditor'), canvas = $('atWave'), ctx = canvas.getContext('2d');
+  var sR = $('atStartR'), eR = $('atEndR'), sN = $('atStartN'), eN = $('atEndN');
+  var fadeIn = $('atFadeIn'), fadeOut = $('atFadeOut'), speedSel = $('atSpeed'), loopChk = $('atLoop');
+  var scrollR = $('atScroll');
+  var buf = null, dur = 0, sr = 44100, nCh = 1, fileName = 'audio';
+  var selS = 0, selE = 0, zoom = 1, scroll = 0, W = 0, H = 0;
+  var actx = null, playState = null, playRaf = 0, dragH = null;
+
+  function fmt(t) {
+    t = Math.max(0, t); var m = Math.floor(t / 60), s = t - m * 60;
+    return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1);
+  }
+  function fmtSize(b) {
+    if (b < 1048576) return (b / 1024).toFixed(0) + ' KB';
+    return (b / 1048576).toFixed(2) + ' MB';
+  }
+  function sizeCanvas() {
+    var r = canvas.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+    W = Math.max(300, r.width); H = 180;
+    canvas.width = W * d; canvas.height = H * d;
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+  }
+  window.addEventListener('resize', function () { if (buf) { sizeCanvas(); draw(); } });
+
+  function pps() { return (W / dur) * zoom; }
+  function viewDur() { return W / pps(); }
+  function clampScroll() {
+    var max = Math.max(0, dur - viewDur());
+    scroll = Math.max(0, Math.min(max, scroll));
+    scrollR.max = max.toFixed(2); scrollR.value = scroll;
+    scrollR.disabled = zoom <= 1;
+  }
+
+  function draw() {
+    if (!buf) return;
+    clampScroll();
+    var P = pps(), ch = buf.getChannelData(0);
+    var n2 = buf.numberOfChannels > 1 ? buf.getChannelData(1) : null;
+    ctx.clearRect(0, 0, W, H);
+    /* waveform */
+    var mid = H / 2, amp = H * 0.46;
+    var blue = getComputedStyle(document.documentElement).getPropertyValue('--blue').trim() || '#2563eb';
+    ctx.fillStyle = blue;
+    for (var x = 0; x < W; x++) {
+      var t0 = scroll + x / P, t1 = scroll + (x + 1) / P;
+      var i0 = Math.floor(t0 * sr), i1 = Math.max(i0 + 1, Math.floor(t1 * sr));
+      var mn = 1, mx = -1;
+      var step = Math.max(1, Math.floor((i1 - i0) / 40));
+      for (var i = i0; i < i1 && i < ch.length; i += step) {
+        var v = n2 ? (ch[i] + n2[i]) / 2 : ch[i];
+        if (v < mn) mn = v; if (v > mx) mx = v;
+      }
+      var y1 = mid - mx * amp, y2 = mid - mn * amp;
+      ctx.fillRect(x, y1, 1, Math.max(1, y2 - y1));
+    }
+    /* dim outside selection */
+    var x1 = (selS - scroll) * P, x2 = (selE - scroll) * P;
+    ctx.fillStyle = 'rgba(15,23,42,.55)';
+    if (x1 > 0) ctx.fillRect(0, 0, x1, H);
+    if (x2 < W) ctx.fillRect(x2, 0, x2 > W ? 0 : W - x2, H);
+    /* selection border */
+    ctx.strokeStyle = blue; ctx.lineWidth = 1.5;
+    ctx.strokeRect(x1 + .5, .5, x2 - x1 - 1, H - 1);
+    /* handles */
+    handle(x1, '#22c55e', fmt(selS)); handle(x2, '#ef4444', fmt(selE));
+    /* playhead */
+    if (playState) {
+      var pos = curPos();
+      var px = (pos - scroll) * P;
+      if (px >= 0 && px <= W) {
+        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, H); ctx.stroke();
+      }
+    }
+  }
+  function handle(x, color, label) {
+    if (x < -20 || x > W + 20) return;
+    ctx.fillStyle = color;
+    var hw = 11;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(x - hw / 2, 0, hw, H, 6); else ctx.rect(x - hw / 2, 0, hw, H);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.85)';
+    ctx.fillRect(x - 3.5, H / 2 - 14, 2, 28); ctx.fillRect(x + 1.5, H / 2 - 14, 2, 28);
+    ctx.font = '600 11px Inter,system-ui,sans-serif';
+    var tw = ctx.measureText(label).width;
+    var lx = Math.max(2, Math.min(W - tw - 8, x - tw / 2));
+    ctx.fillStyle = 'rgba(15,23,42,.8)';
+    ctx.fillRect(lx - 4, 4, tw + 8, 18);
+    ctx.fillStyle = '#fff'; ctx.fillText(label, lx, 17);
+  }
+
+  function setSel(s, e, from) {
+    s = Math.max(0, Math.min(dur, s)); e = Math.max(0, Math.min(dur, e));
+    if (e - s < 0.05) { if (from === 's') s = e - 0.05; else e = s + 0.05; }
+    s = Math.max(0, s); e = Math.min(dur, e);
+    selS = s; selE = e;
+    sR.value = s; eR.value = e; sN.value = s.toFixed(1); eN.value = e.toFixed(1);
+    updateStats(); draw();
+  }
+  sR.addEventListener('input', function () { setSel(parseFloat(sR.value), selE, 's'); });
+  eR.addEventListener('input', function () { setSel(selS, parseFloat(eR.value), 'e'); });
+  sN.addEventListener('change', function () { setSel(parseFloat(sN.value) || 0, selE, 's'); });
+  eN.addEventListener('change', function () { setSel(selS, parseFloat(eN.value) || 0, 'e'); });
+
+  function updateStats() {
+    var keep = document.querySelector('input[name=atMode]:checked').value === 'keep';
+    var outLen = keep ? (selE - selS) : (dur - (selE - selS));
+    $('atOrig').textContent = fmt(dur);
+    $('atSelLen').textContent = fmt(selE - selS);
+    $('atOutLen').textContent = fmt(outLen);
+    $('atOutSize').textContent = fmtSize(44 + Math.ceil(outLen * sr) * nCh * 2);
+  }
+  var modes = document.querySelectorAll('input[name=atMode]');
+  for (var mi = 0; mi < modes.length; mi++) modes[mi].addEventListener('change', updateStats);
+  fadeIn.addEventListener('input', function () { $('atFadeInV').textContent = fadeIn.value; });
+  fadeOut.addEventListener('input', function () { $('atFadeOutV').textContent = fadeOut.value; });
+
+  $('atZoomIn').addEventListener('click', function () { zoom = Math.min(16, zoom * 2); scroll = selS - viewDur() / 2; draw(); });
+  $('atZoomOut').addEventListener('click', function () { zoom = Math.max(1, zoom / 2); draw(); });
+  $('atZoomFit').addEventListener('click', function () { zoom = 1; scroll = 0; draw(); });
+  scrollR.addEventListener('input', function () { scroll = parseFloat(scrollR.value); draw(); });
+
+  /* pointer: drag handles / click to move nearest */
+  function xToT(x) { var r = canvas.getBoundingClientRect(); return scroll + (x - r.left) / pps(); }
+  function nearX(x, hx) { return Math.abs(x - hx) < 16; }
+  canvas.addEventListener('pointerdown', function (e) {
+    if (!buf) return;
+    var r = canvas.getBoundingClientRect(), x = e.clientX - r.left, P = pps();
+    var x1 = (selS - scroll) * P, x2 = (selE - scroll) * P, t = xToT(e.clientX);
+    if (nearX(x, x1) && nearX(x, x2)) dragH = Math.abs(t - selS) < Math.abs(t - selE) ? 's' : 'e';
+    else if (nearX(x, x1)) dragH = 's';
+    else if (nearX(x, x2)) dragH = 'e';
+    else dragH = Math.abs(t - selS) < Math.abs(t - selE) ? 's' : 'e';
+    canvas.setPointerCapture(e.pointerId);
+    if (dragH === 's') setSel(t, selE, 's'); else setSel(selS, t, 'e');
+  });
+  canvas.addEventListener('pointermove', function (e) {
+    if (!buf || !dragH) return;
+    var t = xToT(e.clientX);
+    if (dragH === 's') setSel(t, selE, 's'); else setSel(selS, t, 'e');
+  });
+  canvas.addEventListener('pointerup', function () { dragH = null; });
+  canvas.addEventListener('pointercancel', function () { dragH = null; });
+
+  /* playback */
+  function ensureCtx() {
+    if (!actx) { var AC = window.AudioContext || window.webkitAudioContext; actx = new AC(); }
+    if (actx.state === 'suspended') actx.resume();
+  }
+  function stop() {
+    if (playState) { try { playState.src.onended = null; playState.src.stop(); } catch (e) {} playState = null; }
+    cancelAnimationFrame(playRaf); draw();
+  }
+  function curPos() {
+    if (!playState) return 0;
+    var p = playState.offset + (actx.currentTime - playState.t0) * playState.rate;
+    if (playState.loop) p = playState.offset + ((p - playState.offset) % playState.dur + playState.dur) % playState.dur;
+    return p;
+  }
+  function play(offset, length, loop) {
+    if (!buf) return;
+    stop(); ensureCtx();
+    var src = actx.createBufferSource(); src.buffer = buf;
+    src.playbackRate.value = parseFloat(speedSel.value);
+    src.connect(actx.destination);
+    if (loop) { src.loop = true; src.loopStart = offset; src.loopEnd = offset + length; }
+    try { src.start(0, offset, loop ? undefined : length); } catch (e) { src.start(0, offset); }
+    playState = { src: src, t0: actx.currentTime, offset: offset, dur: length, loop: loop, rate: parseFloat(speedSel.value) };
+    if (!loop) src.onended = function () { playState = null; draw(); };
+    (function tick() {
+      if (!playState) return;
+      if (!loop && curPos() >= offset + length) { stop(); return; }
+      draw();
+      playRaf = requestAnimationFrame(tick);
+    })();
+    draw();
+  }
+  $('atPlaySel').addEventListener('click', function () { play(selS, selE - selS, loopChk.checked); });
+  $('atPlayAll').addEventListener('click', function () { play(0, dur, false); });
+  $('atStop').addEventListener('click', stop);
+  speedSel.addEventListener('change', function () { if (playState) { var o = curPos(), l = playState.loop; stop(); play(l ? selS : o, l ? (selE - selS) : (dur - o), l); } });
+
+  /* export */
+  function wavEncode(buffer) {
+    var nC = buffer.numberOfChannels, sR = buffer.sampleRate, len = buffer.length;
+    var bytes = 44 + len * nC * 2, ab = new ArrayBuffer(bytes), v = new DataView(ab), off = 0;
+    function ws(s) { for (var i = 0; i < s.length; i++) v.setUint8(off++, s.charCodeAt(i)); }
+    function u16(x) { v.setUint16(off, x, true); off += 2; }
+    function u32(x) { v.setUint32(off, x, true); off += 4; }
+    ws('RIFF'); u32(bytes - 8); ws('WAVE'); ws('fmt '); u32(16); u16(1); u16(nC);
+    u32(sR); u32(sR * nC * 2); u16(nC * 2); u16(16); ws('data'); u32(len * nC * 2);
+    var chs = []; for (var c = 0; c < nC; c++) chs.push(buffer.getChannelData(c));
+    for (var i = 0; i < len; i++) for (var c = 0; c < nC; c++) {
+      var s = Math.max(-1, Math.min(1, chs[c][i]));
+      v.setInt16(off, s < 0 ? s * 0x8000 : s * 0x7FFF, true); off += 2;
+    }
+    return new Blob([ab], { type: 'audio/wav' });
+  }
+  $('atExport').addEventListener('click', function () {
+    if (!buf) return;
+    var btn = $('atExport'); btn.disabled = true; btn.textContent = 'Rendering\u2026';
+    var keep = document.querySelector('input[name=atMode]:checked').value === 'keep';
+    var segs = keep ? [[selS, selE]] : [[0, selS], [selE, dur]];
+    segs = segs.filter(function (s) { return s[1] - s[0] > 0.01; });
+    var totalDur = segs.reduce(function (a, s) { return a + (s[1] - s[0]); }, 0);
+    if (!segs.length || totalDur < 0.05) { btn.disabled = false; btn.textContent = '\u2B07 Export WAV'; return; }
+    var fi = Math.min(parseFloat(fadeIn.value), totalDur / 2);
+    var fo = Math.min(parseFloat(fadeOut.value), totalDur / 2);
+    var off = new OfflineAudioContext(nCh, Math.ceil(totalDur * sr), sr);
+    var master = off.createGain(); master.connect(off.destination);
+    master.gain.setValueAtTime(0.0001, 0);
+    master.gain.linearRampToValueAtTime(1, Math.max(0.01, fi));
+    master.gain.setValueAtTime(1, Math.max(fi, totalDur - fo));
+    master.gain.linearRampToValueAtTime(0.0001, totalDur);
+    var t = 0;
+    segs.forEach(function (s) {
+      var src = off.createBufferSource(); src.buffer = buf;
+      src.connect(master); src.start(t, s[0], s[1] - s[0]); t += s[1] - s[0];
+    });
+    off.startRendering().then(function (rendered) {
+      var blob = wavEncode(rendered), url = URL.createObjectURL(blob);
+      var dl = $('atDl');
+      dl.href = url; dl.download = fileName.replace(/\.[^.]+$/, '') + '-trimmed.wav';
+      dl.hidden = false; dl.textContent = '\u2B07 Download trimmed WAV (' + fmtSize(blob.size) + ')';
+      $('atExpHint').textContent = 'Done \u2014 ' + fmt(totalDur) + ' of audio ready.';
+      btn.disabled = false; btn.textContent = '\u2B07 Export WAV';
+    }).catch(function () { btn.disabled = false; btn.textContent = '\u2B07 Export WAV'; });
+  });
+
+  /* file loading */
+  function loadFile(f) {
+    if (!f) return;
+    info.textContent = 'Decoding ' + f.name + '\u2026';
+    fileName = f.name;
+    var fr = new FileReader();
+    fr.onload = function () {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      var ac = new AC();
+      var p = ac.decodeAudioData(fr.result.slice(0));
+      Promise.resolve(p).then(function (b) {
+        buf = b; dur = b.duration; sr = b.sampleRate; nCh = b.numberOfChannels;
+        try { ac.close(); } catch (e) {}
+        editor.hidden = false; zoom = 1; scroll = 0;
+        sR.max = dur.toFixed(2); eR.max = dur.toFixed(2);
+        sN.max = dur; eN.max = dur;
+        info.textContent = f.name + ' \u00B7 ' + fmt(dur) + ' \u00B7 ' + sr + ' Hz' + (nCh > 1 ? ' \u00B7 stereo' : ' \u00B7 mono');
+        sizeCanvas();
+        setSel(0, dur);
+        $('atDl').hidden = true; $('atExpHint').textContent = 'Set your selection, then Export.';
+        editor.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }).catch(function () {
+        info.textContent = 'Could not decode that file. Try MP3, WAV or OGG.';
+      });
+    };
+    fr.readAsArrayBuffer(f);
+  }
+  browse.addEventListener('click', function (e) { e.stopPropagation(); fileIn.click(); });
+  drop.addEventListener('click', function () { fileIn.click(); });
+  fileIn.addEventListener('change', function () { loadFile(fileIn.files[0]); fileIn.value = ''; });
+  ['dragover', 'dragenter'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function (e) { if (e.dataTransfer.files.length) loadFile(e.dataTransfer.files[0]); });
+
+  sizeCanvas();
+})();
+
+</script>
+</body></html>

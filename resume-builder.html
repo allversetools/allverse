@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Resume Builder — Free Online | SabKuch</title><meta name="description" content="Build a professional, ATS-friendly resume in minutes with live preview. Free, no signup — print or save as PDF.">
+<meta property="og:title" content="Resume Builder — Free Online | SabKuch">
+<meta property="og:description" content="Build a professional, ATS-friendly resume in minutes with live preview. Free, no signup — print or save as PDF.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/resume-builder.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Resume Builder — Free Online | SabKuch">
+<meta name="twitter:description" content="Build a professional, ATS-friendly resume in minutes with live preview. Free, no signup — print or save as PDF."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/resume-builder.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Resume Builder", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build a professional, ATS-friendly resume in minutes with live preview. Free, no signup — print or save as PDF.", "url": "https://sabkuchtools.github.io/sabkuch/resume-builder.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this resume builder really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — build unlimited resumes, print or save them as PDF, with no account, no watermarks and no paywall."}}, {"@type": "Question", "name": "Will my resume pass applicant tracking systems (ATS)?", "acceptedAnswer": {"@type": "Answer", "text": "The layouts are single-column with standard section headings (Experience, Education, Skills) and common fonts — the format ATS parsers read most reliably."}}, {"@type": "Question", "name": "Is my personal data private?", "acceptedAnswer": {"@type": "Answer", "text": "Completely. Your resume is built locally in your browser. Drafts are saved only in your own browser's storage — nothing is uploaded anywhere."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Resume Tools", "item": "https://sabkuchtools.github.io/sabkuch/resume-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Resume Builder"}]}
+</script>
+<style>
+.rb-steps{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:0;list-style:none}
+.rb-steps li{padding:8px 14px;border-radius:999px;font-size:.85rem;font-weight:600;background:var(--chip-bg,#eef1f6);color:var(--muted,#666);cursor:pointer;border:1px solid transparent}
+.rb-steps li.done{background:#e7f6ec;color:#157347}
+.rb-steps li.cur{background:#0d6efd;color:#fff}
+.rb-step{display:none}
+.rb-step.cur{display:block}
+.rb-doc{background:#fff;color:#1a1a1a;border:1px solid #e2e5ea;border-radius:12px;padding:36px 40px;max-width:820px;margin:0 auto;font-size:14px;line-height:1.55;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.rb-doc h2.rname{margin:0;font-size:26px;letter-spacing:.3px}
+.rb-doc .rrole{font-weight:600;margin:2px 0 4px}
+.rb-doc .rcontact{font-size:12.5px;color:#444;margin-bottom:6px}
+.rb-doc h3.rsec{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin:18px 0 6px;padding-bottom:4px;border-bottom:2px solid #0d6efd}
+.rb-doc .rjob{margin:8px 0}
+.rb-doc .rjob-head{display:flex;justify-content:space-between;font-weight:700}
+.rb-doc .rjob-sub{font-style:italic;color:#444;font-size:13px}
+.rb-doc ul.rbul{margin:4px 0 4px 18px;padding:0}
+.rb-doc ul.rbul li{margin:3px 0}
+.rb-doc .rskills{margin:4px 0}
+.rb-doc.tpl-classic{font-family:Georgia,'Times New Roman',serif}
+.rb-doc.tpl-classic h2.rname{text-align:center}
+.rb-doc.tpl-classic .rrole,.rb-doc.tpl-classic .rcontact{text-align:center}
+.rb-doc.tpl-classic h3.rsec{border-bottom:1px solid #333;text-align:left}
+.rb-doc.tpl-minimal{padding:28px 32px}
+.rb-doc.tpl-minimal h3.rsec{border-bottom:1px solid #bbb;letter-spacing:1px}
+.rb-doc.tpl-minimal h2.rname{font-size:24px}
+@media print{
+  body *{visibility:hidden}
+  #rbPrintWrap,#rbPrintWrap *{visibility:visible}
+  #rbPrintWrap{position:absolute;left:0;top:0;width:100%}
+  .rb-doc{border:none;border-radius:0;margin:0;max-width:none;box-shadow:none;padding:0}
+  @page{margin:12mm}
+}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+<a class="side-link" href="seo-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO Tools</a>
+<a class="side-link" href="finance-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finance Tools</a>
+<a class="side-link" href="health-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Health Tools</a>
+<a class="side-link" href="pdf-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF Tools</a>
+<a class="side-link" href="writing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Writing Tools</a>
+<a class="side-link" href="marketing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>Marketing Tools</a>
+<a class="side-link" href="education-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Education Tools</a>
+<a class="side-link" href="security-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Tools</a>
+<a class="side-link" href="business-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Business Tools</a>
+<a class="side-link" href="everyday-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="pakistan-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="islamic-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link active" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M10 10l5 3-5 3z"/></svg>Video Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg>Video Tools</a>
+<a class="side-link" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>Audio Tools</a>
+<a class="side-link" href="font-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Font Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Meme Tools</a>
+<a class="side-link" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5c1-1 1-2.6 0-3.6s-2.6-1-3.6 0L12.4 7.4 4.2 5.6c-.5-.1-1 .1-1.2.6l-.3.6c-.2.5 0 1 .6 1.2L9 9l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 1.1 5.7c.1.6.7.9 1.2.6l.6-.3c.5-.2.7-.7.6-1.2z"/></svg>Travel Tools</a>
+<a class="side-link" href="real-estate-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Real Estate Tools</a>
+<a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
+<a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+<a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="resume-tools.html">Resume Tools</a><span>›</span><span>Resume Builder</span></nav>
+<h1>Resume Builder</h1><p class="tool-desc">Fill in each step — your professional, ATS-friendly resume builds itself live. Print it or save as PDF when you're done. Nothing ever leaves your browser.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
+<div class="tool-panel">
+<ol class="rb-steps" id="rbSteps">
+<li data-s="0" class="cur">1 · Personal</li>
+<li data-s="1">2 · Summary</li>
+<li data-s="2">3 · Experience</li>
+<li data-s="3">4 · Education</li>
+<li data-s="4">5 · Skills</li>
+<li data-s="5">6 · Preview &amp; Export</li>
+</ol>
+
+<div class="rb-step cur" data-p="0">
+<div class="field"><label for="rbName">Full name *</label><input id="rbName" type="text" placeholder="e.g. Ahmed Khan" autocomplete="name"></div>
+<div class="field"><label for="rbTitle">Professional title</label><input id="rbTitle" type="text" placeholder="e.g. Digital Marketing Specialist"></div>
+<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="rbEmail">Email *</label><input id="rbEmail" type="email" placeholder="you@example.com" autocomplete="email"></div>
+<div class="field"><label for="rbPhone">Phone</label><input id="rbPhone" type="tel" placeholder="+92 300 1234567" autocomplete="tel"></div>
+</div>
+<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="rbCity">City</label><input id="rbCity" type="text" placeholder="e.g. Lahore, Pakistan"></div>
+<div class="field"><label for="rbLinkedin">LinkedIn / portfolio URL</label><input id="rbLinkedin" type="url" placeholder="linkedin.com/in/yourname"></div>
+</div>
+</div>
+
+<div class="rb-step" data-p="1">
+<div class="field"><label for="rbSummary">Professional summary</label><textarea id="rbSummary" style="min-height:140px" placeholder="2–4 lines: who you are, years of experience, key strengths and what you're looking for."></textarea>
+<p class="hint">Tip: start with your title + years of experience, add 2–3 standout skills, end with your goal. Recruiters read this first.</p></div>
+</div>
+
+<div class="rb-step" data-p="2">
+<div id="rbExpList"></div>
+<div class="btn-row"><button class="btn btn-ghost" id="rbAddExp" type="button">+ Add experience</button></div>
+<p class="hint">One achievement per line in the bullets box. Start each bullet with an action verb and add numbers where you can ("Increased sales by 25%").</p>
+</div>
+
+<div class="rb-step" data-p="3">
+<div id="rbEduList"></div>
+<div class="btn-row"><button class="btn btn-ghost" id="rbAddEdu" type="button">+ Add education</button></div>
+</div>
+
+<div class="rb-step" data-p="4">
+<div class="field"><label for="rbSkills">Skills (comma separated)</label><textarea id="rbSkills" style="min-height:90px" placeholder="e.g. SEO, Google Ads, Content Strategy, Canva, MS Excel"></textarea></div>
+<div class="field"><label for="rbCerts">Certifications (optional, one per line)</label><textarea id="rbCerts" style="min-height:70px" placeholder="e.g. Google Digital Marketing Certification (2024)"></textarea></div>
+</div>
+
+<div class="rb-step" data-p="5">
+<div class="field"><label>Layout style</label>
+<div class="btn-row" id="rbTplRow" role="group" aria-label="Layout style">
+<button class="btn btn-ghost" type="button" data-tpl="tpl-modern">Modern</button>
+<button class="btn btn-ghost" type="button" data-tpl="tpl-classic">Classic</button>
+<button class="btn btn-ghost" type="button" data-tpl="tpl-minimal">Minimal (ATS)</button>
+</div></div>
+<div id="rbPrintWrap"><div class="rb-doc tpl-modern" id="rbDoc"></div></div>
+<div class="btn-row" style="margin-top:16px;flex-wrap:wrap">
+<button class="btn" id="rbPrint" type="button">🖨️ Print / Save as PDF</button>
+<button class="btn btn-ghost" id="rbHtml" type="button">⬇ Download HTML</button>
+<button class="btn btn-ghost" id="rbSave" type="button">💾 Save draft</button>
+<button class="btn btn-ghost" id="rbLoad" type="button">📂 Load draft</button>
+<button class="btn btn-ghost" id="rbSample" type="button">✨ Load sample</button>
+<button class="btn btn-ghost" id="rbClear" type="button">🗑 Clear</button>
+</div>
+<p class="hint" id="rbMsg" role="status"></p>
+</div>
+
+<div class="btn-row" style="margin-top:18px;justify-content:space-between">
+<button class="btn btn-ghost" id="rbBack" type="button">← Back</button>
+<button class="btn" id="rbNext" type="button">Next →</button>
+</div>
+</div>
+</div><section class="faq-section"><h2>Resume Builder — FAQs</h2>
+<details class="faq-item"><summary>Is this resume builder really free?</summary><p>Yes — build unlimited resumes, print or save them as PDF, with no account, no watermarks and no paywall.</p></details>
+<details class="faq-item"><summary>Will my resume pass applicant tracking systems (ATS)?</summary><p>The layouts are single-column with standard section headings (Experience, Education, Skills) and common fonts — the format ATS parsers read most reliably. Run the finished resume through our <a href="ats-resume-checker.html">ATS Resume Checker</a> to score it.</p></details>
+<details class="faq-item"><summary>Is my personal data private?</summary><p>Completely. Your resume is built locally in your browser. Drafts are saved only in your own browser's storage — nothing is uploaded anywhere.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="ats-resume-checker.html"><span>ATS Resume Checker</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="cover-letter-generator.html"><span>Cover Letter Generator</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="resume-templates.html"><span>Resume Templates</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="invoice-generator.html"><span>Invoice Generator</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+(function () {
+  'use strict';
+  var cur = 0, tpl = 'tpl-modern';
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.rb-step'));
+  var pills = Array.prototype.slice.call(document.querySelectorAll('#rbSteps li'));
+  var DKEY = 'sabkuch_resume_draft_v1';
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function msg(t) {
+    var m = document.getElementById('rbMsg');
+    if (m) { m.textContent = t; setTimeout(function () { if (m.textContent === t) m.textContent = ''; }, 3500); }
+  }
+
+  function go(n) {
+    cur = Math.max(0, Math.min(steps.length - 1, n));
+    steps.forEach(function (s, i) { s.classList.toggle('cur', i === cur); });
+    pills.forEach(function (p, i) {
+      p.classList.toggle('cur', i === cur);
+      p.classList.toggle('done', i < cur);
+    });
+    document.getElementById('rbBack').style.visibility = cur === 0 ? 'hidden' : 'visible';
+    document.getElementById('rbNext').textContent = cur === steps.length - 1 ? '✓ Done' : 'Next →';
+    if (cur === steps.length - 1) render();
+  }
+  pills.forEach(function (p) {
+    p.addEventListener('click', function () { go(parseInt(p.getAttribute('data-s'), 10)); });
+  });
+  document.getElementById('rbBack').addEventListener('click', function () { go(cur - 1); });
+  document.getElementById('rbNext').addEventListener('click', function () {
+    if (cur === 0 && !val('rbName')) { msg('Please enter your full name to continue.'); document.getElementById('rbName').focus(); return; }
+    go(cur + 1);
+  });
+
+  /* ---- dynamic experience / education rows ---- */
+  function expRow(d) {
+    d = d || {};
+    var w = document.createElement('div');
+    w.className = 'rb-exp';
+    w.style.cssText = 'border:1px solid #e2e5ea;border-radius:10px;padding:14px;margin-bottom:12px';
+    w.innerHTML =
+      '<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">' +
+      '<div class="field"><label>Job title</label><input type="text" class="e-title" placeholder="e.g. Sales Executive" value="' + esc(d.title) + '"></div>' +
+      '<div class="field"><label>Company</label><input type="text" class="e-co" placeholder="e.g. ABC Traders" value="' + esc(d.co) + '"></div></div>' +
+      '<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">' +
+      '<div class="field"><label>Start</label><input type="text" class="e-start" placeholder="Jan 2022" value="' + esc(d.start) + '"></div>' +
+      '<div class="field"><label>End</label><input type="text" class="e-end" placeholder="Dec 2024 / Present" value="' + esc(d.end) + '"></div>' +
+      '<div class="field"><label>Location</label><input type="text" class="e-loc" placeholder="City" value="' + esc(d.loc) + '"></div></div>' +
+      '<div class="field"><label>Achievements (one per line)</label><textarea class="e-bul" style="min-height:80px" placeholder="Increased regional sales by 30% in one year&#10;Trained and led a team of 6 junior reps">' + esc(d.bul) + '</textarea></div>' +
+      '<button class="btn btn-ghost" type="button" style="padding:6px 12px">Remove</button>';
+    w.querySelector('button').addEventListener('click', function () { w.remove(); render(); });
+    w.querySelectorAll('input,textarea').forEach(function (el) { el.addEventListener('input', render); });
+    return w;
+  }
+  function eduRow(d) {
+    d = d || {};
+    var w = document.createElement('div');
+    w.style.cssText = 'border:1px solid #e2e5ea;border-radius:10px;padding:14px;margin-bottom:12px';
+    w.innerHTML =
+      '<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">' +
+      '<div class="field"><label>Degree</label><input type="text" class="d-deg" placeholder="e.g. BBA (Marketing)" value="' + esc(d.deg) + '"></div>' +
+      '<div class="field"><label>School / University</label><input type="text" class="d-sch" placeholder="e.g. Punjab University" value="' + esc(d.sch) + '"></div></div>' +
+      '<div class="field-row" style="display:grid;grid-template-columns:1fr 2fr;gap:12px">' +
+      '<div class="field"><label>Year</label><input type="text" class="d-year" placeholder="2023" value="' + esc(d.year) + '"></div>' +
+      '<div class="field"><label>Details (optional)</label><input type="text" class="d-det" placeholder="e.g. CGPA 3.6, Dean\'s List" value="' + esc(d.det) + '"></div></div>' +
+      '<button class="btn btn-ghost" type="button" style="padding:6px 12px">Remove</button>';
+    w.querySelector('button').addEventListener('click', function () { w.remove(); render(); });
+    w.querySelectorAll('input').forEach(function (el) { el.addEventListener('input', render); });
+    return w;
+  }
+  document.getElementById('rbAddExp').addEventListener('click', function () {
+    document.getElementById('rbExpList').appendChild(expRow()); render();
+  });
+  document.getElementById('rbAddEdu').addEventListener('click', function () {
+    document.getElementById('rbEduList').appendChild(eduRow()); render();
+  });
+
+  function readList(boxId, cls) {
+    var out = [];
+    document.querySelectorAll('#' + boxId + ' > div').forEach(function (w) {
+      var o = {};
+      cls.forEach(function (c) { var el = w.querySelector('.' + c); o[c] = el ? el.value.trim() : ''; });
+      out.push(o);
+    });
+    return out;
+  }
+
+  /* ---- render preview ---- */
+  function render() {
+    var contact = [val('rbEmail'), val('rbPhone'), val('rbCity'), val('rbLinkedin')].filter(Boolean).join(' &nbsp;|&nbsp; ');
+    var exps = readList('rbExpList', ['e-title', 'e-co', 'e-start', 'e-end', 'e-loc', 'e-bul']);
+    var edus = readList('rbEduList', ['d-deg', 'd-sch', 'd-year', 'd-det']);
+    var skills = val('rbSkills').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    var certs = val('rbCerts').split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+    var h = '';
+    h += '<h2 class="rname">' + (esc(val('rbName')) || 'Your Name') + '</h2>';
+    if (val('rbTitle')) h += '<div class="rrole">' + esc(val('rbTitle')) + '</div>';
+    if (contact) h += '<div class="rcontact">' + contact + '</div>';
+    if (val('rbSummary')) h += '<h3 class="rsec">Professional Summary</h3><p style="margin:4px 0">' + esc(val('rbSummary')) + '</p>';
+    var hasExp = exps.some(function (e) { return e['e-title'] || e['e-co'] || e['e-bul']; });
+    if (hasExp) {
+      h += '<h3 class="rsec">Work Experience</h3>';
+      exps.forEach(function (e) {
+        if (!(e['e-title'] || e['e-co'] || e['e-bul'])) return;
+        var dates = [e['e-start'], e['e-end']].filter(Boolean).join(' – ');
+        h += '<div class="rjob"><div class="rjob-head"><span>' + esc(e['e-title'] || 'Position') + '</span>' +
+             (dates ? '<span style="font-weight:400;font-size:13px">' + esc(dates) + '</span>' : '') + '</div>';
+        var sub = [e['e-co'], e['e-loc']].filter(Boolean).join(', ');
+        if (sub) h += '<div class="rjob-sub">' + esc(sub) + '</div>';
+        var buls = e['e-bul'].split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+        if (buls.length) h += '<ul class="rbul">' + buls.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>';
+        h += '</div>';
+      });
+    }
+    var hasEdu = edus.some(function (e) { return e['d-deg'] || e['d-sch']; });
+    if (hasEdu) {
+      h += '<h3 class="rsec">Education</h3>';
+      edus.forEach(function (e) {
+        if (!(e['d-deg'] || e['d-sch'])) return;
+        h += '<div class="rjob"><div class="rjob-head"><span>' + esc(e['d-deg'] || 'Degree') + '</span>' +
+             (e['d-year'] ? '<span style="font-weight:400;font-size:13px">' + esc(e['d-year']) + '</span>' : '') + '</div>';
+        var sub2 = [e['d-sch'], e['d-det']].filter(Boolean).join(' — ');
+        if (sub2) h += '<div class="rjob-sub">' + esc(sub2) + '</div>';
+        h += '</div>';
+      });
+    }
+    if (skills.length) h += '<h3 class="rsec">Skills</h3><p class="rskills">' + skills.map(esc).join(' &nbsp;•&nbsp; ') + '</p>';
+    if (certs.length) h += '<h3 class="rsec">Certifications</h3><ul class="rbul">' + certs.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul>';
+    var doc = document.getElementById('rbDoc');
+    doc.className = 'rb-doc ' + tpl;
+    doc.innerHTML = h || '<p style="color:#888">Your resume preview will appear here as you fill in the steps.</p>';
+  }
+
+  document.getElementById('rbTplRow').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-tpl]');
+    if (!b) return;
+    tpl = b.getAttribute('data-tpl');
+    Array.prototype.forEach.call(this.querySelectorAll('button'), function (x) {
+      x.classList.toggle('btn', x === b); x.classList.toggle('btn-ghost', x !== b);
+    });
+    render();
+  });
+
+  /* ---- export / draft ---- */
+  function collect() {
+    return {
+      v: 1, tpl: tpl,
+      f: ['rbName', 'rbTitle', 'rbEmail', 'rbPhone', 'rbCity', 'rbLinkedin', 'rbSummary', 'rbSkills', 'rbCerts'].map(val),
+      exps: readList('rbExpList', ['e-title', 'e-co', 'e-start', 'e-end', 'e-loc', 'e-bul']),
+      edus: readList('rbEduList', ['d-deg', 'd-sch', 'd-year', 'd-det'])
+    };
+  }
+  function apply(d) {
+    if (!d || !d.f) return;
+    var ids = ['rbName', 'rbTitle', 'rbEmail', 'rbPhone', 'rbCity', 'rbLinkedin', 'rbSummary', 'rbSkills', 'rbCerts'];
+    ids.forEach(function (id, i) { document.getElementById(id).value = d.f[i] || ''; });
+    var eb = document.getElementById('rbExpList'); eb.innerHTML = '';
+    (d.exps || []).forEach(function (e) {
+      eb.appendChild(expRow({ title: e['e-title'], co: e['e-co'], start: e['e-start'], end: e['e-end'], loc: e['e-loc'], bul: e['e-bul'] }));
+    });
+    var db = document.getElementById('rbEduList'); db.innerHTML = '';
+    (d.edus || []).forEach(function (e) {
+      db.appendChild(eduRow({ deg: e['d-deg'], sch: e['d-sch'], year: e['d-year'], det: e['d-det'] }));
+    });
+    if (d.tpl) {
+      tpl = d.tpl;
+      Array.prototype.forEach.call(document.querySelectorAll('#rbTplRow button'), function (x) {
+        var on = x.getAttribute('data-tpl') === tpl;
+        x.classList.toggle('btn', on); x.classList.toggle('btn-ghost', !on);
+      });
+    }
+    render();
+  }
+  document.getElementById('rbSave').addEventListener('click', function () {
+    try { localStorage.setItem(DKEY, JSON.stringify(collect())); msg('✓ Draft saved in this browser.'); }
+    catch (e) { msg('Could not save draft (storage unavailable).'); }
+  });
+  document.getElementById('rbLoad').addEventListener('click', function () {
+    try {
+      var d = JSON.parse(localStorage.getItem(DKEY));
+      if (d) { apply(d); msg('✓ Draft loaded.'); } else msg('No saved draft found.');
+    } catch (e) { msg('No saved draft found.'); }
+  });
+  document.getElementById('rbClear').addEventListener('click', function () {
+    if (!confirm('Clear all resume fields?')) return;
+    apply({ f: [], exps: [], edus: [] }); go(0); msg('Cleared.');
+  });
+  document.getElementById('rbSample').addEventListener('click', function () {
+    apply({
+      tpl: 'tpl-modern',
+      f: ['Ahmed Khan', 'Digital Marketing Specialist', 'ahmed.khan@example.com', '+92 300 1234567', 'Lahore, Pakistan', 'linkedin.com/in/ahmedkhan',
+        'Results-driven Digital Marketing Specialist with 4 years of experience growing e-commerce brands through SEO, paid ads and content strategy. Increased organic traffic by 180% and cut acquisition costs by 35% at my current role.',
+        'SEO, Google Ads, Meta Ads, Content Strategy, Email Marketing, Google Analytics, Canva',
+        'Google Digital Marketing & E-commerce Certificate (2024)'],
+      exps: [{ 'e-title': 'Digital Marketing Specialist', 'e-co': 'ShopNow.pk', 'e-start': 'Mar 2022', 'e-end': 'Present', 'e-loc': 'Lahore',
+        'e-bul': 'Grew organic traffic from 40k to 112k monthly visitors in 18 months\nManaged Rs 2.5M annual ad spend across Google and Meta at 4.2x ROAS\nBuilt email flows generating 22% of total store revenue' },
+        { 'e-title': 'Marketing Executive', 'e-co': 'BrightMedia Agency', 'e-start': 'Jun 2020', 'e-end': 'Feb 2022', 'e-loc': 'Karachi',
+        'e-bul': 'Ran SEO campaigns for 12 client websites; 9 reached page 1 within 6 months\nWrote 100+ blog posts ranking for 300+ keywords' }],
+      edus: [{ 'd-deg': 'BBA (Marketing)', 'd-sch': 'Punjab University', 'd-year': '2020', 'd-det': 'CGPA 3.6' }]
+    });
+    msg('✓ Sample resume loaded — edit it to make it yours.');
+  });
+  document.getElementById('rbPrint').addEventListener('click', function () {
+    render();
+    if (!val('rbName')) { msg('Add your name first (step 1).'); go(0); return; }
+    window.print();
+  });
+  document.getElementById('rbHtml').addEventListener('click', function () {
+    render();
+    var css = '.rd{font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;max-width:800px;margin:0 auto;font-size:14px;line-height:1.55}' +
+      '.rd h2{font-size:26px;margin:0}.rd .rrole{font-weight:700;margin:2px 0 4px}.rd .rc{font-size:12.5px;color:#444}' +
+      '.rd h3{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;border-bottom:2px solid #0d6efd;padding-bottom:4px;margin:18px 0 6px}' +
+      '.rd .jh{display:flex;justify-content:space-between;font-weight:700}.rd .js{font-style:italic;color:#444;font-size:13px}' +
+      '.rd ul{margin:4px 0 4px 18px;padding:0}.rd li{margin:3px 0}';
+    var html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Resume - ' + esc(val('rbName')) + '</title><style>' + css + '</style></head>' +
+      '<body><div class="rd">' + document.getElementById('rbDoc').innerHTML
+        .replace(/class="rname"/g, '').replace(/<h2/g, '<h2').replace(/class="rrole"/g, 'class="rrole"')
+        .replace(/class="rcontact"/g, 'class="rc"').replace(/class="rsec"/g, '')
+        .replace(/class="rjob-head"/g, 'class="jh"').replace(/class="rjob-sub"/g, 'class="js"')
+        .replace(/class="rbul"/g, '').replace(/<div class="rjob">/g, '<div>') + '</div></body></html>';
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'resume-' + (val('rbName') || 'draft').toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    msg('✓ HTML downloaded.');
+  });
+
+  /* live preview on typing */
+  ['rbName', 'rbTitle', 'rbEmail', 'rbPhone', 'rbCity', 'rbLinkedin', 'rbSummary', 'rbSkills', 'rbCerts'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', render);
+  });
+  document.getElementById('rbExpList').appendChild(expRow());
+  document.getElementById('rbEduList').appendChild(eduRow());
+  try {
+    var d0 = JSON.parse(localStorage.getItem(DKEY));
+    if (d0 && d0.f && d0.f[0]) apply(d0);
+  } catch (e) {}
+  render();
+  go(0);
+})();
+</script>
+</body></html>

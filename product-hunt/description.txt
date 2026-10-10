@@ -1,0 +1,18 @@
+# Product Hunt description
+
+## Short (260 chars max)
+SabKuch is 96 free online tools in one clean site — AI image generator, AI chat, calculators, converters, QR maker, PDF tools and more. No signup, no paywall, works on any device. Open a tool, get your result, done.
+
+## Long version
+SabKuch ("everything" in Urdu/Hindi) is a free all-in-one tools website: 96 tools across 23 categories, each with its own page.
+
+**What you get:**
+- 15 AI tools — image generator, logo maker, thumbnail maker, chat assistant, story writer, translator, text-to-speech studio and more (all free, no API keys)
+- Everyday essentials — image resizer/compressor, word counter, password generator, QR maker, unit & currency converters
+- Calculators — EMI, BMI, tax (Pakistan), electricity bill, gold rate, zakat
+- Developer tools — JSON formatter, hash generator, UUID, regex helpers
+- PDF tools, SEO tools, Islamic tools (prayer times, qibla, Hijri), and more
+
+**Why it's different:** no signup, no paywall, no tracking. Every tool runs instantly in your browser, most work fully offline. Clean Apple-style design with dark mode, mobile-first, and installable as a PWA.
+
+Built solo as a free public utility. Try the AI image generator — type a prompt, get an image in seconds.

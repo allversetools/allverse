@@ -1,0 +1,7 @@
+# Suggested Product Hunt topics (pick up to 3 when submitting)
+
+1. Productivity
+2. Artificial Intelligence
+3. Developer Tools
+
+Alternatives if those are taken/full: Design Tools, Free, Web App

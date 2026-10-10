@@ -1,0 +1,404 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Video to GIF — Free Online | SabKuch</title><meta name="description" content="Convert any video clip to GIF in your browser — trim start/end, set FPS and size. 100% private, no upload, no watermark.">
+<meta property="og:title" content="Video to GIF — Free Online | SabKuch">
+<meta property="og:description" content="Convert any video clip to GIF in your browser — trim start/end, set FPS and size. 100% private, no upload, no watermark.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/video-to-gif.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Video to GIF — Free Online | SabKuch">
+<meta name="twitter:description" content="Convert any video clip to GIF in your browser — trim start/end, set FPS and size. 100% private, no upload, no watermark."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/video-to-gif.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Video to GIF", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert any video clip to GIF in your browser — trim start/end, set FPS and size. 100% private, no upload, no watermark.", "url": "https://sabkuchtools.github.io/sabkuch/video-to-gif.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this video to GIF converter free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — convert unlimited clips with no account, no watermarks and no file-size tricks."}}, {"@type": "Question", "name": "Why does my GIF look lower quality than the video?", "acceptedAnswer": {"@type": "Answer", "text": "The GIF format only supports 256 colors per frame, so some banding is unavoidable. For best results keep clips under 6 seconds at 480px wide and 10 FPS — that is the sweet spot for size vs quality."}}, {"@type": "Question", "name": "Are my videos uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Frames are captured and encoded entirely in your browser — your video never leaves your device."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Video Tools", "item": "https://sabkuchtools.github.io/sabkuch/video-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Video to GIF"}]}
+</script>
+<style>
+.vg-drop{border:2px dashed #c3cddc;border-radius:14px;padding:34px 20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.vg-drop:hover,.vg-drop.over{border-color:#0d6efd;background:#f4f8ff}
+.vg-drop input{display:none}
+.vg-progress{height:10px;border-radius:999px;background:#eef1f6;overflow:hidden;margin-top:10px}
+.vg-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0d6efd,#7c3aed);border-radius:999px;transition:width .2s}
+.vg-result img{max-width:100%;border-radius:12px;border:1px solid #e2e5ea}
+.vg-limits{background:#fff8e6;border:1px solid #f0dfa8;border-radius:10px;padding:10px 14px;font-size:.85rem;color:#7a5b00;margin-top:12px}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+<a class="side-link" href="seo-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO Tools</a>
+<a class="side-link" href="finance-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finance Tools</a>
+<a class="side-link" href="health-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Health Tools</a>
+<a class="side-link" href="pdf-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF Tools</a>
+<a class="side-link" href="writing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Writing Tools</a>
+<a class="side-link" href="marketing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>Marketing Tools</a>
+<a class="side-link" href="education-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Education Tools</a>
+<a class="side-link" href="security-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Tools</a>
+<a class="side-link" href="business-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Business Tools</a>
+<a class="side-link" href="everyday-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="pakistan-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="islamic-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link active" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M10 10l5 3-5 3z"/></svg>Video Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg>Video Tools</a>
+<a class="side-link" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>Audio Tools</a>
+<a class="side-link" href="font-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Font Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Meme Tools</a>
+<a class="side-link" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5c1-1 1-2.6 0-3.6s-2.6-1-3.6 0L12.4 7.4 4.2 5.6c-.5-.1-1 .1-1.2.6l-.3.6c-.2.5 0 1 .6 1.2L9 9l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 1.1 5.7c.1.6.7.9 1.2.6l.6-.3c.5-.2.7-.7.6-1.2z"/></svg>Travel Tools</a>
+<a class="side-link" href="real-estate-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Real Estate Tools</a>
+<a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
+<a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+<a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="video-tools.html">Video Tools</a><span>›</span><span>Video to GIF</span></nav>
+<h1>Video to GIF</h1><p class="tool-desc">Turn any video clip into an animated GIF — right in your browser. Trim the exact moment, pick FPS and size, preview, download.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
+<div class="tool-panel">
+<div class="vg-drop" id="vgDrop"><input type="file" id="vgFile" accept="video/*">
+<div style="font-size:2rem">🎬</div>
+<div><b>Drop a video here or click to choose</b></div>
+<div class="hint">MP4, WebM, MOV — anything your browser can play. Stays on your device.</div>
+</div>
+<div id="vgWork" style="display:none;margin-top:18px">
+<video id="vgVideo" controls muted playsinline style="max-width:100%;border-radius:12px;max-height:320px"></video>
+<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
+<div class="field"><label for="vgStart">Start time (seconds)</label><input id="vgStart" type="number" min="0" step="0.1" value="0"></div>
+<div class="field"><label for="vgEnd">End time (seconds)</label><input id="vgEnd" type="number" min="0.5" step="0.1" value="3"></div>
+</div>
+<div class="field"><label for="vgRange">Clip range</label><input id="vgRange" type="range" min="0" max="100" step="0.5" value="0" style="width:100%"><p class="hint" id="vgRangeHint">Drag to scrub · video length: –</p></div>
+<div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field"><label for="vgFps">Frame rate</label><select id="vgFps">
+<option value="5">5 FPS — smallest file</option>
+<option value="8">8 FPS</option>
+<option value="10" selected>10 FPS — recommended</option>
+<option value="12">12 FPS</option>
+<option value="15">15 FPS — smoothest</option>
+</select></div>
+<div class="field"><label for="vgWidth">Output width</label><select id="vgWidth">
+<option value="240">240px — tiny</option>
+<option value="320" selected>320px — recommended</option>
+<option value="480">480px — large</option>
+</select></div>
+</div>
+<div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="vgDither" checked style="width:auto"> Dithering (smoother gradients, slightly larger file)</label></div>
+<div class="field"><label style="display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="vgLoop" checked style="width:auto"> Loop forever</label></div>
+<div class="btn-row"><button class="btn" id="vgGo" type="button">🎞️ Convert to GIF</button></div>
+<div class="vg-progress" id="vgProgWrap" style="display:none"><i id="vgProg"></i></div>
+<p class="hint" id="vgMsg" role="status"></p>
+<div class="vg-limits">⚠️ <b>Honest limits:</b> GIFs hold only 256 colors per frame, so expect some quality loss vs the video. Clips are capped at <b>10 seconds</b> — longer clips make huge, slow files. Sweet spot: ≤ 6s at 320px / 10 FPS.</div>
+<div class="result-box vg-result" id="vgOut" style="margin-top:16px">
+<h4>Your GIF</h4>
+<img id="vgImg" alt="Converted GIF preview">
+<div class="stat-grid" style="margin-top:10px">
+<div class="stat"><b id="vgSize">–</b><span>File size</span></div>
+<div class="stat"><b id="vgDims">–</b><span>Dimensions</span></div>
+<div class="stat"><b id="vgFrames">–</b><span>Frames</span></div>
+</div>
+<div class="btn-row" style="margin-top:12px"><a class="btn" id="vgDl" href="#" download="clip.gif">⬇ Download GIF</a></div>
+</div>
+</div>
+</div>
+</div><section class="faq-section"><h2>Video to GIF — FAQs</h2>
+<details class="faq-item"><summary>Is this video to GIF converter free?</summary><p>Yes — convert unlimited clips with no account, no watermarks and no file-size tricks.</p></details>
+<details class="faq-item"><summary>Why does my GIF look lower quality than the video?</summary><p>The GIF format only supports 256 colors per frame, so some banding is unavoidable. For best results keep clips under 6 seconds at 480px wide and 10 FPS — that is the sweet spot for size vs quality.</p></details>
+<details class="faq-item"><summary>Are my videos uploaded anywhere?</summary><p>No. Frames are captured and encoded entirely in your browser — your video never leaves your device.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="video-metadata-viewer.html"><span>Video Metadata Viewer</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="video-timestamp-link.html"><span>YouTube Timestamp Link</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="image-compressor.html"><span>Image Compressor</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="youtube-thumbnail-resizer.html"><span>YouTube Thumbnail Resizer</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+/* Compact GIF encoder — median-cut palette + LZW, zero dependencies.
+   Used inline in video-to-gif.html. Tested via /tmp/gif-test.js */
+'use strict';
+
+function gifBuildPalette(rgba, w, h, maxColors) {
+  var px = [];
+  var step = Math.max(1, Math.floor((w * h) / 12000));
+  for (var i = 0; i < w * h; i += step) {
+    px.push([rgba[i * 4], rgba[i * 4 + 1], rgba[i * 4 + 2]]);
+  }
+  var boxes = [px];
+  while (boxes.length < maxColors) {
+    var bi = -1, best = 0;
+    for (var b = 0; b < boxes.length; b++) {
+      var box = boxes[b];
+      if (box.length < 2) continue;
+      var mn = [255, 255, 255], mx = [0, 0, 0], j, k, c;
+      for (j = 0; j < box.length; j++) {
+        c = box[j];
+        for (k = 0; k < 3; k++) {
+          if (c[k] < mn[k]) mn[k] = c[k];
+          if (c[k] > mx[k]) mx[k] = c[k];
+        }
+      }
+      var range = Math.max(mx[0] - mn[0], mx[1] - mn[1], mx[2] - mn[2]);
+      if (range > best) { best = range; bi = b; }
+    }
+    if (bi < 0) break;
+    var target = boxes[bi], tmn = [255, 255, 255], tmx = [0, 0, 0];
+    for (var m = 0; m < target.length; m++) {
+      var cc = target[m];
+      for (var q = 0; q < 3; q++) {
+        if (cc[q] < tmn[q]) tmn[q] = cc[q];
+        if (cc[q] > tmx[q]) tmx[q] = cc[q];
+      }
+    }
+    var ch = 0;
+    if (tmx[1] - tmn[1] > tmx[ch] - tmn[ch]) ch = 1;
+    if (tmx[2] - tmn[2] > tmx[ch] - tmn[ch]) ch = 2;
+    target.sort(function (a, z) { return a[ch] - z[ch]; });
+    var mid = Math.floor(target.length / 2);
+    boxes.splice(bi, 1, target.slice(0, mid), target.slice(mid));
+  }
+  return boxes.map(function (box) {
+    var r = 0, g = 0, bl = 0, n = box.length || 1;
+    for (var i = 0; i < box.length; i++) { r += box[i][0]; g += box[i][1]; bl += box[i][2]; }
+    return [Math.round(r / n), Math.round(g / n), Math.round(bl / n)];
+  });
+}
+
+var BAYER = [
+  [0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]
+];
+
+function gifMapPixels(rgba, w, h, palette, dither) {
+  var n = w * h, idx = new Uint8Array(n), pc = palette.length;
+  for (var i = 0; i < n; i++) {
+    var r = rgba[i * 4], g = rgba[i * 4 + 1], b = rgba[i * 4 + 2];
+    if (dither) {
+      var t = (BAYER[(i / w | 0) % 4][i % 4] / 16 - 0.5) * 24;
+      r += t; g += t; b += t;
+    }
+    var bi = 0, bd = 1e12;
+    for (var p = 0; p < pc; p++) {
+      var dr = r - palette[p][0], dg = g - palette[p][1], db = b - palette[p][2];
+      var d = dr * dr + dg * dg + db * db;
+      if (d < bd) { bd = d; bi = p; }
+    }
+    idx[i] = bi;
+  }
+  return idx;
+}
+
+function gifLzwEncode(indices, minCodeSize) {
+  var clear = 1 << minCodeSize, eoi = clear + 1;
+  var dict = new Map(), next = eoi + 1, codeSize = minCodeSize + 1;
+  var out = [], cur = 0, bits = 0;
+  function emit(code) {
+    cur |= (code << bits); bits += codeSize;
+    while (bits >= 8) { out.push(cur & 255); cur >>= 8; bits -= 8; }
+  }
+  emit(clear);
+  var prefix = indices[0];
+  for (var i = 1; i < indices.length; i++) {
+    var k = indices[i], key = prefix * 256 + k;
+    if (dict.has(key)) { prefix = dict.get(key); }
+    else {
+      emit(prefix);
+      if (next < 4096) {
+        dict.set(key, next++);
+        if (next > (1 << codeSize) && codeSize < 12) codeSize++;
+      } else {
+        emit(clear); dict.clear(); next = eoi + 1; codeSize = minCodeSize + 1;
+      }
+      prefix = k;
+    }
+  }
+  emit(prefix); emit(eoi);
+  if (bits > 0) out.push(cur & 255);
+  return out;
+}
+
+function gifEncode(frames, w, h, palette, delayCs, loop) {
+  var bytes = [];
+  function str(s) { for (var i = 0; i < s.length; i++) bytes.push(s.charCodeAt(i)); }
+  function u16(v) { bytes.push(v & 255, (v >> 8) & 255); }
+  str('GIF89a'); u16(w); u16(h);
+  bytes.push(0xF7, 0, 0);
+  for (var i = 0; i < 256; i++) {
+    var c = palette[i] || [0, 0, 0];
+    bytes.push(c[0], c[1], c[2]);
+  }
+  if (loop) str('!ÿ\x0BNETSCAPE2.0\x03\x01\x00\x00\x00');
+  for (var f = 0; f < frames.length; f++) {
+    var d = Math.max(2, Math.round(delayCs));
+    bytes.push(0x21, 0xF9, 0x04, 0x08, d & 255, (d >> 8) & 255, 0, 0);
+    bytes.push(0x2C); u16(0); u16(0); u16(w); u16(h); bytes.push(0x00);
+    bytes.push(8);
+    var data = gifLzwEncode(frames[f], 8);
+    for (var o = 0; o < data.length; o += 255) {
+      var chunk = Math.min(255, data.length - o);
+      bytes.push(chunk);
+      for (var j = 0; j < chunk; j++) bytes.push(data[o + j]);
+    }
+    bytes.push(0x00);
+  }
+  bytes.push(0x3B);
+  return new Uint8Array(bytes);
+}
+
+</script>
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+  function msg(t) { var m = $('vgMsg'); if (m) m.textContent = t || ''; }
+  function fmtSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1048576) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1048576).toFixed(2) + ' MB';
+  }
+
+  var video = $('vgVideo'), fileURL = null, busy = false;
+
+  var drop = $('vgDrop'), fi = $('vgFile');
+  drop.addEventListener('click', function () { fi.click(); });
+  ['dragover', 'dragenter'].forEach(function (e) {
+    drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (e) {
+    drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.remove('over'); });
+  });
+  drop.addEventListener('drop', function (ev) {
+    if (ev.dataTransfer.files.length) loadFile(ev.dataTransfer.files[0]);
+  });
+  fi.addEventListener('change', function () { if (fi.files.length) loadFile(fi.files[0]); });
+
+  function loadFile(f) {
+    if (!f.type || f.type.indexOf('video/') !== 0) { msg('Please choose a video file.'); return; }
+    if (fileURL) URL.revokeObjectURL(fileURL);
+    fileURL = URL.createObjectURL(f);
+    video.src = fileURL;
+    video.load();
+    $('vgWork').style.display = 'block';
+    $('vgOut').classList.remove('show');
+    msg('Loading video…');
+  }
+  video.addEventListener('loadedmetadata', function () {
+    var d = video.duration;
+    if (!isFinite(d) || d <= 0) { msg('Could not read this video\u2019s duration. Try an MP4 file.'); return; }
+    $('vgStart').max = d.toFixed(1);
+    $('vgEnd').max = d.toFixed(1);
+    $('vgEnd').value = Math.min(3, d).toFixed(1);
+    var r = $('vgRange');
+    r.max = d.toFixed(1); r.step = '0.1'; r.value = '0';
+    $('vgRangeHint').textContent = 'Drag to scrub · video length: ' + d.toFixed(1) + 's';
+    msg('Video loaded (' + d.toFixed(1) + 's). Set your clip range and convert.');
+  });
+  video.addEventListener('error', function () { msg('This video format could not be played. Try an MP4 file.'); });
+  $('vgRange').addEventListener('input', function () {
+    var t = parseFloat(this.value) || 0;
+    try { video.currentTime = t; } catch (e) {}
+    $('vgStart').value = t.toFixed(1);
+  });
+  $('vgStart').addEventListener('input', function () { $('vgRange').value = this.value; });
+
+  function seekTo(t) {
+    return new Promise(function (res, rej) {
+      var done = false;
+      var to = setTimeout(function () { if (!done) { done = true; rej(new Error('seek timeout')); } }, 9000);
+      video.onseeked = function () { if (!done) { done = true; clearTimeout(to); res(); } };
+      try { video.currentTime = t; } catch (e) { if (!done) { done = true; clearTimeout(to); rej(e); } }
+    });
+  }
+
+  $('vgGo').addEventListener('click', function () {
+    if (busy) return;
+    if (!video.src || !isFinite(video.duration)) { msg('Load a video first.'); return; }
+    var dur = video.duration;
+    var start = Math.max(0, parseFloat($('vgStart').value) || 0);
+    var end = Math.min(dur, parseFloat($('vgEnd').value) || 0);
+    if (end <= start) { msg('End time must be after start time.'); return; }
+    if (end - start > 10) { end = start + 10; msg('Note: clip capped at 10 seconds for a sane file size.'); }
+    var fps = parseInt($('vgFps').value, 10);
+    var W = parseInt($('vgWidth').value, 10);
+    var dither = $('vgDither').checked, loop = $('vgLoop').checked;
+    var vw = video.videoWidth, vh = video.videoHeight;
+    if (!vw || !vh) { msg('Video dimensions not available yet — wait a moment and retry.'); return; }
+    var H = Math.max(2, Math.round(W * vh / vw / 2) * 2);
+    var n = Math.max(2, Math.min(Math.floor((end - start) * fps), 150));
+    var delayCs = Math.round(100 / fps);
+    busy = true;
+    $('vgProgWrap').style.display = 'block';
+    $('vgOut').classList.remove('show');
+    var canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext('2d', { willReadFrequently: true });
+    var frames = [], palette = null, i = 0;
+    msg('Capturing frames… 0/' + n);
+    video.pause();
+    (function step() {
+      if (i >= n) return finish();
+      var t = Math.min(start + i / fps, dur - 0.05);
+      seekTo(t).then(function () {
+        ctx.drawImage(video, 0, 0, W, H);
+        var d = ctx.getImageData(0, 0, W, H).data;
+        if (i === 0) palette = gifBuildPalette(d, W, H, 256);
+        frames.push(gifMapPixels(d, W, H, palette, dither));
+        i++;
+        $('vgProg').style.width = Math.round(i / n * 70) + '%';
+        msg('Capturing frames… ' + i + '/' + n);
+        setTimeout(step, 0);
+      }).catch(function (err) {
+        busy = false; $('vgProgWrap').style.display = 'none';
+        msg('Frame capture failed: ' + err.message + '. Try a shorter clip.');
+      });
+    })();
+    function finish() {
+      msg('Encoding GIF…');
+      $('vgProg').style.width = '80%';
+      setTimeout(function () {
+        try {
+          var bytes = gifEncode(frames, W, H, palette, delayCs, loop);
+          var blob = new Blob([bytes], { type: 'image/gif' });
+          var url = URL.createObjectURL(blob);
+          $('vgImg').src = url;
+          var dl = $('vgDl');
+          dl.href = url;
+          dl.download = 'clip-' + Math.round(start) + 's-' + Math.round(end) + 's.gif';
+          $('vgSize').textContent = fmtSize(blob.size);
+          $('vgDims').textContent = W + '×' + H;
+          $('vgFrames').textContent = frames.length + ' @ ' + fps + 'fps';
+          $('vgProg').style.width = '100%';
+          $('vgOut').classList.add('show');
+          msg('✓ Done! Preview above, then download.');
+          $('vgOut').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (err) {
+          msg('Encoding failed: ' + err.message);
+        }
+        busy = false;
+        setTimeout(function () { $('vgProgWrap').style.display = 'none'; $('vgProg').style.width = '0'; }, 1200);
+      }, 30);
+    }
+  });
+})();
+</script>
+</body></html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Packing Checklist — Smart Travel Packing List | SabKuch</title><meta name="description" content="Free smart packing checklist generator: pick trip type, duration and weather — get a categorized packing list with quantities, progress tracking and print. No signup.">
+<meta property="og:title" content="Packing Checklist — Smart Travel Packing List | SabKuch">
+<meta property="og:description" content="Free smart packing checklist generator: pick trip type, duration and weather — get a categorized packing list with quantities, progress tracking and print. No signup.">
+<meta property="og:url" content="https://sabkuchtools.github.io/sabkuch/packing-checklist.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sabkuchtools.github.io/sabkuch/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Packing Checklist — Smart Travel Packing List | SabKuch">
+<meta name="twitter:description" content="Free smart packing checklist generator: pick trip type, duration and weather — get a categorized packing list with quantities, progress tracking and print. No signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://sabkuchtools.github.io/sabkuch/packing-checklist.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Packing Checklist", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free smart packing checklist generator: pick trip type, duration and weather — get a categorized packing list with quantities, progress tracking and print. No signup.", "url": "https://sabkuchtools.github.io/sabkuch/packing-checklist.html"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does the smart packing list work?", "acceptedAnswer": {"@type": "Answer", "text": "Choose your trip type, duration and weather — the tool builds a categorized checklist with smart quantities (e.g. shirts per day) plus trip-specific gear."}}, {"@type": "Question", "name": "Is my packing list saved?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — your list, checks and custom items are auto-saved in your browser (localStorage), so you can close the tab and come back."}}, {"@type": "Question", "name": "Can I add my own items and print?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add custom items to any category, remove ones you don't need, and print the finished list with one click."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sabkuchtools.github.io/sabkuch/index.html"}, {"@type": "ListItem", "position": 2, "name": "Travel Tools", "item": "https://sabkuchtools.github.io/sabkuch/travel-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Packing Checklist"}]}
+</script>
+<style>
+.pk-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem;margin-bottom:1rem}
+.pk-progress{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;margin:1rem 0}
+.pk-bar{height:10px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:.5rem}
+.pk-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#7c3aed);border-radius:99px;transition:width .3s}
+.pk-cat{margin-bottom:1.1rem}
+.pk-cat>h4{margin:0 0 .4rem;font-size:.95rem;display:flex;justify-content:space-between;align-items:center}
+.pk-cat>h4 span{font-size:.78rem;color:var(--muted);font-weight:500}
+.pk-item{display:flex;align-items:center;gap:.65rem;padding:.5rem .6rem;border:1px solid var(--border);border-radius:10px;margin-bottom:.4rem;background:var(--bg)}
+.pk-item input[type=checkbox]{width:19px;height:19px;accent-color:var(--blue);flex:none}
+.pk-item.done label{text-decoration:line-through;color:var(--muted)}
+.pk-item label{flex:1;font-size:.92rem;cursor:pointer}
+.pk-qty{font-size:.75rem;background:var(--blue-tint);color:var(--blue-dark);border-radius:99px;padding:.1rem .55rem;font-weight:700;white-space:nowrap}
+.pk-del{border:none;background:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:.2rem}
+.pk-del:hover{color:#dc2626}
+.pk-add{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.pk-add input{flex:2 1 180px}
+.pk-add select{flex:1 1 130px}
+.checkline{display:flex;align-items:center;gap:.5rem;font-size:.9rem;margin:.2rem 0}
+.checkline input{width:18px;height:18px;accent-color:var(--blue)}
+@media print{.site-header,.sidebar,.share-row,.faq-section,.more-tools,.site-footer,.pk-form,.pk-add,.pk-actions,.pk-del{display:none!important}.pk-item{break-inside:avoid}}
+</style></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="index.html"><span class="logo-mark">S</span>SabKuch</a><div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…" autocomplete="off"></div><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 10.8l6.6-3.6M8.2 13.2l6.6 3.6"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10"/><path d="M7 12h7"/><path d="M8.5 16.5s1.2 1.8 3.5 1.8 3.5-1.8 3.5-1.8"/></svg>Meme Tools</a>
+<a class="side-link active" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>Travel Tools</a>
+<a class="side-link" href="seo-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO Tools</a>
+<a class="side-link" href="finance-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finance Tools</a>
+<a class="side-link" href="health-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Health Tools</a>
+<a class="side-link" href="pdf-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF Tools</a>
+<a class="side-link" href="writing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Writing Tools</a>
+<a class="side-link" href="marketing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>Marketing Tools</a>
+<a class="side-link" href="education-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Education Tools</a>
+<a class="side-link" href="security-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Tools</a>
+<a class="side-link" href="business-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Business Tools</a>
+<a class="side-link" href="everyday-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="pakistan-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="islamic-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg>Video Tools</a>
+<a class="side-link" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>Audio Tools</a>
+<a class="side-link" href="font-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Font Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Meme Tools</a>
+<a class="side-link" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5c1-1 1-2.6 0-3.6s-2.6-1-3.6 0L12.4 7.4 4.2 5.6c-.5-.1-1 .1-1.2.6l-.3.6c-.2.5 0 1 .6 1.2L9 9l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 1.1 5.7c.1.6.7.9 1.2.6l.6-.3c.5-.2.7-.7.6-1.2z"/></svg>Travel Tools</a>
+<a class="side-link" href="real-estate-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Real Estate Tools</a>
+<a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
+<a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+<a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="travel-tools.html">Travel Tools</a><span>›</span><span>Packing Checklist</span></nav>
+<h1>Packing Checklist</h1><p class="tool-desc">Answer 5 quick questions and get a smart, categorized packing list with quantities — check items off as you pack.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
+<div class="tool-panel">
+<div class="pk-form">
+<div class="field"><label for="pkDest">Destination</label><input type="text" id="pkDest" placeholder="e.g. Dubai"></div>
+<div class="field"><label for="pkType">Trip type</label><select id="pkType">
+<option value="beach">🏖️ Beach holiday</option><option value="business">💼 Business trip</option>
+<option value="adventure">🏔️ Adventure / trekking</option><option value="family">👨‍👩‍👧 Family vacation</option></select></div>
+<div class="field"><label for="pkDays">Trip length (days)</label><input type="number" id="pkDays" min="1" max="90" value="7"></div>
+<div class="field"><label for="pkWeather">Expected weather</label><select id="pkWeather">
+<option value="hot">🔥 Hot (30°C+)</option><option value="warm" selected>🌤️ Warm (20–30°C)</option>
+<option value="cool">🍂 Cool (10–20°C)</option><option value="cold">❄️ Cold (below 10°C)</option>
+<option value="rainy">🌧️ Rainy season</option></select></div>
+</div>
+<div class="checkline"><input type="checkbox" id="pkLaundry"><label for="pkLaundry">I can do laundry during the trip (packs lighter)</label></div>
+<div class="pk-actions" style="margin-top:.8rem;display:flex;gap:.6rem;flex-wrap:wrap">
+<button class="btn btn-primary" id="pkGen" type="button">🎒 Generate my packing list</button>
+<button class="btn btn-ghost" id="pkPrint" type="button">🖨️ Print</button>
+<button class="btn btn-ghost" id="pkReset" type="button">↺ Reset</button>
+</div>
+<div class="pk-progress" id="pkProgress" style="display:none">
+<div style="display:flex;justify-content:space-between;align-items:center"><b>Packing progress</b><span id="pkPct">0%</span></div>
+<div class="pk-bar"><i id="pkBar" style="width:0%"></i></div>
+<p style="font-size:.8rem;color:var(--muted);margin:.4rem 0 0" id="pkCount"></p>
+</div>
+<div id="pkList" style="margin-top:1rem"></div>
+<div class="pk-add" id="pkAddRow" style="display:none">
+<input type="text" id="pkCustom" placeholder="Add your own item…" maxlength="80">
+<select id="pkCustomCat"></select>
+<button class="btn btn-ghost" id="pkAddBtn" type="button">+ Add</button>
+</div>
+</div>
+</div><section class="faq-section"><h2>Packing Checklist — FAQs</h2>
+<details class="faq-item"><summary>How does the smart packing list work?</summary><p>Choose your trip type, duration and weather — the tool builds a categorized checklist with smart quantities (e.g. shirts per day) plus trip-specific gear.</p></details>
+<details class="faq-item"><summary>Is my packing list saved?</summary><p>Yes — your list, checks and custom items are auto-saved in your browser (localStorage), so you can close the tab and come back.</p></details>
+<details class="faq-item"><summary>Can I add my own items and print?</summary><p>Yes. Add custom items to any category, remove ones you don't need, and print the finished list with one click.</p></details>
+</section>
+<section class="more-tools"><h2>Try More Free Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="flight-duration-calculator.html"><span>Flight Duration Calculator</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="travel-budget-planner.html"><span>Travel Budget Planner</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="currency-converter.html"><span>Currency Converter</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="qr-generator.html"><span>QR Generator</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer">
+<p>© 2026 SabKuch · Free online tools, no signup.</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/sabkuchtools/sabkuch">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+(function(){
+var LS="sabkuch_packing_v1";
+var CATS=[["docs","📄 Documents & Money"],["clothes","👕 Clothing"],["toilet","🧴 Toiletries"],["tech","🔌 Tech & Gadgets"],["health","💊 Health"],["extras","🎯 Trip Extras"]];
+function $(id){return document.getElementById(id);}
+var uid=0;
+function item(cat,label,qty){return{id:"i"+(++uid)+"_"+Math.random().toString(36).slice(2,7),cat:cat,label:label,qty:qty||0,checked:false,custom:false};}
+function buildList(){
+  var type=$("pkType").value,wx=$("pkWeather").value,days=Math.max(1,Math.min(90,+$("pkDays").value||7));
+  var laundry=$("pkLaundry").checked;
+  var tops=Math.min(days,7),und=laundry?Math.min(Math.ceil(days/2),7):Math.min(days,10);
+  var bots=Math.min(Math.ceil(days/2),4),sleep=Math.min(Math.ceil(days/3),3);
+  var L=[];
+  L.push(item("docs","Passport / national ID card"));L.push(item("docs","Flight / train tickets (printed or offline)"));
+  L.push(item("docs","Hotel booking confirmations"));L.push(item("docs","Wallet, debit/credit cards + some cash"));
+  L.push(item("docs","Travel insurance documents"));L.push(item("docs","Emergency contact numbers"));
+  L.push(item("clothes","T-shirts / tops",tops));L.push(item("clothes","Trousers / jeans",bots));
+  L.push(item("clothes","Underwear",und));L.push(item("clothes","Socks",und));L.push(item("clothes","Sleepwear",sleep));
+  L.push(item("clothes","Comfortable walking shoes"));
+  if(wx==="hot")L.push(item("clothes","Light breathable clothes + cap"));
+  if(wx==="warm")L.push(item("clothes","Light jacket for cool evenings"));
+  if(wx==="cool")L.push(item("clothes","Warm jacket + layers"));
+  if(wx==="cold"){L.push(item("clothes","Heavy winter coat"));L.push(item("clothes","Gloves, scarf & beanie"));L.push(item("clothes","Thermal innerwear",2));}
+  if(wx==="rainy"){L.push(item("clothes","Raincoat / compact umbrella"));L.push(item("clothes","Quick-dry clothes",2));}
+  if(type==="beach"){L.push(item("clothes","Swimwear",2));L.push(item("clothes","Flip-flops / sandals"));}
+  if(type==="business"){L.push(item("clothes","Formal shirts / blouses",Math.min(days,5)));L.push(item("clothes","Blazer / suit"));L.push(item("clothes","Formal shoes"));L.push(item("clothes","Tie / formal accessories"));}
+  if(type==="adventure"){L.push(item("clothes","Hiking boots (broken in!)"));L.push(item("clothes","Trek pants / shorts",2));L.push(item("clothes","Moisture-wicking base layers",2));}
+  L.push(item("toilet","Toothbrush + toothpaste"));L.push(item("toilet","Shampoo + soap / body wash"));L.push(item("toilet","Deodorant"));
+  L.push(item("toilet","Razor / shaving kit"));L.push(item("toilet","Comb / hairbrush"));L.push(item("toilet","Towel (quick-dry)"));
+  if(wx==="cold")L.push(item("toilet","Moisturizer + lip balm"));
+  if(wx==="hot"||type==="beach"||wx==="warm")L.push(item("toilet","Sunscreen SPF 50"));
+  L.push(item("tech","Phone + charger"));L.push(item("tech","Power bank (charged)"));L.push(item("tech","Universal travel adapter"));
+  L.push(item("tech","Headphones / earbuds"));
+  if(type==="business"){L.push(item("tech","Laptop + charger"));L.push(item("tech","Presentation clicker / USB drive"));}
+  if(type==="adventure"||type==="beach")L.push(item("tech","Camera / action cam + memory card"));
+  if(type==="family")L.push(item("tech","Tablet loaded with kids' shows"));
+  L.push(item("health","Personal prescription medicines"));L.push(item("health","Basic first-aid kit (bandages, antiseptic)"));
+  L.push(item("health","Hand sanitizer + tissues"));L.push(item("health","Motion-sickness pills"));
+  if(type==="adventure"||type==="beach")L.push(item("health","Insect / mosquito repellent"));
+  if(wx==="hot")L.push(item("health","ORS / electrolyte sachets"));
+  if(type==="beach"){L.push(item("extras","Beach towel"));L.push(item("extras","Sunglasses"));L.push(item("extras","Waterproof phone pouch"));L.push(item("extras","Snorkel / beach games"));}
+  if(type==="business"){L.push(item("extras","Laptop bag / briefcase"));L.push(item("extras","Business cards"));L.push(item("extras","Notebook + pen"));L.push(item("extras","Travel iron / wrinkle spray"));}
+  if(type==="adventure"){L.push(item("extras","Daypack (20–30L)"));L.push(item("extras","Reusable water bottle"));L.push(item("extras","Headlamp / flashlight"));L.push(item("extras","Dry bag for valuables"));L.push(item("extras","Energy bars / trail snacks"));}
+  if(type==="family"){L.push(item("extras","Kids' snacks + water"));L.push(item("extras","Diapers / wipes (if needed)"));L.push(item("extras","Kids' games / coloring books"));L.push(item("extras","Extra clothes per child",2));L.push(item("extras","Baby carrier / stroller"));}
+  if(!L.some(function(x){return x.cat==="extras";}))L.push(item("extras","Reusable shopping bag"));
+  return L;
+}
+function save(items){
+  try{localStorage.setItem(LS,JSON.stringify({inputs:{dest:$("pkDest").value,type:$("pkType").value,days:$("pkDays").value,wx:$("pkWeather").value,laundry:$("pkLaundry").checked},items:items}));}catch(e){}
+}
+function load(){try{var d=JSON.parse(localStorage.getItem(LS));return d&&d.items?d:null;}catch(e){return null;}}
+var items=[];
+function render(){
+  var host=$("pkList");host.innerHTML="";
+  if(!items.length){host.innerHTML='<p style="color:var(--muted);font-size:.9rem">Click "Generate my packing list" to build your smart checklist.</p>';
+    $("pkProgress").style.display="none";$("pkAddRow").style.display="none";return;}
+  $("pkProgress").style.display="block";$("pkAddRow").style.display="flex";
+  CATS.forEach(function(c){
+    var list=items.filter(function(i){return i.cat===c[0];});
+    if(!list.length)return;
+    var done=list.filter(function(i){return i.checked;}).length;
+    var box=document.createElement("div");box.className="pk-cat";
+    var h=document.createElement("h4");h.innerHTML=c[1]+' <span>'+done+"/"+list.length+" packed</span>";
+    box.appendChild(h);
+    list.forEach(function(it){
+      var row=document.createElement("div");row.className="pk-item"+(it.checked?" done":"");
+      var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!it.checked;cb.setAttribute("aria-label",it.label);
+      cb.onchange=function(){it.checked=cb.checked;save(items);render();};
+      var lb=document.createElement("label");lb.textContent=it.label;
+      lb.onclick=function(){cb.checked=!cb.checked;cb.onchange();};
+      row.appendChild(cb);row.appendChild(lb);
+      if(it.qty>1){var q=document.createElement("span");q.className="pk-qty";q.textContent="×"+it.qty;row.appendChild(q);}
+      var del=document.createElement("button");del.className="pk-del";del.type="button";del.title="Remove";del.textContent="✕";
+      del.onclick=function(){items=items.filter(function(x){return x.id!==it.id;});save(items);render();};
+      row.appendChild(del);box.appendChild(row);
+    });
+    host.appendChild(box);
+  });
+  var total=items.length,done=items.filter(function(i){return i.checked;}).length;
+  var pct=total?Math.round(done/total*100):0;
+  $("pkBar").style.width=pct+"%";$("pkPct").textContent=pct+"%";
+  $("pkCount").textContent=done+" of "+total+" items packed"+(pct===100?" — you're ready to go! 🧳":"");
+}
+$("pkGen").onclick=function(){
+  items=buildList();save(items);render();
+  var pl=$("pkList");if(pl.scrollIntoView)pl.scrollIntoView({behavior:"smooth",block:"start"});
+};
+$("pkReset").onclick=function(){if(confirm("Clear your packing list and start over?")){items=[];try{localStorage.removeItem(LS);}catch(e){}render();}};
+$("pkPrint").onclick=function(){window.print();};
+var cc=$("pkCustomCat");
+CATS.forEach(function(c){var o=document.createElement("option");o.value=c[0];o.textContent=c[1];cc.appendChild(o);});
+$("pkAddBtn").onclick=function(){
+  var v=$("pkCustom").value.trim();if(!v)return;
+  var it=item(cc.value,v);it.custom=true;items.push(it);
+  $("pkCustom").value="";save(items);render();
+};
+$("pkCustom").addEventListener("keydown",function(e){if(e.key==="Enter")$("pkAddBtn").click();});
+["pkDest","pkType","pkDays","pkWeather","pkLaundry"].forEach(function(id){
+  $(id).addEventListener("change",function(){if(items.length)save(items);});
+});
+(function init(){
+  var d=load();
+  if(d){$("pkDest").value=d.inputs.dest||"";$("pkType").value=d.inputs.type||"beach";
+    $("pkDays").value=d.inputs.days||7;$("pkWeather").value=d.inputs.wx||"warm";$("pkLaundry").checked=!!d.inputs.laundry;
+    items=d.items;var max=0;items.forEach(function(i){var m=/^i(\d+)_/.exec(i.id);if(m)max=Math.max(max,+m[1]);});uid=max;}
+  render();
+})();
+})();
+</script>
+</body></html>

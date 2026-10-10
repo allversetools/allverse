@@ -2,7 +2,7 @@
 
 Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 
-## Categories (23)
+## Categories (33)
 
 | File | Label |
 |---|---|
@@ -29,8 +29,18 @@ Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 | pakistan-tools.html | Pakistan Utilities |
 | islamic-tools.html | Islamic Tools |
 | ai-tools.html | AI Tools |
+| cooking-tools.html | Cooking Tools |
+| sports-tools.html | Sports Tools |
+| wedding-tools.html | Wedding Tools |
+| real-estate-tools.html | Real Estate Tools |
+| travel-tools.html | Travel Tools |
+| meme-tools.html | Meme Tools |
+| font-tools.html | Font Tools |
+| audio-tools.html | Audio Tools |
+| video-tools.html | Video Tools |
+| resume-tools.html | Resume Tools |
 
-## Tools (96)
+## Tools (134)
 
 | income-tax-calculator-pakistan.html | pakistan-tools.html | pakistan-tools.html |
 | electricity-bill-calculator.html | pakistan-tools.html | pakistan-tools.html |
@@ -59,6 +69,40 @@ Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 | ai-chat.html | ai-tools.html | ai-tools.html |
 | ai-paraphraser.html | ai-tools.html | ai-tools.html |
 | text-to-speech-studio.html | ai-tools.html | ai-tools.html |
+| resume-builder.html | resume-builder.html | resume-tools.html |
+| ats-resume-checker.html | ats-resume-checker.html | resume-tools.html |
+| cover-letter-generator.html | cover-letter-generator.html | resume-tools.html |
+| resume-templates.html | resume-templates.html | resume-tools.html |
+| video-to-gif.html | video-to-gif.html | video-tools.html |
+| video-metadata-viewer.html | video-metadata-viewer.html | video-tools.html |
+| video-timestamp-link.html | video-timestamp-link.html | video-tools.html |
+| voice-recorder.html | voice-recorder.html | audio-tools.html |
+| audio-trimmer.html | audio-trimmer.html | audio-tools.html |
+| metronome.html | metronome.html | audio-tools.html |
+| fancy-text-generator.html | fancy-text-generator.html | font-tools.html |
+| font-pairing.html | font-pairing.html | font-tools.html |
+| text-art-generator.html | text-art-generator.html | font-tools.html |
+| meme-maker.html | meme-maker.html | meme-tools.html |
+| meme-templates.html | meme-templates.html | meme-tools.html |
+| flight-duration-calculator.html | flight-duration-calculator.html | travel-tools.html |
+| packing-checklist.html | packing-checklist.html | travel-tools.html |
+| travel-budget-planner.html | travel-budget-planner.html | travel-tools.html |
+| plot-area-converter.html | plot-area-converter.html | real-estate-tools.html |
+| plot-price-calculator.html | plot-price-calculator.html | real-estate-tools.html |
+| stamp-duty-calculator.html | stamp-duty-calculator.html | real-estate-tools.html |
+| rent-vs-buy-calculator.html | rent-vs-buy-calculator.html | real-estate-tools.html |
+| wedding-budget-planner.html | wedding-budget-planner.html | wedding-tools.html |
+| wedding-expense-splitter.html | wedding-expense-splitter.html | wedding-tools.html |
+| guest-list-manager.html | guest-list-manager.html | wedding-tools.html |
+| wedding-countdown.html | wedding-countdown.html | wedding-tools.html |
+| net-run-rate-calculator.html | net-run-rate-calculator.html | sports-tools.html |
+| required-run-rate-calculator.html | required-run-rate-calculator.html | sports-tools.html |
+| dls-par-score.html | dls-par-score.html | sports-tools.html |
+| points-table-maker.html | points-table-maker.html | sports-tools.html |
+| recipe-scaler.html | recipe-scaler.html | cooking-tools.html |
+| cooking-unit-converter.html | cooking-unit-converter.html | cooking-tools.html |
+| ingredient-substitution.html | ingredient-substitution.html | cooking-tools.html |
+| cooking-timer.html | cooking-timer.html | cooking-tools.html |
 
 | File | Category page | Back link target |
 |---|---|---|
