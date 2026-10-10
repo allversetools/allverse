@@ -1819,3 +1819,40 @@ body { transition: background-color .45s ease, color .45s ease; }
 /* ---- hourly-improve run 3: monoline SVG tool-card icons ---- */
 .card-icon svg.ic{width:26px;height:26px;display:block}
 .tool-card:hover .card-icon{color:var(--accent)}
+
+/* ---- hourly-improve run 4: hairline borders + grid discipline ---- */
+/* Cards: flat, hairline, no lift/glass/tilt — hover = accent hairline only */
+.tool-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow:none;
+  transform:none;
+  transition:border-color .18s ease, background-color .18s ease;
+  overflow:hidden;
+}
+.tool-card:hover{
+  transform:none;
+  border-color:var(--accent);
+  box-shadow:none;
+}
+.tool-card:active{transform:none}
+.tool-card::after{display:none}
+.tool-card:hover .card-icon{background:var(--blue-tint)}
+[data-theme="dark"] .tool-card{
+  background:var(--card);
+  border-color:var(--border);
+  box-shadow:none;
+  transform:none;
+}
+[data-theme="dark"] .tool-card:hover{
+  border-color:var(--accent);
+  box-shadow:none;
+  transform:none;
+}
+/* Sidebar locks into the grid with a right hairline (drawer shadow gone too) */
+.sidebar{border-right:1px solid var(--border);box-shadow:none!important}
+/* Search: crisp 1px hairline (accent focus ring stays — interactive state) */
+.search-input{border-width:1px}
+/* Tool panels: hairline only, no drop shadow */
+.tool-panel{box-shadow:none}
