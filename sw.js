@@ -1,15 +1,15 @@
-/* SabKuch service worker — cache-first for static assets, network fallback. */
+/* AllVerse service worker — cache-first for static assets, network fallback. */
 (function () {
   'use strict';
-  var CACHE = 'sabkuch-v1';
+  var CACHE = 'allverse-v1';
   var CORE = [
-    '/sabkuch/',
-    '/sabkuch/index.html',
-    '/sabkuch/css/style.css',
-    '/sabkuch/js/main.js',
-    '/sabkuch/manifest.json',
-    '/sabkuch/images/icon-192.png',
-    '/sabkuch/og-image.png'
+    '/allverse/',
+    '/allverse/index.html',
+    '/allverse/css/style.css',
+    '/allverse/js/main.js',
+    '/allverse/manifest.json',
+    '/allverse/images/icon-192.png',
+    '/allverse/og-image.png'
   ];
 
   self.addEventListener('install', function (e) {
@@ -33,9 +33,9 @@
     var req = e.request;
     if (req.method !== 'GET') return;
     var url = new URL(req.url);
-    // Only handle same-origin requests under /sabkuch/
+    // Only handle same-origin requests under /allverse/
     if (url.origin !== self.location.origin) return;
-    if (url.pathname.indexOf('/sabkuch/') !== 0) return;
+    if (url.pathname.indexOf('/allverse/') !== 0) return;
     e.respondWith(
       caches.match(req, { ignoreSearch: false }).then(function (hit) {
         if (hit) return hit;
@@ -47,7 +47,7 @@
           }
           return res;
         }).catch(function () {
-          return caches.match('/sabkuch/index.html');
+          return caches.match('/allverse/index.html');
         });
       })
     );

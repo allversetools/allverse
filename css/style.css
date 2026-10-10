@@ -1,5 +1,5 @@
 /* ============================================================
-   SabKuch — Shared Design System
+   AllVerse — Shared Design System
    Light theme, Apple-style clean. Static site (GitHub Pages).
    Pages provide their own Google Fonts <link> for Inter.
    ============================================================ */
@@ -709,7 +709,7 @@ a.logo {
 }
 
 /* ============================================================
-   SabKuch v2 — ChatGPT + Gemini upgrades
+   AllVerse v2 — ChatGPT + Gemini upgrades
    Dark mode, spotlight, tilt glare, spring physics,
    command palette, skeletons, favorites, reduced motion
    ============================================================ */
@@ -1365,7 +1365,7 @@ a.logo {
 }
 
 /* ============================================================
-   SabKuch 3D design-system upgrade (2026-10-09)
+   AllVerse 3D design-system upgrade (2026-10-09)
    APPENDED — existing rules above are untouched.
    1. View transitions  2. Layered 3D shadows  3. Category
    materials  4. Result moments  5. Smart paste  6. Trust
@@ -1571,7 +1571,7 @@ body[data-cat="date-time"] .stat b.fx-flip { display: inline-block; animation: f
 }
 
 /* ============================================================
-   SabKuch — Google-style search dropdown
+   AllVerse — Google-style search dropdown
    ============================================================ */
 .sk-search-drop {
   position: absolute;

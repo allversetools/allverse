@@ -1,5 +1,5 @@
 /* ============================================================
-   SabKuch FX — 3D design-system behaviours (vanilla JS)
+   AllVerse FX — 3D design-system behaviours (vanilla JS)
    All null-guarded IIFEs. No libraries. Respects
    prefers-reduced-motion everywhere.
    ============================================================ */

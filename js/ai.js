@@ -1,5 +1,5 @@
 /* ============================================================
-   SabKuch — Shared AI helper (vanilla JS, no dependencies)
+   AllVerse — Shared AI helper (vanilla JS, no dependencies)
    - aiChat(prompt, systemPrompt): free text generation
      tries LLM7 (OpenAI-compatible) first, falls back to
      Pollinations text API. $0 cost, no API keys.

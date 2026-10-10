@@ -1,4 +1,4 @@
-# SabKuch — Free Online Tools
+# AllVerse — Free Online Tools
 
 One website, every daily tool. Static HTML/CSS/JS — no backend, no signup, no build step.
 
@@ -14,7 +14,7 @@ One website, every daily tool. Static HTML/CSS/JS — no backend, no signup, no 
 ## Preview locally
 
 ```bash
-cd ~/workspace/sabkuch-website
+cd ~/workspace/allverse-website
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
@@ -24,11 +24,11 @@ QR generator, which needs its CDN script over http/https.)
 
 ## Deploy to GitHub Pages (free)
 
-1. Create a new GitHub repo (e.g. `sabkuch`), **public**.
+1. Create a new GitHub repo (e.g. `allverse`), **public**.
 2. Push this folder's contents to the repo root (so `index.html` is at `/`).
 3. Repo → **Settings → Pages** → Source: **Deploy from a branch** →
    Branch: `main`, folder: `/ (root)` → Save.
-4. Your site is live at `https://sabkuchtools.github.io/sabkuch/` within a minute or two.
+4. Your site is live at `https://sabkuchtools.github.io/allverse/` within a minute or two.
 
 Custom domain (optional): add a `CNAME` file with your domain, then point your
 DNS A-records at GitHub Pages IPs (see GitHub docs).

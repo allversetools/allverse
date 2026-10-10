@@ -1,4 +1,4 @@
-# SabKuch — Tools Registry
+# AllVerse — Tools Registry
 
 Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 

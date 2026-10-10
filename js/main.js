@@ -1,5 +1,5 @@
 /* ============================================================
-   SabKuch — Shared behaviour (vanilla JS, no dependencies)
+   AllVerse — Shared behaviour (vanilla JS, no dependencies)
    1. Mobile sidebar menu   2. Live tool search
    3. Scroll reveal          4. Card tilt + glare (CSS vars)
    5. Button ripple         6. Global SK helpers (copy / download)

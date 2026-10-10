@@ -1,4 +1,4 @@
-# SabKuch — Product Hunt Launch Checklist
+# AllVerse — Product Hunt Launch Checklist
 
 ## Before launch day (do these now)
 - [ ] Create a Product Hunt account (producthunt.com) — use a real name + photo; accounts older than 30 days carry more weight
@@ -9,10 +9,10 @@
 
 ## Launch day — 12:01 AM PST sharp (that's 12:01 PM Pakistan time)
 - [ ] Submit at producthunt.com/posts/new at exactly 12:01 AM PST — copy-paste from this folder:
-  - Name: `SabKuch`
+  - Name: `AllVerse`
   - Tagline: from `tagline.txt`
   - Description: short version from `description.txt`
-  - Link: `https://sabkuchtools.github.io/sabkuch/`
+  - Link: `https://sabkuchtools.github.io/allverse/`
   - Topics: from `topics.txt`
   - Thumbnail: `thumbnail.png` (240×240)
   - Gallery: upload the 4 screenshots in order
@@ -27,10 +27,10 @@
 
 ## After launch (24h–7 days)
 - [ ] Keep replying to comments for at least 24 hours
-- [ ] If you rank Top 5: add the Product Hunt badge to sabkuch-website/index.html (embed code from PH) — it's permanent social proof + an SEO backlink
+- [ ] If you rank Top 5: add the Product Hunt badge to allverse-website/index.html (embed code from PH) — it's permanent social proof + an SEO backlink
 - [ ] Turn repeated questions into FAQ content on the site
 - [ ] Post a short "we launched" recap on YouTube/socials
-- [ ] You can re-launch on major updates (e.g. "SabKuch 2.0 — 150 tools") — multi-launch is normal on PH
+- [ ] You can re-launch on major updates (e.g. "AllVerse 2.0 — 150 tools") — multi-launch is normal on PH
 
 ## What NOT to do
 - ❌ Don't ask people for upvotes directly (ask for feedback/comments instead)

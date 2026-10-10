@@ -1,5 +1,5 @@
 /* ============================================================
-   SabKuch — Google-style smart search (vanilla JS, no deps)
+   AllVerse — Google-style smart search (vanilla JS, no deps)
    Features:
    1. Autocomplete dropdown (up to 8, icons, category, <mark>)
    2. Fuzzy matching (typo tolerance, no library)

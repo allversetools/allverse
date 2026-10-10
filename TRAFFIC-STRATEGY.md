@@ -1,6 +1,6 @@
-# SabKuch Traffic + Monetization Strategy
+# AllVerse Traffic + Monetization Strategy
 
-**Site:** https://sabkuchtools.github.io/sabkuch/
+**Site:** https://sabkuchtools.github.io/allverse/
 **Status (Oct 2026):** 96 tools, 23 categories, 125 pages, GitHub Pages, $0 budget
 **Goal:** Maximum traffic → Google AdSense revenue
 **Owner time budget:** ~5 hrs/week
@@ -50,7 +50,7 @@ Submit to these FREE directories (copy-paste the Product Hunt kit description, b
 Each listing = 1 backlink from a high-authority domain. 10 listings ≈ the SEO value of 3 months of blogging.
 
 ### 1.4 YouTube channel cross-promo (30 min)
-- The Cricket Lab community tab / video description: add SabKuch link on 2–3 videos ("Free tools I use for my videos")
+- The Cricket Lab community tab / video description: add AllVerse link on 2–3 videos ("Free tools I use for my videos")
 - Pin a comment on the next cricket video: "Video editing tools I use free — link in description"
 - Why: YouTube notices external traffic in the first 24–48h; even 50 clicks/day from YouTube tells Google the site is alive
 
@@ -70,7 +70,7 @@ Pinterest is a visual SEARCH engine, not social media. Pins rank for months. Zer
 **Setup (done in Phase 1):** business account, claimed website, 4 boards.
 
 **Weekly routine (2 hrs):**
-- Create 10–14 new pins/week (2/day): 1 pin = 1 tool. 1000×1500px vertical, bold headline, "FREE • NO SIGNUP" badge, SabKuch branding.
+- Create 10–14 new pins/week (2/day): 1 pin = 1 tool. 1000×1500px vertical, bold headline, "FREE • NO SIGNUP" badge, AllVerse branding.
 - Pin title = what people search: "Free AI Image Generator No Signup", "EMI Calculator Pakistan", "Word Counter Online Free"
 - Pin description = 2 sentences + keywords + link to the exact tool page (not homepage)
 - 5 pin design variations per top tool — test which style gets clicks, double down on winners
@@ -95,14 +95,14 @@ Pinterest is a visual SEARCH engine, not social media. Pins rank for months. Zer
 - NEVER: post the same link in 5 subreddits in one day, use multiple accounts, argue with mods.
 
 **Quora playbook:**
-- Answer questions like "What is the best free word counter tool?" with a genuinely helpful answer FIRST (explain what to look for), link SabKuch naturally at the end.
+- Answer questions like "What is the best free word counter tool?" with a genuinely helpful answer FIRST (explain what to look for), link AllVerse naturally at the end.
 - Quora answers get indexed by Google — they rank for years. 2–3 good answers/week compounds.
-- Profile bio links to SabKuch.
+- Profile bio links to AllVerse.
 
 ### 2.4 Short-form video (1 hr/week — owner already has the accounts)
-- 2 Shorts/week (YouTube Shorts + TikTok + IG Reels, same video): screen-record using a SabKuch tool for 20 seconds. Format: "POV: you need X → this free tool does it in 10 seconds."
+- 2 Shorts/week (YouTube Shorts + TikTok + IG Reels, same video): screen-record using a AllVerse tool for 20 seconds. Format: "POV: you need X → this free tool does it in 10 seconds."
 - Best performers for tools: AI Image Generator, Logo Maker, Background Remover, Password Generator, QR Generator.
-- Link in bio / description. Even 200 views/video × 6 videos = real traffic + brand searches (Google sees "sabkuch" searches = trust signal).
+- Link in bio / description. Even 200 views/video × 6 videos = real traffic + brand searches (Google sees "allverse" searches = trust signal).
 
 ### 2.5 Product Hunt launch (one-time, high effort)
 - Kit ready in product-hunt/. Launch Tue/Wed/Thu at 12:01 AM PST (= 12:01 PM PKT).
@@ -117,7 +117,7 @@ Pinterest is a visual SEARCH engine, not social media. Pins rank for months. Zer
 ### 3.1 AdSense application timing
 **Apply when ALL of these are true:**
 - [ ] Domain age ≥ 45–60 days (site launched Oct 2026 → apply Dec 2026 earliest)
-- [ ] ≥ 25–30 pages indexed in Google (check: site:sabkuchtools.github.io/sabkuch)
+- [ ] ≥ 25–30 pages indexed in Google (check: site:sabkuchtools.github.io/allverse)
 - [ ] ≥ 30–50 daily organic visitors (GSC → Performance)
 - [ ] About, Contact, Privacy Policy, Terms pages live and linked
 - [ ] No broken links, mobile-friendly, fast load (already true)
@@ -177,7 +177,7 @@ Pinterest is a visual SEARCH engine, not social media. Pins rank for months. Zer
 
 **Thursday (1 hr) — Community**
 - [ ] Reddit: 5–10 helpful comments (no links unless genuinely asked)
-- [ ] Quora: 2–3 detailed answers with natural SabKuch link at the end
+- [ ] Quora: 2–3 detailed answers with natural AllVerse link at the end
 
 **Saturday (1.5 hrs) — Video + build**
 - [ ] Record + post 2 Shorts (tool demos) to YT Shorts/TikTok/IG

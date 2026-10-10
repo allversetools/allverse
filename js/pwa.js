@@ -1,4 +1,4 @@
-/* SabKuch PWA helpers — service worker registration + install prompt banner.
+/* AllVerse PWA helpers — service worker registration + install prompt banner.
  * Null-guarded IIFE, no dependencies. Safe to include on any page. */
 (function () {
   'use strict';
@@ -24,7 +24,7 @@
   var isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(w.location.hostname);
   if ((isSecureCtx || isLocal) && 'serviceWorker' in w.navigator) {
     try {
-      w.navigator.serviceWorker.register('/sabkuch/sw.js').catch(function () {});
+      w.navigator.serviceWorker.register('/allverse/sw.js').catch(function () {});
     } catch (e) {}
   }
 
@@ -89,13 +89,13 @@
     var bar = d.createElement('div');
     bar.id = 'skPwaBanner';
     bar.setAttribute('role', 'dialog');
-    bar.setAttribute('aria-label', 'Install SabKuch app');
+    bar.setAttribute('aria-label', 'Install AllVerse app');
 
     var ico = d.createElement('div');
     ico.className = 'sk-pwa-ico'; ico.textContent = 'S';
     var txt = d.createElement('div');
     txt.className = 'sk-pwa-txt';
-    var b = d.createElement('b'); b.textContent = 'Install SabKuch app';
+    var b = d.createElement('b'); b.textContent = 'Install AllVerse app';
     var sp = d.createElement('span'); sp.textContent = 'Faster access, works offline';
     txt.appendChild(b); txt.appendChild(sp);
 
