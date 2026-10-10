@@ -68,9 +68,12 @@
 <h1 class="reveal">Every Tool<br>You Need.</h1>
 <p class="lead reveal">134 free online tools. No signup, no watermarks — just open and use.</p>
 <div class="smart-paste">
-<input id="smartPasteInput" type="text" placeholder="Paste anything — JSON, color, link, date, number…" autocomplete="off" spellcheck="false" aria-label="Smart paste: paste anything to find the right tool">
+<label class="sp-bar" for="smartPasteInput">
+<span class="sp-prompt" aria-hidden="true">›</span>
+<input id="smartPasteInput" type="text" placeholder="paste anything — json, color, link, date, number…" autocomplete="off" spellcheck="false" aria-label="Smart paste: paste anything to find the right tool">
+</label>
 <div class="sp-chips" id="smartPasteChips"></div>
-<p class="sp-hint">Paste anything above — we'll point you to the right tool.</p>
+<p class="sp-hint"><span class="sp-status" aria-hidden="true"></span><span>ready — paste anything, we'll route it to the right tool</span></p>
 </div>
 <div class="hero-stats reveal">
 <div class="hero-stat"><b>134</b><span>Free tools</span></div>

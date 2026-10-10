@@ -1856,3 +1856,65 @@ body { transition: background-color .45s ease, color .45s ease; }
 .search-input{border-width:1px}
 /* Tool panels: hairline only, no drop shadow */
 .tool-panel{box-shadow:none}
+
+/* ---- hourly-improve run 5: smart-paste card → command-bar terminal ---- */
+/* Shell: flat hairline card (gradient + chunky shadows removed); the bar is the star */
+.smart-paste{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow:none;
+  padding:16px;
+}
+[data-theme="dark"] .smart-paste{
+  background:var(--card);
+  border-color:var(--border);
+  box-shadow:none;
+}
+/* Command bar: single hairline, mono, terminal prompt — click anywhere to focus */
+.sp-bar{
+  display:flex;align-items:center;gap:10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  padding:0 14px;
+  cursor:text;
+  transition:border-color .18s ease, box-shadow .18s ease;
+}
+.sp-bar:focus-within{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(37,99,235,.14);
+}
+[data-theme="dark"] .sp-bar:focus-within{
+  box-shadow:0 0 0 3px rgba(107,155,255,.16);
+}
+.sp-prompt{
+  font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  font-weight:600;font-size:1.3rem;line-height:1;
+  color:var(--accent);
+  user-select:none;flex:none;
+}
+.smart-paste input{
+  border:none;background:transparent;box-shadow:none;border-radius:0;
+  padding:13px 0;
+  font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  font-size:.92rem;
+  caret-color:var(--accent);
+  color:inherit;
+}
+.smart-paste input:focus{border:none;box-shadow:none}
+.smart-paste input::placeholder{color:var(--muted);opacity:.75}
+/* Mono status line with a soft blinking status dot */
+.sp-hint{
+  font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.sp-status{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);flex:none;
+}
+@media (prefers-reduced-motion: no-preference){
+  .sp-status{animation:sp-blink 1.6s ease-in-out infinite}
+  @keyframes sp-blink{0%,100%{opacity:1}50%{opacity:.25}}
+}
