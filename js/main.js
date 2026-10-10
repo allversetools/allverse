@@ -46,7 +46,45 @@
     { name: 'URL Encoder Decoder', href: 'url-encoder-decoder.html', cat: 'Developer Tools', keys: 'encode decode uri percent' },
     { name: 'Slug Generator', href: 'slug-generator.html', cat: 'Text Tools', keys: 'url slug permalink kebab' },
     { name: 'Invoice Generator', href: 'invoice-generator.html', cat: 'Generators', keys: 'invoice bill pdf freelance' },
-    { name: 'Lorem Ipsum Generator', href: 'lorem-ipsum.html', cat: 'Text Tools', keys: 'lorem ipsum dummy placeholder text' }
+    { name: 'Lorem Ipsum Generator', href: 'lorem-ipsum.html', cat: 'Text Tools', keys: 'lorem ipsum dummy placeholder text' },
+    { name: 'Meta Tag Generator', href: 'meta-tag-generator.html', cat: 'SEO Tools', keys: 'meta tags generator seo open graph twitter card' },
+    { name: 'Keyword Density Checker', href: 'keyword-density-checker.html', cat: 'SEO Tools', keys: 'keyword density checker seo word frequency' },
+    { name: 'Robots.txt Generator', href: 'robots-txt-generator.html', cat: 'SEO Tools', keys: 'robots txt generator allow disallow sitemap' },
+    { name: 'Open Graph Preview', href: 'open-graph-preview.html', cat: 'SEO Tools', keys: 'open graph preview facebook twitter card link' },
+    { name: 'Compound Interest Calculator', href: 'compound-interest-calculator.html', cat: 'Finance Tools', keys: 'compound interest calculator investment growth' },
+    { name: 'SIP Calculator', href: 'sip-calculator.html', cat: 'Finance Tools', keys: 'sip calculator systematic investment plan mutual fund' },
+    { name: 'GST Calculator', href: 'gst-calculator.html', cat: 'Finance Tools', keys: 'gst calculator tax add remove rate' },
+    { name: 'Bill Splitter', href: 'bill-splitter.html', cat: 'Finance Tools', keys: 'bill splitter split tip per person share' },
+    { name: 'BMR Calculator', href: 'bmr-calculator.html', cat: 'Health Tools', keys: 'bmr calculator basal metabolic rate tdee calories' },
+    { name: 'Water Intake Calculator', href: 'water-intake-calculator.html', cat: 'Health Tools', keys: 'water intake calculator daily hydration liters' },
+    { name: 'Pregnancy Due Date Calculator', href: 'due-date-calculator.html', cat: 'Health Tools', keys: 'pregnancy due date calculator trimester weeks' },
+    { name: 'Body Fat Calculator', href: 'body-fat-calculator.html', cat: 'Health Tools', keys: 'body fat calculator navy method percentage' },
+    { name: 'Readability Checker', href: 'readability-checker.html', cat: 'Writing Tools', keys: 'readability checker flesch reading ease grade' },
+    { name: 'Text Summarizer', href: 'text-summarizer.html', cat: 'Writing Tools', keys: 'text summarizer article summary tldr' },
+    { name: 'Citation Generator', href: 'citation-generator.html', cat: 'Writing Tools', keys: 'citation generator apa mla bibliography' },
+    { name: 'Headline Analyzer', href: 'headline-analyzer.html', cat: 'Writing Tools', keys: 'headline analyzer title score blog seo' },
+    { name: 'ROI Calculator', href: 'roi-calculator.html', cat: 'Marketing Tools', keys: 'roi calculator roas ad spend return profit' },
+    { name: 'Engagement Rate Calculator', href: 'engagement-rate-calculator.html', cat: 'Marketing Tools', keys: 'engagement rate calculator instagram followers' },
+    { name: 'CPC Calculator', href: 'cpc-calculator.html', cat: 'Marketing Tools', keys: 'cpc calculator cpm cost per click impressions' },
+    { name: 'A/B Test Calculator', href: 'ab-test-calculator.html', cat: 'Marketing Tools', keys: 'ab test calculator significance conversion uplift' },
+    { name: 'GPA Calculator', href: 'gpa-calculator.html', cat: 'Education Tools', keys: 'gpa calculator grade point average credits' },
+    { name: 'Scientific Calculator', href: 'scientific-calculator.html', cat: 'Education Tools', keys: 'scientific calculator trigonometry log sqrt' },
+    { name: 'Pomodoro Timer', href: 'pomodoro-timer.html', cat: 'Education Tools', keys: 'pomodoro timer focus study productivity' },
+    { name: 'Final Grade Calculator', href: 'final-grade-calculator.html', cat: 'Education Tools', keys: 'final grade calculator exam score needed' },
+    { name: 'Merge PDF', href: 'merge-pdf.html', cat: 'PDF Tools', keys: 'merge pdf combine join concatenate' },
+    { name: 'Images to PDF', href: 'images-to-pdf.html', cat: 'PDF Tools', keys: 'images to pdf jpg png photo converter' },
+    { name: 'Split PDF', href: 'split-pdf.html', cat: 'PDF Tools', keys: 'split pdf extract pages ranges' },
+    { name: 'Password Strength Checker', href: 'password-strength-checker.html', cat: 'Security Tools', keys: 'password strength checker crack time' },
+    { name: 'Hash Generator', href: 'hash-generator.html', cat: 'Security Tools', keys: 'hash generator sha256 sha512 checksum' },
+    { name: 'Card Validator', href: 'card-validator.html', cat: 'Security Tools', keys: 'card validator luhn check demo' },
+    { name: 'Profit Margin Calculator', href: 'profit-margin-calculator.html', cat: 'Business Tools', keys: 'profit margin calculator markup pricing' },
+    { name: 'Freelance Rate Calculator', href: 'freelance-rate-calculator.html', cat: 'Business Tools', keys: 'freelance rate calculator hourly day rate' },
+    { name: 'Break-Even Calculator', href: 'break-even-calculator.html', cat: 'Business Tools', keys: 'break even calculator units revenue' },
+    { name: 'Business Name Generator', href: 'business-name-generator.html', cat: 'Business Tools', keys: 'business name generator startup brand ideas' },
+    { name: 'Stopwatch', href: 'stopwatch.html', cat: 'Everyday Tools', keys: 'stopwatch timer laps online' },
+    { name: 'Coin Flip', href: 'coin-flip.html', cat: 'Everyday Tools', keys: 'coin flip heads tails random toss' },
+    { name: 'Random Number Generator', href: 'random-number-generator.html', cat: 'Everyday Tools', keys: 'random number generator rng unique lottery' },
+    { name: 'Device Info', href: 'device-info.html', cat: 'Everyday Tools', keys: 'device info browser screen os specs' }
   ];
   function toolByHref(href) {
     for (var i = 0; i < TOOLS.length; i++) if (TOOLS[i].href === href) return TOOLS[i];
@@ -100,6 +138,11 @@
         document.querySelectorAll('.tool-card').forEach(function (card) {
           var name = (card.getAttribute('data-name') || card.textContent || '').toLowerCase();
           card.hidden = q !== '' && name.indexOf(q) === -1;
+        });
+        document.querySelectorAll('.subcat').forEach(function (h) {
+          var grid = h.nextElementSibling;
+          var visible = grid ? grid.querySelectorAll('.tool-card:not([hidden])').length : 1;
+          h.hidden = q !== '' && visible === 0;
         });
         document.querySelectorAll('.cat-section').forEach(function (section) {
           var visible = section.querySelectorAll('.tool-card:not([hidden])').length;
