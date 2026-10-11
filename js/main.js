@@ -605,3 +605,15 @@
     });
   });
 })();
+
+/* ---------- Intro splash: remove from DOM after animation ---------- */
+(function () {
+  'use strict';
+  function cleanIntro() {
+    var el = document.getElementById('introSplash');
+    if (!el) return;
+    setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 2400);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanIntro);
+  else cleanIntro();
+})();
