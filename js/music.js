@@ -1,74 +1,27 @@
 /* ============================================================
-   AllVerse Music — pleasant lo-fi background music (WebAudio)
-   Composed piece: warm pads + clear melody + soft bass.
-   Toggle button injected next to theme switch. Default OFF.
+   AllVerse Music — background MP3 (reliable, no glitches)
+   Simple HTML5 audio loop. Toggle button with animation.
    ============================================================ */
 (function () {
   'use strict';
 
-  var ctx = null, master = null, musicGain = null;
-  var playing = false, timers = [];
+  var audio = null;
+  var playing = false;
 
-  // C major — pleasant, uplifting progression
-  var CHORDS = [
-    [261.63, 329.63, 392.00, 523.25],  // C
-    [220.00, 261.63, 329.63, 493.88],  // Am
-    [174.61, 220.00, 261.63, 440.00],  // F
-    [196.00, 246.94, 293.66, 493.88],  // G
-  ];
-  // Simple, memorable melody (C major pentatonic)
-  var MELODY = [523.25, 587.33, 659.25, 784.00, 659.25, 587.33, 523.25, 440.00,
-                523.25, 659.25, 784.00, 880.00, 784.00, 659.25, 587.33, 523.25];
-  var BASS = [130.81, 110.00, 87.31, 98.00]; // C, A, F, G (one octave down feel)
-
-  function ensureCtx() {
-    if (ctx) return true;
-    var AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return false;
-    ctx = new AC();
-    master = ctx.createGain();
-    master.gain.value = 0.9; // LOUDER — clearly audible
-    var comp = ctx.createDynamicsCompressor();
-    master.connect(comp);
-    comp.connect(ctx.destination);
-    musicGain = ctx.createGain();
-    musicGain.gain.value = 0.0001;
-    musicGain.connect(master);
+  function ensureAudio() {
+    if (audio) return true;
+    audio = new Audio('audio/bg-music.mp3');
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.preload = 'auto';
     return true;
   }
 
-  function note(freq, t0, dur, vol, type) {
-    var osc = ctx.createOscillator();
-    osc.type = type || 'sine';
-    osc.frequency.value = freq;
-    var g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(vol, t0 + 0.08);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    osc.connect(g); g.connect(musicGain);
-    osc.start(t0); osc.stop(t0 + dur + 0.1);
+  function saveState(on) {
+    try { localStorage.setItem('av_music_on', on ? '1' : '0'); } catch (e) {}
   }
-
-  function playBar(barIdx) {
-    if (!playing) return;
-    // Save position for seamless resume across pages
-    try { sessionStorage.setItem('av_music_bar', String(barIdx)); } catch (e) {}
-    var t0 = ctx.currentTime + 0.05;
-    var chord = CHORDS[barIdx % CHORDS.length];
-    var bassN = BASS[barIdx % BASS.length];
-    // Pad chord (soft, warm)
-    chord.forEach(function (f) { note(f, t0, 3.8, 0.06, 'triangle'); });
-    // Bass (gentle)
-    note(bassN, t0, 3.5, 0.09, 'sine');
-    note(bassN * 2, t0 + 1.9, 1.6, 0.05, 'sine');
-    // Melody (clear, pleasant — 4 notes per bar)
-    for (var i = 0; i < 4; i++) {
-      var mf = MELODY[(barIdx * 4 + i) % MELODY.length];
-      note(mf, t0 + i * 0.95, 0.9, 0.11, 'sine');
-      note(mf * 2, t0 + i * 0.95, 0.5, 0.025, 'triangle'); // shimmer octave
-    }
-    // Schedule next bar (4 seconds per bar)
-    timers.push(setTimeout(function () { playBar(barIdx + 1); }, 3950));
+  function wasOn() {
+    try { return localStorage.getItem('av_music_on') === '1'; } catch (e) { return false; }
   }
 
   function setButtons(on) {
@@ -79,40 +32,38 @@
     }
   }
 
-  function saveState(on) {
-    try { localStorage.setItem('av_music_on', on ? '1' : '0'); } catch (e) {}
-  }
-  function wasOn() {
-    try { return localStorage.getItem('av_music_on') === '1'; } catch (e) { return false; }
-  }
   function start() {
-    if (!ensureCtx()) return;
-    saveState(true);
-    // Fix stale state: ensure context is truly running
-    if (ctx.state === 'suspended') {
-      ctx.resume().then(function () {
-        if (ctx.state !== 'running') { setButtons(false); playing = false; return; }
-      });
-    }
+    if (!ensureAudio()) return;
     playing = true;
-    wasPlayingBeforeHide = true;
-    var startBar = window._avResumeBar || 0;
-    window._avResumeBar = 0;
-    musicGain.gain.cancelScheduledValues(ctx.currentTime);
-    musicGain.gain.setTargetAtTime(0.85, ctx.currentTime, 0.7); // 2s fade in
-    playBar(startBar);
-    setButtons(true);
+    saveState(true);
+    // 2s fade in
+    audio.volume = 0;
+    var fadeIn = setInterval(function () {
+      if (!playing) { clearInterval(fadeIn); return; }
+      audio.volume = Math.min(0.5, audio.volume + 0.025);
+      if (audio.volume >= 0.5) clearInterval(fadeIn);
+    }, 100);
+    audio.play().then(function () {
+      setButtons(true);
+    }).catch(function () {
+      // Blocked — wait for user gesture
+      playing = false;
+      setButtons(false);
+    });
   }
 
   function stop() {
+    if (!audio) { playing = false; setButtons(false); saveState(false); return; }
     playing = false;
-    wasPlayingBeforeHide = false;
     saveState(false);
-    timers.forEach(clearTimeout); timers = [];
-    if (ctx) {
-      musicGain.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.7); // 2s fade out
-      setTimeout(function () { if (!playing && ctx.state === 'running') ctx.suspend(); }, 1500);
-    }
+    // 2s fade out
+    var fadeOut = setInterval(function () {
+      audio.volume = Math.max(0, audio.volume - 0.025);
+      if (audio.volume <= 0) {
+        clearInterval(fadeOut);
+        audio.pause();
+      }
+    }, 100);
     setButtons(false);
   }
 
@@ -140,49 +91,34 @@
     }
   }
 
-  var wasPlayingBeforeHide = false;
-
-  function initAutoplay() {
+  function init() {
     inject();
-    // Always start with button OFF (fix stale ON-but-silent state)
-    setButtons(false); playing = false;
-    // Pause when tab hidden, resume when visible
+    setButtons(false);
+    // Pause on tab hide, resume on show
+    var wasPlaying = false;
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) {
-        if (playing) { wasPlayingBeforeHide = true; stop(); }
+        if (playing) { wasPlaying = true; stop(); saveState(true); }
       } else {
-        if (wasPlayingBeforeHide && !playing) { wasPlayingBeforeHide = false; start(); }
+        if (wasPlaying && !playing) { wasPlaying = false; start(); }
       }
     });
-    // Autoplay: browsers require a user gesture — start on first interaction
-    var started = false;
-    function tryStart() {
-      if (started || playing) return;
-      started = true;
-      start();
-      ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
-        document.removeEventListener(ev, tryStart);
-      });
-    }
-    ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
-      document.addEventListener(ev, tryStart, { passive: true });
-    });
-    // Auto-resume from saved position (not from start)
+    // Auto-resume if was on (starts on first interaction due to browser policy)
     if (wasOn()) {
-      var savedBar = 0;
-      try { savedBar = parseInt(sessionStorage.getItem('av_music_bar') || '0', 10) || 0; } catch (e) {}
-      // Store for playBar to use
-      window._avResumeBar = savedBar;
-      try {
+      var tryStart = function () {
+        if (playing) return;
         start();
-        // Only mark started if context is actually running
-        if (ctx && ctx.state === 'running') { started = true; }
-        else { setButtons(false); playing = false; } // wait for gesture
-      } catch (e) { setButtons(false); playing = false; }
+        ['click', 'touchstart', 'keydown'].forEach(function (ev) {
+          document.removeEventListener(ev, tryStart);
+        });
+      };
+      ['click', 'touchstart', 'keydown'].forEach(function (ev) {
+        document.addEventListener(ev, tryStart, { passive: true });
+      });
     }
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAutoplay);
-  } else { initAutoplay(); }
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
 })();
