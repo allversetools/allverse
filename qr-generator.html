@@ -87,7 +87,7 @@
 <section class="faq-section"><h2>How to use</h2>
 <ol class="seo-steps">
 <li>Enter your text, link or Wi-Fi details</li>
-<li>Pick the QR size and error-correction level</li>
+<li>Pick the QR size</li>
 <li>Download your QR code as a PNG image</li>
 </ol></section>
 <section class="faq-section"><h2>Why use this tool?</h2>
@@ -116,13 +116,13 @@
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
 <p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
 </footer>
-<script src="js/main.js?v=js12"></script>
-<script src="js/search.js?v=js12"></script>
-<script src="js/ai.js?v=js12"></script>
-<script src="js/fx.js?v=js12"></script>
-<script src="js/bg.js?v=js12"></script>
-<script src="js/music.js?v=js12"></script>
-<script src="js/pwa.js?v=js12"></script>
+<script src="js/main.js?v=js13"></script>
+<script src="js/search.js?v=js13"></script>
+<script src="js/ai.js?v=js13"></script>
+<script src="js/fx.js?v=js13"></script>
+<script src="js/bg.js?v=js13"></script>
+<script src="js/music.js?v=js13"></script>
+<script src="js/pwa.js?v=js13"></script>
 <script>
 (function () {
   'use strict';
@@ -144,7 +144,7 @@
   }
 
   function generate() {
-    if (!qrText || !canvas || !result) return;
+    if (!qrText || !canvas || !result) { showError('Page not ready. Please reload.'); return; }
     hideError();
     var text = window.SK_AI
       ? SK_AI.requireInput(qrText, 'Please enter some text or a URL first.')

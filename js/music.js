@@ -163,9 +163,14 @@
     ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
       document.addEventListener(ev, tryStart, { passive: true });
     });
-    // Auto-resume if music was playing on previous page
+    // Auto-resume if music was playing: try now, else wait for first interaction
     if (wasOn()) {
-      try { start(); started = true; } catch (e) {}
+      try {
+        start();
+        // Only mark started if context is actually running
+        if (ctx && ctx.state === 'running') { started = true; }
+        else { setButtons(false); playing = false; } // wait for gesture
+      } catch (e) { setButtons(false); playing = false; }
     }
   }
 
