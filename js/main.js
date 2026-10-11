@@ -103,7 +103,7 @@
     { name: 'AI Story Writer', href: 'ai-story-writer.html', cat: 'AI Tools', keys: 'ai story writer kahani likho story generate' },
     { name: 'AI Caption Generator', href: 'ai-caption-generator.html', cat: 'AI Tools', keys: 'ai caption generator instagram tiktok caption hashtag likho' },
     { name: 'AI Name Generator', href: 'ai-name-generator.html', cat: 'AI Tools', keys: 'ai name generator brand baby channel naam ideas banao' },
-    { name: 'AI Shayari Generator', href: 'ai-shayari-generator.html', cat: 'AI Tools', keys: 'ai shayari generator urdu poetry roman urdu sher likho' },
+    { name: 'AI Poetry Generator', href: 'ai-poetry-generator.html', cat: 'AI Tools', keys: 'ai poetry generator poem poems verse' },
     { name: 'AI Business Idea Generator', href: 'ai-business-idea-generator.html', cat: 'AI Tools', keys: 'ai business idea generator startup karobar ideas plan banao' },
     { name: 'AI Interview Questions', href: 'ai-interview-questions.html', cat: 'AI Tools', keys: 'ai interview questions job sawal jawab tayyari' },
     { name: 'AI Text Summarizer', href: 'ai-text-summarizer.html', cat: 'AI Tools', keys: 'ai text summarizer khulasa summarize karo' },

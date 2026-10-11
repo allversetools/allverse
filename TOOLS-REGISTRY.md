@@ -61,7 +61,7 @@ Every page lives at the repo root. Add a tool = add 1 file + 1 card.
 | ai-story-writer.html | ai-tools.html | ai-tools.html |
 | ai-caption-generator.html | ai-tools.html | ai-tools.html |
 | ai-name-generator.html | ai-tools.html | ai-tools.html |
-| ai-shayari-generator.html | ai-tools.html | ai-tools.html |
+| ai-poetry-generator.html | ai-tools.html | ai-tools.html |
 | ai-business-idea-generator.html | ai-tools.html | ai-tools.html |
 | ai-interview-questions.html | ai-tools.html | ai-tools.html |
 | ai-text-summarizer.html | ai-tools.html | ai-tools.html |
