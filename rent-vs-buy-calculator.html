@@ -57,6 +57,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function(){
@@ -119,7 +120,7 @@ else if(brk>0)verdict='⚖️ Buying only wins after year '+brk+' — worth it o
 else verdict='🏘️ Renting + investing stays ahead for 30 years under these assumptions.';
 $('rvbVerdict').textContent=verdict+' (Price-to-rent '+ (ptr>0?ptr.toFixed(1):'—') +': '+ptrNote.toLowerCase()+')';
 var line='Rent vs Buy on '+pkr(P)+': price-to-rent '+ptr.toFixed(1)+' ('+ptrNote+'), break-even '+(brk>0?'year '+brk:'none in 30 yrs')+'. After 20 yrs: '+(d20>=0?'buyer ahead by ':'renter ahead by ')+pkr(Math.abs(d20))+'.';
-$('rvbCopy').onclick=function(){var b=this,done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy summary'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(line).then(done,done);else done();};
+$('rvbCopy').onclick=function(){var b=this;if(window.SK_AI){SK_AI.copyText(b,line);return;}var done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy summary'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(line).then(done,done);else done();};
 }
 ['rvbPrice','rvbDown','rvbRent','rvbRate','rvbTerm','rvbAppr','rvbRentG','rvbInv','rvbMaint','rvbClose','rvbSell'].forEach(function(id){$(id).addEventListener('input',calc);});
 calc();

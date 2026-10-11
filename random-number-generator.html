@@ -111,6 +111,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -150,10 +151,12 @@
       chip.textContent = v;
       res.appendChild(chip);
     });
+    if (window.SK_AI) SK_AI.scrollTo(res);
   }
   copyBtn.onclick = function () {
     if (!last.length) return;
     var t = last.join(', ');
+    if (window.SK_AI) { SK_AI.copyText(copyBtn, t); return; }
     function done() {
       copyBtn.textContent = '\u2713 Copied!';
       setTimeout(function () { copyBtn.innerHTML = '&#x29C9; Copy'; }, 1500);

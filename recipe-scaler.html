@@ -104,6 +104,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -196,7 +197,10 @@
     $('rsBadge').textContent = '· scaling ' + fc.label + (count ? ' · ' + count + ' quantities' : '');
     out.dataset.plain = plain.join('\n');
   }
-  $('rsGo').addEventListener('click', scale);
+  $('rsGo').addEventListener('click', function () {
+    scale();
+    if (window.SK_AI) SK_AI.scrollTo($('rsOut'));
+  });
   ['rsOrig', 'rsWant', 'rsFactor'].forEach(function (id) { $(id).addEventListener('input', scale); });
   $('rsIn').addEventListener('input', scale);
   var chips = document.querySelectorAll('.rs-chip');
@@ -208,8 +212,11 @@
   $('rsCopy').addEventListener('click', function () {
     var txt = $('rsOut').dataset.plain || '';
     if (!txt) return;
-    var btn = $('rsCopy'), done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy list'; }, 1500); };
-    if (navigator.clipboard) navigator.clipboard.writeText('Scaled recipe (' + $('rsBadge').textContent.replace(/^·\s*/, '') + '):\n' + txt).then(done, done); else done();
+    var btn = $('rsCopy');
+    var full = 'Scaled recipe (' + $('rsBadge').textContent.replace(/^·\s*/, '') + '):\n' + txt;
+    if (window.SK_AI) { SK_AI.copyText(btn, full); return; }
+    var done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy list'; }, 1500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(full).then(done, done); else done();
   });
   scale();
 })();

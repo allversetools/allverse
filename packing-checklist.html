@@ -129,6 +129,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -216,14 +217,17 @@ function render(){
 }
 $("pkGen").onclick=function(){
   items=buildList();save(items);render();
-  var pl=$("pkList");if(pl.scrollIntoView)pl.scrollIntoView({behavior:"smooth",block:"start"});
+  var pl=$("pkList");
+  if(window.SK_AI) SK_AI.scrollTo(pl);
+  else if(pl.scrollIntoView)pl.scrollIntoView({behavior:"smooth",block:"start"});
 };
 $("pkReset").onclick=function(){if(confirm("Clear your packing list and start over?")){items=[];try{localStorage.removeItem(LS);}catch(e){}render();}};
 $("pkPrint").onclick=function(){window.print();};
 var cc=$("pkCustomCat");
 CATS.forEach(function(c){var o=document.createElement("option");o.value=c[0];o.textContent=c[1];cc.appendChild(o);});
 $("pkAddBtn").onclick=function(){
-  var v=$("pkCustom").value.trim();if(!v)return;
+  var v=window.SK_AI?SK_AI.requireInput($("pkCustom"),"Item ka naam likho! / Enter an item name."):$("pkCustom").value.trim();
+  if(!v)return;
   var it=item(cc.value,v);it.custom=true;items.push(it);
   $("pkCustom").value="";save(items);render();
 };

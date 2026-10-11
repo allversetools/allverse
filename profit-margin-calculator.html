@@ -104,6 +104,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -127,7 +128,10 @@
     set('pmMargin', p > 0 ? fmt(profit / p * 100) + '%' : '—');
     set('pmMarkup', c > 0 ? fmt(profit / c * 100) + '%' : '—');
   }
-  btn.onclick = calc;
+  btn.onclick = function () {
+    calc();
+    if (window.SK_AI) SK_AI.scrollTo(document.querySelector('#pmCalc').closest('.tool-panel').querySelector('.result-panel'));
+  };
   cost.addEventListener('input', calc);
   price.addEventListener('input', calc);
 })();

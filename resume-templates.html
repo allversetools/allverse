@@ -14,14 +14,14 @@
 </script>
 <style>
 .tpl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:6px}
-.tpl-card{border:1px solid #e2e5ea;border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;background:#fff}
+.tpl-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;background:var(--card)}
 .tpl-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.10)}
 .tpl-card.sel{outline:3px solid #0d6efd}
-.tpl-thumb{height:300px;overflow:hidden;position:relative;background:#f6f8fb}
+.tpl-thumb{height:300px;overflow:hidden;position:relative;background:var(--soft)}
 .tpl-thumb .mini{transform:scale(.62);transform-origin:top left;width:161%;pointer-events:none}
 .tpl-meta{padding:12px 14px}
 .tpl-meta b{display:block;font-size:.95rem}
-.tpl-meta span{font-size:.82rem;color:#777}
+.tpl-meta span{font-size:.82rem;color:var(--muted)}
 .tpl-big{margin-top:22px}
 .tpl-doc{background:#fff;color:#1a1a1a;border:1px solid #e2e5ea;border-radius:12px;padding:36px 40px;max-width:800px;margin:0 auto;font-size:14px;line-height:1.55}
 .tpl-doc h2{margin:0;font-size:26px}

@@ -83,6 +83,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -180,8 +181,8 @@
       b.addEventListener('click', function () {
         var d = DATA[parseInt(b.getAttribute('data-i'), 10)];
         var txt = 'Instead of ' + d[1] + ' ' + d[0] + ', use:\n' + d[3].map(function (s, k) { return (k + 1) + '. ' + s; }).join('\n') + '\n— via AllVerse Ingredient Substitution';
-        var done = function () { b.textContent = '✓'; setTimeout(function () { b.textContent = '⧉'; }, 1200); };
-        if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, done); else done();
+        if (window.SK_AI) SK_AI.copyText(b, txt, '✓');
+        else { b.textContent = '✓'; setTimeout(function () { b.textContent = '⧉'; }, 1200); }
       });
     });
   }

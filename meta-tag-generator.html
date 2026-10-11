@@ -90,6 +90,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -121,7 +122,7 @@
   ['mtTitle','mtDesc','mtKeywords','mtAuthor','mtUrl','mtRobots'].forEach(function(id){ var el=g(id); if(el){ el.addEventListener('input',update); el.addEventListener('change',update);} });
   function flash(btn,msg){ var o=btn.textContent; btn.textContent=msg; setTimeout(function(){btn.textContent=o;},1500); }
   function copyText(txt,done){ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,done);} else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); } }
-  var cb=g('mtCopy'); if(cb) cb.onclick=function(){ copyText(out.value,function(){flash(cb,'✓ Copied!');}); };
+  var cb=g('mtCopy'); if(cb) cb.onclick=function(){ if(window.SK_AI) SK_AI.copyText(cb, out.value); else copyText(out.value,function(){flash(cb,'✓ Copied!');}); };
   var dl=g('mtDl'); if(dl) dl.onclick=function(){ if(!out.value) return; var blob=new Blob([out.value],{type:'text/html'}); var aEl=document.createElement('a'); aEl.href=URL.createObjectURL(blob); aEl.download='meta-tags.html'; document.body.appendChild(aEl); aEl.click(); setTimeout(function(){URL.revokeObjectURL(aEl.href); aEl.remove();},400); };
   update();
 })();

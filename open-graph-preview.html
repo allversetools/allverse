@@ -110,6 +110,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -133,7 +134,12 @@
   ['opTitle','opDesc','opImg','opDomain'].forEach(function(id){ var el=g(id); if(el) el.addEventListener('input',update); });
   if(f) f.addEventListener('change',function(){
     var file=f.files&&f.files[0]; if(!file) return;
-    var rd=new FileReader(); rd.onload=function(){ uploaded=rd.result; update(); }; rd.readAsDataURL(file);
+    var wrap=f.closest('.field');
+    if(window.SK_AI) SK_AI.loading(wrap, true, {lines:2, messages:[[0,'Loading your image…']]});
+    var rd=new FileReader();
+    rd.onload=function(){ uploaded=rd.result; update(); if(window.SK_AI) SK_AI.loading(wrap,false); };
+    rd.onerror=function(){ if(window.SK_AI) SK_AI.loading(wrap,false); };
+    rd.readAsDataURL(file);
   });
   update();
 })();

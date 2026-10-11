@@ -55,6 +55,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function(){
@@ -74,7 +75,7 @@ $('ppcPerMarla').textContent=pkr(ratePerSqft*std);
 $('ppcPerKanal').textContent=pkr(ratePerSqft*20*std);
 $('ppcAreaSqft').textContent=Math.round(areaSqft).toLocaleString('en-PK')+' sq ft';
 var line=area+' '+$('ppcAreaUnit').value+' @ '+pkr(rate)+' per '+$('ppcRateUnit').value+' = '+pkr(total)+' ('+Math.round(areaSqft).toLocaleString('en-PK')+' sq ft)';
-$('ppcCopy').onclick=function(){var b=this,done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy summary'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(line).then(done,done);else done();};
+$('ppcCopy').onclick=function(){var b=this;if(window.SK_AI){SK_AI.copyText(b,line);return;}var done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy summary'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(line).then(done,done);else done();};
 }
 ['ppcArea','ppcAreaUnit','ppcRate','ppcRateUnit','ppcStd'].forEach(function(id){var el=$(id);el.addEventListener('input',calc);el.addEventListener('change',calc);});
 calc();

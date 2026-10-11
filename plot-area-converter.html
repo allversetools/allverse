@@ -61,6 +61,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function(){
@@ -87,7 +88,7 @@ $('pacSqm').textContent=fmt(sqft*0.092903);
 var k=Math.floor(sqft/kanalSq),r=sqft-k*kanalSq,m=Math.floor(r/marlaSq),r2=r-m*marlaSq,s=Math.round(r2/sarsaiSq);
 var line=fmt(v)+' '+u+' = '+fmt(sqft)+' sq ft ('+words(k,m,s)+')';
 $('pacWords').textContent='Also written as: '+words(k,m,s)+'  ·  1 kanal = 20 marla  ·  1 acre = 8 kanal  ·  1 murabba = 25 acre';
-$('pacCopy').onclick=function(){var b=this,done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy result'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(line).then(done,done);else done();};
+$('pacCopy').onclick=function(){var b=this;if(window.SK_AI){SK_AI.copyText(b,line);return;}var done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy result'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(line).then(done,done);else done();};
 }
 $('pacVal').addEventListener('input',calc);$('pacUnit').addEventListener('change',calc);$('pacStd').addEventListener('change',calc);
 calc();

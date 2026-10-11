@@ -95,6 +95,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -158,8 +159,27 @@
     if (!window.PDFLib) { showMsg('PDF library failed to load — check connection'); return; }
     if (files.length < 2) { showMsg('Select at least 2 PDF files to merge.'); return; }
     showMsg('');
-    mergeBtn.disabled = true;
-    mergeBtn.textContent = 'Merging…';
+    var resPanel = mergeBtn.closest('.tool-panel').querySelector('.result-panel');
+    var useSK = !!window.SK_AI;
+    if (useSK) {
+      SK_AI.setBusy(mergeBtn, true, 'Merging…');
+      SK_AI.loading(resPanel, true, { messages: [[0, 'Reading your PDF files…'], [5000, 'Merging pages…'], [15000, 'Final touches…']] });
+      SK_AI.scrollTo(resPanel);
+    } else {
+      mergeBtn.disabled = true;
+      mergeBtn.textContent = 'Merging…';
+    }
+    var done = function (ok, errMsg) {
+      if (useSK) {
+        SK_AI.setBusy(mergeBtn, false);
+        SK_AI.loading(resPanel, false);
+        if (!ok) SK_AI.showError(resPanel, errMsg);
+      } else {
+        mergeBtn.disabled = false;
+        mergeBtn.innerHTML = '&#x29C9; Merge PDFs';
+        if (!ok) showMsg(errMsg);
+      }
+    };
     var reads = files.map(function (f) {
       return new Promise(function (res, rej) {
         var r = new FileReader();
@@ -184,12 +204,9 @@
       });
     }).then(function (bytes) {
       download(bytes, 'merged.pdf');
-      mergeBtn.disabled = false;
-      mergeBtn.innerHTML = '&#x29C9; Merge PDFs';
+      done(true);
     }).catch(function () {
-      mergeBtn.disabled = false;
-      mergeBtn.innerHTML = '&#x29C9; Merge PDFs';
-      showMsg('Could not merge — one of the files may be damaged or password-protected.');
+      done(false, 'Could not merge — one of the files may be damaged or password-protected.');
     });
   };
 })();

@@ -103,6 +103,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -128,15 +129,19 @@
   function generate() {
     if (!qrText || !canvas || !result) return;
     hideError();
-    var text = (qrText.value || '').trim();
+    var text = window.SK_AI
+      ? SK_AI.requireInput(qrText, 'Please enter some text or a URL first.')
+      : (qrText.value || '').trim();
     if (!text) {
-      showError('Please enter some text or a URL first.');
+      if (!window.SK_AI) showError('Please enter some text or a URL first.');
       return;
     }
     if (typeof QRCode === 'undefined' || !QRCode.toCanvas) {
       showError('QR library failed to load. Check your internet connection and reload the page.');
       return;
     }
+    result.hidden = false;
+    if (window.SK_AI) SK_AI.scrollTo(result);
     var size = qrSize ? parseInt(qrSize.value, 10) || 300 : 300;
     QRCode.toCanvas(canvas, text, { width: size, margin: 2 }, function (err) {
       if (err) {

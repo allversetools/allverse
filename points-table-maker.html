@@ -114,6 +114,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -206,12 +207,13 @@
     save(); render();
   }
   $('ptAddTeam').addEventListener('click', function () {
-    var n = $('ptName').value.trim();
+    var n = window.SK_AI ? SK_AI.requireInput($('ptName'), 'Team ka naam likho! / Enter a team name.') : $('ptName').value.trim();
     if (!n) return;
     if (find(n)) { $('ptName').value = ''; $('ptName').placeholder = 'That team already exists'; return; }
     state.teams.push({ name: n, adj: 0, nrr: '' });
     $('ptName').value = ''; $('ptName').placeholder = 'Team name — e.g. Lahore Qalandars';
     save(); render();
+    if (window.SK_AI) SK_AI.scrollTo($('ptTable'));
   });
   $('ptName').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('ptAddTeam').click(); });
   $('ptAddRes').addEventListener('click', function () {
@@ -235,7 +237,9 @@
   }
   $('ptCopy').addEventListener('click', function () {
     if (!state.teams.length) return;
-    var btn = $('ptCopy'), done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy as text'; }, 1500); };
+    var btn = $('ptCopy');
+    if (window.SK_AI) { SK_AI.copyText(btn, tableText()); return; }
+    var done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy as text'; }, 1500); };
     if (navigator.clipboard) navigator.clipboard.writeText(tableText()).then(done, done); else done();
   });
   $('ptDl').addEventListener('click', function () {

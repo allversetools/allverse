@@ -99,6 +99,7 @@
 <div class="toast" id="toast">Done!</div>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -138,10 +139,13 @@
   var rolling = false;
   if(pickBtn){ pickBtn.addEventListener("click", function(){
     if(rolling) return;
+    var raw = window.SK_AI ? SK_AI.requireInput(entriesEl, "Add at least 2 entries first") : (entriesEl ? entriesEl.value.trim() : "");
+    if(!raw){ if(!window.SK_AI){ showToast("Add at least 2 entries first"); if(entriesEl) entriesEl.focus(); } return; }
     var list = getEntries();
     if(list.length < 2){ showToast("Add at least 2 entries first"); if(entriesEl) entriesEl.focus(); return; }
     if(!resultBox || !winnerName) return;
     resultBox.classList.add("show");
+    if(window.SK_AI) SK_AI.scrollTo(resultBox);
     if(winnerLabel) winnerLabel.textContent = "Picking…";
     winnerName.classList.remove("pop");
     rolling = true; pickBtn.disabled = true;

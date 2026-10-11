@@ -115,6 +115,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -240,8 +241,8 @@
       '\nRuns scored: ' + Math.round(t.rf) + ' in ' + t.of.toFixed(2) + ' overs (' + (t.rf / t.of).toFixed(2) + '/over)' +
       '\nRuns conceded: ' + Math.round(t.ra) + ' in ' + t.ob.toFixed(2) + ' overs (' + (t.ra / t.ob).toFixed(2) + '/over)' +
       '\nMatches counted: ' + t.n + '\n— via AllVerse Net Run Rate Calculator';
-    var done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy summary'; }, 1500); };
-    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, done); else done();
+    if (window.SK_AI) SK_AI.copyText(btn, txt);
+    else { var done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy summary'; }, 1500); }; if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, done); else done(); }
   });
   matchCount = 0;
   for (var k = 0; k < 2; k++) { matchCount++; $('nrrMatches').appendChild(matchRow(matchCount)); }

@@ -65,7 +65,7 @@
 <div class="stat"><b id="kdDensity">0%</b><span>Keyword density</span></div>
 </div>
 <h4 style="margin-top:18px">Top 10 frequent words</h4>
-<table class="kd-table"><thead><tr><th>#</th><th>Word</th><th>Count</th><th>%</th><th></th></tr></thead><tbody id="kdTable"><tr><td colspan="5" style="color:#888">Type or paste text to see word frequency.</td></tr></tbody></table>
+<table class="kd-table"><thead><tr><th>#</th><th>Word</th><th>Count</th><th>%</th><th></th></tr></thead><tbody id="kdTable"><tr><td colspan="5" style="color:var(--muted)">Type or paste text to see word frequency.</td></tr></tbody></table>
 </div>
 </div>
 </div><section class="faq-section"><h2>Keyword Density Checker — FAQs</h2>
@@ -116,7 +116,7 @@
     arr.sort(function(a,b){return b[1]-a[1];});
     var tb=document.getElementById('kdTable');
     if(tb){
-      if(!arr.length){ tb.innerHTML='<tr><td colspan="5" style="color:#888">Type or paste text to see word frequency.</td></tr>'; }
+      if(!arr.length){ tb.innerHTML='<tr><td colspan="5" style="color:var(--muted)">Type or paste text to see word frequency.</td></tr>'; }
       else{
         var html='', top=Math.min(10,arr.length), mx=arr[0][1];
         for(var n=0;n<top;n++){ var pct=total?((arr[n][1]/total*100).toFixed(2)+'%'):'0%';

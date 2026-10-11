@@ -88,6 +88,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -122,10 +123,16 @@
       : parts.join('\n\n');
     document.getElementById('liOut').value = out;
   }
-  document.getElementById('liGen').addEventListener('click', generate);
+  document.getElementById('liGen').addEventListener('click', function () {
+    generate();
+    if (window.SK_AI) SK_AI.scrollTo(document.getElementById('liOut'));
+  });
   document.getElementById('liCopy').addEventListener('click', function () {
     var t = document.getElementById('liOut').value;
-    if (t && window.SK && window.SK.copy) window.SK.copy(t);
+    if (!t) return;
+    var btn = document.getElementById('liCopy');
+    if (window.SK_AI) SK_AI.copyText(btn, t);
+    else if (window.SK && window.SK.copy) window.SK.copy(t);
   });
   document.getElementById('liDl').addEventListener('click', function () {
     var t = document.getElementById('liOut').value;

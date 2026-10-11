@@ -105,6 +105,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -183,14 +184,19 @@
     tb.innerHTML = html;
   }
   ['rTarget', 'rScore', 'rWkts', 'rBowled', 'rTotal'].forEach(function (id) { $(id).addEventListener('input', calc); });
-  $('rGo').addEventListener('click', calc);
+  $('rGo').addEventListener('click', function () {
+    calc();
+    if (window.SK_AI) SK_AI.scrollTo($('rVerdict'));
+  });
   $('rCopy').addEventListener('click', function () {
     var t = $('rTarget').value, s = $('rScore').value, b = $('rBowled').value;
     var txt = 'Need ' + $('rNeed').textContent + ' off ' + $('rBalls').textContent +
       ' balls — RRR ' + $('rRRR').textContent + ' (CRR ' + $('rCRR').textContent + ')' +
       '\nTarget ' + t + ' · ' + s + '/' + ($('rWkts').value || '0') + ' in ' + b + ' overs' +
       '\n— via AllVerse Required Run Rate Calculator';
-    var btn = $('rCopy'), done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy equation'; }, 1500); };
+    var btn = $('rCopy');
+    if (window.SK_AI) { SK_AI.copyText(btn, txt); return; }
+    var done = function () { btn.textContent = '✓ Copied!'; setTimeout(function () { btn.textContent = '⧉ Copy equation'; }, 1500); };
     if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, done); else done();
   });
   calc();

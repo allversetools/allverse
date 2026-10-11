@@ -109,6 +109,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -186,6 +187,7 @@
 if(sr){sr.addEventListener('click',function(){
 var url=location.href;
 if(navigator.share){try{navigator.share({title:document.title,url:url}).catch(function(){});}catch(e){}return;}
+if(window.SK_AI){SK_AI.copyText(sr,url);return;}
 var done=function(){sr.textContent='Copied \u2713';setTimeout(function(){sr.textContent='\uD83D\uDCE4 Share result';},1500);};
 if(window.SK&&window.SK.copy){window.SK.copy(url).then(done,done);}
 else if(navigator.clipboard){navigator.clipboard.writeText(url).then(done,done);}
