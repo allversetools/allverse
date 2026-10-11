@@ -140,8 +140,8 @@
       "contrast-checker.html",
       "palette-generator.html",
       "image-compressor.html",
-      "qr-generator.html",
-      "image-resizer.html"
+      "url-encoder-decoder.html",
+      "uuid-generator.html"
     ],
     "title": "Free Color Picker — HEX, RGB & HSL Values Online",
     "why": [
@@ -163,7 +163,7 @@
       "password-generator.html",
       "word-counter.html",
       "merge-pdf.html",
-      "unit-converter.html"
+      "youtube-thumbnail-resizer.html"
     ],
     "title": "Free Image Compressor — Compress JPG, PNG, WebP Online",
     "why": [
@@ -249,7 +249,7 @@
       "qr-generator.html",
       "random-number-generator.html",
       "word-counter.html",
-      "case-converter.html"
+      "whatsapp-link-generator.html"
     ],
     "title": "Free Password Generator — Strong Random Passwords",
     "why": [
@@ -270,8 +270,8 @@
       "uuid-generator.html",
       "qr-generator.html",
       "random-number-generator.html",
-      "word-counter.html",
-      "case-converter.html"
+      "card-validator.html",
+      "hash-generator.html"
     ],
     "title": "Free Password Strength Checker — Test Password Security",
     "why": [
@@ -312,9 +312,9 @@
     "related": [
       "stopwatch.html",
       "countdown-timer.html",
-      "word-counter.html",
-      "text-to-speech-studio.html",
-      "metronome.html"
+      "metronome.html",
+      "gpa-calculator.html",
+      "scientific-calculator.html"
     ],
     "title": "Free Pomodoro Timer Online — Focus & Break Timer",
     "why": [
@@ -336,7 +336,7 @@
       "image-compressor.html",
       "word-counter.html",
       "uuid-generator.html",
-      "bio-maker.html"
+      "whatsapp-link-generator.html"
     ],
     "title": "Free QR Code Generator — Create Custom QR Codes Online",
     "why": [
