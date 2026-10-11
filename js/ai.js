@@ -320,20 +320,20 @@
     return null;
   }
   /* Writes an error into a dedicated paragraph INSIDE el without wiping
-     el's existing content (old version replaced innerHTML, which destroyed
-     result panels and their buttons on every AI error). */
+     el's existing content. Adds .sk-error (red border, theme-aware). */
   function showError(el, msg) {
     if (!el) return;
     el.hidden = false;
+    el.classList.add('sk-error');
     var p = el.querySelector('[data-sk-err]');
     if (!p) {
       p = document.createElement('p');
       p.setAttribute('data-sk-err', '1');
-      p.style.color = '#b91c1c';
-      p.style.margin = '.5rem 0';
+      p.className = 'sk-err-msg';
       if (el.firstChild) el.insertBefore(p, el.firstChild);
       else el.appendChild(p);
     }
+    p.hidden = false;
     p.textContent = '⚠️ ' + msg;
   }
   function escapeHtml(s) {
@@ -349,6 +349,11 @@
     proPrompt: proPrompt,
     IMAGE_MODELS: IMAGE_MODELS,
     setBusy: setBusy,
+    loading: loading,
+    scrollTo: scrollToEl,
+    copyFeedback: copyFeedback,
+    copyText: copyText,
+    requireInput: requireInput,
     showError: showError,
     escapeHtml: escapeHtml
   };
