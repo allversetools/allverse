@@ -615,7 +615,9 @@
     try {
       // Only show on first page of session (reload/reopen = new session OK)
       // Internal navigation: skip intro
-      if (sessionStorage.getItem('av_intro_seen')) {
+      var seen = sessionStorage.getItem('av_intro_seen');
+      var fromSite = document.referrer && document.referrer.indexOf(location.host) >= 0;
+      if (seen || fromSite) {
         el.parentNode.removeChild(el);
         return;
       }

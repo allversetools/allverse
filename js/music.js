@@ -77,8 +77,15 @@
     }
   }
 
+  function saveState(on) {
+    try { localStorage.setItem('av_music_on', on ? '1' : '0'); } catch (e) {}
+  }
+  function wasOn() {
+    try { return localStorage.getItem('av_music_on') === '1'; } catch (e) { return false; }
+  }
   function start() {
     if (!ensureCtx()) return;
+    saveState(true);
     // Fix stale state: ensure context is truly running
     if (ctx.state === 'suspended') {
       ctx.resume().then(function () {
@@ -96,6 +103,7 @@
   function stop() {
     playing = false;
     wasPlayingBeforeHide = false;
+    saveState(false);
     timers.forEach(clearTimeout); timers = [];
     if (ctx) {
       musicGain.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.7); // 2s fade out
@@ -155,8 +163,10 @@
     ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
       document.addEventListener(ev, tryStart, { passive: true });
     });
-    // Also try immediate (works if browser allows)
-    try { start(); started = true; } catch (e) {}
+    // Auto-resume if music was playing on previous page
+    if (wasOn()) {
+      try { start(); started = true; } catch (e) {}
+    }
   }
 
   if (document.readyState === 'loading') {
