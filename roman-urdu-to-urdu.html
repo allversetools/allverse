@@ -49,7 +49,7 @@
 <div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
 <script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script><div class="tool-panel">
 
-<div class="field"><label for="ruIn">Roman Urdu (type here)</label><textarea id="ruIn" rows="6" dir="ltr" placeholder="e.g. aap kaise hain?">aap kaise hain? aaj ka din bohat acha hai.</textarea></div>
+<div class="field"><label for="ruIn">Roman Urdu (type here)</label><textarea id="ruIn" rows="6" dir="ltr" placeholder="Type Roman Urdu here, then press Convert"></textarea></div>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px"><button class="btn btn-ghost" id="ruCopy" type="button">⧉ Copy Urdu</button><button class="btn btn-ghost" id="ruClear" type="button">✕ Clear</button></div>
 <div class="field"><label for="ruOut">Urdu script (converts automatically)</label><textarea id="ruOut" rows="6" dir="rtl" lang="ur" readonly></textarea></div>
 <p class="rate-stamp"><b id="ruDictN">230</b>+ word dictionary · live conversion · <span id="ruCov">—</span> of words from dictionary</p>
