@@ -51,6 +51,8 @@
 
   function playBar(barIdx) {
     if (!playing) return;
+    // Save position for seamless resume across pages
+    try { sessionStorage.setItem('av_music_bar', String(barIdx)); } catch (e) {}
     var t0 = ctx.currentTime + 0.05;
     var chord = CHORDS[barIdx % CHORDS.length];
     var bassN = BASS[barIdx % BASS.length];
@@ -94,9 +96,11 @@
     }
     playing = true;
     wasPlayingBeforeHide = true;
+    var startBar = window._avResumeBar || 0;
+    window._avResumeBar = 0;
     musicGain.gain.cancelScheduledValues(ctx.currentTime);
     musicGain.gain.setTargetAtTime(0.85, ctx.currentTime, 0.7); // 2s fade in
-    playBar(0);
+    playBar(startBar);
     setButtons(true);
   }
 
@@ -163,8 +167,12 @@
     ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
       document.addEventListener(ev, tryStart, { passive: true });
     });
-    // Auto-resume if music was playing: try now, else wait for first interaction
+    // Auto-resume from saved position (not from start)
     if (wasOn()) {
+      var savedBar = 0;
+      try { savedBar = parseInt(sessionStorage.getItem('av_music_bar') || '0', 10) || 0; } catch (e) {}
+      // Store for playBar to use
+      window._avResumeBar = savedBar;
       try {
         start();
         // Only mark started if context is actually running
