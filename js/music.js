@@ -71,9 +71,20 @@
     });
   }
 
+  // Gentle melody phrases (C major pentatonic) — musical, not random
+  var MELODY = [
+    [523.25, 587.33, 659.25, 587.33],
+    [659.25, 783.99, 659.25, 523.25],
+    [587.33, 659.25, 783.99, 880.00],
+    [880.00, 783.99, 659.25, 587.33],
+    [523.25, 659.25, 587.33, 523.25]
+  ];
+  var melodyIdx = 0;
   function sparkle() {
-    // occasional soft high note (pentatonic) — the "comfortable" shimmer
-    var penta = [523.25, 587.33, 659.25, 783.99, 880.00];
+    // Play a short melodic phrase instead of random notes
+    var phrase = MELODY[melodyIdx % MELODY.length];
+    melodyIdx++;
+    var penta = phrase;
     var f = penta[Math.floor(Math.random() * penta.length)];
     var t0 = ctx.currentTime + 0.05;
     var osc = ctx.createOscillator();
