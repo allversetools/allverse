@@ -2165,11 +2165,16 @@ main, .site-footer { position: relative; z-index: 1; }
   .music-toggle.playing { animation: none; }
   .music-toggle.playing .mq-bars span { transform: scaleY(0.6); }
 }
-/* PLAYING: unmissable */
+/* PLAYING: unmissable - bright cyan with strong animation */
 .music-toggle.playing {
-  background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
-  border-color: transparent; color: #0f1419;
-  animation: mq-btn-bounce 1s ease-in-out infinite;
+  background: linear-gradient(135deg, #00e5ff 0%, #0099ff 100%) !important;
+  border-color: #00e5ff !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 40px rgba(0, 229, 255, 0.3) !important;
+  animation: mq-btn-bounce 1s ease-in-out infinite !important;
+}
+.music-toggle.playing .mq-bars span {
+  background: #ffffff !important;
 }
 .music-toggle.playing .mq-note { display: none; }
 .music-toggle.playing .mq-bars { display: inline-flex; }
