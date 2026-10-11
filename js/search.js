@@ -338,26 +338,38 @@
     }
   }
 
-  function init() {
-    input = document.getElementById('siteSearch');
-    if (!input || !tools().length) return;
+  function bindInput(el) {
+    input = el;
     var deb = null;
-    input.addEventListener('input', function () {
+    el.addEventListener('input', function () {
+      input = el;
       clearTimeout(deb);
       deb = setTimeout(onInput, 110);
     });
-    input.addEventListener('focus', function () {
+    el.addEventListener('focus', function () {
+      input = el;
       ensureDrop();
-      if (!input.value.trim()) renderHome();
+      if (!el.value.trim()) renderHome();
       else onInput();
     });
-    input.addEventListener('keydown', onKey);
-    input.addEventListener('blur', function () {
+    el.addEventListener('keydown', function (e) { input = el; onKey(e); });
+    el.addEventListener('blur', function () {
       /* mousedown handlers fire before blur; delay close slightly */
       setTimeout(closeDrop, 150);
     });
+  }
+
+  function init() {
+    if (!tools().length) return;
+    var inputs = [];
+    var hs = document.getElementById('siteSearch');
+    var hero = document.getElementById('smartPasteInput');
+    if (hs) inputs.push(hs);
+    if (hero) inputs.push(hero);
+    if (!inputs.length) return;
+    inputs.forEach(bindInput);
     document.addEventListener('click', function (e) {
-      if (drop && !drop.hidden && !drop.contains(e.target) && e.target !== input) closeDrop();
+      if (drop && !drop.hidden && !drop.contains(e.target) && inputs.indexOf(e.target) < 0) closeDrop();
     });
   }
 
