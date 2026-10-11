@@ -60,6 +60,15 @@
         var oldMain = getContainer();
         if (newMain && oldMain && oldMain.tagName === 'MAIN') {
           oldMain.innerHTML = newMain.innerHTML;
+          // Execute inline scripts (innerHTML doesn't run them)
+          var scripts = oldMain.querySelectorAll('script');
+          for (var i = 0; i < scripts.length; i++) {
+            var s = scripts[i];
+            var ns = document.createElement('script');
+            if (s.src) { ns.src = s.src; }
+            else { ns.textContent = s.textContent; }
+            s.parentNode.replaceChild(ns, s);
+          }
         } else {
           // Fallback: reload if structure differs
           window.location.href = url;
