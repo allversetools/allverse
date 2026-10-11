@@ -1,0 +1,434 @@
+{
+  "age-calculator.html": {
+    "desc": "Calculate exact age in years, months and days from any birth date. See total months, weeks and days lived — free.",
+    "howto": [
+      "Enter a birth date",
+      "Get the exact age instantly",
+      "See totals: months, weeks, days and hours"
+    ],
+    "related": [
+      "bmi-calculator.html",
+      "percentage-calculator.html",
+      "date-difference.html",
+      "countdown-timer.html",
+      "unit-converter.html",
+      "wedding-countdown.html"
+    ],
+    "title": "Free Age Calculator — Exact Age in Years, Months, Days",
+    "why": [
+      "Precise down to the day, not just years",
+      "Fun stats: total heartbeats-scale day counts",
+      "Free, instant, no signup"
+    ]
+  },
+  "ai-image-generator.html": {
+    "desc": "Generate stunning AI images from text prompts free — photorealistic, anime, 3D and more styles. No signup needed.",
+    "howto": [
+      "Describe the image you want in detail",
+      "Pick a style (photorealistic, anime, 3D…)",
+      "Generate and download your image"
+    ],
+    "related": [
+      "ai-thumbnail-maker.html",
+      "ai-logo-maker.html",
+      "ai-wallpaper-generator.html",
+      "image-compressor.html",
+      "image-resizer.html",
+      "meme-maker.html"
+    ],
+    "title": "Free AI Image Generator — Text to Image Online",
+    "why": [
+      "Multiple art styles from one prompt box",
+      "Great for thumbnails, posts and concept art",
+      "Free to try with no account required"
+    ]
+  },
+  "ai-paraphraser.html": {
+    "desc": "Paraphrase text with AI free — rewrite in formal, casual or simple style. Keep meaning, change wording. No signup.",
+    "howto": [
+      "Paste the text you want to rewrite",
+      "Choose a tone: formal, casual or simple",
+      "Copy your paraphrased version"
+    ],
+    "related": [
+      "ai-text-summarizer.html",
+      "word-counter.html",
+      "case-converter.html",
+      "ai-translator.html",
+      "readability-checker.html",
+      "lorem-ipsum.html"
+    ],
+    "title": "Free AI Paraphraser — Rewrite Text Online",
+    "why": [
+      "Beat writer's block and avoid repetitive phrasing",
+      "Multiple tones for essays, emails and posts",
+      "Free with no word-count traps"
+    ]
+  },
+  "ai-text-summarizer.html": {
+    "desc": "Summarize long articles, papers and documents with AI free. Get key points in seconds — no signup required.",
+    "howto": [
+      "Paste your long text or article",
+      "Choose summary length",
+      "Copy the key points"
+    ],
+    "related": [
+      "ai-paraphraser.html",
+      "word-counter.html",
+      "readability-checker.html",
+      "ai-translator.html",
+      "lorem-ipsum.html",
+      "case-converter.html"
+    ],
+    "title": "Free AI Text Summarizer — Summarize Articles Online",
+    "why": [
+      "Skim 10-page articles in 30 seconds",
+      "Keeps the essential facts, drops the fluff",
+      "Free and private"
+    ]
+  },
+  "bmi-calculator.html": {
+    "desc": "Calculate your Body Mass Index (BMI) instantly from height and weight. Free BMI calculator with healthy-range guidance.",
+    "howto": [
+      "Enter your height and weight",
+      "Get your BMI score instantly",
+      "See which healthy range you fall in"
+    ],
+    "related": [
+      "bmr-calculator.html",
+      "body-fat-calculator.html",
+      "water-intake-calculator.html",
+      "age-calculator.html",
+      "percentage-calculator.html"
+    ],
+    "title": "Free BMI Calculator — Check Your Body Mass Index",
+    "why": [
+      "Instant result with clear healthy-weight ranges",
+      "Metric and imperial units supported",
+      "Free, private — nothing is stored"
+    ]
+  },
+  "case-converter.html": {
+    "desc": "Convert text to UPPERCASE, lowercase, Title Case, camelCase and more, instantly. Free online case converter — no signup.",
+    "howto": [
+      "Paste your text",
+      "Pick a case style (upper, lower, title, sentence…)",
+      "Copy the converted result"
+    ],
+    "related": [
+      "word-counter.html",
+      "lorem-ipsum.html",
+      "ai-paraphraser.html",
+      "readability-checker.html",
+      "fancy-text-generator.html"
+    ],
+    "title": "Free Case Converter — UPPERCASE, lowercase, Title Case",
+    "why": [
+      "Fix headings, emails and code identifiers in one click",
+      "Sentence and title case follow real typography rules",
+      "Free and unlimited"
+    ]
+  },
+  "color-picker.html": {
+    "desc": "Pick any color and get instant HEX, RGB and HSL values, plus shades and tints. Free online color picker for designers.",
+    "howto": [
+      "Pick a color from the picker or enter a value",
+      "Copy HEX, RGB or HSL instantly",
+      "Explore shades, tints and palettes"
+    ],
+    "related": [
+      "contrast-checker.html",
+      "palette-generator.html",
+      "image-compressor.html",
+      "qr-generator.html",
+      "image-resizer.html"
+    ],
+    "title": "Free Color Picker — HEX, RGB & HSL Values Online",
+    "why": [
+      "One-click copy in every format designers need",
+      "Shade explorer for perfect gradients",
+      "Free, no signup"
+    ]
+  },
+  "image-compressor.html": {
+    "desc": "Compress JPG, PNG & WebP images online free. Reduce image file size without visible quality loss — 100% private, works in your browser.",
+    "howto": [
+      "Upload your JPG, PNG or WebP image",
+      "Choose a quality level (or target file size)",
+      "Preview the result and download the compressed image"
+    ],
+    "related": [
+      "image-resizer.html",
+      "qr-generator.html",
+      "password-generator.html",
+      "word-counter.html",
+      "merge-pdf.html",
+      "unit-converter.html"
+    ],
+    "title": "Free Image Compressor — Compress JPG, PNG, WebP Online",
+    "why": [
+      "No uploads to a server — your images never leave your device",
+      "Shrink photos for websites, email and social media in seconds",
+      "Batch-friendly, free forever, no signup or watermark"
+    ]
+  },
+  "json-formatter.html": {
+    "desc": "Format, beautify, minify and validate JSON online free. Clear error messages with line numbers — no signup.",
+    "howto": [
+      "Paste your JSON",
+      "Click format (or minify)",
+      "Fix any flagged syntax errors"
+    ],
+    "related": [
+      "uuid-generator.html",
+      "url-encoder-decoder.html",
+      "password-generator.html",
+      "random-number-generator.html",
+      "qr-generator.html"
+    ],
+    "title": "Free JSON Formatter & Validator Online",
+    "why": [
+      "Pinpoints exactly where broken JSON fails",
+      "One-click beautify and minify for APIs",
+      "Runs locally — your data stays private"
+    ]
+  },
+  "lorem-ipsum.html": {
+    "desc": "Generate lorem ipsum placeholder text free — paragraphs, sentences or words. One click to copy for mockups and designs.",
+    "howto": [
+      "Choose paragraphs, sentences or words",
+      "Set how many you need",
+      "Copy with one click"
+    ],
+    "related": [
+      "word-counter.html",
+      "case-converter.html",
+      "ai-paraphraser.html",
+      "fancy-text-generator.html",
+      "text-art-generator.html",
+      "meme-maker.html"
+    ],
+    "title": "Free Lorem Ipsum Generator — Placeholder Text Online",
+    "why": [
+      "Realistic filler text for wireframes and mockups",
+      "Faster than typing dummy copy yourself",
+      "Free and instant"
+    ]
+  },
+  "merge-pdf.html": {
+    "desc": "Merge multiple PDF files into one document online free. Reorder pages, remove files — all processing happens in your browser.",
+    "howto": [
+      "Drop in two or more PDF files",
+      "Drag to reorder them",
+      "Click merge and download the combined PDF"
+    ],
+    "related": [
+      "split-pdf.html",
+      "image-compressor.html",
+      "word-counter.html",
+      "password-generator.html",
+      "images-to-pdf.html"
+    ],
+    "title": "Free Merge PDF Online — Combine PDF Files in Browser",
+    "why": [
+      "Your PDFs never leave your computer — fully private",
+      "No file-size games, no watermarks, no signup",
+      "Reorder and remove pages before merging"
+    ]
+  },
+  "password-generator.html": {
+    "desc": "Generate strong, random passwords (8–64 chars) with symbols, numbers and case options. Free, private — generated in your browser.",
+    "howto": [
+      "Choose password length and character types",
+      "Click generate — copy as many as you need",
+      "Check strength with the built-in meter"
+    ],
+    "related": [
+      "password-strength-checker.html",
+      "uuid-generator.html",
+      "qr-generator.html",
+      "random-number-generator.html",
+      "word-counter.html",
+      "case-converter.html"
+    ],
+    "title": "Free Password Generator — Strong Random Passwords",
+    "why": [
+      "Passwords are generated locally — never sent anywhere",
+      "Avoid reused, guessable passwords in one click",
+      "Free forever with no limits or signup"
+    ]
+  },
+  "password-strength-checker.html": {
+    "desc": "Check password strength free — live score, crack-time estimate and improvement tips. Tested locally, never uploaded.",
+    "howto": [
+      "Type a password (it never leaves your browser)",
+      "See the live strength score",
+      "Follow the tips to harden it"
+    ],
+    "related": [
+      "password-generator.html",
+      "uuid-generator.html",
+      "qr-generator.html",
+      "random-number-generator.html",
+      "word-counter.html",
+      "case-converter.html"
+    ],
+    "title": "Free Password Strength Checker — Test Password Security",
+    "why": [
+      "Crack-time estimate shows real-world risk",
+      "Checks length, variety and common patterns",
+      "100% private — nothing is sent or stored"
+    ]
+  },
+  "percentage-calculator.html": {
+    "desc": "Calculate percentages instantly: X% of Y, what % is X of Y, and percentage increase/decrease. Free online calculator.",
+    "howto": [
+      "Pick the calculation type",
+      "Enter your numbers",
+      "Get the answer instantly"
+    ],
+    "related": [
+      "bill-splitter.html",
+      "discount-calculator.html",
+      "compound-interest-calculator.html",
+      "emi-calculator.html",
+      "unit-converter.html",
+      "bmi-calculator.html"
+    ],
+    "title": "Free Percentage Calculator — % of Number, Change & More",
+    "why": [
+      "Covers discounts, tips, marks and growth in one place",
+      "Shows the formula so you learn too",
+      "Free, fast, no signup"
+    ]
+  },
+  "pomodoro-timer.html": {
+    "desc": "Free Pomodoro timer with customizable focus and break lengths. Stay productive with 25/5 cycles — no signup needed.",
+    "howto": [
+      "Set your focus and break lengths",
+      "Start the timer and work distraction-free",
+      "Take the break when the bell rings"
+    ],
+    "related": [
+      "stopwatch.html",
+      "countdown-timer.html",
+      "word-counter.html",
+      "text-to-speech-studio.html",
+      "metronome.html"
+    ],
+    "title": "Free Pomodoro Timer Online — Focus & Break Timer",
+    "why": [
+      "Customizable intervals beyond classic 25/5",
+      "Visual + sound cues keep you on track",
+      "Free forever, works offline-ish in one tab"
+    ]
+  },
+  "qr-generator.html": {
+    "desc": "Create free QR codes from any text, URL, Wi-Fi or contact. Customize size and download as PNG — no signup, no expiry.",
+    "howto": [
+      "Enter your text, link or Wi-Fi details",
+      "Pick the QR size and error-correction level",
+      "Download your QR code as a PNG image"
+    ],
+    "related": [
+      "password-generator.html",
+      "url-encoder-decoder.html",
+      "image-compressor.html",
+      "word-counter.html",
+      "uuid-generator.html",
+      "bio-maker.html"
+    ],
+    "title": "Free QR Code Generator — Create Custom QR Codes Online",
+    "why": [
+      "QR codes encode data directly — they never expire",
+      "No watermark, no account, unlimited QR codes",
+      "Works for menus, business cards, Wi-Fi sharing and payments"
+    ]
+  },
+  "text-to-speech-studio.html": {
+    "desc": "Convert text to natural-sounding speech free. Pick a voice, adjust speed and pitch, then download the audio. No signup.",
+    "howto": [
+      "Type or paste your text",
+      "Choose a voice and adjust speed/pitch",
+      "Play or download the audio"
+    ],
+    "related": [
+      "ai-story-writer.html",
+      "word-counter.html",
+      "ai-text-summarizer.html",
+      "voice-recorder.html",
+      "audio-trimmer.html",
+      "lorem-ipsum.html"
+    ],
+    "title": "Free Text to Speech Online — AI Voice Generator",
+    "why": [
+      "Natural voices for videos, podcasts and study",
+      "Download audio for offline use",
+      "Free with no account needed"
+    ]
+  },
+  "unit-converter.html": {
+    "desc": "Convert length, weight, temperature and more units instantly — km to miles, kg to lbs, °C to °F. Free, no signup.",
+    "howto": [
+      "Pick a category (length, weight…)",
+      "Enter a value and choose units",
+      "See the converted result instantly"
+    ],
+    "related": [
+      "percentage-calculator.html",
+      "currency-converter.html",
+      "bmi-calculator.html",
+      "age-calculator.html",
+      "compound-interest-calculator.html",
+      "word-counter.html"
+    ],
+    "title": "Free Unit Converter — Length, Weight, Temperature & More",
+    "why": [
+      "Covers everyday and scientific units",
+      "Live conversion as you type",
+      "Free and precise"
+    ]
+  },
+  "uuid-generator.html": {
+    "desc": "Generate random UUIDs (v4) and time-ordered UUIDs (v7) in bulk, free. Copy one or a thousand — no signup required.",
+    "howto": [
+      "Pick UUID v4 (random) or v7 (time-ordered)",
+      "Set how many you need",
+      "Copy all or download as text"
+    ],
+    "related": [
+      "password-generator.html",
+      "random-number-generator.html",
+      "json-formatter.html",
+      "qr-generator.html",
+      "url-encoder-decoder.html"
+    ],
+    "title": "Free UUID Generator — Generate v4 & v7 UUIDs in Bulk",
+    "why": [
+      "Bulk generation for databases, APIs and testing",
+      "v7 UUIDs sort by time — ideal for primary keys",
+      "Instant, free and private"
+    ]
+  },
+  "word-counter.html": {
+    "desc": "Count words, characters, sentences, paragraphs and reading time instantly as you type. Free online word counter — no signup needed.",
+    "howto": [
+      "Paste or type your text into the box",
+      "See live word, character and sentence counts",
+      "Check reading time and keyword density"
+    ],
+    "related": [
+      "case-converter.html",
+      "lorem-ipsum.html",
+      "ai-paraphraser.html",
+      "ai-text-summarizer.html",
+      "readability-checker.html"
+    ],
+    "title": "Free Word Counter — Count Words & Characters Online",
+    "why": [
+      "Live counts update as you type — perfect for essays and articles",
+      "Reading-time estimate helps bloggers and students",
+      "Free, private and unlimited — no account required"
+    ]
+  }
+}
