@@ -2126,59 +2126,54 @@ main, .site-footer { position: relative; z-index: 1; }
 
 /* Music toggle — sits next to the theme switch, same language */
 .music-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-left: 10px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease, background .25s ease;
+  position: relative;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--card); border: 1.5px solid var(--border); color: var(--ink);
+  cursor: pointer; overflow: visible;
+  transition: transform .2s, box-shadow .2s, background .2s;
 }
-.music-toggle:hover { transform: scale(1.08); box-shadow: 0 6px 18px rgba(59,130,246,.28); }
-.music-toggle:active { transform: scale(.93); }
-.music-toggle:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
-.music-toggle .mq-note { width: 20px; height: 20px; }
-.music-toggle .mq-bars { display: none; align-items: flex-end; gap: 3px; height: 20px; }
+.music-toggle:hover { transform: scale(1.1); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+.music-toggle .mq-note { width: 22px; height: 22px; position: relative; z-index: 2; }
+.music-toggle .mq-ring {
+  position: absolute; inset: -4px; border-radius: 50%;
+  border: 2px solid #00b2ff; opacity: 0; pointer-events: none;
+}
+.music-toggle .mq-bars {
+  display: none; align-items: flex-end; gap: 3px; height: 22px;
+  position: relative; z-index: 2;
+}
 .music-toggle .mq-bars span {
-  width: 4px;
-  border-radius: 2px;
-  background: currentColor;
-  transform-origin: bottom;
-  animation: mq-eq .9s ease-in-out infinite;
+  width: 4px; border-radius: 3px; background: #0f1419;
+  transform-origin: bottom; animation: mq-eq .7s ease-in-out infinite;
 }
-.music-toggle .mq-bars span:nth-child(1) { height: 50%; animation-delay: 0s; }
-.music-toggle .mq-bars span:nth-child(2) { height: 100%; animation-delay: .15s; }
-.music-toggle .mq-bars span:nth-child(3) { height: 65%; animation-delay: .3s; }
-.music-toggle .mq-bars span:nth-child(4) { height: 85%; animation-delay: .45s; }
+.music-toggle .mq-bars span:nth-child(1) { height: 45%; animation-delay: 0s; }
+.music-toggle .mq-bars span:nth-child(2) { height: 90%; animation-delay: .12s; }
+.music-toggle .mq-bars span:nth-child(3) { height: 65%; animation-delay: .24s; }
+.music-toggle .mq-bars span:nth-child(4) { height: 100%; animation-delay: .36s; }
+.music-toggle .mq-bars span:nth-child(5) { height: 55%; animation-delay: .48s; }
+/* PLAYING: unmissable */
 .music-toggle.playing {
   background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
   border-color: transparent; color: #0f1419;
-  animation: mq-bounce 1.2s ease-in-out infinite, mq-glow 2s ease-in-out infinite;
+  animation: mq-btn-bounce 1s ease-in-out infinite;
 }
-@keyframes mq-bounce {
-  0%, 100% { transform: scale(1); }
-  25% { transform: scale(1.12) rotate(-4deg); }
-  50% { transform: scale(1.05); }
-  75% { transform: scale(1.12) rotate(4deg); }
-}
-@keyframes mq-glow {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(0, 178, 255, .3), 0 8px 24px rgba(0, 178, 255, .5); }
-  50% { box-shadow: 0 0 0 8px rgba(0, 178, 255, .12), 0 8px 32px rgba(0, 178, 255, .7); }
-}
-.music-toggle.playing .mq-bars { height: 24px; gap: 4px; }
-.music-toggle.playing .mq-bars span { width: 5px; animation-duration: .7s; }
 .music-toggle.playing .mq-note { display: none; }
 .music-toggle.playing .mq-bars { display: inline-flex; }
-@keyframes mq-eq { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+.music-toggle.playing .mq-ring { animation: mq-ring 1.5s ease-out infinite; }
+@keyframes mq-eq { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+@keyframes mq-btn-bounce {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.15); }
+  60% { transform: scale(1.05); }
+}
+@keyframes mq-ring {
+  0% { opacity: .8; transform: scale(.85); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
 @media (prefers-reduced-motion: reduce) {
-  .music-toggle, .music-toggle:hover { transform: none; }
-  .music-toggle .mq-bars span { animation: none; }
+  .music-toggle.playing { animation: none; }
+  .music-toggle .mq-bars span, .music-toggle .mq-ring { animation: none; }
 }
 
 /* Field labels for form accessibility */
