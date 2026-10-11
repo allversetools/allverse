@@ -329,8 +329,8 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
     })();
     draw();
   }
-  $('atPlaySel').addEventListener('click', function () { if(!buf){ info.textContent='⚠️ Pehle audio file load karein / Load an audio file first.'; return; } play(selS, selE - selS, loopChk.checked); });
-  $('atPlayAll').addEventListener('click', function () { if(!buf){ info.textContent='⚠️ Pehle audio file load karein / Load an audio file first.'; return; } play(0, dur, false); });
+  $('atPlaySel').addEventListener('click', function () { if(!buf){ info.textContent='⚠️ Load an audio file first.'; return; } play(selS, selE - selS, loopChk.checked); });
+  $('atPlayAll').addEventListener('click', function () { if(!buf){ info.textContent='⚠️ Load an audio file first.'; return; } play(0, dur, false); });
   $('atStop').addEventListener('click', stop);
   speedSel.addEventListener('change', function () { if (playState) { var o = curPos(), l = playState.loop; stop(); play(l ? selS : o, l ? (selE - selS) : (dur - o), l); } });
 
@@ -351,7 +351,7 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
     return new Blob([ab], { type: 'audio/wav' });
   }
   $('atExport').addEventListener('click', function () {
-    if (!buf) { var eh0=$('atExpHint'); eh0.textContent = '⚠️ Pehle audio file load karein / Load an audio file first.'; eh0.classList.add('sk-err-msg'); return; }
+    if (!buf) { var eh0=$('atExpHint'); eh0.textContent = '⚠️ Load an audio file first.'; eh0.classList.add('sk-err-msg'); return; }
     $('atExpHint').classList.remove('sk-err-msg');
     var btn = $('atExport'); SK_AI.setBusy(btn,true,'Rendering\u2026');
     var keep = document.querySelector('input[name=atMode]:checked').value === 'keep';

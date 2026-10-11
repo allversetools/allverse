@@ -155,7 +155,7 @@
   }
 
   function analyze() {
-    var resume = SK_AI.requireInput($('atsResume'), '⚠️ Pehle resume paste karein / Paste your resume first.');
+    var resume = SK_AI.requireInput($('atsResume'), '⚠️ Paste your resume first.');
     if (resume === null) { $('atsOut').classList.remove('show'); return; }
     var jd = $('atsJd').value;
     var low = resume.toLowerCase(), rwords = words(resume), wc = rwords.length;

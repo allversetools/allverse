@@ -183,7 +183,7 @@
   /* Turns a plain user idea into a professional-grade image prompt */
   function proPrompt(base, kind) {
     base = String(base || '').trim().replace(/\s+/g, ' ');
-    return base + ', ' + (PRO_STYLES[kind] || PRO_STYLES.photo);
+    return base + ', ' + (PRO_STYLES[kind] || PRO_STYLES.photo) + ', no text, no watermark, no words, no letters';
   }
   function pollinationsImage(prompt, opts) {
     opts = opts || {};
@@ -206,7 +206,7 @@
       btn.classList.add('sk-busy');
       var dark = btn.classList.contains('btn-ghost') ? ' dark' : '';
       btn.innerHTML = '<span class="sk-btn-spinner' + dark + '"></span><span>' +
-        escapeHtml(busyLabel || 'AI soch raha hai… / Thinking…') + '</span>';
+        escapeHtml(busyLabel || 'Thinking…') + '</span>';
     } else {
       btn.disabled = false;
       btn.classList.remove('sk-busy');

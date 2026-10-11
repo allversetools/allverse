@@ -103,7 +103,7 @@ if('Translator' in window){eng.textContent='✅ On-device AI available — trans
 else{eng.textContent='ℹ️ On-device AI not found in this browser — using free cloud AI instead.';}
 var NAMES={en:'English',ur:'Urdu',ar:'Arabic',fr:'French',de:'German',es:'Spanish',hi:'Hindi',tr:'Turkish'};
 btn.onclick=function(){
-  var text=SK_AI.requireInput($('trText'),'Pehle text likhein / Enter text first.');
+  var text=SK_AI.requireInput($('trText'),'Enter text first.');
   if(text===null) return;
   var from=$('trFrom').value,to=$('trTo').value;
   res.hidden=false; SK_AI.scrollTo(res);

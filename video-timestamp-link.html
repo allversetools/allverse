@@ -155,7 +155,7 @@
 
   var lastShort = '';
   function generate() {
-    var rawUrl = SK_AI.requireInput($('ytUrl'), 'Paste a YouTube link first. / Pehle YouTube link paste karein.');
+    var rawUrl = SK_AI.requireInput($('ytUrl'), 'Paste a YouTube link first.');
     if (rawUrl === null) return;
     var id = parseVideoId(rawUrl);
     if (!id) { msg('Could not find a YouTube video ID in that URL. Paste a watch, youtu.be, Shorts or embed link.'); return; }

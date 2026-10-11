@@ -115,7 +115,7 @@ function renderSettle(){
   Array.prototype.forEach.call(document.querySelectorAll('[data-paid]'),function(b){b.onclick=function(){var x=t[parseInt(b.getAttribute('data-paid'))];S.paid.push({from:x.from,to:x.to,amt:x.amt});save();render();};});
 }
 function render(){renderPeople();renderExpenses();renderSettle();}
-$('wesAddP').onclick=function(){var v=SK_AI.requireInput($('wesName'),'Add a name first. / Pehle naam likhein.');if(!v)return;$('wesName').value='';if(S.people.indexOf(v)<0){S.people.push(v);save();render();}$('wesName').focus();};
+$('wesAddP').onclick=function(){var v=SK_AI.requireInput($('wesName'),'Add a name first.');if(!v)return;$('wesName').value='';if(S.people.indexOf(v)<0){S.people.push(v);save();render();}$('wesName').focus();};
 $('wesName').addEventListener('keydown',function(e){if(e.key==='Enter')$('wesAddP').click();});
 $('wesAddE').onclick=function(){
   var desc=$('wesDesc').value.trim()||'Expense',amt=Math.round(parseFloat($('wesAmt').value)||0);

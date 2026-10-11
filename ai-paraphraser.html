@@ -109,7 +109,7 @@
 var $=function(id){return document.getElementById(id)};
 var btn=$('ppBtn'),res=$('ppResult'),out=$('ppOut');
 btn.onclick=function(){
-  var text=SK_AI.requireInput($('ppText'),'Pehle text likhein / Enter text first.');
+  var text=SK_AI.requireInput($('ppText'),'Enter text first.');
   if(!text) return;
   var prompt='Rewrite this text in a '+$('ppTone').value+' tone. Keep the meaning, improve clarity. Reply with ONLY the rewritten text:\n\n'+text;
   res.hidden=false; SK_AI.scrollTo(res);

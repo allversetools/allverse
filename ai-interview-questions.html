@@ -88,7 +88,7 @@ var $=function(id){return document.getElementById(id)};
 var btn=$('iqBtn'),res=$('iqResult'),out=$('iqOut'),copyBtn=$('iqCopy');
 if(!btn||!res||!out) return;
 btn.onclick=function(){
-  var job=SK_AI.requireInput($('iqJob'),'Pehle job title likhein / Enter a job title first.');
+  var job=SK_AI.requireInput($('iqJob'),'Enter a job title first.');
   if(!job) return;
   var prompt='I am preparing for a "'+job+'" job interview in Pakistan. Give me 8 likely interview questions with strong 2-3 line sample answers each. Number them. Practical and realistic.';
   res.hidden=false; SK_AI.scrollTo(res);

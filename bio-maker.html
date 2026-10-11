@@ -200,7 +200,7 @@
     var role=(document.getElementById('role')||{}).value||'';
     var interest=(document.getElementById('interest')||{}).value||'';
     var style=(document.getElementById('style')||{}).value||'professional';
-    if(!name.trim()&&!role.trim()){ out.textContent='Pehle naam ya role likhein / Enter name or role first.'; res.hidden=false; return; }
+    if(!name.trim()&&!role.trim()){ out.textContent='Enter name or role first.'; res.hidden=false; return; }
     res.hidden=false; SK_AI.scrollTo(res);
     SK_AI.setBusy(btn,true); SK_AI.loading(res,true); out.textContent='';
     SK_AI.chat('Write 3 '+style+' social media bios for: name="'+name+'", role="'+role+'", interests="'+interest+'". Short, with 1-2 emojis each. Numbered.',

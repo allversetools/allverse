@@ -90,7 +90,7 @@
 var $=function(id){return document.getElementById(id)};
 var btn=$('nmBtn'),res=$('nmResult'),out=$('nmOut');
 btn.onclick=function(){
-  var keys=SK_AI.requireInput($('nmKeys'),'Pehle keywords likhein / Enter keywords first.');
+  var keys=SK_AI.requireInput($('nmKeys'),'Enter keywords first.');
   if(!keys) return;
   var prompt='Suggest 15 creative names for a '+$('nmType').value+' related to "'+keys+'". Number them. Mix English and Roman-Urdu flavored options where fitting. One per line, no long explanations.';
   res.hidden=false; SK_AI.scrollTo(res);

@@ -126,8 +126,8 @@ loadVoices();
 $('tsRate').oninput=function(){$('tsRateV').textContent=this.value;};
 $('tsPitch').oninput=function(){$('tsPitchV').textContent=this.value;};
 $('tsSpeak').onclick=function(){
-  var t=SK_AI.requireInput($('tsText'),'Pehle kuch text likhein / Type some text first.');
-  if(t===null){note.textContent='⚠️ Pehle kuch text likhein / Type some text first.';return;}
+  var t=SK_AI.requireInput($('tsText'),'Type some text first.');
+  if(t===null){note.textContent='⚠️ Type some text first.';return;}
   note.textContent=synth.getVoices().length+' voices available on your device.';
   synth.cancel();
   var u=new SpeechSynthesisUtterance(t);

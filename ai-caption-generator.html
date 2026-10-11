@@ -94,7 +94,7 @@ var $=function(id){return document.getElementById(id)};
 var btn=$('cpBtn'),res=$('cpResult'),out=$('cpOut'),copyBtn=$('cpCopy');
 if(!btn||!res||!out) return;
 btn.onclick=function(){
-  var topic=SK_AI.requireInput($('cpTopic'),'Pehle topic likhein / Enter a topic first.');
+  var topic=SK_AI.requireInput($('cpTopic'),'Enter a topic first.');
   if(!topic) return;
   var prompt='Write 5 catchy '+$('cpPlat').value+' captions for a post about "'+topic+'". Mix short punchy lines and one storytelling caption. Then add 10 relevant hashtags on a new line.';
   res.hidden=false; SK_AI.scrollTo(res);

@@ -137,7 +137,7 @@
   var btn=document.getElementById('haAiBtn'), res=document.getElementById('haAiResult'), out=document.getElementById('haAiOut');
   if(!btn||!window.SK_AI) return;
   btn.addEventListener('click', function(){
-    var t=SK_AI.requireInput(document.getElementById('haText'),'Pehle headline likhein / Enter a headline first.');
+    var t=SK_AI.requireInput(document.getElementById('haText'),'Enter a headline first.');
     if(t===null) return;
     res.hidden=false; SK_AI.scrollTo(res); out.textContent='';
     SK_AI.setBusy(btn,true,'Improving…'); SK_AI.loading(res,true);

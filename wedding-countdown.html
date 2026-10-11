@@ -77,7 +77,7 @@ function tick(){
   $('wcdTitle').textContent=names()+' — countdown';
 }
 function start(fromLoad){
-  var v=fromLoad?$('wcdDate').value:SK_AI.requireInput($('wcdDate'),'Please pick your wedding date first. / Pehle shaadi ki date chunein.');
+  var v=fromLoad?$('wcdDate').value:SK_AI.requireInput($('wcdDate'),'Please pick your wedding date first.');
   if(!v)return;
   target=new Date(v);
   if(isNaN(target.getTime())){if(!fromLoad)alert('Invalid date.');return;}
