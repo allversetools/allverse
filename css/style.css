@@ -2282,3 +2282,19 @@ main, .site-footer { position: relative; z-index: 1; }
 @media (min-width: 1400px) {
   .layout, .header-inner { max-width: 100%; padding-left: 28px; padding-right: 28px; }
 }
+
+/* ---------- Compact hero: tools visible above fold (CapCut style) ---------- */
+.hero { padding: 36px 24px 28px !important; }
+.cc-powered { margin-bottom: 8px !important; }
+.cc-powered em { font-size: 1rem !important; }
+.cc-headline {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem) !important;
+  margin-bottom: 14px !important;
+}
+.cc-toggle-pills { margin-bottom: 16px !important; }
+.cc-search-box { margin-bottom: 4px !important; }
+.hero-stats { margin-top: 18px !important; gap: 10px !important; }
+.hero-stat { padding: 9px 16px !important; }
+.hero-stat b { font-size: 1.15rem !important; }
+/* Hide decorative floating shapes for cleaner compact hero */
+.hero-scene { opacity: .35; }
