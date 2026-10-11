@@ -2159,10 +2159,20 @@ main, .site-footer { position: relative; z-index: 1; }
 .music-toggle.playing {
   background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
   border-color: transparent; color: #0f1419;
-  box-shadow: 0 0 0 3px rgba(0, 178, 255, .25), 0 6px 18px rgba(0, 178, 255, .4);
-  animation: mq-pulse 2s ease-in-out infinite;
+  animation: mq-bounce 1.2s ease-in-out infinite, mq-glow 2s ease-in-out infinite;
 }
-@keyframes mq-pulse { 0%, 100% { box-shadow: 0 0 0 3px rgba(0, 178, 255, .25), 0 6px 18px rgba(0, 178, 255, .4); } 50% { box-shadow: 0 0 0 6px rgba(0, 178, 255, .12), 0 6px 22px rgba(0, 178, 255, .55); } }
+@keyframes mq-bounce {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.12) rotate(-4deg); }
+  50% { transform: scale(1.05); }
+  75% { transform: scale(1.12) rotate(4deg); }
+}
+@keyframes mq-glow {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(0, 178, 255, .3), 0 8px 24px rgba(0, 178, 255, .5); }
+  50% { box-shadow: 0 0 0 8px rgba(0, 178, 255, .12), 0 8px 32px rgba(0, 178, 255, .7); }
+}
+.music-toggle.playing .mq-bars { height: 24px; gap: 4px; }
+.music-toggle.playing .mq-bars span { width: 5px; animation-duration: .7s; }
 .music-toggle.playing .mq-note { display: none; }
 .music-toggle.playing .mq-bars { display: inline-flex; }
 @keyframes mq-eq { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
