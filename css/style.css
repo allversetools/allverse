@@ -979,7 +979,7 @@ a.logo {
 }
 
 /* ---------- Aurora hero ---------- */
-.hero { padding: 88px 24px 76px; }
+.hero { padding: 44px 24px 52px; }
 .aurora { position: absolute; inset: -15% -5%; pointer-events: none; overflow: hidden; }
 .aurora span {
   position: absolute; border-radius: 50%; filter: blur(70px);
