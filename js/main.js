@@ -325,16 +325,16 @@
   var themeLabel = document.getElementById('themeLabel');
   function currentTheme() {
     try {
-      var saved = localStorage.getItem('sk_theme');
+      var saved = localStorage.getItem('sk_theme_v2');
       if (saved) return saved;
     } catch (e) {}
-    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    return 'light'; /* default: light mode first, user can switch to dark */
   }
   function applyTheme(t) {
     document.documentElement.setAttribute('data-theme', t);
     themeSwitches.forEach(function (s) { s.checked = (t === 'light'); });
     if (themeLabel) themeLabel.textContent = (t === 'light') ? 'Light' : 'Dark';
-    try { localStorage.setItem('sk_theme', t); } catch (e) {}
+    try { localStorage.setItem('sk_theme_v2', t); } catch (e) {}
   }
   applyTheme(currentTheme());
   themeSwitches.forEach(function (sw) {
