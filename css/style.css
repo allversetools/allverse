@@ -2170,3 +2170,34 @@ main, .site-footer { position: relative; z-index: 1; }
   color: var(--ink);
   margin-bottom: 8px;
 }
+
+/* ============================================================
+   CapCut-inspired polish: pill CTAs, softer cards, clean type
+   ============================================================ */
+/* Pill-shaped primary buttons (CapCut style) */
+.btn-primary {
+  border-radius: 999px;
+  padding: 13px 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.btn {
+  border-radius: 999px;
+}
+/* Softer, rounder tool cards */
+.tool-card {
+  border-radius: 20px;
+}
+:root {
+  --radius: 20px;
+  --shadow: 0 8px 24px rgba(35, 38, 43, .06);
+  --shadow-lift: 0 18px 40px rgba(35, 38, 43, .11);
+}
+/* Tighter, bolder headings (CapCut type feel) */
+.hero h1, .tool-wrap h1 {
+  letter-spacing: -0.035em;
+}
+/* Rounder pills and tags */
+.tag-pill, .pill, .cat-pill {
+  border-radius: 999px;
+}
