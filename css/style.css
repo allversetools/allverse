@@ -980,6 +980,8 @@ a.logo {
 
 /* ---------- Aurora hero ---------- */
 .hero { padding: 44px 24px 52px; }
+/* homepage: pull hero flush to the sticky header (cancel .main top pad) */
+.main > .hero:first-child { margin-top: -32px; }
 .aurora { position: absolute; inset: -15% -5%; pointer-events: none; overflow: hidden; }
 .aurora span {
   position: absolute; border-radius: 50%; filter: blur(70px);
