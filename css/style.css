@@ -54,7 +54,7 @@ img { max-width: 100%; display: block; }
 }
 
 .header-inner {
-  max-width: 1200px;
+  max-width: 1680px;
   margin: 0 auto;
   height: var(--header-h);
   padding: 0 20px;
@@ -130,7 +130,7 @@ a.logo {
 
 .layout {
   display: flex;
-  max-width: 1200px;
+  max-width: 1680px;
   margin: 0 auto;
   align-items: flex-start;
 }
@@ -2276,4 +2276,9 @@ main, .site-footer { position: relative; z-index: 1; }
 .pop-section .tool-card {
   scroll-snap-align: start;
   border-radius: 16px;
+}
+
+/* ---------- Full-width on wide screens (no side gaps) ---------- */
+@media (min-width: 1400px) {
+  .layout, .header-inner { max-width: 100%; padding-left: 28px; padding-right: 28px; }
 }
