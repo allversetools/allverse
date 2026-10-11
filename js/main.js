@@ -606,35 +606,4 @@
   });
 })();
 
-/* ---------- Intro splash: show once per session only ---------- */
-(function () {
-  'use strict';
-  function handleIntro() {
-    var el = document.getElementById('introSplash');
-    if (!el) return;
-    try {
-      // Only show on first page of session (reload/reopen = new session OK)
-      // Internal navigation: skip intro
-      var seen = sessionStorage.getItem('av_intro_seen');
-      var fromSite = document.referrer && document.referrer.indexOf(location.host) >= 0;
-      if (seen || fromSite) {
-        el.parentNode.removeChild(el);
-        return;
-      }
-      sessionStorage.setItem('av_intro_seen', '1');
-    } catch (e) {}
-    // Animate counter 0→100
-    var num = el.querySelector('[data-intro-num]');
-    if (num) {
-      var start = Date.now(), dur = 1100;
-      var tick = setInterval(function () {
-        var p = Math.min(1, (Date.now() - start) / dur);
-        num.textContent = String(Math.floor(p * 100)).padStart(3, '0');
-        if (p >= 1) clearInterval(tick);
-      }, 30);
-    }
-    setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 1900);
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', handleIntro);
-  else handleIntro();
-})();
+
