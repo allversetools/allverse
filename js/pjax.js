@@ -1,0 +1,139 @@
+/* ============================================================
+   AllVerse PJAX — seamless page navigation (music never stops)
+   Intercepts internal links, swaps content via AJAX, keeps
+   audio element alive. Like SoundCloud's approach.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var container = null;
+  var isLoading = false;
+
+  function getContainer() {
+    if (!container) {
+      // Wrap main content — everything except header/footer/scripts
+      var main = document.querySelector('main');
+      if (main) {
+        container = main;
+      } else {
+        // Fallback: use body content wrapper
+        container = document.body;
+      }
+    }
+    return container;
+  }
+
+  function isInternalLink(a) {
+    if (!a || !a.href) return false;
+    if (a.target === '_blank') return false;
+    if (a.hasAttribute('download')) return false;
+    var url = new URL(a.href, window.location.origin);
+    // Same origin, HTML page
+    if (url.origin !== window.location.origin) return false;
+    if (!url.pathname.endsWith('.html') && url.pathname !== '/') return false;
+    // Skip hash-only navigation on same page
+    if (url.pathname === window.location.pathname && url.hash) return false;
+    return true;
+  }
+
+  function loadPage(url, pushState) {
+    if (isLoading) return;
+    isLoading = true;
+
+    // Show subtle loading indicator
+    document.body.classList.add('pjax-loading');
+
+    fetch(url, { headers: { 'X-PJAX': 'true' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Failed to load');
+        return res.text();
+      })
+      .then(function (html) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+
+        // Update title
+        document.title = doc.title;
+
+        // Swap main content
+        var newMain = doc.querySelector('main');
+        var oldMain = getContainer();
+        if (newMain && oldMain && oldMain.tagName === 'MAIN') {
+          oldMain.innerHTML = newMain.innerHTML;
+        } else {
+          // Fallback: reload if structure differs
+          window.location.href = url;
+          return;
+        }
+
+        // Update active nav states
+        updateNav(url);
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Re-initialize page scripts (tool functionality)
+        reinitializePage();
+
+        if (pushState !== false) {
+          history.pushState({ url: url }, '', url);
+        }
+
+        document.body.classList.remove('pjax-loading');
+        isLoading = false;
+      })
+      .catch(function () {
+        // Fallback to normal navigation on error
+        window.location.href = url;
+      });
+  }
+
+  function updateNav(url) {
+    // Update sidebar active states
+    var links = document.querySelectorAll('.side-link');
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute('href');
+      if (href && url.endsWith(href)) {
+        links[i].classList.add('active');
+      } else {
+        links[i].classList.remove('active');
+      }
+    }
+  }
+
+  function reinitializePage() {
+    // Re-run tool initialization
+    // Most tools use DOMContentLoaded which won't fire — trigger manually
+    var event = new Event('pjax:load');
+    document.dispatchEvent(event);
+
+    // Re-inject music button if needed (it's outside main, so should persist)
+    // But ensure it's there
+    if (window.AV && window.AV.reinjectMusic) {
+      window.AV.reinjectMusic();
+    }
+  }
+
+  // Intercept clicks
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || !isInternalLink(a)) return;
+
+    // Allow Ctrl/Cmd+click for new tab
+    if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+
+    e.preventDefault();
+    loadPage(a.href, true);
+  });
+
+  // Handle back/forward buttons
+  window.addEventListener('popstate', function (e) {
+    if (e.state && e.state.url) {
+      loadPage(e.state.url, false);
+    }
+  });
+
+  // Expose for debugging
+  window.AV = window.AV || {};
+  window.AV.pjaxLoad = loadPage;
+})();
