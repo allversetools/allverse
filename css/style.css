@@ -2144,17 +2144,18 @@ main, .site-footer { position: relative; z-index: 1; }
 .music-toggle:active { transform: scale(.93); }
 .music-toggle:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
 .music-toggle .mq-note { width: 20px; height: 20px; }
-.music-toggle .mq-bars { display: none; align-items: flex-end; gap: 3px; height: 18px; }
+.music-toggle .mq-bars { display: none; align-items: flex-end; gap: 3px; height: 20px; }
 .music-toggle .mq-bars span {
-  width: 3px;
+  width: 4px;
   border-radius: 2px;
   background: currentColor;
   transform-origin: bottom;
-  animation: mq-eq 1s ease-in-out infinite;
+  animation: mq-eq .9s ease-in-out infinite;
 }
-.music-toggle .mq-bars span:nth-child(1) { height: 55%; animation-delay: 0s; }
-.music-toggle .mq-bars span:nth-child(2) { height: 100%; animation-delay: .18s; }
-.music-toggle .mq-bars span:nth-child(3) { height: 40%; animation-delay: .36s; }
+.music-toggle .mq-bars span:nth-child(1) { height: 50%; animation-delay: 0s; }
+.music-toggle .mq-bars span:nth-child(2) { height: 100%; animation-delay: .15s; }
+.music-toggle .mq-bars span:nth-child(3) { height: 65%; animation-delay: .3s; }
+.music-toggle .mq-bars span:nth-child(4) { height: 85%; animation-delay: .45s; }
 .music-toggle.playing {
   background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
   border-color: transparent; color: #0f1419;

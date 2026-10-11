@@ -1,103 +1,72 @@
 /* ============================================================
-   AllVerse Music — generative ambient background music
-   No audio files: warm pad chords synthesized live with WebAudio.
-   Toggle button is injected next to every theme switch (all pages,
-   no HTML edits needed). Default OFF — browsers require a user
-   gesture before any sound. Zero dependencies.
+   AllVerse Music — pleasant lo-fi background music (WebAudio)
+   Composed piece: warm pads + clear melody + soft bass.
+   Toggle button injected next to theme switch. Default OFF.
    ============================================================ */
 (function () {
   'use strict';
 
-  var ctx = null, master = null;
-  var playing = false, timer = null, chordIdx = 0;
+  var ctx = null, master = null, musicGain = null;
+  var playing = false, timers = [];
 
-  // Rich, pleasant progression (frequencies in Hz) — lo-fi warmth
+  // C major — pleasant, uplifting progression
   var CHORDS = [
-    [130.81, 164.81, 196.00, 246.94, 329.63], // Cmaj9 (bright open)
-    [110.00, 138.59, 164.81, 220.00, 277.18], // Am9 (warm)
-    [87.31, 110.00, 138.59, 164.81, 220.00],  // Fmaj9 (deep)
-    [98.00, 146.83, 196.00, 246.94, 293.66],  // Gadd9 (uplifting)
-    [130.81, 164.81, 196.00, 261.63, 329.63], // Cadd9 (resolve)
-    [116.54, 146.83, 174.61, 220.00, 293.66]  // Bbmaj9 (dreamy)
+    [261.63, 329.63, 392.00, 523.25],  // C
+    [220.00, 261.63, 329.63, 493.88],  // Am
+    [174.61, 220.00, 261.63, 440.00],  // F
+    [196.00, 246.94, 293.66, 493.88],  // G
   ];
-  var CHORD_DUR = 9;      // seconds per chord
-  var NOTE_PEAK = 0.022;  // per-oscillator peak — stays soft
+  // Simple, memorable melody (C major pentatonic)
+  var MELODY = [523.25, 587.33, 659.25, 784.00, 659.25, 587.33, 523.25, 440.00,
+                523.25, 659.25, 784.00, 880.00, 784.00, 659.25, 587.33, 523.25];
+  var BASS = [130.81, 110.00, 87.31, 98.00]; // C, A, F, G (one octave down feel)
 
   function ensureCtx() {
     if (ctx) return true;
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return false;
     ctx = new AC();
-
     master = ctx.createGain();
-    master.gain.value = 0.0001;
-
-    var filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 850;
-    filter.Q.value = 0.4;
-
-    // slow "breathing" on the filter cutoff for movement
-    var lfo = ctx.createOscillator();
-    lfo.frequency.value = 0.06;
-    var lfoGain = ctx.createGain();
-    lfoGain.gain.value = 220;
-    lfo.connect(lfoGain);
-    lfoGain.connect(filter.frequency);
-    lfo.start();
-
-    master.connect(filter);
-    filter.connect(ctx.destination);
+    master.gain.value = 0.9; // LOUDER — clearly audible
+    var comp = ctx.createDynamicsCompressor();
+    master.connect(comp);
+    comp.connect(ctx.destination);
+    musicGain = ctx.createGain();
+    musicGain.gain.value = 0.0001;
+    musicGain.connect(master);
     return true;
   }
 
-  function playChord(freqs) {
-    var t0 = ctx.currentTime + 0.05;
-    var atk = 3.5, rel = 3.5;
-    freqs.forEach(function (f, i) {
-      var osc = ctx.createOscillator();
-      osc.type = (i % 2) ? 'triangle' : 'sine';
-      // root an octave down for warmth
-      osc.frequency.value = (i === 0) ? f * 0.5 : f;
-      var g = ctx.createGain();
-      g.gain.setValueAtTime(0.0001, t0);
-      g.gain.exponentialRampToValueAtTime(NOTE_PEAK, t0 + atk);
-      g.gain.setValueAtTime(NOTE_PEAK, Math.max(t0 + atk, t0 + CHORD_DUR - rel));
-      g.gain.exponentialRampToValueAtTime(0.0001, t0 + CHORD_DUR);
-      osc.connect(g);
-      g.connect(master);
-      osc.start(t0);
-      osc.stop(t0 + CHORD_DUR + 0.1);
-    });
-  }
-
-  // Gentle melody phrases (C major pentatonic) — musical, not random
-  var MELODY = [
-    [523.25, 587.33, 659.25, 587.33],
-    [659.25, 783.99, 659.25, 523.25],
-    [587.33, 659.25, 783.99, 880.00],
-    [880.00, 783.99, 659.25, 587.33],
-    [523.25, 659.25, 587.33, 523.25]
-  ];
-  var melodyIdx = 0;
-  function sparkle() {
-    // Play a short melodic phrase instead of random notes
-    var phrase = MELODY[melodyIdx % MELODY.length];
-    melodyIdx++;
-    var penta = phrase;
-    var f = penta[Math.floor(Math.random() * penta.length)];
-    var t0 = ctx.currentTime + 0.05;
+  function note(freq, t0, dur, vol, type) {
     var osc = ctx.createOscillator();
-    osc.type = 'sine';
-    osc.frequency.value = f;
+    osc.type = type || 'sine';
+    osc.frequency.value = freq;
     var g = ctx.createGain();
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(0.016, t0 + 1.4);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 4.5);
-    osc.connect(g);
-    g.connect(master);
-    osc.start(t0);
-    osc.stop(t0 + 4.7);
+    g.gain.exponentialRampToValueAtTime(vol, t0 + 0.08);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(g); g.connect(musicGain);
+    osc.start(t0); osc.stop(t0 + dur + 0.1);
+  }
+
+  function playBar(barIdx) {
+    if (!playing) return;
+    var t0 = ctx.currentTime + 0.05;
+    var chord = CHORDS[barIdx % CHORDS.length];
+    var bassN = BASS[barIdx % BASS.length];
+    // Pad chord (soft, warm)
+    chord.forEach(function (f) { note(f, t0, 3.8, 0.06, 'triangle'); });
+    // Bass (gentle)
+    note(bassN, t0, 3.5, 0.09, 'sine');
+    note(bassN * 2, t0 + 1.9, 1.6, 0.05, 'sine');
+    // Melody (clear, pleasant — 4 notes per bar)
+    for (var i = 0; i < 4; i++) {
+      var mf = MELODY[(barIdx * 4 + i) % MELODY.length];
+      note(mf, t0 + i * 0.95, 0.9, 0.11, 'sine');
+      note(mf * 2, t0 + i * 0.95, 0.5, 0.025, 'triangle'); // shimmer octave
+    }
+    // Schedule next bar (4 seconds per bar)
+    timers.push(setTimeout(function () { playBar(barIdx + 1); }, 3950));
   }
 
   function setButtons(on) {
@@ -112,30 +81,24 @@
     if (!ensureCtx()) return;
     if (ctx.state === 'suspended') ctx.resume();
     playing = true;
-    master.gain.cancelScheduledValues(ctx.currentTime);
-    master.gain.setTargetAtTime(0.55, ctx.currentTime, 1.4);
-    playChord(CHORDS[chordIdx % CHORDS.length]);
-    timer = setInterval(function () {
-      chordIdx++;
-      playChord(CHORDS[chordIdx % CHORDS.length]);
-      if (Math.random() < 0.55) sparkle();
-    }, CHORD_DUR * 1000 - 2600); // overlap => seamless crossfade
+    musicGain.gain.cancelScheduledValues(ctx.currentTime);
+    musicGain.gain.setTargetAtTime(0.85, ctx.currentTime, 0.8); // fade in
+    playBar(0);
     setButtons(true);
   }
 
   function stop() {
     playing = false;
-    if (timer) { clearInterval(timer); timer = null; }
+    timers.forEach(clearTimeout); timers = [];
     if (ctx) {
-      master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.7);
-      setTimeout(function () { if (!playing && ctx && ctx.state === 'running') ctx.suspend(); }, 2400);
+      musicGain.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.4);
+      setTimeout(function () { if (!playing && ctx.state === 'running') ctx.suspend(); }, 1500);
     }
     setButtons(false);
   }
 
   function toggle() { if (playing) stop(); else start(); }
 
-  /* Inject the toggle next to every theme switch — works on all pages */
   function inject() {
     var wraps = document.querySelectorAll('.theme-switch-wrap');
     for (var i = 0; i < wraps.length; i++) {
@@ -151,7 +114,7 @@
         '<svg class="mq-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
         'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
         '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>' +
-        '<span class="mq-bars" aria-hidden="true"><span></span><span></span><span></span></span>';
+        '<span class="mq-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></span>';
       wrap.insertAdjacentElement('afterend', btn);
       btn.addEventListener('click', toggle);
     }
@@ -159,7 +122,5 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', inject);
-  } else {
-    inject();
-  }
+  } else { inject(); }
 })();
