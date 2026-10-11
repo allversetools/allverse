@@ -142,6 +142,7 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -348,14 +349,14 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
     return new Blob([ab], { type: 'audio/wav' });
   }
   $('atExport').addEventListener('click', function () {
-    if (!buf) { $('atExpHint').textContent = '⚠️ Pehle audio file load karein / Load an audio file first.'; $('atExpHint').style.color = '#b91c1c'; return; }
-    $('atExpHint').style.color = '';
-    var btn = $('atExport'); btn.disabled = true; btn.textContent = 'Rendering\u2026';
+    if (!buf) { var eh0=$('atExpHint'); eh0.textContent = '⚠️ Pehle audio file load karein / Load an audio file first.'; eh0.classList.add('sk-err-msg'); return; }
+    $('atExpHint').classList.remove('sk-err-msg');
+    var btn = $('atExport'); SK_AI.setBusy(btn,true,'Rendering\u2026');
     var keep = document.querySelector('input[name=atMode]:checked').value === 'keep';
     var segs = keep ? [[selS, selE]] : [[0, selS], [selE, dur]];
     segs = segs.filter(function (s) { return s[1] - s[0] > 0.01; });
     var totalDur = segs.reduce(function (a, s) { return a + (s[1] - s[0]); }, 0);
-    if (!segs.length || totalDur < 0.05) { btn.disabled = false; btn.textContent = '\u2B07 Export WAV'; return; }
+    if (!segs.length || totalDur < 0.05) { SK_AI.setBusy(btn,false); return; }
     var fi = Math.min(parseFloat(fadeIn.value), totalDur / 2);
     var fo = Math.min(parseFloat(fadeOut.value), totalDur / 2);
     var off = new OfflineAudioContext(nCh, Math.ceil(totalDur * sr), sr);
@@ -375,13 +376,15 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
       dl.href = url; dl.download = fileName.replace(/\.[^.]+$/, '') + '-trimmed.wav';
       dl.hidden = false; dl.textContent = '\u2B07 Download trimmed WAV (' + fmtSize(blob.size) + ')';
       $('atExpHint').textContent = 'Done \u2014 ' + fmt(totalDur) + ' of audio ready.';
-      btn.disabled = false; btn.textContent = '\u2B07 Export WAV';
-    }).catch(function () { btn.disabled = false; btn.textContent = '\u2B07 Export WAV'; });
+      $('atExpHint').classList.remove('sk-err-msg');
+      SK_AI.setBusy(btn,false);
+    }).catch(function () { SK_AI.setBusy(btn,false); });
   });
 
   /* file loading */
   function loadFile(f) {
     if (!f) return;
+    SK_AI.loading(editor, true, { lines: 3, messages: [[0, 'Decoding ' + f.name + '\u2026 / Audio decode ho rahi hai\u2026'], [8000, 'Still decoding \u2014 large files take a moment\u2026']] });
     info.textContent = 'Decoding ' + f.name + '\u2026';
     fileName = f.name;
     var fr = new FileReader();
@@ -399,9 +402,12 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
         sizeCanvas();
         setSel(0, dur);
         $('atDl').hidden = true; $('atExpHint').textContent = 'Set your selection, then Export.';
+        SK_AI.loading(editor, false);
         editor.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }).catch(function () {
+        SK_AI.loading(editor, false);
         info.textContent = 'Could not decode that file. Try MP3, WAV or OGG.';
+        SK_AI.showError(editor, 'Could not decode that file. Try MP3, WAV or OGG.');
       });
     };
     fr.readAsArrayBuffer(f);

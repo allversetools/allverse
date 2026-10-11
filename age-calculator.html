@@ -100,6 +100,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -111,7 +112,7 @@
   function daysIn(m,y){ return new Date(y,m+1,0).getDate(); }
   btn.addEventListener('click',function(){
     var note=document.getElementById('ageNote');
-    if(!dob.value){ showErr('Please select your date of birth.'); return; }
+    if(!SK_AI.requireInput(dob,'Please select your date of birth.')) return;
     var d=new Date(dob.value+'T00:00:00');
     var now=new Date(); now.setHours(0,0,0,0);
     if(isNaN(d.getTime())){ showErr('That date is not valid.'); return; }
@@ -135,6 +136,7 @@
     });
     if(note) note.textContent='';
     res.hidden=false;
+    SK_AI.scrollTo(res);
     function showErr(m){ document.getElementById('ageValue').textContent='–'; var g2=document.getElementById('statGrid'); if(g2) g2.innerHTML=''; if(note) note.textContent=m; res.hidden=false; }
   });
 })();

@@ -14,15 +14,15 @@
 </script>
 <style>
 .ats-score-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:6px}
-.ats-dial{width:132px;height:132px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:conic-gradient(var(--sc,#e74c3c) calc(var(--p,0)*1%),#eef1f6 0);position:relative;flex:none}
-.ats-dial::before{content:"";position:absolute;inset:12px;background:#fff;border-radius:50%}
+.ats-dial{width:132px;height:132px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:conic-gradient(var(--sc,#e74c3c) calc(var(--p,0)*1%),var(--soft) 0);position:relative;flex:none}
+.ats-dial::before{content:"";position:absolute;inset:12px;background:var(--card);border-radius:50%}
 .ats-dial b{position:relative;font-size:2rem;line-height:1}
-.ats-dial span{position:relative;font-size:.72rem;color:#777}
-.ats-check{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #eef1f6;font-size:.92rem}
+.ats-dial span{position:relative;font-size:.72rem;color:var(--muted)}
+.ats-check{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);font-size:.92rem}
 .ats-check:last-child{border-bottom:none}
 .ats-ico{flex:none;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff}
 .ats-ico.ok{background:#22a355}.ats-ico.warn{background:#e6a23c}.ats-ico.bad{background:#e74c3c}
-.ats-check small{display:block;color:#777;margin-top:2px}
+.ats-check small{display:block;color:var(--muted);margin-top:2px}
 .kw-chip{display:inline-block;background:#eef4ff;border:1px solid #cfe0ff;color:#2456c4;border-radius:999px;padding:3px 10px;margin:3px 4px 3px 0;font-size:.8rem}
 .kw-chip.hit{background:#e7f6ec;border-color:#bfe6cc;color:#157347}
 </style>
@@ -74,9 +74,8 @@
 <script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
 <div class="tool-panel">
 <div class="field"><label for="atsResume">Your resume text</label><textarea id="atsResume" style="min-height:240px" placeholder="Paste your full resume text here (copy it from your PDF or Word file)…"></textarea></div>
-<div class="field"><label for="atsJd">Job description <span style="font-weight:400;color:#777">(optional — unlocks keyword-match scoring)</span></label><textarea id="atsJd" style="min-height:140px" placeholder="Paste the job posting here for keyword-gap analysis…"></textarea></div>
+<div class="field"><label for="atsJd">Job description <span style="font-weight:400;color:var(--muted)">(optional — unlocks keyword-match scoring)</span></label><textarea id="atsJd" style="min-height:140px" placeholder="Paste the job posting here for keyword-gap analysis…"></textarea></div>
 <div class="btn-row"><button class="btn" id="atsGo" type="button">🔍 Analyze Resume</button><button class="btn btn-ghost" id="atsClear" type="button">Clear</button></div>
-<p id="atsErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0"></p>
 <div class="result-box" id="atsOut" style="margin-top:18px">
 <h4>ATS Report</h4>
 <div class="ats-score-wrap">
@@ -111,6 +110,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -153,14 +153,9 @@
   }
 
   function analyze() {
-    var resume = $('atsResume').value, jd = $('atsJd').value;
-    var errEl = $('atsErr');
-    if (!resume.trim()) {
-      $('atsOut').classList.remove('show');
-      if (errEl) { errEl.textContent = '⚠️ Pehle resume paste karein / Paste your resume first.'; errEl.hidden = false; }
-      return;
-    }
-    if (errEl) { errEl.textContent = ''; errEl.hidden = true; }
+    var resume = SK_AI.requireInput($('atsResume'), '⚠️ Pehle resume paste karein / Paste your resume first.');
+    if (resume === null) { $('atsOut').classList.remove('show'); return; }
+    var jd = $('atsJd').value;
     var low = resume.toLowerCase(), rwords = words(resume), wc = rwords.length;
     var checks = [], fixes = [], stats = [];
     var total = 0, max = 0;
@@ -277,10 +272,10 @@
     var icons = { ok: ['ok', '✓'], warn: ['warn', '!'], bad: ['bad', '✕'] };
     $('atsChecks').innerHTML = checks.map(function (c) {
       var ic = icons[c.status];
-      return '<div class="ats-check"><span class="ats-ico ' + ic[0] + '">' + ic[1] + '</span><div><b>' + esc(c.name) + '</b> <span style="color:#777">(' + c.pts + '/' + c.max + ')</span><small>' + esc(c.detail) + '</small></div></div>';
+      return '<div class="ats-check"><span class="ats-ico ' + ic[0] + '">' + ic[1] + '</span><div><b>' + esc(c.name) + '</b> <span style="color:var(--muted)">(' + c.pts + '/' + c.max + ')</span><small>' + esc(c.detail) + '</small></div></div>';
     }).join('');
     if (jd.trim()) {
-      $('atsKwWrap').innerHTML = '<h4>Keyword gaps <span style="font-weight:400;color:#777;font-size:.85rem">(top JD terms missing from your resume)</span></h4>' +
+      $('atsKwWrap').innerHTML = '<h4>Keyword gaps <span style="font-weight:400;color:var(--muted);font-size:.85rem">(top JD terms missing from your resume)</span></h4>' +
         (kwMissing.length
           ? '<div>' + kwMissing.map(function (w) { return '<span class="kw-chip">' + esc(w) + '</span>'; }).join('') + '</div>'
           : '<p class="hint">None — your resume covers the job description\u2019s key terms.</p>');
@@ -290,14 +285,13 @@
       : '<p class="hint">No priority fixes — nice work! 🎉</p>';
     var out = $('atsOut');
     out.classList.add('show');
-    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    SK_AI.scrollTo(out);
   }
 
   $('atsGo').addEventListener('click', analyze);
   $('atsClear').addEventListener('click', function () {
     $('atsResume').value = ''; $('atsJd').value = '';
     $('atsOut').classList.remove('show');
-    var e = $('atsErr'); if (e) { e.textContent = ''; e.hidden = true; }
   });
 })();
 </script>

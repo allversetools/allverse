@@ -102,6 +102,7 @@ This tool only checks the number\u2019s checksum format; it cannot verify a real
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -129,6 +130,7 @@ This tool only checks the number\u2019s checksum format; it cannot verify a real
     return 'Unknown';
   }
   btn.onclick = function () {
+    if (!SK_AI.requireInput(num, 'Enter a test card number (never your real card).')) return;
     var d = num.value.replace(/[\s-]/g, '');
     cmsg.textContent = '';
     if (!/^\d{13,19}$/.test(d)) {
@@ -144,6 +146,7 @@ This tool only checks the number\u2019s checksum format; it cannot verify a real
     brandEl.textContent = brand(d);
     brandEl.style.color = 'var(--ink)';
     masked.textContent = d.slice(0, 4) + ' ' + '\u2022\u2022\u2022\u2022 '.repeat(Math.max(0, Math.ceil((d.length - 8) / 4))).trim() + ' ' + d.slice(-4);
+    SK_AI.scrollTo(res);
   };
 })();
 

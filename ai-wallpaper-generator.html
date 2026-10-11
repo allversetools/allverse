@@ -77,7 +77,6 @@
 <div class="result-panel" id="wpResult" hidden>
 <h4>Your wallpaper (1920×1080)</h4>
 <div style="text-align:center"><img id="wpImg" alt="AI wallpaper" style="max-width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15)"></div>
-<p id="wpErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0;text-align:center"></p>
 <div class="btn-row" style="margin-top:12px"><button class="btn" id="wpDl" type="button">⬇ Download</button>
 <button class="btn btn-ghost" id="wpVar" type="button">🎲 New Variation</button></div>
 </div>
@@ -105,29 +104,32 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('wpBtn'),res=$('wpResult'),img=$('wpImg'),err=$('wpErr');
+var btn=$('wpBtn'),res=$('wpResult'),img=$('wpImg');
 if(!btn||!res||!img) return;
-function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } res.hidden=false; }
-function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
+var WP_MSGS=[[0,'🎨 Painting your wallpaper…'],[10000,'🎨 Still rendering… please wait.'],[30000,'⏳ Almost there — big images take up to a minute.']];
 function makeUrl(){
   var t=$('wpTheme').value.trim(); if(!t){return null;}
   var prompt=SK_AI.proPrompt('wallpaper of '+t+', '+$('wpMood').value+' mood','wallpaper');
   return SK_AI.pollinationsImage(prompt,{width:1920,height:1080,model:$('wpModel').value,enhance:$('wpEnhance').value==='1'});
 }
 function load(url){
-  SK_AI.setBusy(btn,true,'🎨 Painting your wallpaper…'); clearErr(); res.hidden=false; img.style.opacity='.4';
+  SK_AI.setBusy(btn,true,'🎨 Painting your wallpaper…');
+  res.hidden=false; SK_AI.scrollTo(res); SK_AI.loading(res,true,{messages:WP_MSGS}); img.style.opacity='.4';
   var pre=new Image();
-  pre.onload=function(){img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);};
-  pre.onerror=function(){SK_AI.setBusy(btn,false);img.style.opacity='1';showErr('Masla hua / Failed. Dobara try karein.');};
+  pre.onload=function(){img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);SK_AI.loading(res,false);};
+  pre.onerror=function(){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);img.style.opacity='1';SK_AI.showError(res,'Masla hua / Failed. Dobara try karein.');};
   pre.src=url;
 }
-btn.onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle theme likhein / Please enter a theme first.');}};
-$('wpVar').onclick=function(){var u=makeUrl(); if(u){load(u);}else{showErr('Pehle theme likhein / Please enter a theme first.');}};
+function needTheme(){
+  var t=SK_AI.requireInput($('wpTheme'),'Pehle theme likhein / Please enter a theme first.');
+  return t ? makeUrl() : null;
+}
+btn.onclick=function(){var u=needTheme(); if(u) load(u);};
+$('wpVar').onclick=function(){var u=needTheme(); if(u) load(u);};
 var dlBtn=$('wpDl');
 if(dlBtn) dlBtn.onclick=function(){
   var src=img.src;
-  if(!src||!img.naturalWidth){showErr('Pehle wallpaper generate karein / Generate a wallpaper first.');return;}
-  clearErr();
+  if(!src||!img.naturalWidth){SK_AI.showError(res,'Pehle wallpaper generate karein / Generate a wallpaper first.');return;}
   var oldLabel=dlBtn.textContent; dlBtn.disabled=true; dlBtn.textContent='⏳ Preparing…';
   fetch(src,{mode:'cors'}).then(function(r){ if(!r.ok) throw new Error('net'); return r.blob(); }).then(function(b){
     var u=URL.createObjectURL(b);

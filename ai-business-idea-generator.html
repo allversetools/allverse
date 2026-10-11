@@ -60,7 +60,6 @@
 <div class="result-panel" id="biResult" hidden>
 <h4>Business ideas for you</h4>
 <div id="biOut" style="white-space:pre-wrap;line-height:1.7"></div>
-<p id="biErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0"></p>
 <div class="btn-row" style="margin-top:12px"><button class="btn btn-ghost" id="biCopy" type="button">⧉ Copy All</button></div>
 </div>
 </div></div><section class="faq-section"><h2>AI Business Idea Generator — FAQs</h2>
@@ -87,19 +86,19 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('biBtn'),res=$('biResult'),out=$('biOut'),err=$('biErr'),copyBtn=$('biCopy');
-function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } }
-function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
+var btn=$('biBtn'),res=$('biResult'),out=$('biOut'),copyBtn=$('biCopy');
 if(!btn||!res||!out) return;
 btn.onclick=function(){
-  var int=$('biInt').value.trim(); if(!int){out.textContent='Pehle interests likhein / Enter interests first.';res.hidden=false;return;}
+  var int=SK_AI.requireInput($('biInt'),'Pehle interests likhein / Enter interests first.');
+  if(!int) return;
   var prompt='Suggest 5 practical small business ideas in Pakistan for someone interested in "'+int+'" with a budget of '+$('biBudget').value+'. For each: name the idea, why it can work, and 3 first steps. Keep it realistic and concise.';
-  SK_AI.setBusy(btn,true); res.hidden=false; clearErr(); out.textContent='';
+  res.hidden=false; SK_AI.scrollTo(res);
+  SK_AI.setBusy(btn,true,'✨ Generating ideas…'); SK_AI.loading(res,true); out.textContent='';
   SK_AI.chat(prompt,'You are a startup mentor who knows the Pakistani market well.').then(function(txt){
-    SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
-  }).catch(function(e){SK_AI.setBusy(btn,false);showErr(e.message);});
+    SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
+  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message);});
 };
-if(copyBtn) copyBtn.onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};
+if(copyBtn) copyBtn.onclick=function(){SK_AI.copyText(copyBtn,out.textContent);};
 })();
 </script>
 </body></html>

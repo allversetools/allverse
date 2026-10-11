@@ -103,6 +103,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -117,12 +118,13 @@
     return ['Obese','#ef4444','Your BMI is well above the healthy range. Consider consulting a doctor.'];
   }
   btn.addEventListener('click',function(){
+    if(!SK_AI.requireInput(h,'Please enter your height.')||!SK_AI.requireInput(w,'Please enter your weight.')) return;
     var hv=parseFloat(h.value), wv=parseFloat(w.value);
     var note=document.getElementById('bmiNote');
     if(!(hv>0)||!(wv>0)){
       res.hidden=false;
       document.getElementById('bmiValue').textContent='–';
-      var b=document.getElementById('bmiBadge'); b.textContent='Invalid input'; b.style.background='#6b7280';
+      var b=document.getElementById('bmiBadge'); b.textContent='Invalid input'; b.style.background='var(--muted)';
       if(note) note.textContent='Please enter positive numbers for both height and weight.';
       return;
     }
@@ -132,6 +134,7 @@
     badge.textContent=c[0]; badge.style.background=c[1];
     if(note) note.textContent=c[2];
     res.hidden=false;
+    SK_AI.scrollTo(res);
   });
 })();
 </script>

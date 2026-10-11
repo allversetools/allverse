@@ -60,7 +60,6 @@
 <div class="result-panel" id="cpResult" hidden>
 <h4>Your captions</h4>
 <div id="cpOut" style="white-space:pre-wrap;line-height:1.7"></div>
-<p id="cpErr" hidden style="color:#b91c1c;font-weight:600;margin:8px 0 0"></p>
 <div class="btn-row" style="margin-top:12px"><button class="btn btn-ghost" id="cpCopy" type="button">⧉ Copy All</button></div>
 </div>
 </div></div><section class="faq-section"><h2>AI Caption Generator — FAQs</h2>
@@ -87,19 +86,19 @@
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var btn=$('cpBtn'),res=$('cpResult'),out=$('cpOut'),err=$('cpErr'),copyBtn=$('cpCopy');
-function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } }
-function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
+var btn=$('cpBtn'),res=$('cpResult'),out=$('cpOut'),copyBtn=$('cpCopy');
 if(!btn||!res||!out) return;
 btn.onclick=function(){
-  var topic=$('cpTopic').value.trim(); if(!topic){out.textContent='Pehle topic likhein / Enter a topic first.';res.hidden=false;return;}
+  var topic=SK_AI.requireInput($('cpTopic'),'Pehle topic likhein / Enter a topic first.');
+  if(!topic) return;
   var prompt='Write 5 catchy '+$('cpPlat').value+' captions for a post about "'+topic+'". Mix short punchy lines and one storytelling caption. Then add 10 relevant hashtags on a new line.';
-  SK_AI.setBusy(btn,true); res.hidden=false; clearErr(); out.textContent='';
+  res.hidden=false; SK_AI.scrollTo(res);
+  SK_AI.setBusy(btn,true,'✨ Writing captions…'); SK_AI.loading(res,true); out.textContent='';
   SK_AI.chat(prompt,'You are a viral social media copywriter.').then(function(txt){
-    SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
-  }).catch(function(e){SK_AI.setBusy(btn,false);showErr(e.message);});
+    SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
+  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message);});
 };
-if(copyBtn) copyBtn.onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};
+if(copyBtn) copyBtn.onclick=function(){SK_AI.copyText(copyBtn,out.textContent);};
 })();
 </script>
 </body></html>

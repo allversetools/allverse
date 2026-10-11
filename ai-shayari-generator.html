@@ -95,13 +95,14 @@ var btn=$('shBtn'),res=$('shResult'),out=$('shOut');
 function gen(){
   var topic=$('shTopic').value.trim();
   var prompt='Write 4 beautiful original Urdu couplets (shayari) on the theme of '+$('shMood').value+(topic?' about "'+topic+'"':'')+'. IMPORTANT: write ONLY in Roman Urdu (Urdu written in English letters), 2 lines per sher, numbered.';
-  SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+  res.hidden=false; SK_AI.scrollTo(res);
+  SK_AI.setBusy(btn,true,'✨ Shayari likhi ja rahi hai…'); SK_AI.loading(res,true); out.textContent='';
   SK_AI.chat(prompt,'You are an Urdu poet. You ALWAYS write poetry in Roman Urdu script only, never in Urdu script, never in English.').then(function(txt){
-    SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
-  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.showError(res,e.message);});
+    SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
+  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message);});
 }
 btn.onclick=gen; $('shMore').onclick=gen;
-$('shCopy').onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};
+$('shCopy').onclick=function(){SK_AI.copyText($('shCopy'),out.textContent);};
 })();
 </script>
 </body></html>

@@ -92,20 +92,23 @@
 var $=function(id){return document.getElementById(id)};
 var btn=$('ppBtn'),res=$('ppResult'),out=$('ppOut');
 btn.onclick=function(){
-  var text=$('ppText').value.trim(); if(!text){out.textContent='Pehle text likhein / Enter text first.';res.hidden=false;return;}
+  var text=SK_AI.requireInput($('ppText'),'Pehle text likhein / Enter text first.');
+  if(!text) return;
   var prompt='Rewrite this text in a '+$('ppTone').value+' tone. Keep the meaning, improve clarity. Reply with ONLY the rewritten text:\n\n'+text;
-  SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+  res.hidden=false; SK_AI.scrollTo(res);
+  SK_AI.setBusy(btn,true,'✨ Rewriting…'); SK_AI.loading(res,true); out.textContent='';
+  var stopLoad=function(){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);};
   var run=function(){
     return ('LanguageModel' in window)
       ? window.LanguageModel.create({}).then(function(s){return s.prompt(prompt);})
       : SK_AI.chat(prompt,'You rewrite text beautifully.');
   };
-  run().then(function(t){SK_AI.setBusy(btn,false);SK_AI.typeInto(out,t);})
+  run().then(function(t){stopLoad();SK_AI.typeInto(out,t);})
        .catch(function(){ SK_AI.chat(prompt,'You rewrite text beautifully.')
-         .then(function(t){SK_AI.setBusy(btn,false);SK_AI.typeInto(out,t);})
-         .catch(function(e){SK_AI.setBusy(btn,false);SK_AI.showError(res,e.message);}); });
+         .then(function(t){stopLoad();SK_AI.typeInto(out,t);})
+         .catch(function(e){stopLoad();SK_AI.showError(res,e.message);}); });
 };
-$('ppCopy').onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};
+$('ppCopy').onclick=function(){SK_AI.copyText($('ppCopy'),out.textContent);};
 })();
 </script>
 </body></html>

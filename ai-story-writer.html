@@ -96,14 +96,16 @@
 var $=function(id){return document.getElementById(id)};
 var btn=$('stBtn'),res=$('stResult'),out=$('stOut');
 btn.onclick=function(){
-  var topic=$('stTopic').value.trim(); if(!topic){out.textContent='Pehle topic likhein / Enter a topic first.';res.hidden=false;return;}
+  var topic=SK_AI.requireInput($('stTopic'),'Pehle topic likhein / Enter a topic first.');
+  if(!topic) return;
   var prompt='Write an original '+$('stGenre').value+' story about "'+topic+'", '+$('stLen').value+'. Make it engaging with a clear beginning, middle and end.';
-  SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+  res.hidden=false; SK_AI.scrollTo(res);
+  SK_AI.setBusy(btn,true,'✨ Writing your story…'); SK_AI.loading(res,true); out.textContent='';
   SK_AI.chat(prompt,'You are a creative storyteller. Write vivid, original stories.').then(function(txt){
-    SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
-  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.showError(res,e.message);});
+    SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
+  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message);});
 };
-$('stCopy').onclick=function(){var t=out.textContent;if(navigator.clipboard&&t)navigator.clipboard.writeText(t);};
+$('stCopy').onclick=function(){SK_AI.copyText($('stCopy'),out.textContent);};
 })();
 </script>
 </body></html>

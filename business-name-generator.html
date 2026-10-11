@@ -93,6 +93,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -115,15 +116,10 @@
     return a;
   }
   function gen() {
-    var word = kw.value.trim().replace(/\s+/g, ' ');
+    var raw = SK_AI.requireInput(kw, 'Enter a keyword first.');
+    if (raw === null) return;
+    var word = raw.replace(/\s+/g, ' ');
     res.innerHTML = '';
-    if (!word) {
-      var p = document.createElement('p');
-      p.className = 'hint';
-      p.textContent = 'Enter a keyword first.';
-      res.appendChild(p);
-      return;
-    }
     var K = cap(word), k = word.toLowerCase();
     var names = [];
     shuffle(prefixes).slice(0, 3).forEach(function (pr) { names.push(pr + K); });
@@ -142,16 +138,10 @@
       chip.className = 'chip';
       chip.textContent = n;
       chip.title = 'Click to copy';
-      chip.onclick = function () {
-        function done() {
-          chip.textContent = '\u2713 Copied';
-          setTimeout(function () { chip.textContent = n; }, 1200);
-        }
-        if (navigator.clipboard) navigator.clipboard.writeText(n).then(done, done);
-        else done();
-      };
+      chip.onclick = function () { SK_AI.copyText(chip, n, '\u2713 Copied'); };
       res.appendChild(chip);
     });
+    SK_AI.scrollTo(res);
   }
   btn.onclick = gen;
   kw.addEventListener('keydown', function (e) { if (e.key === 'Enter') gen(); });
