@@ -185,13 +185,40 @@
     base = String(base || '').trim().replace(/\s+/g, ' ');
     return base + ', ' + (PRO_STYLES[kind] || PRO_STYLES.photo) + ', no text, no watermark, no words, no letters';
   }
+  // Rate limit: 1 request per 15s for anonymous (Pollinations free tier)
+  var lastImageRequest = 0;
+  var IMAGE_COOLDOWN = 15000;
+
+  function canMakeImageRequest() {
+    var now = Date.now();
+    var elapsed = now - lastImageRequest;
+    if (elapsed < IMAGE_COOLDOWN) {
+      return Math.ceil((IMAGE_COOLDOWN - elapsed) / 1000);
+    }
+    return 0;
+  }
+
+  function markImageRequest() {
+    lastImageRequest = Date.now();
+  }
+
+  // Enhance prompt with quality keywords (research-based)
+  function enhancePrompt(prompt) {
+    var quality = ', highly detailed, professional quality, 8k resolution';
+    // Don't duplicate if already has quality terms
+    if (/detailed|quality|8k|4k|hd/i.test(prompt)) return prompt;
+    return prompt + quality;
+  }
+
   function pollinationsImage(prompt, opts) {
     opts = opts || {};
     var w = opts.width || 1024, h = opts.height || 1024;
     var model = opts.model || 'flux';
     var seed = (typeof opts.seed === 'number') ? opts.seed : Math.floor(Math.random() * 999999);
     var enhance = (opts.enhance === false) ? 'false' : 'true';
-    return 'https://image.pollinations.ai/prompt/' + encodeURIComponent(prompt) +
+    // Auto-enhance prompt for better results
+    var enhanced = enhancePrompt(prompt);
+    return 'https://image.pollinations.ai/prompt/' + encodeURIComponent(enhanced) +
       '?width=' + w + '&height=' + h + '&model=' + model + '&nologo=true&seed=' + seed + '&enhance=' + enhance;
   }
 
@@ -358,6 +385,8 @@
     chat: aiChat,
     typeInto: typeInto,
     pollinationsImage: pollinationsImage,
+    canMakeImageRequest: canMakeImageRequest,
+    markImageRequest: markImageRequest,
     proPrompt: proPrompt,
     IMAGE_MODELS: IMAGE_MODELS,
     setBusy: setBusy,
