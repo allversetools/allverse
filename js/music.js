@@ -79,19 +79,26 @@
 
   function start() {
     if (!ensureCtx()) return;
-    if (ctx.state === 'suspended') ctx.resume();
+    // Fix stale state: ensure context is truly running
+    if (ctx.state === 'suspended') {
+      ctx.resume().then(function () {
+        if (ctx.state !== 'running') { setButtons(false); playing = false; return; }
+      });
+    }
     playing = true;
+    wasPlayingBeforeHide = true;
     musicGain.gain.cancelScheduledValues(ctx.currentTime);
-    musicGain.gain.setTargetAtTime(0.85, ctx.currentTime, 0.8); // fade in
+    musicGain.gain.setTargetAtTime(0.85, ctx.currentTime, 0.7); // 2s fade in
     playBar(0);
     setButtons(true);
   }
 
   function stop() {
     playing = false;
+    wasPlayingBeforeHide = false;
     timers.forEach(clearTimeout); timers = [];
     if (ctx) {
-      musicGain.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.4);
+      musicGain.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.7); // 2s fade out
       setTimeout(function () { if (!playing && ctx.state === 'running') ctx.suspend(); }, 1500);
     }
     setButtons(false);
@@ -121,8 +128,20 @@
     }
   }
 
+  var wasPlayingBeforeHide = false;
+
   function initAutoplay() {
     inject();
+    // Always start with button OFF (fix stale ON-but-silent state)
+    setButtons(false); playing = false;
+    // Pause when tab hidden, resume when visible
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        if (playing) { wasPlayingBeforeHide = true; stop(); }
+      } else {
+        if (wasPlayingBeforeHide && !playing) { wasPlayingBeforeHide = false; start(); }
+      }
+    });
     // Autoplay: browsers require a user gesture — start on first interaction
     var started = false;
     function tryStart() {
