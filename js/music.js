@@ -11,12 +11,14 @@
   var ctx = null, master = null;
   var playing = false, timer = null, chordIdx = 0;
 
-  // Warm, slow progression (frequencies in Hz)
+  // Rich, pleasant progression (frequencies in Hz) — lo-fi warmth
   var CHORDS = [
-    [87.31, 110.00, 130.81, 164.81, 196.00],  // Fmaj9
-    [130.81, 164.81, 196.00, 246.94, 293.66], // Cmaj9
-    [110.00, 130.81, 164.81, 246.94, 293.66], // Am9
-    [98.00, 123.47, 146.83, 164.81, 220.00]   // G6/9
+    [130.81, 164.81, 196.00, 246.94, 329.63], // Cmaj9 (bright open)
+    [110.00, 138.59, 164.81, 220.00, 277.18], // Am9 (warm)
+    [87.31, 110.00, 138.59, 164.81, 220.00],  // Fmaj9 (deep)
+    [98.00, 146.83, 196.00, 246.94, 293.66],  // Gadd9 (uplifting)
+    [130.81, 164.81, 196.00, 261.63, 329.63], // Cadd9 (resolve)
+    [116.54, 146.83, 174.61, 220.00, 293.66]  // Bbmaj9 (dreamy)
   ];
   var CHORD_DUR = 9;      // seconds per chord
   var NOTE_PEAK = 0.022;  // per-oscillator peak — stays soft

@@ -2155,7 +2155,13 @@ main, .site-footer { position: relative; z-index: 1; }
 .music-toggle .mq-bars span:nth-child(1) { height: 55%; animation-delay: 0s; }
 .music-toggle .mq-bars span:nth-child(2) { height: 100%; animation-delay: .18s; }
 .music-toggle .mq-bars span:nth-child(3) { height: 40%; animation-delay: .36s; }
-.music-toggle.playing { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+.music-toggle.playing {
+  background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
+  border-color: transparent; color: #0f1419;
+  box-shadow: 0 0 0 3px rgba(0, 178, 255, .25), 0 6px 18px rgba(0, 178, 255, .4);
+  animation: mq-pulse 2s ease-in-out infinite;
+}
+@keyframes mq-pulse { 0%, 100% { box-shadow: 0 0 0 3px rgba(0, 178, 255, .25), 0 6px 18px rgba(0, 178, 255, .4); } 50% { box-shadow: 0 0 0 6px rgba(0, 178, 255, .12), 0 6px 22px rgba(0, 178, 255, .55); } }
 .music-toggle.playing .mq-note { display: none; }
 .music-toggle.playing .mq-bars { display: inline-flex; }
 @keyframes mq-eq { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
