@@ -120,7 +120,26 @@
     }
   }
 
+  function initAutoplay() {
+    inject();
+    // Autoplay: browsers require a user gesture — start on first interaction
+    var started = false;
+    function tryStart() {
+      if (started || playing) return;
+      started = true;
+      start();
+      ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
+        document.removeEventListener(ev, tryStart);
+      });
+    }
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
+      document.addEventListener(ev, tryStart, { passive: true });
+    });
+    // Also try immediate (works if browser allows)
+    try { start(); started = true; } catch (e) {}
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', inject);
-  } else { inject(); }
+    document.addEventListener('DOMContentLoaded', initAutoplay);
+  } else { initAutoplay(); }
 })();
