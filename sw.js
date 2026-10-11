@@ -1,7 +1,7 @@
 /* AllVerse service worker — cache-first for static assets, network fallback. */
 (function () {
   'use strict';
-  var CACHE = 'allverse-v6';
+  var CACHE = 'allverse-v7';
   var CORE = [
     '/allverse/',
     '/allverse/index.html',
