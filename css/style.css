@@ -2446,3 +2446,17 @@ main, .site-footer { position: relative; z-index: 1; }
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+/* ---------- Mobile: categories in 2-column grid (less scrolling) ---------- */
+@media (max-width: 900px) {
+  .sidebar .side-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 8px;
+  }
+  .sidebar .side-link {
+    font-size: .85rem;
+    padding: 9px 10px;
+  }
+  .sidebar .side-link svg { width: 16px; height: 16px; }
+}
