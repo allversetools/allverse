@@ -2304,3 +2304,128 @@ main, .site-footer { position: relative; z-index: 1; }
 .hero-stat b { font-size: 1.15rem !important; }
 /* Hide decorative floating shapes for cleaner compact hero */
 .hero-scene { opacity: .35; }
+
+/* ============================================================
+   V6 — CapCut professional redesign (2026-10-11)
+   Real CapCut transformation: compact clean hero (no giant 3D),
+   unified cyan accent, professional spacing + hierarchy.
+   Appended last = wins. Dark + light themes both supported.
+   ============================================================ */
+
+/* ---------- CapCut hero: compact, clean, no 3D ---------- */
+.hero-scene { display: none !important; }
+.cc-hero { padding: 56px 24px 40px !important; }
+.cc-hero .cc-eyebrow { margin-bottom: 16px; }
+.cc-hero .cc-headline {
+  font-size: clamp(2.1rem, 4.6vw, 3.3rem) !important;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 14px !important;
+}
+.cc-sub {
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto 24px;
+}
+.cc-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.cc-cta .btn { min-width: 168px; }
+.cc-trust {
+  font-size: .8rem;
+  color: var(--muted);
+  margin-bottom: 26px;
+}
+.cc-hero .smart-paste { margin-bottom: 18px !important; }
+.cc-hero .cc-toggle-pills { margin: 0 auto 20px !important; }
+.cc-stats { margin: 0; }
+
+/* ---------- Unified CapCut cyan accent (both themes) ---------- */
+:root {
+  --blue: #00b2ff;
+  --blue-dark: #0098dd;
+  --blue-tint: rgba(0, 178, 255, .1);
+  --accent: #00b2ff;
+  --accent-ink: #0080c0;
+  --cc-gradient: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
+  --bg: #ffffff;
+  --soft: #f4f6f8;
+  --card: #ffffff;
+  --border: #e9edf1;
+}
+[data-theme="dark"] {
+  --blue: #00c8ff;
+  --blue-dark: #00a8e0;
+  --blue-tint: rgba(0, 200, 255, .14);
+  --accent: #00c8ff;
+  --accent-ink: #8fd8ff;
+}
+
+/* ---------- Professional spacing + hierarchy ---------- */
+.cat-section { margin-bottom: 52px; }
+.pop-section { margin: 8px 0 52px; }
+.pop-head h2, .cat-head h2 {
+  letter-spacing: -0.025em;
+}
+.pop-head { margin-bottom: 20px; }
+.cat-head { margin-bottom: 18px; }
+
+/* Tool cards: clean CapCut hover — accent hairline + whisper of tint */
+.tool-card:hover {
+  border-color: var(--accent);
+  background: var(--card);
+}
+[data-theme="dark"] .tool-card:hover { border-color: var(--accent); }
+.tool-card:hover .card-icon {
+  background: var(--blue-tint);
+  color: var(--accent);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Primary CTA: CapCut cyan pill, dark text for contrast */
+.btn-primary {
+  background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
+  color: #0b1b24;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0, 178, 255, .35), inset 0 1px 0 rgba(255, 255, 255, .4);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #00d4ff 0%, #00a0e8 100%);
+  color: #0b1b24;
+  box-shadow: 0 12px 26px rgba(0, 178, 255, .45), inset 0 1px 0 rgba(255, 255, 255, .4);
+  transform: translateY(-1px);
+}
+.btn-ghost { border-radius: 999px; }
+
+/* Sidebar: clean CapCut-style CTA + hairline rows */
+.cc-create-btn { border-radius: 12px; }
+
+/* Search inputs: cyan focus ring (unified) */
+.search-input:focus, .smart-paste input:focus {
+  border-color: var(--accent);
+}
+
+/* Footer: professional, generous whitespace */
+.site-footer { padding: 48px 20px 56px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .cc-hero { padding: 40px 16px 32px !important; }
+  .cc-hero .cc-headline { font-size: clamp(1.9rem, 8vw, 2.6rem) !important; }
+  .cc-sub { font-size: .98rem; margin-bottom: 20px; }
+  .cc-cta .btn { min-width: 0; flex: 1 1 140px; }
+  .cc-trust { margin-bottom: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-cta .btn, .tool-card, .tool-card .card-icon { transition: none; }
+}
