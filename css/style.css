@@ -503,6 +503,23 @@ a.logo {
 .stat-row .stat b { display: block; font-size: 1.25rem; font-weight: 800; color: var(--ink); }
 .stat-row .stat span { font-size: .8rem; color: var(--muted); }
 
+/* stat-grid: same card treatment as stat-row (used by 28 tool pages) */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.stat-grid .stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: center;
+}
+.stat-grid .stat b { display: block; font-size: 1.25rem; font-weight: 800; color: var(--ink); }
+.stat-grid .stat span { font-size: .8rem; color: var(--muted); }
+
 .copy-btn {
   font-size: .82rem;
   padding: 7px 14px;
@@ -732,7 +749,7 @@ a.logo {
   --bg: #131316;
   --soft: #1b1b1f;
   --card: #1d1d21;
-  --border: #2c2c32;
+  --border: #38383f;
   --shadow: 0 10px 30px rgba(0, 0, 0, .45);
   --shadow-lift: 0 24px 54px rgba(0, 0, 0, .6);
 }
@@ -2143,4 +2160,13 @@ main, .site-footer { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   .music-toggle, .music-toggle:hover { transform: none; }
   .music-toggle .mq-bars span { animation: none; }
+}
+
+/* Field labels for form accessibility */
+.field-label {
+  display: block;
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--ink);
+  margin-bottom: 8px;
 }

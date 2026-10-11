@@ -582,3 +582,12 @@
     }
   }
 })();
+
+/* ---------- Dynamic copyright year ---------- */
+(function () {
+  'use strict';
+  var y = new Date().getFullYear();
+  document.querySelectorAll('.js-year').forEach(function (el) {
+    el.textContent = '© ' + y;
+  });
+})();
