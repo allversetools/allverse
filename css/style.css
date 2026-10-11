@@ -6,21 +6,22 @@
    ============================================================ */
 
 :root {
-  --blue: #2563eb;
-  --blue-dark: #1d4ed8;
-  --blue-tint: rgba(37, 99, 235, .09);
-  --accent: #2563eb;
-  --accent-ink: #1e40af;
-  --ink: #1b1c1e;
-  --muted: #6b6b66;
-  --bg: #faf9f6;
-  --soft: #f2f2ee;
+  --blue: #00b2ff;
+  --blue-dark: #0090d4;
+  --blue-tint: rgba(0, 178, 255, .09);
+  --accent: #00b2ff;
+  --accent-ink: #0077aa;
+  --ink: #0f1419;
+  --muted: #6b7280;
+  --bg: #f7f8fa;
+  --soft: #f0f2f5;
   --card: #ffffff;
-  --border: #e3e3dd;
+  --border: #e8eaed;
   --radius: 16px;
-  --shadow: 0 10px 30px rgba(35, 38, 43, .07);
-  --shadow-lift: 0 22px 48px rgba(35, 38, 43, .13);
+  --shadow: 0 8px 24px rgba(35, 38, 43, .06);
+  --shadow-lift: 0 18px 40px rgba(35, 38, 43, .11);
   --header-h: 64px;
+  --cc-gradient: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -739,17 +740,17 @@ a.logo {
 
 /* ---------- DARK MODE ---------- */
 [data-theme="dark"] {
-  --blue: #6b9bff;
-  --blue-dark: #4a86f5;
-  --blue-tint: rgba(107, 155, 255, .13);
-  --accent: #6b9bff;
-  --accent-ink: #b9cdfd;
+  --blue: #00c8ff;
+  --blue-dark: #00a8e0;
+  --blue-tint: rgba(0, 200, 255, .13);
+  --accent: #00c8ff;
+  --accent-ink: #7dd3fc;
   --ink: #f4f4f1;
   --muted: #a2a2a0;
-  --bg: #131316;
-  --soft: #1b1b1f;
-  --card: #1d1d21;
-  --border: #38383f;
+  --bg: #0f1114;
+  --soft: #17191d;
+  --card: #1a1d21;
+  --border: #2a2e35;
   --shadow: 0 10px 30px rgba(0, 0, 0, .45);
   --shadow-lift: 0 24px 54px rgba(0, 0, 0, .6);
 }
@@ -1090,15 +1091,16 @@ a.logo {
   box-shadow: 0 6px 16px rgba(37, 99, 235, .42), inset 0 1px 0 rgba(255, 255, 255, .4);
 }
 
-/* ---------- Primary buttons: gradient ---------- */
+/* ---------- Primary buttons: CapCut cyan gradient ---------- */
 .btn-primary {
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-  border: none; color: #fff;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, .35), inset 0 1px 0 rgba(255, 255, 255, .25);
+  background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
+  border: none; color: #0f1419;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(0, 178, 255, .35), inset 0 1px 0 rgba(255, 255, 255, .35);
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, #1d4ed8, #1e40af);
-  box-shadow: 0 12px 26px rgba(37, 99, 235, .45), inset 0 1px 0 rgba(255, 255, 255, .25);
+  background: linear-gradient(135deg, #00d4ff 0%, #00a0e8 100%);
+  box-shadow: 0 12px 26px rgba(0, 178, 255, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
   transform: translateY(-1px);
 }
 
