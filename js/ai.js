@@ -145,9 +145,13 @@
     });
   }
 
-  /* Typing effect: reveals text char-by-char into an element */
+  /* Typing effect: reveals text char-by-char into an element.
+     Respects prefers-reduced-motion (instant fill). */
+  var REDUCED_MOTION = (typeof window.matchMedia === 'function') &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function typeInto(el, text, done) {
     if (!el) { if (done) done(); return; }
+    if (REDUCED_MOTION) { el.textContent = text; if (done) done(); return; }
     var i = 0, timer;
     var step = function () {
       i += 7;
@@ -160,26 +164,160 @@
   }
 
   /* Pollinations image URL builder */
+  /* ---------- Pro image generation ---------- */
+  /* Free Pollinations models the user can pick per tool */
+  var IMAGE_MODELS = [
+    { v: 'flux',   label: 'Flux — Best quality' },
+    { v: 'zimage', label: 'Z-Image — Artistic' },
+    { v: 'klein',  label: 'Klein — Creative' },
+    { v: 'turbo',  label: 'Turbo — Fastest' }
+  ];
+  /* Professional style descriptors appended per image kind — this is where
+     the "pro look" comes from: composition, lighting, detail, color grading. */
+  var PRO_STYLES = {
+    thumbnail: 'dramatic professional YouTube thumbnail background art, bold dynamic composition with one strong focal point, rule of thirds, ultra vibrant saturated colors, dramatic cinematic rim lighting, deep shadows, extreme high contrast, hyper detailed, tack sharp focus, premium viral thumbnail aesthetic, no text, no words, no letters, 16:9',
+    photo: 'professional photography, cinematic composition, dramatic natural lighting, ultra detailed, tack sharp focus, rich premium color grading, 8k quality',
+    wallpaper: 'breathtaking ultra-detailed wallpaper, epic cinematic atmosphere, dramatic volumetric lighting, sweeping grand composition, hyper detailed, 8k masterpiece, no text, no watermark',
+    logo: 'professional minimalist vector logo mark, flat design, clean geometric shapes, clever negative space, iconic and memorable, perfectly centered, premium brand identity, crisp clean edges, white background, no photo, no clutter'
+  };
+  /* Turns a plain user idea into a professional-grade image prompt */
+  function proPrompt(base, kind) {
+    base = String(base || '').trim().replace(/\s+/g, ' ');
+    return base + ', ' + (PRO_STYLES[kind] || PRO_STYLES.photo);
+  }
   function pollinationsImage(prompt, opts) {
     opts = opts || {};
     var w = opts.width || 1024, h = opts.height || 1024;
     var model = opts.model || 'flux';
     var seed = (typeof opts.seed === 'number') ? opts.seed : Math.floor(Math.random() * 999999);
+    var enhance = (opts.enhance === false) ? 'false' : 'true';
     return 'https://image.pollinations.ai/prompt/' + encodeURIComponent(prompt) +
-      '?width=' + w + '&height=' + h + '&model=' + model + '&nologo=true&seed=' + seed;
+      '?width=' + w + '&height=' + h + '&model=' + model + '&nologo=true&seed=' + seed + '&enhance=' + enhance;
   }
 
-  /* Small UX helpers used by AI tool pages */
+  /* Small UX helpers used by AI tool pages.
+     setBusy(btn, busy, busyLabel): disable + dim + inline SVG-less CSS spinner
+     next to the label. Safe to call twice (keeps the original label). */
   function setBusy(btn, busy, busyLabel) {
     if (!btn) return;
     if (busy) {
-      btn.dataset._label = btn.textContent;
+      if (!btn.dataset._label) btn.dataset._label = btn.innerHTML;
       btn.disabled = true;
-      btn.textContent = busyLabel || 'AI soch raha hai… / Thinking…';
+      btn.classList.add('sk-busy');
+      var dark = btn.classList.contains('btn-ghost') ? ' dark' : '';
+      btn.innerHTML = '<span class="sk-btn-spinner' + dark + '"></span><span>' +
+        escapeHtml(busyLabel || 'AI soch raha hai… / Thinking…') + '</span>';
     } else {
       btn.disabled = false;
-      if (btn.dataset._label) btn.textContent = btn.dataset._label;
+      btn.classList.remove('sk-busy');
+      if (btn.dataset._label) { btn.innerHTML = btn.dataset._label; delete btn.dataset._label; }
     }
+  }
+
+  /* ---------- loading skeleton + staged status ----------
+     SK_AI.loading(panel, true)  → shows shimmer skeleton + staged messages
+     SK_AI.loading(panel, false) → hides skeleton, clears timers
+     opts: { lines: 4, messages: [[ms, text], ...] } */
+  var STAGED_DEFAULT = [
+    [0, 'Soch raha hai… / Thinking…'],
+    [5000, 'Content ko structure kiya ja raha hai… / Structuring…'],
+    [15000, 'Final touches diye ja rahe hain… / Final touches…']
+  ];
+  function stopStaged(panel) {
+    if (panel && panel._skTimers) {
+      panel._skTimers.forEach(function (t) { clearTimeout(t); });
+      panel._skTimers = null;
+    }
+  }
+  function loading(panel, on, opts) {
+    if (!panel) return;
+    opts = opts || {};
+    if (on) {
+      panel.hidden = false;
+      panel.classList.remove('sk-error');
+      var oldErr = panel.querySelector('[data-sk-err]');
+      if (oldErr) oldErr.hidden = true;
+      var box = panel.querySelector('[data-sk-loading]');
+      if (!box) {
+        box = document.createElement('div');
+        box.className = 'sk-loading';
+        box.setAttribute('data-sk-loading', '1');
+        var lines = opts.lines || 4, html = '';
+        var widths = ['w80', '', 'w60', 'w80'];
+        for (var i = 0; i < lines; i++) {
+          html += '<div class="sk-shimmer-line ' + widths[i % widths.length] + '"></div>';
+        }
+        html += '<p class="sk-status"><span class="sk-spinner"></span>' +
+          '<span data-sk-status-text></span></p>';
+        box.innerHTML = html;
+        if (panel.firstChild) panel.insertBefore(box, panel.firstChild);
+        else panel.appendChild(box);
+      }
+      box.hidden = false;
+      var msgs = opts.messages || STAGED_DEFAULT;
+      var txtEl = box.querySelector('[data-sk-status-text]');
+      stopStaged(panel);
+      var timers = [];
+      msgs.forEach(function (m) {
+        timers.push(setTimeout(function () { if (txtEl) txtEl.textContent = m[1]; }, m[0]));
+      });
+      if (txtEl && msgs.length) txtEl.textContent = msgs[0][1];
+      panel._skTimers = timers;
+    } else {
+      stopStaged(panel);
+      var box2 = panel.querySelector('[data-sk-loading]');
+      if (box2) box2.hidden = true;
+    }
+  }
+
+  /* Smooth-scroll a result panel into view when work starts */
+  function scrollToEl(el) {
+    if (!el) return;
+    try { el.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'nearest' }); }
+    catch (e) { try { el.scrollIntoView(); } catch (e2) {} }
+  }
+
+  /* Copy-button feedback: label → "✓ Copied!" for 2s, then revert */
+  function copyFeedback(btn, label) {
+    if (!btn) return;
+    if (!btn.dataset._clabel) btn.dataset._clabel = btn.innerHTML;
+    btn.innerHTML = label || '✓ Copied!';
+    setTimeout(function () {
+      if (btn.dataset._clabel) { btn.innerHTML = btn.dataset._clabel; delete btn.dataset._clabel; }
+    }, 2000);
+  }
+  /* One-call copy: writes text, then shows feedback */
+  function copyText(btn, text, label) {
+    var done = function () { copyFeedback(btn, label); };
+    if (!text) return;
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done);
+    else done();
+  }
+
+  /* Empty-input guard: returns trimmed value, or null + shake + hint.
+     Never fire an API on empty input. */
+  function requireInput(input, msg) {
+    var v = input ? (input.value || '').trim() : '';
+    if (v) return v;
+    if (input) {
+      input.classList.remove('sk-shake');
+      void input.offsetWidth; /* restart the shake animation */
+      input.classList.add('sk-shake');
+      var host = input.parentNode, hint = null;
+      if (host) {
+        hint = host.querySelector('[data-sk-hint]');
+        if (!hint) {
+          hint = document.createElement('p');
+          hint.className = 'sk-hint';
+          hint.setAttribute('data-sk-hint', '1');
+          host.appendChild(hint);
+        }
+        hint.hidden = false;
+        hint.textContent = msg || 'Kuch toh likho! / Please enter something.';
+      }
+      try { input.focus(); } catch (e) {}
+    }
+    return null;
   }
   /* Writes an error into a dedicated paragraph INSIDE el without wiping
      el's existing content (old version replaced innerHTML, which destroyed
@@ -208,6 +346,8 @@
     chat: aiChat,
     typeInto: typeInto,
     pollinationsImage: pollinationsImage,
+    proPrompt: proPrompt,
+    IMAGE_MODELS: IMAGE_MODELS,
     setBusy: setBusy,
     showError: showError,
     escapeHtml: escapeHtml

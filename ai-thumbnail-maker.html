@@ -57,6 +57,18 @@
 <option>Gaming</option><option>Vlog</option><option>Tech</option><option>Cooking</option>
 <option>Fitness</option><option>Finance</option><option>Comedy</option><option>Education</option><option>Travel</option>
 </select></div>
+<div class="field-row" style="display:flex;gap:12px;flex-wrap:wrap">
+<div class="field" style="flex:1;min-width:150px"><label for="thModel">AI Model</label><select id="thModel">
+<option value="flux" selected>Flux — Best quality</option>
+<option value="zimage">Z-Image — Artistic</option>
+<option value="klein">Klein — Creative</option>
+<option value="turbo">Turbo — Fastest</option>
+</select></div>
+<div class="field" style="flex:1;min-width:150px"><label for="thEnhance">✨ Pro Enhance</label><select id="thEnhance">
+<option value="1" selected>On — sharper, pro look</option>
+<option value="0">Off — raw prompt</option>
+</select></div>
+</div>
 <div class="btn-row"><button class="btn btn-primary" id="thBtn" type="button">✨ Create Thumbnail</button></div>
 <p class="form-err" id="thErr" hidden style="color:#b91c1c;margin:.5rem 0 0"></p>
 <p class="hint" id="thStatus" hidden style="margin:.5rem 0 0"></p>
@@ -79,7 +91,7 @@
 <a class="mini-tool" href="youtube-thumbnail-resizer.html"><span>YouTube Thumbnail Resizer</span><span class="mini-go">→</span></a>
 <a class="mini-tool" href="headline-analyzer.html"><span>Headline Analyzer</span><span class="mini-go">→</span></a>
 </div></section></main></div><footer class="site-footer">
-<p>© 2026 AllVerse · Free online tools, no signup.</p>
+<p>© 2026 AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
 <p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
 </footer>
@@ -96,8 +108,8 @@ function showErr(m){err.hidden=false;err.textContent='⚠️ '+m;}
 function clearErr(){err.hidden=true;err.textContent='';}
 function makeUrl(){
   var t=$('thTitle').value.trim(); if(!t){return null;}
-  var prompt='dramatic YouTube thumbnail background art about "'+t+'", '+$('thNiche').value+' theme, ultra vibrant colors, high contrast, dynamic composition, expressive, eye-catching, no text, no words, 16:9';
-  return SK_AI.pollinationsImage(prompt,{width:1280,height:720});
+  var prompt=SK_AI.proPrompt('YouTube thumbnail background art about "'+t+'", '+$('thNiche').value+' theme','thumbnail');
+  return SK_AI.pollinationsImage(prompt,{width:1280,height:720,model:$('thModel').value,enhance:$('thEnhance').value==='1'});
 }
 var statusTimer=null;
 function setStatus(on){

@@ -70,6 +70,18 @@
 <option value="1792x1024">Landscape (1792×1024)</option>
 </select></div>
 </div>
+<div class="field-row" style="display:flex;gap:12px;flex-wrap:wrap">
+<div class="field" style="flex:1;min-width:150px"><label for="igModel">AI Model</label><select id="igModel">
+<option value="flux" selected>Flux — Best quality</option>
+<option value="zimage">Z-Image — Artistic</option>
+<option value="klein">Klein — Creative</option>
+<option value="turbo">Turbo — Fastest</option>
+</select></div>
+<div class="field" style="flex:1;min-width:150px"><label for="igEnhance">✨ Pro Enhance</label><select id="igEnhance">
+<option value="1" selected>On — sharper, pro look</option>
+<option value="0">Off — raw prompt</option>
+</select></div>
+</div>
 <div class="btn-row"><button class="btn btn-primary" id="igBtn" type="button">✨ Generate Image</button></div>
 <div class="result-panel" id="igResult" hidden>
 <h4>Your AI image</h4>
@@ -90,7 +102,7 @@
 <a class="mini-tool" href="ai-wallpaper-generator.html"><span>AI Wallpaper Generator</span><span class="mini-go">→</span></a>
 <a class="mini-tool" href="image-compressor.html"><span>Image Compressor</span><span class="mini-go">→</span></a>
 </div></section></main></div><footer class="site-footer">
-<p>© 2026 AllVerse · Free online tools, no signup.</p>
+<p>© 2026 AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
 <p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
 </footer>
@@ -109,8 +121,8 @@ function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
 function makeUrl(){
   var p=$('igPrompt').value.trim(); if(!p){return null;}
   var style=$('igStyle').value, sz=$('igSize').value.split('x');
-  var full=p+', '+style;
-  return SK_AI.pollinationsImage(full,{width:+sz[0],height:+sz[1]});
+  var full=SK_AI.proPrompt(p+', '+style,'photo');
+  return SK_AI.pollinationsImage(full,{width:+sz[0],height:+sz[1],model:$('igModel').value,enhance:$('igEnhance').value==='1'});
 }
 function load(url){
   SK_AI.setBusy(btn,true,'🎨 Creating your image…');

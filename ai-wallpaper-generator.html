@@ -61,6 +61,18 @@
 <option value="bright and cheerful">Cheerful</option>
 <option value="minimalist and clean">Minimalist</option>
 </select></div>
+<div class="field-row" style="display:flex;gap:12px;flex-wrap:wrap">
+<div class="field" style="flex:1;min-width:150px"><label for="wpModel">AI Model</label><select id="wpModel">
+<option value="flux" selected>Flux — Best quality</option>
+<option value="zimage">Z-Image — Artistic</option>
+<option value="klein">Klein — Creative</option>
+<option value="turbo">Turbo — Fastest</option>
+</select></div>
+<div class="field" style="flex:1;min-width:150px"><label for="wpEnhance">✨ Pro Enhance</label><select id="wpEnhance">
+<option value="1" selected>On — sharper, pro look</option>
+<option value="0">Off — raw prompt</option>
+</select></div>
+</div>
 <div class="btn-row"><button class="btn btn-primary" id="wpBtn" type="button">✨ Generate Wallpaper</button></div>
 <div class="result-panel" id="wpResult" hidden>
 <h4>Your wallpaper (1920×1080)</h4>
@@ -81,7 +93,7 @@
 <a class="mini-tool" href="color-picker.html"><span>Color Picker</span><span class="mini-go">→</span></a>
 <a class="mini-tool" href="image-compressor.html"><span>Image Compressor</span><span class="mini-go">→</span></a>
 </div></section></main></div><footer class="site-footer">
-<p>© 2026 AllVerse · Free online tools, no signup.</p>
+<p>© 2026 AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
 <p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
 </footer>
@@ -99,8 +111,8 @@ function showErr(m){ if(err){ err.textContent='⚠️ '+m; err.hidden=false; } r
 function clearErr(){ if(err){ err.textContent=''; err.hidden=true; } }
 function makeUrl(){
   var t=$('wpTheme').value.trim(); if(!t){return null;}
-  var prompt='breathtaking wallpaper, '+t+', '+$('wpMood').value+' mood, ultra detailed, 8k, cinematic, no text';
-  return SK_AI.pollinationsImage(prompt,{width:1920,height:1080});
+  var prompt=SK_AI.proPrompt('wallpaper of '+t+', '+$('wpMood').value+' mood','wallpaper');
+  return SK_AI.pollinationsImage(prompt,{width:1920,height:1080,model:$('wpModel').value,enhance:$('wpEnhance').value==='1'});
 }
 function load(url){
   SK_AI.setBusy(btn,true,'🎨 Painting your wallpaper…'); clearErr(); res.hidden=false; img.style.opacity='.4';

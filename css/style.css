@@ -106,14 +106,14 @@ a.logo {
 
 .search-input:focus {
   border-color: var(--blue);
-  background: #fff;
+  background: var(--card);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
 }
 
 .menu-toggle {
   display: none;
   border: 1.5px solid var(--border);
-  background: #fff;
+  background: var(--card);
   color: var(--ink);
   font-size: 1.25rem;
   line-height: 1;
@@ -150,7 +150,7 @@ a.logo {
   top: var(--header-h);
   max-height: calc(100vh - var(--header-h));
   overflow-y: auto;
-  background: #fff;
+  background: var(--card);
 }
 
 .side-title {
@@ -274,7 +274,7 @@ a.logo {
 
 .tool-card {
   display: block;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 22px;
@@ -345,7 +345,7 @@ a.logo {
 .back-link:hover { text-decoration: underline; }
 
 .tool-panel {
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
@@ -375,7 +375,7 @@ a.logo {
   font: inherit;
   font-size: .95rem;
   color: var(--ink);
-  background: #fff;
+  background: var(--card);
   outline: none;
   transition: border-color .18s, box-shadow .18s;
 }
@@ -447,7 +447,7 @@ a.logo {
 .btn-primary:hover { background: var(--blue-dark); }
 
 .btn-ghost {
-  background: #fff;
+  background: var(--card);
   color: var(--ink);
   border: 1.5px solid var(--border);
 }
@@ -469,7 +469,8 @@ a.logo {
 
 .result-panel {
   margin-top: 20px;
-  background: #f8fafc;
+  background: var(--card);
+  color: var(--ink);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 20px;
@@ -492,7 +493,7 @@ a.logo {
 
 .stat-row .stat {
   flex: 1 1 120px;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px 14px;
@@ -507,7 +508,7 @@ a.logo {
   padding: 7px 14px;
   border-radius: 8px;
   border: 1.5px solid var(--border);
-  background: #fff;
+  background: var(--card);
   color: var(--ink);
   font-weight: 600;
   cursor: pointer;
@@ -611,7 +612,7 @@ a.logo {
 .color-field label { font-weight: 700; font-size: .95rem; }
 .color-pick { display: flex; align-items: center; gap: 12px; }
 .color-hex { font-family: ui-monospace, monospace; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; }
-.swap-btn { align-self: center; background: var(--surface, #fff); border: 1.5px solid var(--primary, var(--blue)); color: var(--primary, var(--blue)); border-radius: 12px; padding: 10px 16px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: inherit; }
+.swap-btn { align-self: center; background: var(--card); border: 1.5px solid var(--primary, var(--blue)); color: var(--primary, var(--blue)); border-radius: 12px; padding: 10px 16px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all .2s; font-family: inherit; }
 .swap-btn:hover { background: var(--soft); }
 .ratio-big { font-size: clamp(2.2rem, 7vw, 3rem); font-weight: 800; letter-spacing: -1px; }
 .wcag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
@@ -1960,3 +1961,130 @@ body { transition: background-color .45s ease, color .45s ease; }
   .side-link:hover::before{transform:scale(1)}
 }
 [data-theme="dark"] .btn-ghost::before{background:rgba(107,155,255,.2)}
+
+/* ============================================================
+   SK UX POLISH — loading states, focus, tap targets, print
+   (Gemini UX recommendations, 2026-10-11)
+   ============================================================ */
+
+/* --- Loading container: shimmer skeleton + staged status --- */
+.sk-loading {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+.sk-shimmer-line {
+  height: 14px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, var(--soft) 25%, var(--border) 50%, var(--soft) 75%);
+  background-size: 200% 100%;
+  animation: sk-shimmer 1.5s infinite linear;
+}
+.sk-shimmer-line:last-of-type { margin-bottom: 14px; }
+.sk-shimmer-line.w60 { width: 60%; }
+.sk-shimmer-line.w80 { width: 80%; }
+.sk-shimmer-line.w40 { width: 40%; }
+@keyframes sk-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.sk-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: .9rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.sk-spinner {
+  flex: 0 0 auto;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--blue);
+  animation: sk-spin .8s linear infinite;
+}
+@keyframes sk-spin { to { transform: rotate(360deg); } }
+
+/* --- Button busy state: inline spinner + dimmed --- */
+.btn.sk-busy { opacity: .75; cursor: wait; }
+.btn .sk-btn-spinner {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255,255,255,.35);
+  border-top-color: #fff;
+  animation: sk-spin .8s linear infinite;
+}
+.btn-ghost .sk-btn-spinner,
+.btn .sk-btn-spinner.dark { border-color: var(--border); border-top-color: var(--blue); }
+
+/* --- Error state on result panels --- */
+.result-panel.sk-error {
+  border: 2px solid #dc2626;
+  background: var(--card);
+}
+[data-theme="dark"] .result-panel.sk-error { border-color: #f87171; }
+.sk-err-msg {
+  color: #b91c1c;
+  margin: .5rem 0;
+  font-weight: 600;
+  font-size: .92rem;
+}
+[data-theme="dark"] .sk-err-msg { color: #fca5a5; }
+
+/* --- Empty-input hint + shake --- */
+.sk-hint {
+  color: #b91c1c;
+  font-size: .85rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+[data-theme="dark"] .sk-hint { color: #fca5a5; }
+.sk-shake { animation: sk-shake .4s ease; border-color: #dc2626 !important; }
+@keyframes sk-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+/* --- Tap targets: minimum 44px --- */
+.btn { min-height: 44px; }
+.copy-btn { min-height: 44px; }
+.share-btn { min-height: 44px; }
+.tool-wrap input[type="text"],
+.tool-wrap input[type="number"],
+.tool-wrap input[type="url"],
+.tool-wrap input[type="search"],
+.tool-wrap select,
+.tool-wrap textarea { min-height: 44px; }
+
+/* --- Visible focus rings everywhere --- */
+:focus-visible {
+  outline: 2.5px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.btn-primary:focus-visible { outline-color: var(--blue-dark); box-shadow: 0 0 0 4px rgba(37,99,235,.25); }
+
+/* --- Print: only inputs + results --- */
+@media print {
+  .site-header, .sidebar, .site-footer, .share-row, .faq-section,
+  .more-tools, .crumbs, .menu-toggle, .btn-row, .sk-loading { display: none !important; }
+  .layout { display: block; }
+  .main { margin: 0; padding: 0; }
+  .tool-panel, .result-panel { border: 1px solid #999; box-shadow: none; }
+  body { background: #fff; color: #000; }
+}
+
+/* --- Reduced motion: disable shimmer, spin, typing --- */
+@media (prefers-reduced-motion: reduce) {
+  .sk-shimmer-line { animation: none; }
+  .sk-spinner, .btn .sk-btn-spinner { animation-duration: 2s; }
+  .sk-shake { animation: none; }
+  .ripple { display: none; }
+}
