@@ -2088,3 +2088,57 @@ body { transition: background-color .45s ease, color .45s ease; }
   .sk-shake { animation: none; }
   .ripple { display: none; }
 }
+
+/* ============================================================
+   AllVerse ambient BG canvas + music toggle (mouse-movement FX)
+   ============================================================ */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+main, .site-footer { position: relative; z-index: 1; }
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  #bg-canvas { display: none; }
+}
+
+/* Music toggle — sits next to the theme switch, same language */
+.music-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease, background .25s ease;
+}
+.music-toggle:hover { transform: scale(1.08); box-shadow: 0 6px 18px rgba(59,130,246,.28); }
+.music-toggle:active { transform: scale(.93); }
+.music-toggle:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
+.music-toggle .mq-note { width: 20px; height: 20px; }
+.music-toggle .mq-bars { display: none; align-items: flex-end; gap: 3px; height: 18px; }
+.music-toggle .mq-bars span {
+  width: 3px;
+  border-radius: 2px;
+  background: currentColor;
+  transform-origin: bottom;
+  animation: mq-eq 1s ease-in-out infinite;
+}
+.music-toggle .mq-bars span:nth-child(1) { height: 55%; animation-delay: 0s; }
+.music-toggle .mq-bars span:nth-child(2) { height: 100%; animation-delay: .18s; }
+.music-toggle .mq-bars span:nth-child(3) { height: 40%; animation-delay: .36s; }
+.music-toggle.playing { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+.music-toggle.playing .mq-note { display: none; }
+.music-toggle.playing .mq-bars { display: inline-flex; }
+@keyframes mq-eq { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle, .music-toggle:hover { transform: none; }
+  .music-toggle .mq-bars span { animation: none; }
+}
