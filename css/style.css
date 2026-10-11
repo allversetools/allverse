@@ -2461,3 +2461,25 @@ main, .site-footer { position: relative; z-index: 1; }
   }
   .sidebar .side-link svg { width: 16px; height: 16px; }
 }
+
+/* ---------- Ultra-compact hero: Popular Tools visible (user request) ---------- */
+.hero { padding: 24px 24px 16px !important; }
+.cc-powered { margin-bottom: 6px !important; }
+.cc-powered em { font-size: .92rem !important; }
+.cc-headline {
+  font-size: clamp(1.9rem, 3.8vw, 2.6rem) !important;
+  margin-bottom: 10px !important;
+  line-height: 1.1 !important;
+}
+.hero .cc-sub { font-size: .95rem !important; margin-bottom: 14px !important; }
+.hero .hero-cta-row, .hero .cc-cta { margin-bottom: 10px !important; }
+.hero .micro-label { margin: 8px 0 !important; font-size: .78rem !important; }
+.cc-toggle-pills { margin-bottom: 12px !important; padding: 3px !important; }
+.cc-pill { padding: 8px 18px !important; font-size: .85rem !important; }
+.cc-search-box { margin-bottom: 2px !important; }
+.cc-big-search { padding: 6px !important; }
+.cc-big-search input { padding: 11px 14px !important; font-size: .98rem !important; }
+.hero-stats { margin-top: 12px !important; gap: 8px !important; }
+.hero-stat { padding: 7px 13px !important; }
+.hero-stat b { font-size: 1.05rem !important; }
+.hero-stat span { font-size: .78rem !important; }
