@@ -135,13 +135,14 @@
   var btn=document.getElementById('haAiBtn'), res=document.getElementById('haAiResult'), out=document.getElementById('haAiOut');
   if(!btn||!window.SK_AI) return;
   btn.addEventListener('click', function(){
-    var t=document.getElementById('haText').value.trim();
-    if(!t){ out.textContent='Pehle headline likhein / Enter a headline first.'; res.hidden=false; return; }
-    SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+    var t=SK_AI.requireInput(document.getElementById('haText'),'Pehle headline likhein / Enter a headline first.');
+    if(t===null) return;
+    res.hidden=false; SK_AI.scrollTo(res); out.textContent='';
+    SK_AI.setBusy(btn,true,'Improving…'); SK_AI.loading(res,true);
     SK_AI.chat('Rewrite this headline to be more click-worthy. Give me 3 improved versions, numbered, each under 70 characters: "'+t+'"',
       'You are a headline copywriting expert.').then(function(txt){
-      SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
-    }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.showError(res,e.message); });
+      SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
+    }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.showError(res,e.message); });
   });
 })();
 </script>

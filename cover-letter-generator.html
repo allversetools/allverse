@@ -83,12 +83,12 @@
 <div class="field"><label for="clCompany">Company name *</label><input id="clCompany" type="text" placeholder="e.g. BrightMedia"></div>
 </div>
 <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-<div class="field"><label for="clManager">Hiring manager's name <span style="font-weight:400;color:#777">(optional)</span></label><input id="clManager" type="text" placeholder="e.g. Ms. Fatima Raza"></div>
+<div class="field"><label for="clManager">Hiring manager's name <span style="font-weight:400;color:var(--muted)">(optional)</span></label><input id="clManager" type="text" placeholder="e.g. Ms. Fatima Raza"></div>
 <div class="field"><label for="clYears">Years of experience</label><input id="clYears" type="text" placeholder="e.g. 3"></div>
 </div>
-<div class="field"><label for="clSkills">Your key skills <span style="font-weight:400;color:#777">(comma separated)</span></label><input id="clSkills" type="text" placeholder="e.g. content strategy, Meta Ads, analytics"></div>
-<div class="field"><label for="clAchieve">Your top achievement <span style="font-weight:400;color:#777">(with a number if possible)</span></label><input id="clAchieve" type="text" placeholder="e.g. grew a client's Instagram from 5k to 80k followers in 8 months"></div>
-<div class="field"><label for="clWhy">Why this company? <span style="font-weight:400;color:#777">(one line — shows you did homework)</span></label><input id="clWhy" type="text" placeholder="e.g. your recent D2C campaign for local brands stood out to me"></div>
+<div class="field"><label for="clSkills">Your key skills <span style="font-weight:400;color:var(--muted)">(comma separated)</span></label><input id="clSkills" type="text" placeholder="e.g. content strategy, Meta Ads, analytics"></div>
+<div class="field"><label for="clAchieve">Your top achievement <span style="font-weight:400;color:var(--muted)">(with a number if possible)</span></label><input id="clAchieve" type="text" placeholder="e.g. grew a client's Instagram from 5k to 80k followers in 8 months"></div>
+<div class="field"><label for="clWhy">Why this company? <span style="font-weight:400;color:var(--muted)">(one line — shows you did homework)</span></label><input id="clWhy" type="text" placeholder="e.g. your recent D2C campaign for local brands stood out to me"></div>
 <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 <div class="field"><label for="clTone">Tone</label><select id="clTone">
 <option value="professional">Professional — corporate, formal</option>
@@ -133,6 +133,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -174,8 +175,16 @@
 
   var pick = 0;
   function generate() {
-    var name = val('clName'), role = val('clRole'), company = val('clCompany');
-    if (!name || !role || !company) { msg('Please fill in your name, the job title and the company.'); return; }
+    var hint = 'Please fill in your name, the job title and the company.';
+    var name, role, company;
+    if (window.SK_AI) {
+      name = SK_AI.requireInput($('clName'), hint); if (name === null) return;
+      role = SK_AI.requireInput($('clRole'), hint); if (role === null) return;
+      company = SK_AI.requireInput($('clCompany'), hint); if (company === null) return;
+    } else {
+      name = val('clName'); role = val('clRole'); company = val('clCompany');
+      if (!name || !role || !company) { msg(hint); return; }
+    }
     var tone = TONE[val('clTone')] || TONE.professional;
     var manager = val('clManager');
     var years = val('clYears') || 'several';

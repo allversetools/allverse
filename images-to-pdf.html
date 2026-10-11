@@ -95,6 +95,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -157,6 +158,8 @@
     showMsg('');
     dlBtn.disabled = true;
     dlBtn.textContent = 'Building PDF…';
+    var panel = (prev.closest) ? prev.closest('.result-panel') : null;
+    if (window.SK_AI && panel) SK_AI.loading(panel, true, { lines: 2, messages: [[0, 'PDF ban rahi hai… / Building PDF…']] });
     var reads = files.map(function (f) {
       return new Promise(function (res, rej) {
         var r = new FileReader();
@@ -185,9 +188,11 @@
       });
     }).then(function (bytes) {
       download(bytes, 'images.pdf');
+      if (window.SK_AI && panel) SK_AI.loading(panel, false);
       dlBtn.disabled = false;
       dlBtn.innerHTML = '&#x2B07; Download PDF';
     }).catch(function () {
+      if (window.SK_AI && panel) SK_AI.loading(panel, false);
       dlBtn.disabled = false;
       dlBtn.innerHTML = '&#x2B07; Download PDF';
       showMsg('Could not build the PDF — one of the images may be corrupted or an unsupported format.');

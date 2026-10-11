@@ -82,6 +82,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function () {
@@ -114,7 +115,9 @@
   paintMode();
   btn.addEventListener('click', function () {
     var total = (parseFloat(likes.value) || 0) + (parseFloat(comments.value) || 0) + (parseFloat(shares.value) || 0);
-    var b = parseFloat(base.value);
+    var bRaw = window.SK_AI ? SK_AI.requireInput(base, 'Enter your followers or reach number.') : (base.value || '').trim();
+    if (bRaw === null || bRaw === '') { res.hidden = true; return; }
+    var b = parseFloat(bRaw);
     if (!(b > 0)) { res.hidden = true; return; }
     var er = total / b * 100, rt = rating(er);
     set('erPct', er.toFixed(2) + '%');
@@ -122,6 +125,7 @@
     var rEl = document.getElementById('erRating');
     if (rEl) { rEl.textContent = rt[0]; rEl.style.color = rt[1]; }
     res.hidden = false;
+    if (window.SK_AI) SK_AI.scrollTo(res);
   });
 })();
 </script>

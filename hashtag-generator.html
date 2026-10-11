@@ -193,17 +193,18 @@
   var btn=document.getElementById('aiTagBtn'), res=document.getElementById('aiTagResult'), out=document.getElementById('aiTagOut');
   if(!btn||!window.SK_AI) return;
   btn.addEventListener('click', function(){
-    var topic=document.getElementById('topic').value.trim();
+    var topic=SK_AI.requireInput(document.getElementById('topic'),'Pehle topic likhein / Enter a topic first.');
+    if(topic===null) return;
     var plat=((document.getElementById('platform')||{}).value)||'instagram';
-    if(!topic){ out.textContent='Pehle topic likhein / Enter a topic first.'; res.hidden=false; return; }
-    SK_AI.setBusy(btn,true); res.hidden=false; out.textContent='';
+    res.hidden=false; SK_AI.scrollTo(res); out.textContent='';
+    SK_AI.setBusy(btn,true,'Generating…'); SK_AI.loading(res,true);
     SK_AI.chat('Generate 20 trending '+plat+' hashtags for "'+topic+'". Mix popular and niche tags. Output ONLY hashtags separated by spaces, no explanations.',
       'You are a social media hashtag expert.').then(function(txt){
-      SK_AI.setBusy(btn,false); SK_AI.typeInto(out,txt);
-    }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.showError(res,e.message); });
+      SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
+    }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.showError(res,e.message); });
   });
   document.getElementById('aiTagCopy').addEventListener('click', function(){
-    var t=out.textContent; if(navigator.clipboard&&t)navigator.clipboard.writeText(t);
+    SK_AI.copyText(document.getElementById('aiTagCopy'), out.textContent);
   });
 })();
 </script>

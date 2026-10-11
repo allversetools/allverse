@@ -75,6 +75,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function () {
@@ -84,7 +85,13 @@
   if (!cur || !want || !wt || !btn || !res) return;
   function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
   btn.addEventListener('click', function () {
-    var c = parseFloat(cur.value), d = parseFloat(want.value), w = parseFloat(wt.value);
+    var cRaw, dRaw, wRaw;
+    if (window.SK_AI) {
+      cRaw = SK_AI.requireInput(cur, 'Enter your current grade.'); if (cRaw === null) { res.hidden = true; return; }
+      dRaw = SK_AI.requireInput(want, 'Enter your target grade.'); if (dRaw === null) { res.hidden = true; return; }
+      wRaw = SK_AI.requireInput(wt, 'Enter the final exam weight (%).'); if (wRaw === null) { res.hidden = true; return; }
+    } else { cRaw = cur.value; dRaw = want.value; wRaw = wt.value; }
+    var c = parseFloat(cRaw), d = parseFloat(dRaw), w = parseFloat(wRaw);
     if (isNaN(c) || isNaN(d) || !(w > 0) || w > 100) { res.hidden = true; return; }
     var wf = w / 100;
     var need = (d - c * (1 - wf)) / wf;
@@ -103,6 +110,7 @@
       if (nEl) nEl.style.color = '';
     }
     res.hidden = false;
+    if (window.SK_AI) SK_AI.scrollTo(res);
   });
 })();
 </script>

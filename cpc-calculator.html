@@ -77,6 +77,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function () {
@@ -100,11 +101,15 @@
   m2.addEventListener('click', function () { mode = 'cpm'; paint(); });
   paint();
   btn.addEventListener('click', function () {
-    var s = parseFloat(spend.value);
+    var sRaw = window.SK_AI ? SK_AI.requireInput(spend, 'Enter your ad spend (e.g. 100).') : (spend.value || '').trim();
+    if (sRaw === null || sRaw === '') { res.hidden = true; return; }
+    var s = parseFloat(sRaw);
     if (!(s >= 0)) { res.hidden = true; return; }
     var v, rt, hint;
     if (mode === 'cpc') {
-      var c = parseFloat(clicks.value);
+      var cRaw = window.SK_AI ? SK_AI.requireInput(clicks, 'Enter the number of clicks.') : (clicks.value || '').trim();
+      if (cRaw === null || cRaw === '') { res.hidden = true; return; }
+      var c = parseFloat(cRaw);
       if (!(c > 0)) { res.hidden = true; return; }
       v = s / c;
       if (v < 0.5) rt = ['Excellent', '#16a34a'];
@@ -113,7 +118,9 @@
       else rt = ['High', '#dc2626'];
       hint = 'Benchmark: under $0.50 excellent · under $1 good · under $2 average.';
     } else {
-      var im = parseFloat(imp.value);
+      var imRaw = window.SK_AI ? SK_AI.requireInput(imp, 'Enter the number of impressions.') : (imp.value || '').trim();
+      if (imRaw === null || imRaw === '') { res.hidden = true; return; }
+      var im = parseFloat(imRaw);
       if (!(im > 0)) { res.hidden = true; return; }
       v = s / im * 1000;
       if (v < 5) rt = ['Excellent', '#16a34a'];
@@ -127,6 +134,7 @@
     if (rEl) { rEl.textContent = rt[0]; rEl.style.color = rt[1]; }
     set('cpcHint', hint);
     res.hidden = false;
+    if (window.SK_AI) SK_AI.scrollTo(res);
   });
 })();
 </script>

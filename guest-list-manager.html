@@ -60,6 +60,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function(){
@@ -92,7 +93,7 @@ function render(){
     if(f&&g.ev.indexOf(f)<0)return '';
     var evs=g.ev.map(function(e){return EV[e];}).join(', ')||'—';
     var rsvpC=g.rsvp==='Confirmed'?'✅':(g.rsvp==='Declined'?'❌':'⏳');
-    return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #eee;font-size:.95rem;flex-wrap:wrap">'
+    return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.95rem;flex-wrap:wrap">'
       +'<span><b>'+escH(g.name)+'</b> <small class="hint">'+escH(g.fam)+' · '+evs+(g.plus?' · +'+g.plus:'')+'</small></span>'
       +'<span style="display:flex;gap:6px;align-items:center"><select data-rsvp="'+i+'" style="padding:4px 6px;border-radius:6px">'
       +['Invited','Confirmed','Declined'].map(function(r){return '<option'+(g.rsvp===r?' selected':'')+'>'+r+'</option>';}).join('')
@@ -103,7 +104,8 @@ function render(){
   Array.prototype.forEach.call(document.querySelectorAll('[data-delg]'),function(b){b.onclick=function(){G.splice(parseInt(b.getAttribute('data-delg')),1);save();render();};});
 }
 $('glmAdd').onclick=function(){
-  var name=$('glmName').value.trim();if(!name){$('glmName').focus();return;}
+  var name=window.SK_AI?SK_AI.requireInput($('glmName'),"Enter the guest's name."):($('glmName').value.trim());
+  if(!name){if(!window.SK_AI)$('glmName').focus();return;}
   var ev=[];if($('glmEM').checked)ev.push('M');if($('glmEB').checked)ev.push('B');if($('glmEW').checked)ev.push('W');
   G.push({name:name,fam:$('glmFam').value,ev:ev,rsvp:$('glmRSVP').value,plus:Math.max(0,parseInt($('glmPlus').value)||0)});
   $('glmName').value='';$('glmPlus').value='0';save();render();$('glmName').focus();

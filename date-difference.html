@@ -94,6 +94,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -126,12 +127,19 @@
   function calculate() {
     showMsg('');
     if (result) result.hidden = true;
-    if (!d1El || !d2El || !d1El.value || !d2El.value) {
+    if (!d1El || !d2El) return;
+    var d1v, d2v;
+    if (window.SK_AI) {
+      d1v = SK_AI.requireInput(d1El, 'Please pick the start date.');
+      if (d1v === null) return;
+      d2v = SK_AI.requireInput(d2El, 'Please pick the end date.');
+      if (d2v === null) return;
+    } else if (!d1El.value || !d2El.value) {
       showMsg('Please pick both dates.');
       return;
-    }
-    var d1 = parseLocalDate(d1El.value);
-    var d2 = parseLocalDate(d2El.value);
+    } else { d1v = d1El.value; d2v = d2El.value; }
+    var d1 = parseLocalDate(d1v);
+    var d2 = parseLocalDate(d2v);
     if (!d1 || !d2) { showMsg('One of the dates is invalid.'); return; }
     if (d1.getTime() > d2.getTime()) {
       showMsg('Start date must be before (or equal to) the end date.');
@@ -164,7 +172,7 @@
     if (d || parts.length === 0) parts.push(d + (d === 1 ? ' day' : ' days'));
     var bd = document.getElementById('ddBreakdown');
     if (bd) bd.textContent = 'Calendar breakdown: ' + parts.join(', ') + '.';
-    if (result) result.hidden = false;
+    if (result) { result.hidden = false; if (window.SK_AI) SK_AI.scrollTo(result); }
   }
 
   if (calcBtn) calcBtn.addEventListener('click', calculate);

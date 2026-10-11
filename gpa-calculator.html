@@ -73,6 +73,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script><script>
 (function () {
@@ -110,6 +111,7 @@
       set('gpaVal', (pts / creds).toFixed(2));
       set('gpaCred', creds);
       res.hidden = false;
+      if (window.SK_AI) SK_AI.scrollTo(res);
     } else { res.hidden = true; }
   });
   for (var k = 0; k < 4; k++) addRow();

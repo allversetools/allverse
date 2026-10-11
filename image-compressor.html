@@ -102,6 +102,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -136,13 +137,20 @@
       if (!f) return;
       if (!f.type || f.type.indexOf('image/') !== 0) { showErr('Please choose a valid image file.'); return; }
       fileBytes = f.size;
+      if (window.SK_AI) SK_AI.loading(result, true, { lines: 2, messages: [[0, 'Image load ho rahi hai… / Loading image…']] });
       var url = URL.createObjectURL(f);
       img.onload = function () {
+        if (window.SK_AI) SK_AI.loading(result, false);
+        if (result) result.hidden = true;
         hasImage = true;
         if (preview) { preview.src = url; preview.style.display = 'block'; }
         if (origSize) origSize.textContent = 'Original: ' + fmtKB(fileBytes);
       };
-      img.onerror = function () { showErr('Could not read that image.'); };
+      img.onerror = function () {
+        if (window.SK_AI) SK_AI.loading(result, false);
+        if (result) result.hidden = true;
+        showErr('Could not read that image.');
+      };
       img.src = url;
     });
   }
@@ -172,7 +180,7 @@
       var saved = fileBytes > 0 ? Math.max(0, Math.round((1 - bytes / fileBytes) * 100)) : 0;
       if (cimg) cimg.src = outUrl;
       if (stats) stats.textContent = 'Compressed: ' + fmtKB(bytes) + ' · ' + saved + '% smaller';
-      if (result) result.hidden = false;
+      if (result) { result.hidden = false; if (window.SK_AI) SK_AI.scrollTo(result); }
     });
   }
 

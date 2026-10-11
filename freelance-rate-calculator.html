@@ -84,7 +84,7 @@
 <div class="btn-row">
 <button class="btn btn-primary" id="frCalc" type="button">Calculate</button>
 </div>
-<div class="result-panel">
+<div class="result-panel" id="frResult">
 <h4>Your rates</h4>
 <div class="stat-row">
 <div class="stat"><b id="frHourly">–</b><span>Base hourly rate</span></div>
@@ -115,6 +115,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -127,14 +128,22 @@
   function set(id, v) { var el = get(id); if (el) el.textContent = v; }
   function money(n) { return (Math.round(n * 100) / 100).toLocaleString('en-US'); }
   function calc() {
-    var inc = parseFloat(income.value), h = parseFloat(hours.value),
+    var incRaw;
+    if (window.SK_AI) {
+      incRaw = SK_AI.requireInput(income, 'Enter your income, positive billable hours and weeks.');
+      if (incRaw === null) {
+        set('frHourly', '–'); set('frHourlyBuf', '–'); set('frDay', '–');
+        return false;
+      }
+    } else incRaw = income.value;
+    var inc = parseFloat(incRaw), h = parseFloat(hours.value),
         w = parseFloat(weeks.value), b = parseFloat(buffer.value);
     msg.textContent = '';
     note.textContent = '';
     if (isNaN(inc) || isNaN(h) || isNaN(w) || isNaN(b) || inc < 0 || h <= 0 || w <= 0 || b < 0) {
       set('frHourly', '–'); set('frHourlyBuf', '–'); set('frDay', '–');
-      if (income.value !== '' || hours.value !== '') msg.textContent = 'Enter your income, positive billable hours and weeks.';
-      return;
+      if (!window.SK_AI && (income.value !== '' || hours.value !== '')) msg.textContent = 'Enter your income, positive billable hours and weeks.';
+      return false;
     }
     var billable = h * w;
     var hourly = inc / billable;
@@ -143,8 +152,9 @@
     set('frHourlyBuf', money(withBuf));
     set('frDay', money(withBuf * 8));
     note.textContent = 'Based on ' + billable.toLocaleString('en-US') + ' billable hours/year. The buffer covers taxes, holidays, sick days and unpaid admin — quote the buffered rate to clients.';
+    return true;
   }
-  btn.onclick = calc;
+  btn.onclick = function () { if (calc() && window.SK_AI) SK_AI.scrollTo(document.getElementById('frResult')); };
   [income, hours, weeks, buffer].forEach(function (el) { el.addEventListener('input', calc); });
 })();
 

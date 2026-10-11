@@ -118,6 +118,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -146,15 +147,22 @@
       var f = fileInput.files && fileInput.files[0];
       if (!f) return;
       if (!f.type || f.type.indexOf('image/') !== 0) { showErr('Please choose a valid image file.'); return; }
+      if (window.SK_AI) SK_AI.loading(result, true, { lines: 2, messages: [[0, 'Image load ho rahi hai… / Loading image…']] });
       var url = URL.createObjectURL(f);
       img.onload = function () {
+        if (window.SK_AI) SK_AI.loading(result, false);
+        if (result) result.hidden = true;
         hasImage = true;
         ratio = img.naturalWidth / img.naturalHeight;
         if (widthIn) widthIn.value = img.naturalWidth;
         if (heightIn) heightIn.value = img.naturalHeight;
         if (preview) { preview.src = url; preview.style.display = 'block'; }
       };
-      img.onerror = function () { showErr('Could not read that image.'); };
+      img.onerror = function () {
+        if (window.SK_AI) SK_AI.loading(result, false);
+        if (result) result.hidden = true;
+        showErr('Could not read that image.');
+      };
       img.src = url;
     });
   }
@@ -196,7 +204,7 @@
       outName = 'resized-' + w + 'x' + h + '.' + ext;
       if (resultImg) resultImg.src = outUrl;
       if (info) info.textContent = w + ' × ' + h + ' px · ' + (fmt.split('/')[1] || 'png').toUpperCase();
-      if (result) result.hidden = false;
+      if (result) { result.hidden = false; if (window.SK_AI) SK_AI.scrollTo(result); }
     });
   }
 

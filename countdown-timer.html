@@ -91,6 +91,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -145,12 +146,16 @@
   function start() {
     stopTimer();
     showMsg('');
-    if (!input || !input.value) { showMsg('Please pick a date and time first.'); return; }
-    var target = new Date(input.value).getTime();
+    var raw = input ? input.value : '';
+    if (window.SK_AI) {
+      raw = SK_AI.requireInput(input, 'Please pick a date and time first.');
+      if (raw === null) return;
+    } else if (!raw) { showMsg('Please pick a date and time first.'); return; }
+    var target = new Date(raw).getTime();
     if (isNaN(target)) { showMsg('That date could not be understood — please pick again.'); return; }
     if (grid) grid.hidden = false;
     if (passed) passed.hidden = true;
-    if (result) result.hidden = false;
+    if (result) { result.hidden = false; if (window.SK_AI) SK_AI.scrollTo(result); }
     tick(target);
     timerId = setInterval(function () { tick(target); }, 1000);
   }

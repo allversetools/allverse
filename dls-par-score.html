@@ -76,7 +76,7 @@
 <button class="btn btn-primary" id="dGo" type="button">Calculate par score</button>
 <button class="btn btn-ghost" id="dExample" type="button">Try IND vs BAN 2022</button>
 </div>
-<div class="result-box show" style="margin-top:14px">
+<div class="result-box show" id="dlsResult" style="margin-top:14px">
 <h4>DLS result</h4>
 <p id="dVerdict" style="font-weight:700;font-size:1.15rem;margin:2px 0 10px"></p>
 <div class="stat-row">
@@ -113,6 +113,7 @@
 </footer>
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
+<script src="js/ai.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
 <script>
@@ -132,6 +133,10 @@
   }
   function num(id) { var v = parseFloat($(id).value); return isNaN(v) ? null : v; }
   function calc() {
+    if (window.SK_AI) {
+      var sRaw = SK_AI.requireInput($('dS'), 'Enter Team 1’s score.');
+      if (sRaw === null) { blank('Enter Team 1’s score.'); return; }
+    }
     var S = num('dS'), o1 = num('dO1'), orig = num('dOrig') || 20;
     var u = num('dU'), w = num('dW'), s2 = num('dScore2');
     var vd = $('dVerdict');
@@ -171,7 +176,7 @@
     } else $('dRev').textContent = '';
   }
   $('dResume').addEventListener('change', function () { $('dNewWrap').style.display = this.checked ? '' : 'none'; calc(); });
-  $('dGo').addEventListener('click', calc);
+  $('dGo').addEventListener('click', function () { calc(); if (window.SK_AI) SK_AI.scrollTo($('dlsResult')); });
   $('dExample').addEventListener('click', function () {
     $('dS').value = 184; $('dO1').value = 20; $('dOrig').value = 20;
     $('dU').value = 13; $('dW').value = 0; $('dScore2').value = 66;
