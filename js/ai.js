@@ -248,7 +248,8 @@
           html += '<div class="sk-shimmer-line ' + widths[i % widths.length] + '"></div>';
         }
         html += '<p class="sk-status"><span class="sk-spinner"></span>' +
-          '<span data-sk-status-text></span></p>';
+          '<span data-sk-status-text></span>' +
+          '<span class="sk-elapsed" data-sk-elapsed>0s</span></p>';
         box.innerHTML = html;
         if (panel.firstChild) panel.insertBefore(box, panel.firstChild);
         else panel.appendChild(box);
@@ -263,8 +264,19 @@
       });
       if (txtEl && msgs.length) txtEl.textContent = msgs[0][1];
       panel._skTimers = timers;
+      // Elapsed-time counter
+      var elapsedEl = box.querySelector('[data-sk-elapsed]');
+      var startT = Date.now();
+      var tick = setInterval(function () {
+        if (elapsedEl) {
+          var s = Math.floor((Date.now() - startT) / 1000);
+          elapsedEl.textContent = s < 60 ? s + 's' : Math.floor(s / 60) + 'm ' + (s % 60) + 's';
+        }
+      }, 500);
+      panel._skElapsedTick = tick;
     } else {
       stopStaged(panel);
+      if (panel._skElapsedTick) { clearInterval(panel._skElapsedTick); panel._skElapsedTick = null; }
       var box2 = panel.querySelector('[data-sk-loading]');
       if (box2) box2.hidden = true;
     }

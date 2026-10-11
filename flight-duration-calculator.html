@@ -6,7 +6,7 @@
 <meta property="og:image" content="https://allversetools.github.io/allverse/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Flight Duration Calculator — Flight Time & Distance | AllVerse">
-<meta name="twitter:description" content="Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run14"><link rel="canonical" href="https://allversetools.github.io/allverse/flight-duration-calculator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Flight Duration Calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup.", "url": "https://allversetools.github.io/allverse/flight-duration-calculator.html"}</script><script type="application/ld+json">
+<meta name="twitter:description" content="Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run15"><link rel="canonical" href="https://allversetools.github.io/allverse/flight-duration-calculator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Flight Duration Calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free flight duration calculator: estimated flight time, great-circle distance and local arrival time between 36 major airports worldwide. No signup.", "url": "https://allversetools.github.io/allverse/flight-duration-calculator.html"}</script><script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is the flight time estimated?", "acceptedAnswer": {"@type": "Answer", "text": "Using the great-circle (shortest) distance between the two airports divided by a typical cruise speed, plus a taxi/climb/descent buffer. Real flights vary with winds, routing and air traffic."}}, {"@type": "Question", "name": "Which cruise speed should I pick?", "acceptedAnswer": {"@type": "Answer", "text": "Short-haul (~750 km/h) for regional jets, medium (~820 km/h) for typical A320/B737 flights, long-haul (~900 km/h) for wide-body jets like the A350 or 777."}}, {"@type": "Question", "name": "Does it account for time zones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — arrival is shown in the destination's local time using standard UTC offsets, with a +1d badge when you land the next day. Daylight saving is not applied."}}]}
 </script>
 <script type="application/ld+json">
@@ -69,9 +69,9 @@ input[type=range]{width:100%}
 <div class="tool-panel">
 <div class="fd-err" id="fdErr" role="alert"></div>
 <div class="fd-route">
-<div class="field"><label for="fdFrom">From</label><input type="text" id="fdFrom" list="fdAirports" placeholder="City or airport code…" autocomplete="off" value="KHI"></div>
+<div class="field"><label for="fdFrom">From</label><input type="text" id="fdFrom" list="fdAirports" placeholder="City or airport code…" autocomplete="off" value="JFK"></div>
 <button class="btn btn-ghost" id="fdSwap" type="button" title="Swap origin and destination">⇄</button>
-<div class="field"><label for="fdTo">To</label><input type="text" id="fdTo" list="fdAirports" placeholder="City or airport code…" autocomplete="off" value="DXB"></div>
+<div class="field"><label for="fdTo">To</label><input type="text" id="fdTo" list="fdAirports" placeholder="City or airport code…" autocomplete="off" value="LHR"></div>
 </div>
 <datalist id="fdAirports"></datalist>
 <div class="fd-route" style="margin-top:.25rem">
@@ -84,7 +84,7 @@ input[type=range]{width:100%}
 </div>
 <div class="field" style="margin-top:.25rem"><label for="fdBuffer">Taxi / climb / descent buffer: <b id="fdBufferVal">30 min</b></label><input type="range" id="fdBuffer" min="0" max="60" step="5" value="30"></div>
 <div class="result-box show" id="fdResult" style="margin-top:1rem">
-<h4 id="fdRouteTitle">Karachi → Dubai</h4>
+<h4 id="fdRouteTitle">New York → London</h4>
 <div class="stat-row">
 <div class="stat"><b id="fdTime">–</b><span>Est. flight time</span></div>
 <div class="stat"><b id="fdDist">–</b><span>Distance (great-circle)</span></div>

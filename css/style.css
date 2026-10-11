@@ -2433,3 +2433,16 @@ main, .site-footer { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   .cc-cta .btn, .tool-card, .tool-card .card-icon { transition: none; }
 }
+
+/* ---------- Processing elapsed timer ---------- */
+.sk-elapsed {
+  margin-left: 10px;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--blue-tint);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
