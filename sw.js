@@ -1,7 +1,7 @@
 /* AllVerse service worker — cache-first for static assets, network fallback. */
 (function () {
   'use strict';
-  var CACHE = 'allverse-v5';
+  var CACHE = 'allverse-v6';
   var CORE = [
     '/allverse/',
     '/allverse/index.html',
@@ -36,20 +36,34 @@
     // Only handle same-origin requests under /allverse/
     if (url.origin !== self.location.origin) return;
     if (url.pathname.indexOf('/allverse/') !== 0) return;
+    var isHtml = /\.html$/.test(url.pathname) || url.pathname === '/allverse/';
     e.respondWith(
-      caches.match(req, { ignoreSearch: false }).then(function (hit) {
-        if (hit) return hit;
-        return fetch(req).then(function (res) {
-          // Cache successful static responses (html/css/js/png/fonts)
-          if (res && res.ok && /\.(html|css|js|png|jpg|jpeg|webp|svg|woff2?|json)$/.test(url.pathname)) {
-            var copy = res.clone();
-            caches.open(CACHE).then(function (c) { c.put(req, copy); });
-          }
-          return res;
-        }).catch(function () {
-          return caches.match('/allverse/index.html');
-        });
-      })
+      isHtml
+        // HTML: network-first (always fresh), cache as offline fallback
+        ? fetch(req).then(function (res) {
+            if (res && res.ok) {
+              var copy = res.clone();
+              caches.open(CACHE).then(function (c) { c.put(req, copy); });
+            }
+            return res;
+          }).catch(function () {
+            return caches.match(req).then(function (hit) {
+              return hit || caches.match('/allverse/index.html');
+            });
+          })
+        // Static assets: cache-first
+        : caches.match(req, { ignoreSearch: false }).then(function (hit) {
+            if (hit) return hit;
+            return fetch(req).then(function (res) {
+              if (res && res.ok && /\.(css|js|png|jpg|jpeg|webp|svg|woff2?|json)$/.test(url.pathname)) {
+                var copy = res.clone();
+                caches.open(CACHE).then(function (c) { c.put(req, copy); });
+              }
+              return res;
+            }).catch(function () {
+              return caches.match('/allverse/index.html');
+            });
+          })
     );
   });
 })();
