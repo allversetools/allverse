@@ -134,6 +134,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 /* Compact GIF encoder — median-cut palette + LZW, zero dependencies.
    Used inline in video-to-gif.html. Tested via /tmp/gif-test.js */
@@ -300,6 +301,8 @@ function gifEncode(frames, w, h, palette, delayCs, loop) {
     video.load();
     $('vgWork').style.display = 'block';
     $('vgOut').classList.remove('show');
+    SK_AI.loading($('vgOut'), true, { messages: [[0, 'Video load ho rahi hai… / Loading video…']] });
+    SK_AI.scrollTo($('vgWork'));
     msg('Loading video…');
   }
   video.addEventListener('loadedmetadata', function () {
@@ -311,9 +314,10 @@ function gifEncode(frames, w, h, palette, delayCs, loop) {
     var r = $('vgRange');
     r.max = d.toFixed(1); r.step = '0.1'; r.value = '0';
     $('vgRangeHint').textContent = 'Drag to scrub · video length: ' + d.toFixed(1) + 's';
+    SK_AI.loading($('vgOut'), false);
     msg('Video loaded (' + d.toFixed(1) + 's). Set your clip range and convert.');
   });
-  video.addEventListener('error', function () { msg('This video format could not be played. Try an MP4 file.'); });
+  video.addEventListener('error', function () { SK_AI.loading($('vgOut'), false); msg('This video format could not be played. Try an MP4 file.'); });
   $('vgRange').addEventListener('input', function () {
     var t = parseFloat(this.value) || 0;
     try { video.currentTime = t; } catch (e) {}
@@ -347,6 +351,7 @@ function gifEncode(frames, w, h, palette, delayCs, loop) {
     var n = Math.max(2, Math.min(Math.floor((end - start) * fps), 150));
     var delayCs = Math.round(100 / fps);
     busy = true;
+    SK_AI.setBusy($('vgGo'), true, 'Converting… / Ban raha hai…');
     $('vgProgWrap').style.display = 'block';
     $('vgOut').classList.remove('show');
     var canvas = document.createElement('canvas');
@@ -368,7 +373,7 @@ function gifEncode(frames, w, h, palette, delayCs, loop) {
         msg('Capturing frames… ' + i + '/' + n);
         setTimeout(step, 0);
       }).catch(function (err) {
-        busy = false; $('vgProgWrap').style.display = 'none';
+        busy = false; SK_AI.setBusy($('vgGo'), false); $('vgProgWrap').style.display = 'none';
         msg('Frame capture failed: ' + err.message + '. Try a shorter clip.');
       });
     })();
@@ -390,11 +395,12 @@ function gifEncode(frames, w, h, palette, delayCs, loop) {
           $('vgProg').style.width = '100%';
           $('vgOut').classList.add('show');
           msg('✓ Done! Preview above, then download.');
-          $('vgOut').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          SK_AI.scrollTo($('vgOut'));
         } catch (err) {
           msg('Encoding failed: ' + err.message);
         }
         busy = false;
+        SK_AI.setBusy($('vgGo'), false);
         setTimeout(function () { $('vgProgWrap').style.display = 'none'; $('vgProg').style.width = '0'; }, 1200);
       }, 30);
     }

@@ -90,15 +90,17 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   function showErr(m) { var e = document.getElementById('formError'); if (e) { e.textContent = m; e.style.display = m ? 'block' : 'none'; } }
   function inp() { return document.getElementById('ueIn').value; }
   function outp(t) { document.getElementById('ueOut').value = t; }
-  document.getElementById('ueEnc').addEventListener('click', function () { showErr(''); outp(encodeURIComponent(inp())); });
+  document.getElementById('ueEnc').addEventListener('click', function () { showErr(''); var v=SK_AI.requireInput(document.getElementById('ueIn'),'Kuch text likhein / Enter text first.'); if(v===null)return; outp(encodeURIComponent(v)); });
   document.getElementById('ueDec').addEventListener('click', function () {
     showErr('');
-    try { outp(decodeURIComponent(inp().replace(/\+/g, ' '))); }
+    var v=SK_AI.requireInput(document.getElementById('ueIn'),'Kuch text likhein / Enter text first.'); if(v===null)return;
+    try { outp(decodeURIComponent(v.replace(/\+/g, ' '))); }
     catch (e) { showErr('Could not decode that text — it may not be valid encoded input.'); outp(''); }
   });
   document.getElementById('ueSwap').addEventListener('click', function () {
@@ -109,7 +111,7 @@
   document.getElementById('ueClear').addEventListener('click', function () { showErr(''); document.getElementById('ueIn').value = ''; outp(''); });
   document.getElementById('ueCopy').addEventListener('click', function () {
     var t = document.getElementById('ueOut').value;
-    if (t && window.SK && window.SK.copy) window.SK.copy(t);
+    if (t) SK_AI.copyText(this, t);
   });
 })();
 </script>

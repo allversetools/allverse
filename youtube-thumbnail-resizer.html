@@ -117,6 +117,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   'use strict';
@@ -163,8 +164,9 @@
     imgName = (file.name || 'thumbnail').replace(/\.[^.]+$/, '');
     var url = URL.createObjectURL(file);
     var im = new Image();
-    im.onload = function () { img = im; URL.revokeObjectURL(url); render(); if (window.SK) SK.toast('Image loaded — preview ready'); };
-    im.onerror = function () { showError('Could not read that image.'); URL.revokeObjectURL(url); };
+    im.onload = function () { img = im; URL.revokeObjectURL(url); SK_AI.loading(result, false); render(); SK_AI.scrollTo(result); if (window.SK) SK.toast('Image loaded — preview ready'); };
+    im.onerror = function () { SK_AI.loading(result, false); showError('Could not read that image.'); URL.revokeObjectURL(url); };
+    SK_AI.loading(result, true, { messages: [[0, 'Image load ho rahi hai… / Loading image…']] });
     im.src = url;
   }
 

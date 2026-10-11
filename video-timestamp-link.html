@@ -68,7 +68,7 @@
 <div class="field"><label for="ytUrl">YouTube video URL</label><input id="ytUrl" type="url" placeholder="https://www.youtube.com/watch?v=…  or  https://youtu.be/…"></div>
 <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 <div class="field"><label for="ytTime">Start time</label><input id="ytTime" type="text" placeholder="e.g. 1:23  or  90  or  1m23s"></div>
-<div class="field"><label for="ytEnd">End time <span style="font-weight:400;color:#777">(optional — embed only)</span></label><input id="ytEnd" type="text" placeholder="e.g. 2:10"></div>
+<div class="field"><label for="ytEnd">End time <span style="font-weight:400;color:var(--muted)">(optional — embed only)</span></label><input id="ytEnd" type="text" placeholder="e.g. 2:10"></div>
 </div>
 <div class="btn-row"><button class="btn" id="ytGo" type="button">⏱️ Generate Links</button><button class="btn btn-ghost" id="ytTest" type="button">▶ Test link</button></div>
 <p class="hint" id="ytMsg" role="status"></p>
@@ -117,6 +117,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   'use strict';
@@ -152,7 +153,9 @@
 
   var lastShort = '';
   function generate() {
-    var id = parseVideoId($('ytUrl').value);
+    var rawUrl = SK_AI.requireInput($('ytUrl'), 'Paste a YouTube link first. / Pehle YouTube link paste karein.');
+    if (rawUrl === null) return;
+    var id = parseVideoId(rawUrl);
     if (!id) { msg('Could not find a YouTube video ID in that URL. Paste a watch, youtu.be, Shorts or embed link.'); return; }
     var t = parseTime($('ytTime').value);
     if (t == null || t < 0) { msg('Enter a start time like 90, 1:23 or 1m23s.'); return; }
@@ -167,6 +170,7 @@
     $('ytFull').textContent = full;
     $('ytEmbed').textContent = embed;
     $('ytOut').classList.add('show');
+    SK_AI.scrollTo($('ytOut'));
     msg('✓ Links generated — ' + (t === 0 ? 'starting at the beginning' : 'starting at ' + fmtHMS(t)) + '.');
   }
   $('ytGo').addEventListener('click', generate);
@@ -177,9 +181,7 @@
   document.querySelectorAll('[data-copy]').forEach(function (b) {
     b.addEventListener('click', function () {
       var t = $(b.getAttribute('data-copy')).textContent;
-      function done(ok) { b.textContent = ok ? '✓ Copied!' : 'Copy'; if (ok) setTimeout(function () { b.textContent = 'Copy'; }, 1500); }
-      if (navigator.clipboard && t && t !== '–') navigator.clipboard.writeText(t).then(function () { done(true); }, function () { done(false); });
-      else done(false);
+      if (t && t !== '–') SK_AI.copyText(b, t);
     });
   });
 
@@ -224,6 +226,7 @@
     var out = items.map(function (it) { return fmtChap(it.sec) + ' ' + it.title; }).join('\n');
     $('ytChText').textContent = out;
     $('ytChOut').classList.add('show');
+    SK_AI.scrollTo($('ytChOut'));
     $('ytChRules').innerHTML = rules.map(function (r) {
       return '<div style="color:' + (r.ok ? '#157347' : '#c0392b') + '">' + (r.ok ? '✓' : '✕') + ' ' + r.t + '</div>';
     }).join('');

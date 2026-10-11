@@ -113,6 +113,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   'use strict';
@@ -151,10 +152,12 @@
     curFile = f; fileURL = URL.createObjectURL(f);
     video.src = fileURL; video.load();
     $('vmWork').style.display = 'block';
+    SK_AI.loading($('vmWork'), true, { messages: [[0, 'Video metadata parhi ja rahi hai… / Reading metadata…']] });
+    SK_AI.scrollTo($('vmWork'));
     set('vmFps', 'measuring…'); lastFps = null;
     $('vmMsg').textContent = 'Reading metadata…';
   }
-  video.addEventListener('error', function () { $('vmMsg').textContent = 'This video format could not be played. Try an MP4 file.'; });
+  video.addEventListener('error', function () { SK_AI.loading($('vmWork'), false); $('vmMsg').textContent = 'This video format could not be played. Try an MP4 file.'; });
 
   video.addEventListener('loadedmetadata', function () {
     var d = video.duration, w = video.videoWidth, h = video.videoHeight;
@@ -167,6 +170,7 @@
     if (w && h) { var g = gcd(w, h); set('vmAspect', (w / g) + ':' + (h / g)); }
     if (isFinite(d) && d > 0) set('vmBitrate', fmtSize(Math.round(curFile.size * 8 / d)) + 'bps');
     $('vmMsg').textContent = '';
+    SK_AI.loading($('vmWork'), false);
     estimateFps(d);
   });
 
@@ -202,10 +206,7 @@
     var rows = ['File name', 'File size', 'Container', 'Duration', 'Resolution', 'Aspect ratio', 'FPS (estimated)', 'Avg bitrate', 'Est. total frames'];
     var ids = ['vmName', 'vmSize', 'vmFormat', 'vmDur', 'vmRes', 'vmAspect', 'vmFps', 'vmBitrate', 'vmFrames'];
     var t = rows.map(function (r, i) { return r + ': ' + $(ids[i]).textContent; }).join('\n');
-    var btn = $('vmCopy');
-    function done(ok) { btn.textContent = ok ? '✓ Copied!' : '⧉ Copy as text'; if (ok) setTimeout(function () { btn.textContent = '⧉ Copy as text'; }, 1500); }
-    if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { done(true); }, function () { done(false); });
-    else done(false);
+    SK_AI.copyText($('vmCopy'), t);
   });
 })();
 </script>

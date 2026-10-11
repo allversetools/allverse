@@ -54,7 +54,7 @@
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
-<script src="js/pwa.js"></script><script>
+<script src="js/pwa.js"></script><script src="js/ai.js"></script><script>
 (function(){
 function $(id){return document.getElementById(id);}
 function pkr(n){var a=Math.abs(n),s=n<0?'-':'';if(a>=1e7)return s+'Rs '+(a/1e7).toFixed(2).replace(/\.00$/,'')+' cr';if(a>=1e5)return s+'Rs '+(a/1e5).toFixed(2).replace(/\.00$/,'')+' L';return s+'Rs '+Math.round(a).toLocaleString('en-PK');}
@@ -113,7 +113,7 @@ function renderSettle(){
   Array.prototype.forEach.call(document.querySelectorAll('[data-paid]'),function(b){b.onclick=function(){var x=t[parseInt(b.getAttribute('data-paid'))];S.paid.push({from:x.from,to:x.to,amt:x.amt});save();render();};});
 }
 function render(){renderPeople();renderExpenses();renderSettle();}
-$('wesAddP').onclick=function(){var v=$('wesName').value.trim();if(!v)return;$('wesName').value='';if(S.people.indexOf(v)<0){S.people.push(v);save();render();}$('wesName').focus();};
+$('wesAddP').onclick=function(){var v=SK_AI.requireInput($('wesName'),'Add a name first. / Pehle naam likhein.');if(!v)return;$('wesName').value='';if(S.people.indexOf(v)<0){S.people.push(v);save();render();}$('wesName').focus();};
 $('wesName').addEventListener('keydown',function(e){if(e.key==='Enter')$('wesAddP').click();});
 $('wesAddE').onclick=function(){
   var desc=$('wesDesc').value.trim()||'Expense',amt=Math.round(parseFloat($('wesAmt').value)||0);
@@ -131,7 +131,7 @@ function summaryText(){
   t.forEach(function(x){L+=S.people[x.from]+' pays '+S.people[x.to]+' '+pkr(x.amt)+'; ';});
   return L;
 }
-$('wesCopy').onclick=function(){var b=this,done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy summary'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(summaryText()).then(done,done);else done();};
+$('wesCopy').onclick=function(){SK_AI.copyText(this,summaryText());};
 $('wesWA').onclick=function(){window.open('https://wa.me/?text='+encodeURIComponent(summaryText()),'_blank');};
 $('wesClear').onclick=function(){if(confirm('Clear all people and expenses?')){S={people:[],expenses:[],paid:[]};save();render();}};
 render();

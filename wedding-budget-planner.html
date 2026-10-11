@@ -53,7 +53,7 @@
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
-<script src="js/pwa.js"></script><script>
+<script src="js/pwa.js"></script><script src="js/ai.js"></script><script>
 (function(){
 function $(id){return document.getElementById(id);}
 function pkr(n){var a=Math.abs(n),s=n<0?'-':'';if(a>=1e7)return s+'Rs '+(a/1e7).toFixed(2).replace(/\.00$/,'')+' crore';if(a>=1e5)return s+'Rs '+(a/1e5).toFixed(2).replace(/\.00$/,'')+' lakh';return s+'Rs '+Math.round(a).toLocaleString('en-PK');}
@@ -99,7 +99,7 @@ CATS.forEach(function(c,i){$('wbpS'+i).addEventListener('input',calc);});
 ['wbpBudget','wbpGuests','wbpPerHead'].forEach(function(id){$(id).addEventListener('input',calc);});
 $('wbpSave').onclick=function(){try{localStorage.setItem(KEY,JSON.stringify(calc()));$('wbpSaved').textContent='✅ Plan saved in this browser.';}catch(e){$('wbpSaved').textContent='Could not save.';}};
 $('wbpReset').onclick=function(){setSliders(CATS.map(function(c){return c[1];}));calc();};
-$('wbpCopy').onclick=function(){var s=calc();var L='Wedding budget: '+pkr(s.budget)+' for '+s.guests+' guests. ';for(var i=0;i<CATS.length;i++)L+=CATS[i][0]+' '+s.pcts[i]+'% ('+pkr(s.budget*s.pcts[i]/100)+'); ';var b=$('wbpCopy'),done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy summary'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(L).then(done,done);else done();};
+$('wbpCopy').onclick=function(){var s=calc();var L='Wedding budget: '+pkr(s.budget)+' for '+s.guests+' guests. ';for(var i=0;i<CATS.length;i++)L+=CATS[i][0]+' '+s.pcts[i]+'% ('+pkr(s.budget*s.pcts[i]/100)+'); ';SK_AI.copyText($('wbpCopy'),L);};
 try{var sv=JSON.parse(localStorage.getItem(KEY)||'null');if(sv){$('wbpBudget').value=sv.budget;$('wbpGuests').value=sv.guests;$('wbpPerHead').value=sv.perhead;setSliders(sv.pcts);$('wbpSaved').textContent='Loaded your saved plan.';}}catch(e){}
 calc();
 })();

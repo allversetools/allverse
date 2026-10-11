@@ -94,6 +94,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   var ids = ['uUrl','uSrc','uMed','uCamp','uTerm','uCont'];
@@ -115,7 +116,7 @@
   document.getElementById('uCopy').addEventListener('click', function () {
     var t = document.getElementById('uOut').value;
     if (!t) { showErr('Build a URL first.'); return; }
-    if (window.SK && window.SK.copy) { window.SK.copy(t); } else if (navigator.clipboard) { navigator.clipboard.writeText(t); }
+    SK_AI.copyText(this, t);
   });
   update();
 })();

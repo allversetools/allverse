@@ -68,7 +68,7 @@
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
-<script src="js/pwa.js"></script><script>
+<script src="js/pwa.js"></script><script src="js/ai.js"></script><script>
 (function(){
 function $(id){return document.getElementById(id);}
 function pkr(n){var a=Math.abs(n),s=n<0?'-':'';if(a>=1e7)return s+'Rs '+(a/1e7).toFixed(2).replace(/\.00$/,'')+' crore';if(a>=1e5)return s+'Rs '+(a/1e5).toFixed(2).replace(/\.00$/,'')+' lakh';return s+'Rs '+Math.round(a).toLocaleString('en-PK');}
@@ -95,7 +95,7 @@ $('sdcAdv').textContent=pkr(adv);
 $('sdcReg').textContent=pkr(reg);
 $('sdcOther').textContent=pkr(mut+ereg);
 var line='Property transfer estimate on '+pkr(v)+': stamp duty '+pkr(stamp)+', advance tax '+pkr(adv)+', registration '+pkr(reg)+', mutation+e-reg '+pkr(mut+ereg)+' => TOTAL '+pkr(total)+' ('+(v>0?(total/v*100).toFixed(2):'0')+'% of value). Estimates only — verify before deal.';
-$('sdcCopy').onclick=function(){var b=this,done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy breakdown'},1500);};if(navigator.clipboard)navigator.clipboard.writeText(line).then(done,done);else done();};
+$('sdcCopy').onclick=function(){SK_AI.copyText(this,line);};
 }
 ['sdcVal','sdcProv','sdcUrban','sdcFiler','sdcMut','sdcEreg'].forEach(function(id){var el=$(id);el.addEventListener('input',calc);el.addEventListener('change',calc);});
 calc();

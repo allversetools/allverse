@@ -114,6 +114,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
@@ -204,6 +205,7 @@
       return;
     }
     statusEl.textContent = 'Requesting microphone\u2026';
+    SK_AI.setBusy(recBtn, true, 'Requesting mic…');
     navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } })
       .then(function (st) {
         stream = st;
@@ -228,6 +230,7 @@
         }, 250);
         autoStop = 1;
         sizeCanvas(); drawLive();
+        SK_AI.setBusy(recBtn, false);
         setState('recording');
         statusEl.textContent = 'Recording\u2026 speak now. Auto-stops at 30:00.';
       })
@@ -240,6 +243,7 @@
         } else {
           msg += 'Could not start the microphone (' + (err && err.name ? err.name : 'unknown error') + '). Please check your device settings and reload.';
         }
+        SK_AI.setBusy(recBtn, false);
         showErr(msg);
         statusEl.textContent = 'Microphone unavailable.';
       });
@@ -318,7 +322,7 @@
     var wavB = document.createElement('button'); wavB.type = 'button'; wavB.className = 'mini'; wavB.textContent = '\u2B07 WAV';
     wavB.addEventListener('click', function () {
       if (rec.wavUrl) { triggerDl(rec.wavUrl, rec.name + '.wav'); return; }
-      if (rec.wavBusy) return; rec.wavBusy = true; wavB.textContent = 'Converting\u2026';
+      if (rec.wavBusy) return; rec.wavBusy = true; SK_AI.setBusy(wavB, true, 'Converting…');
       var fr = new FileReader();
       fr.onload = function () {
         try {
@@ -327,9 +331,9 @@
           ac.decodeAudioData(fr.result.slice(0)).then(function (buf) {
             rec.wavUrl = URL.createObjectURL(wavEncode(buf));
             try { ac.close(); } catch (e) {}
-            wavB.textContent = '\u2B07 WAV'; triggerDl(rec.wavUrl, rec.name + '.wav');
-          }).catch(function () { try { ac.close(); } catch (e) {} wavB.textContent = 'WAV failed'; });
-        } catch (e) { wavB.textContent = 'WAV failed'; }
+            SK_AI.setBusy(wavB, false); triggerDl(rec.wavUrl, rec.name + '.wav');
+          }).catch(function () { try { ac.close(); } catch (e) {} SK_AI.setBusy(wavB, false); wavB.textContent = 'WAV failed'; });
+        } catch (e) { SK_AI.setBusy(wavB, false); wavB.textContent = 'WAV failed'; }
       };
       fr.readAsArrayBuffer(rec.blob);
     });

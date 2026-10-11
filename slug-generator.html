@@ -92,6 +92,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   var STOP = ['a','an','the','and','or','but','of','to','in','on','for','with','at','by','is','are','was','were','as','it'];
@@ -121,7 +122,7 @@
   });
   document.getElementById('sgCopy').addEventListener('click', function () {
     var t = document.getElementById('sgOut').textContent;
-    if (t && t !== '—' && window.SK && window.SK.copy) window.SK.copy(t);
+    if (t && t !== '—') SK_AI.copyText(this, t);
   });
   slugify();
 })();

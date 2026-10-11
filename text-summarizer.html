@@ -79,7 +79,7 @@
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
-<script src="js/pwa.js"></script><script>
+<script src="js/pwa.js"></script><script src="js/ai.js"></script><script>
 (function () {
   var ta = document.getElementById('tsText'), len = document.getElementById('tsLen'),
       lenOut = document.getElementById('tsLenOut'), btn = document.getElementById('tsBtn'),
@@ -90,9 +90,9 @@
   function wc(x) { x = x.trim(); return x ? x.split(/\s+/).length : 0; }
   function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
   function summarize() {
-    var t = ta.value.trim();
+    var t = SK_AI.requireInput(ta, 'Paste some text above to generate a summary.');
+    if (t === null) return;
     var n = parseInt(len.value, 10) || 3;
-    if (!t) { out.textContent = 'Paste some text above to generate a summary.'; res.hidden = false; set('tsOrig','0'); set('tsSum','0'); return; }
     var sents = (t.match(/[^.!?]+[.!?]+["']?|[^.!?]+$/g) || []).map(function (s) { return s.trim(); }).filter(Boolean);
     var summary;
     if (sents.length <= n) { summary = t; }
@@ -111,6 +111,7 @@
     out.textContent = summary;
     set('tsOrig', wc(t)); set('tsSum', wc(summary));
     res.hidden = false;
+    SK_AI.scrollTo(res);
   }
   len.addEventListener('input', function () { if (lenOut) lenOut.textContent = len.value + (len.value === '1' ? ' sentence' : ' sentences'); });
   btn.addEventListener('click', summarize);

@@ -90,6 +90,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   function randHex(n) {
@@ -126,10 +127,10 @@
     }
     document.getElementById('uuOut').value = out.join('\n');
   }
-  document.getElementById('uuGen').addEventListener('click', generate);
+  document.getElementById('uuGen').addEventListener('click', function(){ generate(); SK_AI.scrollTo(document.getElementById('uuOut')); });
   document.getElementById('uuCopy').addEventListener('click', function () {
     var t = document.getElementById('uuOut').value;
-    if (t && window.SK && window.SK.copy) window.SK.copy(t);
+    if (t) SK_AI.copyText(this, t);
   });
   generate();
 })();

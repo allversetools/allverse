@@ -109,6 +109,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   'use strict';
@@ -127,20 +128,23 @@
 
   function generate() {
     hideError();
-    var num = (phone.value || '').replace(/[^0-9]/g, '');
+    var pval = SK_AI.requireInput(phone, 'Enter a phone number. / Phone number likhein.');
+    if (pval === null) return;
+    var num = pval.replace(/[^0-9]/g, '');
     if (num.length < 10 || num.length > 15) { showError('Please enter a valid number with country code (10–15 digits).'); return; }
     link = 'https://wa.me/' + num;
     var text = (msg.value || '').trim();
     if (text) link += '?text=' + encodeURIComponent(text);
     linkText.textContent = link;
     result.hidden = false;
+    SK_AI.scrollTo(result);
     if (window.SK) SK.toast('Link generated');
   }
 
   if (genBtn) genBtn.addEventListener('click', generate);
   if (copyBtn) copyBtn.addEventListener('click', function () {
     if (!link) return;
-    if (window.SK) SK.copy(link).then(function (ok) { SK.toast(ok ? 'Link copied!' : 'Copy failed — long-press to copy'); });
+    SK_AI.copyText(copyBtn, link);
   });
   if (openBtn) openBtn.addEventListener('click', function () {
     if (link) window.open(link, '_blank', 'noopener');

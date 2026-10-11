@@ -76,7 +76,7 @@
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
-<script src="js/pwa.js"></script><script>
+<script src="js/pwa.js"></script><script src="js/ai.js"></script><script>
 (function () {
   var spend = document.getElementById('roiSpend'), rev = document.getElementById('roiRev'),
       btn = document.getElementById('roiBtn'), res = document.getElementById('roiResult');
@@ -90,7 +90,9 @@
     return ['Losing money', '#dc2626'];
   }
   btn.addEventListener('click', function () {
-    var s = parseFloat(spend.value), r = parseFloat(rev.value) || 0;
+    var sv = SK_AI.requireInput(spend, 'Apna ad spend likhein / Enter your ad spend.');
+    if (sv === null) { res.hidden = true; return; }
+    var s = parseFloat(sv), r = parseFloat(rev.value) || 0;
     if (!(s > 0)) { res.hidden = true; return; }
     var roi = (r - s) / s * 100, roas = r / s, profit = r - s;
     var rt = rating(roas);
@@ -100,6 +102,7 @@
     var rEl = document.getElementById('roiRating');
     if (rEl) { rEl.textContent = rt[0]; rEl.style.color = rt[1]; }
     res.hidden = false;
+    SK_AI.scrollTo(res);
   });
 })();
 </script>

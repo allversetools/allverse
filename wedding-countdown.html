@@ -51,7 +51,7 @@
 <script src="js/main.js"></script>
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
-<script src="js/pwa.js"></script><script>
+<script src="js/pwa.js"></script><script src="js/ai.js"></script><script>
 (function(){
 function $(id){return document.getElementById(id);}
 var KEY='sk_wed_date_v1';
@@ -75,8 +75,8 @@ function tick(){
   $('wcdTitle').textContent=names()+' — countdown';
 }
 function start(fromLoad){
-  var v=$('wcdDate').value;
-  if(!v){if(!fromLoad)alert('Please pick your wedding date first.');return;}
+  var v=fromLoad?$('wcdDate').value:SK_AI.requireInput($('wcdDate'),'Please pick your wedding date first. / Pehle shaadi ki date chunein.');
+  if(!v)return;
   target=new Date(v);
   if(isNaN(target.getTime())){if(!fromLoad)alert('Invalid date.');return;}
   try{localStorage.setItem(KEY,JSON.stringify({date:v,bride:$('wcdBride').value,groom:$('wcdGroom').value}));}catch(e){}
@@ -88,8 +88,7 @@ $('wcdClear').onclick=function(){if(timer)clearInterval(timer);timer=null;target
 $('wcdCopy').onclick=function(){
   if(!target){alert('Start the countdown first.');return;}
   var t=names()+' — '+$('wcdD').textContent+' days, '+$('wcdH').textContent+'h '+$('wcdM').textContent+'m '+$('wcdS').textContent+'s to go! 💍';
-  var b=this,done=function(){b.textContent='✓ Copied!';setTimeout(function(){b.textContent='⧉ Copy countdown'},1500);};
-  if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,done);else done();
+  SK_AI.copyText(this,t);
 };
 $('wcdICS').onclick=function(){
   if(!target){alert('Start the countdown first.');return;}

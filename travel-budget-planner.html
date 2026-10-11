@@ -130,6 +130,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function(){
 var LS="allverse_budget_v1";
@@ -219,9 +220,8 @@ $("tbCopy").onclick=function(){
     "💰 TOTAL: "+fmt(t.total),
     "📅 Per day: "+fmt(t.total/S.days)+" · 👤 Per person: "+fmt(t.total/S.trav),
     "","Planned with AllVerse Travel Budget Planner (estimates — verify real prices).");
-  var txt=lines.join("\n"),btn=$("tbCopy");
-  var done=function(){btn.textContent="✓ Copied!";setTimeout(function(){btn.textContent="⧉ Copy summary";},1500);};
-  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(done,done);else done();
+  var txt=lines.join("\n");
+  SK_AI.copyText($("tbCopy"),txt);
 };
 /* init */
 if(load()){

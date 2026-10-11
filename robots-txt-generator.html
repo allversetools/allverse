@@ -89,6 +89,7 @@
 <script src="js/search.js"></script>
 <script src="js/fx.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ai.js"></script>
 <script>
 (function () {
   function g(id){ return document.getElementById(id); }
@@ -97,8 +98,8 @@
   function row(type,path){
     var div=document.createElement('div');
     div.style.cssText='display:grid;grid-template-columns:130px 1fr auto;gap:8px;margin-bottom:8px;align-items:center';
-    div.innerHTML='<select class="rtType" style="padding:10px;border:1px solid #d1d5db;border-radius:10px"><option value="Disallow"'+(type==='Disallow'?' selected':'')+'>Disallow</option><option value="Allow"'+(type==='Allow'?' selected':'')+'>Allow</option></select>'
-      +'<input type="text" class="rtPath" value="'+path.replace(/"/g,'&quot;')+'" placeholder="/path/" style="padding:10px;border:1px solid #d1d5db;border-radius:10px">'
+    div.innerHTML='<select class="rtType" style="padding:10px;border:1px solid var(--border);border-radius:10px"><option value="Disallow"'+(type==='Disallow'?' selected':'')+'>Disallow</option><option value="Allow"'+(type==='Allow'?' selected':'')+'>Allow</option></select>'
+      +'<input type="text" class="rtPath" value="'+path.replace(/"/g,'&quot;')+'" placeholder="/path/" style="padding:10px;border:1px solid var(--border);border-radius:10px">'
       +'<button type="button" class="rtDel btn btn-ghost" style="padding:8px 12px">✕</button>';
     var sel=div.querySelector('.rtType'), inp=div.querySelector('.rtPath'), del=div.querySelector('.rtDel');
     sel.addEventListener('change',update); inp.addEventListener('input',update);
@@ -123,9 +124,7 @@
   var sm=g('rtSitemap'); if(sm) sm.addEventListener('input',update);
   var delay=g('rtDelay'); if(delay) delay.addEventListener('input',update);
   row('Disallow','/wp-admin/'); row('Allow','/');
-  function flash(btn,msg){ var o=btn.textContent; btn.textContent=msg; setTimeout(function(){btn.textContent=o;},1500); }
-  function copyText(txt,done){ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,done);} else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); } }
-  var cb=g('rtCopy'); if(cb) cb.onclick=function(){ copyText(out.value,function(){flash(cb,'✓ Copied!');}); };
+  var cb=g('rtCopy'); if(cb) cb.onclick=function(){ SK_AI.copyText(cb, out.value); };
   var dl=g('rtDl'); if(dl) dl.onclick=function(){ var blob=new Blob([out.value],{type:'text/plain'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='robots.txt'; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},400); };
   update();
 })();
