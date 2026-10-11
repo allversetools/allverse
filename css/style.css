@@ -2147,11 +2147,24 @@ main, .site-footer { position: relative; z-index: 1; }
   width: 4px; border-radius: 3px; background: #0f1419;
   transform-origin: bottom; animation: mq-eq .7s ease-in-out infinite;
 }
-.music-toggle .mq-bars span:nth-child(1) { height: 45%; animation-delay: 0s; }
-.music-toggle .mq-bars span:nth-child(2) { height: 90%; animation-delay: .12s; }
-.music-toggle .mq-bars span:nth-child(3) { height: 65%; animation-delay: .24s; }
-.music-toggle .mq-bars span:nth-child(4) { height: 100%; animation-delay: .36s; }
-.music-toggle .mq-bars span:nth-child(5) { height: 55%; animation-delay: .48s; }
+.music-toggle .mq-bars span:nth-child(1) { height: 45%; animation-delay: -0.4s; }
+.music-toggle .mq-bars span:nth-child(2) { height: 90%; animation-delay: -0.7s; }
+.music-toggle .mq-bars span:nth-child(3) { height: 65%; animation-delay: -0.2s; }
+.music-toggle .mq-bars span:nth-child(4) { height: 100%; animation-delay: -0.9s; }
+.music-toggle .mq-bars span:nth-child(5) { height: 55%; animation-delay: -0.5s; }
+/* Professional easing + press feedback */
+.music-toggle {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 150ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.music-toggle:active { transform: scale(0.92); }
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle.playing .mq-bars span,
+  .music-toggle.playing .mq-ring,
+  .music-toggle.playing { animation: none; }
+  .music-toggle.playing .mq-bars span { transform: scaleY(0.6); }
+}
 /* PLAYING: unmissable */
 .music-toggle.playing {
   background: linear-gradient(135deg, #00e5ff 0%, #00b2ff 100%);
