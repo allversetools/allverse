@@ -591,3 +591,17 @@
     el.textContent = '© ' + y;
   });
 })();
+
+/* ---------- CapCut-style toggle pills ---------- */
+(function () {
+  'use strict';
+  document.querySelectorAll('.cc-toggle-pills').forEach(function (wrap) {
+    wrap.querySelectorAll('.cc-pill').forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        wrap.querySelectorAll('.cc-pill').forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+        if (pill.dataset.goto) { window.location.href = pill.dataset.goto; }
+      });
+    });
+  });
+})();

@@ -1,0 +1,564 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AllVerse — Free Online Tools: Image, Text, Calculators & More</title><meta name="description" content="AllVerse offers 134 free online tools — image resizer, word counter, BMI calculator, password generator, QR maker and more. No signup needed.">
+<meta property="og:title" content="AllVerse — Free Online Tools: Image, Text, Calculators &amp; More">
+<meta property="og:description" content="AllVerse offers 134 free online tools — image resizer, word counter, BMI calculator, password generator, QR maker and more. No signup needed.">
+<meta property="og:url" content="https://allversetools.github.io/allverse/index.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://allversetools.github.io/allverse/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AllVerse — Free Online Tools: Image, Text, Calculators &amp; More">
+<meta name="twitter:description" content="AllVerse offers 134 free online tools — image resizer, word counter, BMI calculator, password generator, QR maker and more. No signup needed."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run10"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#3b82f6"><link rel="apple-touch-icon" href="images/icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="canonical" href="https://allversetools.github.io/allverse/index.html"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"AllVerse","alternateName":"AllVerse Free Online Tools","url":"https://allversetools.github.io/allverse/","description":"134 free online tools — image resizer, word counter, BMI calculator, password generator, QR maker and more. No signup needed."}</script></head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs><symbol id="i-stopwatch" viewBox="0 0 24 24"><circle cx="12" cy="14" r="7"/><path d="M12 10.8V14l2.4 2.4"/><path d="M9.5 2.5h5M12 2.5V7"/><path d="M5.8 5.2 7.2 6.6"/></symbol><symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.8l2.6 2.6"/><path d="M9.5 2.5h5M12 2.5V6"/></symbol><symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M7 3.5h10M7 20.5h10"/><path d="M8 3.5c0 4.5 2.8 5.3 4 8.5-1.2 3.2-4 4-4 8.5M16 3.5c0 4.5-2.8 5.3-4 8.5 1.2 3.2 4 4 4 8.5"/></symbol><symbol id="i-scales" viewBox="0 0 24 24"><path d="M12 4v16M8.5 20h7"/><path d="M5 6.5h14"/><path d="M7 6.5 4.8 12h4.4zM17 6.5l-2.2 5.5h4.4z"/></symbol><symbol id="i-qr" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.2"/><circle cx="16.75" cy="16.75" r="1" fill="currentColor" stroke="none"/></symbol><symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6.5" r="2.4"/><circle cx="6" cy="17.5" r="2.4"/><path d="M8.1 8 20 19.5M8.1 16 20 4.5"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.3 12.3l2.5 2.5 5-5.6"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M4 7.5l8 5.5 8-5.5"/></symbol><symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11 4l1.7 4.3L17 10l-4.3 1.7L11 16l-1.7-4.3L5 10l4.3-1.7z"/><path d="M17.5 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></symbol><symbol id="i-landscape" viewBox="0 0 24 24"><circle cx="16.5" cy="7.5" r="2.3"/><path d="M3.5 19 9.5 12l4 4.5 3.5-3.5 3.5 4"/></symbol><symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.5 3.9 5.4 3.9 8.5s-1.3 6-3.9 8.5c-2.6-2.5-3.9-5.4-3.9-8.5s1.3-6 3.9-8.5z"/></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 6.8 6.8 0 0 0 20 14.5z"/></symbol><symbol id="i-rain" viewBox="0 0 24 24"><path d="M17.5 18a4.5 4.5 0 0 0 .4-9A6 6 0 0 0 6.2 10.5 3.8 3.8 0 0 0 7 18z"/><path d="M8.5 20.5 8 22M12.5 20.5 12 22M16.5 20.5 16 22"/></symbol><symbol id="i-pan" viewBox="0 0 24 24"><circle cx="9.5" cy="14" r="6"/><path d="M14.2 10.2 20.5 4"/><circle cx="9.5" cy="14" r="1.8"/></symbol><symbol id="i-suitcase" viewBox="0 0 24 24"><rect x="4.5" y="8" width="15" height="12" rx="2"/><path d="M9 8V6.2A1.7 1.7 0 0 1 10.7 4.5h2.6A1.7 1.7 0 0 1 15 6.2V8"/><path d="M4.5 13h15"/></symbol><symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="10.5" rx="3"/><path d="M6 11.5a6 6 0 0 0 12 0M12 17.5V21M9 21h6"/></symbol><symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M7.5 5.5v13M16.5 5.5v13M3 10h4.5M3 14h4.5M16.5 10H21M16.5 14H21"/></symbol><symbol id="i-palette" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="8.8" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="12.3" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10.2" r="1.2" fill="currentColor" stroke="none"/></symbol><symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4.5a4 4 0 0 1-8 0z"/><path d="M8 5H4.5A1.5 1.5 0 0 0 3 6.5C3 9 5 11 8 11M16 5h3.5A1.5 1.5 0 0 1 21 6.5C21 9 19 11 16 11"/><path d="M12 12.5V16M8.5 20h7M10 16.5h4"/></symbol><symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 3.5H11L20.5 13l-7.5 7.5L3.5 11z"/><circle cx="8.3" cy="8.3" r="1.4"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="2.5"/><path d="M8 15v4l4.5-4"/><circle cx="9" cy="9.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="9.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="9.5" r="1.1" fill="currentColor" stroke="none"/></symbol><symbol id="i-moneybag" viewBox="0 0 24 24"><path d="M8.8 8.5 10 4.5h4l1.2 4"/><path d="M8.8 8.5h6.4c1.6 1.8 2.8 3.9 2.8 6a6.5 6.5 0 1 1-13 0c0-2.1 1.2-4.2 2.8-6z"/></symbol><symbol id="i-cash" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6.8 10.2v.01M17.2 13.8v.01"/></symbol><symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3.5h7L17.5 8v12.5h-11.5z"/><path d="M13 3.5V8h4.5"/><path d="M9 12h6M9 15.5h6"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v15.5h16"/><path d="M9 16v-4.5M13 16V8.5M17 16v-7"/></symbol><symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="6" y="5" width="12" height="16" rx="2"/><rect x="9.5" y="2.8" width="5" height="4" rx="1"/><path d="M9.5 11h5M9.5 14.5h5M9.5 18h3"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M4 16.5 16.5 4l3.5 3.5L7.5 20z"/><path d="M9 15.5l1.6 1.6M12 12.5l1.6 1.6M15 9.5l1.6 1.6"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 1 6.5 18H19"/></symbol><symbol id="i-scroll" viewBox="0 0 24 24"><rect x="8" y="4" width="12" height="16" rx="1"/><path d="M8 4a2.5 2.5 0 0 0-5 0v16a2.5 2.5 0 0 0 5 0"/><path d="M11 9h6M11 12.5h6"/></symbol><symbol id="i-note" viewBox="0 0 24 24"><path d="M6 3.5h8L18 7.5V20.5H6z"/><path d="M14 3.5v4h4"/><path d="M9.2 15.2 14.5 9.9l1.8 1.8-5.3 5.3H9.2z"/><path d="M13.2 11.2l1.8 1.8"/></symbol><symbol id="i-type" viewBox="0 0 24 24"><path d="M6 20 12 5l6 15"/><path d="M8.2 14h7.6"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 3.5V8h-4.5"/></symbol><symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 10v4h3.5L13 18.5v-13L7.5 10z"/><path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7.5 7.5 0 0 1 0 10"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8 20.5 20.5"/></symbol><symbol id="i-frame" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9.2" cy="10" r="1.5"/><path d="M4.5 17.5 10 12l3.5 3.5 2.8-2.8 3.2 3.2"/></symbol><symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 14.5c.9 1.3 2.1 2 3.5 2s2.6-.7 3.5-2"/><path d="M9 9.3h.01M15 9.3h.01"/></symbol><symbol id="i-plane" viewBox="0 0 24 24"><path d="M21.5 2.5 11 13"/><path d="M21.5 2.5 15 21.5l-4-8.5-8.5-4z"/></symbol><symbol id="i-robot" viewBox="0 0 24 24"><rect x="5" y="9" width="14" height="10" rx="2.5"/><path d="M12 9V5.5"/><circle cx="12" cy="4" r="1.2"/><circle cx="9.3" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="14.7" cy="14" r="1.2" fill="currentColor" stroke="none"/><path d="M9.5 17h5"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c.6-3.2 2.9-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.8" cy="9" r="2.6"/><path d="M15.9 14.7c2.7.3 4.3 1.9 4.8 4.3"/></symbol><symbol id="i-metronome" viewBox="0 0 24 24"><path d="M9.5 3.5h5L18 20.5H6z"/><path d="M12 8.5 16.5 16"/><circle cx="12" cy="8.5" r="1.1" fill="currentColor" stroke="none"/></symbol></defs></svg>
+<header class="site-header"><div class="header-inner">
+<a class="logo" href="index.html"><span class="logo-mark">A</span>AllVerse</a>
+<div class="search-wrap"><input class="search-input" id="siteSearch" type="search" placeholder="Search tools…  (Ctrl+K)" autocomplete="off"></div>
+<label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" class="themeToggle" aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+</div></header>
+<div class="layout">
+<aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link" href="ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="image-tools.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="text-tools.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>Text Tools</a>
+<a class="side-link" href="calculators.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="converters.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>Converters</a>
+<a class="side-link" href="generators.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>Generators</a>
+<a class="side-link" href="developer-tools.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Developer Tools</a>
+<a class="side-link" href="color-tools.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18c-1.5 0-2-1-1.5-2s-.5-2-2-2-2-1-2-2.5S7 8 12 8c1.5 0 2-.5 2-2.5S13.5 3 12 3z"/></svg>Color Tools</a>
+<a class="side-link" href="date-time.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Date &amp; Time</a>
+<a class="side-link" href="social-media.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Social Media</a>
+<a class="side-link" href="fun-tools.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1" fill="currentColor"/></svg>Fun Tools</a>
+<a class="side-link" href="seo-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO Tools</a>
+<a class="side-link" href="finance-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finance Tools</a>
+<a class="side-link" href="health-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Health Tools</a>
+<a class="side-link" href="pdf-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>PDF Tools</a>
+<a class="side-link" href="writing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Writing Tools</a>
+<a class="side-link" href="marketing-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>Marketing Tools</a>
+<a class="side-link" href="education-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Education Tools</a>
+<a class="side-link" href="security-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security Tools</a>
+<a class="side-link" href="business-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Business Tools</a>
+<a class="side-link" href="everyday-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="pakistan-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="islamic-tools.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link" href="resume-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>Resume Tools</a>
+<a class="side-link" href="video-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg>Video Tools</a>
+<a class="side-link" href="audio-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>Audio Tools</a>
+<a class="side-link" href="font-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Font Tools</a>
+<a class="side-link" href="meme-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Meme Tools</a>
+<a class="side-link" href="travel-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5c1-1 1-2.6 0-3.6s-2.6-1-3.6 0L12.4 7.4 4.2 5.6c-.5-.1-1 .1-1.2.6l-.3.6c-.2.5 0 1 .6 1.2L9 9l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 1.1 5.7c.1.6.7.9 1.2.6l.6-.3c.5-.2.7-.7.6-1.2z"/></svg>Travel Tools</a>
+<a class="side-link" href="real-estate-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Real Estate Tools</a>
+<a class="side-link" href="wedding-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>Wedding Tools</a>
+<a class="side-link" href="sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+<a class="side-link" href="cooking-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M12 11V7"/><circle cx="12" cy="5" r="1"/></svg>Cooking Tools</a>
+</nav>
+<div class="side-theme">
+<p class="side-title">Theme</p>
+<label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch"><input type="checkbox" class="themeToggle" aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+</div>
+</aside>
+<main class="main">
+<section class="hero">
+<div class="hero-scene" aria-hidden="true">
+  <div class="hs-layer hs-l1" data-depth="26"><svg viewBox="0 0 560 420"><defs><linearGradient id="hsg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#dededd" stop-opacity=".55"/></linearGradient></defs><path d="M60 300 C 90 180, 200 120, 300 150 C 420 185, 430 90, 520 70 C 470 160, 480 260, 400 320 C 310 385, 150 380, 60 300 Z" fill="url(#hsg1)"/></svg></div>
+  <div class="hs-layer hs-l2" data-depth="52"><svg viewBox="0 0 380 300"><defs><linearGradient id="hsg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f4f2" stop-opacity=".9"/><stop offset="1" stop-color="#d4d4d1" stop-opacity=".5"/></linearGradient></defs><path d="M40 220 C 70 120, 170 80, 240 110 C 320 145, 320 60, 360 40 C 330 130, 340 210, 270 250 C 200 290, 80 290, 40 220 Z" fill="url(#hsg2)"/></svg></div>
+  <div class="hs-layer hs-l3" data-depth="84"><svg viewBox="0 0 240 200"><defs><linearGradient id="hsg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".85"/><stop offset="1" stop-color="#cfcfcc" stop-opacity=".45"/></linearGradient></defs><ellipse cx="120" cy="100" rx="95" ry="62" fill="url(#hsg3)" transform="rotate(-18 120 100)"/></svg></div>
+  <div class="hs-spot" id="hsSpot"></div>
+</div>
+<p class="hero-eyebrow reveal">Free &bull; Online &bull; No login</p>
+<h1 class="reveal">Every Tool<br>You Need.</h1>
+<p class="lead reveal">134 free online tools. No signup, no watermarks — just open and use.</p>
+<div class="smart-paste">
+<label class="sp-bar" for="smartPasteInput">
+<span class="sp-prompt" aria-hidden="true">›</span>
+<input id="smartPasteInput" type="text" placeholder="paste anything — json, color, link, date, number…" autocomplete="off" spellcheck="false" aria-label="Smart paste: paste anything to find the right tool">
+</label>
+<div class="sp-chips" id="smartPasteChips"></div>
+<p class="sp-hint"><span class="sp-status" aria-hidden="true"></span><span>ready — paste anything, we'll route it to the right tool</span></p>
+</div>
+<div class="hero-stats reveal">
+<div class="hero-stat"><b>134</b><span>Free tools</span></div>
+<div class="hero-stat"><b>33</b><span>Categories</span></div>
+<div class="hero-stat"><b>100%</b><span>Free · No signup</span></div>
+</div>
+</section>
+
+<section class="pop-section reveal" id="popularSection">
+<div class="pop-head"><h2>Popular Tools</h2><a class="view-all" href="#all-tools">View all <span class="va-arrow">&rarr;</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-name="ai image generator text to image photo create" href="ai-image-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-palette"/></svg></span><h3>AI Image Generator</h3><p>Text &rarr; stunning AI images in any style</p><span class="tag-pill">Free &bull; AI</span></a>
+<a class="tool-card tilt reveal" data-name="remove background image transparent" href="image-tools.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-scissors"/></svg></span><h3>Background Remover</h3><p>AI removes image backgrounds in one click</p><span class="tag-pill">Free &bull; AI</span></a>
+<a class="tool-card tilt reveal" data-name="pdf tools merge split compress" href="pdf-tools.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-doc"/></svg></span><h3>PDF Tools</h3><p>Merge, split &amp; compress PDFs instantly</p><span class="tag-pill">Free &bull; Fast</span></a>
+<a class="tool-card tilt reveal" data-name="qr generator code scan" href="qr-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-qr"/></svg></span><h3>QR Generator</h3><p>Create custom QR codes in seconds</p><span class="tag-pill">Free &bull; Fast</span></a>
+<a class="tool-card tilt reveal" data-name="word counter characters" href="word-counter.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-note"/></svg></span><h3>Word Counter</h3><p>Count words, characters &amp; reading time</p><span class="tag-pill">Free &bull; Fast</span></a>
+<a class="tool-card tilt reveal" data-name="audio trimmer cut mp3" href="audio-trimmer.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mic"/></svg></span><h3>Audio Trim</h3><p>Trim and compress audio files fast</p><span class="tag-pill">Free &bull; Fast</span></a>
+</div>
+</section>
+
+<div id="all-tools" aria-hidden="true"></div>
+
+<section id="favSection" class="reveal" hidden>
+<p class="section-label">★ Your favorites</p>
+<div class="cards-grid tool-grid"></div>
+</section>
+
+<section id="recentSection" class="reveal" hidden>
+<p class="section-label">Recently used</p>
+<div class="cards-grid tool-grid"></div>
+</section>
+
+<section class="cat-section reveal" data-cat="ai">
+<div class="cat-head"><h2>🤖 AI Tools</h2><a class="view-all" href="ai-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Create Images</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="tasveer photo banao ai se" data-name="ai image generator text to image photo create" href="ai-image-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-palette"/></svg></span><h3>AI Image Generator</h3><p>Text → stunning AI images in any style</p></a>
+<a class="tool-card tilt reveal" data-roman="logo banao business brand" data-name="ai logo maker brand business logo design" href="ai-logo-maker.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tag"/></svg></span><h3>AI Logo Maker</h3><p>Professional logos for your brand</p></a>
+<a class="tool-card tilt reveal" data-roman="youtube thumbnail banao video" data-name="ai thumbnail maker youtube video thumbnail" href="ai-thumbnail-maker.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-frame"/></svg></span><h3>AI Thumbnail Maker</h3><p>Click-worthy YouTube thumbnail art</p></a>
+<a class="tool-card tilt reveal" data-roman="wallpaper tasveer banao hd" data-name="ai wallpaper generator hd background" href="ai-wallpaper-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-landscape"/></svg></span><h3>AI Wallpaper Generator</h3><p>Beautiful HD wallpapers, any theme</p></a>
+</div>
+<h2 class="subcat">Write & Create</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="kahani likho story" data-name="ai story writer kahani generate" href="ai-story-writer.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-book"/></svg></span><h3>AI Story Writer</h3><p>Original stories on any topic</p></a>
+<a class="tool-card tilt reveal" data-roman="caption likho instagram tiktok" data-name="ai caption generator instagram tiktok hashtag" href="ai-caption-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chat"/></svg></span><h3>AI Caption Generator</h3><p>Viral captions + hashtags</p></a>
+<a class="tool-card tilt reveal" data-roman="naam banao brand baby" data-name="ai name generator brand baby channel" href="ai-name-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sparkles"/></svg></span><h3>AI Name Generator</h3><p>Brand, channel & baby name ideas</p></a>
+<a class="tool-card tilt reveal" data-roman="" data-name="ai poetry generator poem poems" href="ai-poetry-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-moon"/></svg></span><h3>AI Poetry Generator</h3><p>Poetry in 7 languages</p></a>
+</div>
+<h2 class="subcat">Smart Assistants</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="khulasa summarize karo" data-name="ai text summarizer" href="ai-text-summarizer.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-note"/></svg></span><h3>AI Text Summarizer</h3><p>Long text → key points instantly</p></a>
+<a class="tool-card tilt reveal" data-roman="tarjuma translate english urdu" data-name="ai translator" href="ai-translator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-globe"/></svg></span><h3>AI Translator</h3><p>Translate 40+ languages</p></a>
+<a class="tool-card tilt reveal" data-roman="chat sawal jawab assistant" data-name="ai chat assistant chatbot" href="ai-chat.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-robot"/></svg></span><h3>AI Chat</h3><p>Your free AI assistant</p></a>
+<a class="tool-card tilt reveal" data-roman="awaz suno text speech" data-name="text to speech studio voice tts" href="text-to-speech-studio.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-speaker"/></svg></span><h3>Text to Speech Studio</h3><p>Turn text into natural speech</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="resume">
+<div class="cat-head"><h2>📝 Resume Tools</h2><a class="view-all" href="resume-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="cv banao naukri resume" data-name="resume builder cv maker curriculum vitae create" href="resume-builder.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-note"/></svg></span><h3>Resume Builder</h3><p>Step-by-step CV builder with live preview</p></a>
+<a class="tool-card tilt reveal" data-roman="cv template design" data-name="resume templates cv layout design modern" href="resume-templates.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-palette"/></svg></span><h3>Resume Templates</h3><p>4 professional CV layouts to preview</p></a>
+<a class="tool-card tilt reveal" data-roman="ats score check cv" data-name="ats resume checker score applicant tracking system" href="ats-resume-checker.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg></span><h3>ATS Resume Checker</h3><p>Score your resume against ATS screening</p></a>
+<a class="tool-card tilt reveal" data-roman="cover letter banao job application" data-name="cover letter generator job application letter write" href="cover-letter-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span><h3>Cover Letter Generator</h3><p>Professional cover letters in seconds</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="video">
+<div class="cat-head"><h2>🎬 Video Tools</h2><a class="view-all" href="video-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="video se gif banao" data-name="video to gif converter clip animation" href="video-to-gif.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-film"/></svg></span><h3>Video to GIF</h3><p>Turn video clips into GIFs in your browser</p></a>
+<a class="tool-card tilt reveal" data-roman="video details maloom karo" data-name="video metadata viewer info duration resolution fps" href="video-metadata-viewer.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-search"/></svg></span><h3>Video Metadata Viewer</h3><p>Duration, resolution, FPS &amp; format details</p></a>
+<a class="tool-card tilt reveal" data-roman="youtube link time share" data-name="youtube timestamp link generator share start time" href="video-timestamp-link.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-stopwatch"/></svg></span><h3>YouTube Timestamp Link</h3><p>Share videos starting at the exact second</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="audio">
+<div class="cat-head"><h2>🎙️ Audio Tools</h2><a class="view-all" href="audio-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="awaz record karo mic se" data-name="voice recorder microphone record audio sound mp3" href="voice-recorder.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mic"/></svg></span><h3>Voice Recorder</h3><p>Record audio with live waveform & WAV download</p></a>
+<a class="tool-card tilt reveal" data-roman="audio trim karo kato mp3" data-name="audio trimmer cutter mp3 wav cut trim" href="audio-trimmer.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-scissors"/></svg></span><h3>Audio Trimmer</h3><p>Cut MP3/WAV with a visual waveform editor</p></a>
+<a class="tool-card tilt reveal" data-roman="metronome bpm taal tempo" data-name="metronome bpm tempo tap beats music" href="metronome.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-metronome"/></svg></span><h3>Metronome</h3><p>Precise BPM metronome with tap tempo</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="font">
+<div class="cat-head"><h2>🔤 Font Tools</h2><a class="view-all" href="font-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="stylish text font banao instagram" data-name="fancy text generator stylish fonts unicode instagram whatsapp" href="fancy-text-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sparkles"/></svg></span><h3>Fancy Text Generator</h3><p>30+ stylish Unicode fonts for bios & captions</p></a>
+<a class="tool-card tilt reveal" data-roman="font jori heading body design" data-name="font pairing google fonts combination heading body typography" href="font-pairing.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-palette"/></svg></span><h3>Font Pairing</h3><p>Designer Google Font combos with live preview</p></a>
+<a class="tool-card tilt reveal" data-roman="ascii art banner text banao" data-name="text art generator ascii banner figlet" href="text-art-generator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-type"/></svg></span><h3>Text Art Generator</h3><p>Big ASCII banners in 4 FIGlet-style fonts</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="meme">
+<div class="cat-head"><h2>😂 Meme Tools</h2><a class="view-all" href="meme-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="meme banao tasveer funny caption" data-name="meme maker create funny caption generator download" href="meme-maker.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-smile"/></svg></span><h3>Meme Maker</h3><p>Templates or your photo + draggable captions → PNG</p></a>
+<a class="tool-card tilt reveal" data-roman="meme template gallery funny tasweer format" data-name="meme templates gallery classic formats browse" href="meme-templates.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-frame"/></svg></span><h3>Meme Templates</h3><p>Browse 12 classic formats, one click to use</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="travel">
+<div class="cat-head"><h2>✈️ Travel Tools</h2><a class="view-all" href="travel-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="flight time duration maloom karo hawai safar" data-name="flight duration calculator travel time distance airports" href="flight-duration-calculator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plane"/></svg></span><h3>Flight Duration Calculator</h3><p>Flight time, distance and arrival between airports</p></a>
+<a class="tool-card tilt reveal" data-roman="safar saman list packing checklist tayyari" data-name="packing checklist travel luggage list generator" href="packing-checklist.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-suitcase"/></svg></span><h3>Packing Checklist</h3><p>Smart categorized list for any trip type</p></a>
+<a class="tool-card tilt reveal" data-roman="safar kharcha budget plan paisa hisab" data-name="travel budget planner trip cost estimator breakdown" href="travel-budget-planner.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-moneybag"/></svg></span><h3>Travel Budget Planner</h3><p>Full trip cost breakdown, editable and shareable</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="real-estate">
+<div class="cat-head"><h2>🏠 Real Estate Tools</h2><a class="view-all" href="real-estate-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="plot zameen marla kanal acre tabdeel" data-name="plot area converter marla kanal acre square feet gaz" href="plot-area-converter.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-ruler"/></svg></span><h3>Plot Area Converter</h3><p>Marla ↔ kanal, acre, sq ft, sq yd</p></a>
+<a class="tool-card tilt reveal" data-roman="plot keemat hisab qeemat marla" data-name="plot price calculator per marla kanal rate cost" href="plot-price-calculator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tag"/></svg></span><h3>Plot Price Calculator</h3><p>Area × rate → PKR total in lakh/crore</p></a>
+<a class="tool-card tilt reveal" data-roman="stamp duty registry kharcha tax punjab" data-name="stamp duty calculator punjab property transfer tax cvt registration" href="stamp-duty-calculator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-scroll"/></svg></span><h3>Stamp Duty Calculator</h3><p>Punjab 2026 transfer cost estimate</p></a>
+<a class="tool-card tilt reveal" data-roman="kiraya kharid ghar faisla rent" data-name="rent vs buy calculator home purchase mortgage" href="rent-vs-buy-calculator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-scales"/></svg></span><h3>Rent vs Buy Calculator</h3><p>Net-wealth comparison + break-even year</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="wedding">
+<div class="cat-head"><h2>💒 Wedding Tools</h2><a class="view-all" href="wedding-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="shadi budget kharcha shaadi" data-name="wedding budget planner shaadi cost breakdown" href="wedding-budget-planner.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cash"/></svg></span><h3>Wedding Budget Planner</h3><p>Wedding budget split with sliders + save</p></a>
+<a class="tool-card tilt reveal" data-roman="shadi mehman fehrist rsvp" data-name="guest list manager shaadi rsvp mehndi barat walima" href="guest-list-manager.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-clipboard"/></svg></span><h3>Guest List Manager</h3><p>Mehndi/Barat/Walima RSVP headcounts</p></a>
+<a class="tool-card tilt reveal" data-roman="shadi countdown din shaadi" data-name="wedding countdown timer days shaadi date" href="wedding-countdown.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hourglass"/></svg></span><h3>Wedding Countdown</h3><p>Live countdown + calendar file</p></a>
+<a class="tool-card tilt reveal" data-roman="shadi kharcha taqseem hisab settle" data-name="wedding expense splitter share settle who owes" href="wedding-expense-splitter.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-users"/></svg></span><h3>Wedding Expense Splitter</h3><p>Who paid what → minimum settle-up</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="sports">
+<div class="cat-head"><h2>🏆 Sports Tools</h2><a class="view-all" href="sports-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="net run rate nrr calculate karo cricket" data-name="net run rate calculator nrr cricket tournament" href="net-run-rate-calculator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chart"/></svg></span><h3>Net Run Rate Calculator</h3><p>ICC-style NRR with the all-out rule</p></a>
+<a class="tool-card tilt reveal" data-roman="required run rate kitna chahiye target chase" data-name="required run rate calculator chase target cricket" href="required-run-rate-calculator.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-target"/></svg></span><h3>Required Run Rate Calculator</h3><p>Runs, balls & RRR for any chase</p></a>
+<a class="tool-card tilt reveal" data-roman="dls par score barish duckworth lewis" data-name="dls par score calculator duckworth lewis rain" href="dls-par-score.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-rain"/></svg></span><h3>DLS Par Score</h3><p>Rain-rule par score estimator</p></a>
+<a class="tool-card tilt reveal" data-roman="points table banao tournament league" data-name="points table maker cricket league standings" href="points-table-maker.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-trophy"/></svg></span><h3>Points Table Maker</h3><p>Build & share sorted league tables</p></a>
+</div>
+</section>
+
+
+<section class="cat-section reveal" data-cat="cooking">
+<div class="cat-head"><h2>🍳 Cooking Tools</h2><a class="view-all" href="cooking-tools.html">View all <span class="va-arrow">→</span></a></div>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="recipe scale karo servings zyada kam" data-name="recipe scaler servings multiplier" href="recipe-scaler.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pan"/></svg></span><h3>Recipe Scaler</h3><p>Resize any recipe to any servings</p></a>
+<a class="tool-card tilt reveal" data-roman="cheez ka badal substitute" data-name="ingredient substitution chart swaps" href="ingredient-substitution.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-refresh"/></svg></span><h3>Ingredient Substitution</h3><p>50+ smart swaps for missing ingredients</p></a>
+<a class="tool-card tilt reveal" data-roman="cup gram convert karo wazan" data-name="cooking unit converter cups grams" href="cooking-unit-converter.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-scales"/></svg></span><h3>Cooking Unit Converter</h3><p>Cups ↔ grams with ingredient densities</p></a>
+<a class="tool-card tilt reveal" data-roman="khana pakane ka timer anda" data-name="cooking timer multi alarm kitchen" href="cooking-timer.html"><span class="card-icon"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-timer"/></svg></span><h3>Cooking Timer</h3><p>Multiple kitchen timers with alarms</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="image">
+<div class="cat-head"><h2>Image Tools</h2><a class="view-all" href="image-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Resize & Optimize</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="tasveer photo chota bara size karo" data-name="image resizer resize photo dimensions" href="image-resizer.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span><h3>Image Resizer</h3><p>Resize images to any width & height</p></a>
+<a class="tool-card tilt reveal" data-roman="tasveer photo halki size kam karo" data-name="image compressor compress jpg png smaller" href="image-compressor.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V6a2 2 0 0 1 2-2h3M4 15v3a2 2 0 0 0 2 2h3M20 9V6a2 2 0 0 0-2-2h-3M20 15v3a2 2 0 0 1-2 2h-3M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/></svg></span><h3>Image Compressor</h3><p>Reduce image file size without visible quality loss</p></a>
+<a class="tool-card tilt reveal" data-roman="youtube thumbnail tasveer size banao" data-name="youtube thumbnail resizer 1280 720 image" href="youtube-thumbnail-resizer.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg></span><h3>YouTube Thumbnail Resizer</h3><p>Perfect 1280×720 thumbnails</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="text">
+<div class="cat-head"><h2>Text Tools</h2><a class="view-all" href="text-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Analyze</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="lafz gino alfaz ginna" data-name="word counter words characters count" href="word-counter.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></span><h3>Word Counter</h3><p>Count words, characters, sentences & reading time</p></a>
+</div>
+<h2 class="subcat">Transform</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="bara chota huruf badlo" data-name="case converter uppercase lowercase title" href="case-converter.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M2 18h20M6 14h4M6 11h8"/></svg></span><h3>Case Converter</h3><p>Convert text to UPPER, lower, Title Case & more</p></a>
+<a class="tool-card tilt reveal" data-roman="link naam banao" data-name="slug generator text url permalink kebab" href="slug-generator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></span><h3>Slug Generator</h3><p>Title → SEO-friendly URL slug</p></a>
+</div>
+<h2 class="subcat">Generate</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="namuna text likho" data-name="lorem ipsum generator dummy placeholder text" href="lorem-ipsum.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg></span><h3>Lorem Ipsum Generator</h3><p>Placeholder text for mockups</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="calculators">
+<div class="cat-head"><h2>Calculators</h2><a class="view-all" href="calculators.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Finance</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="feesad hisaab nikaalo" data-name="percentage calculator percent of change" href="percentage-calculator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5L5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><h3>Percentage Calculator</h3><p>X% of Y, % change & more</p></a>
+<a class="tool-card tilt reveal" data-roman="qist loan mahina hisaab" data-name="emi calculator loan installment interest monthly" href="emi-calculator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></span><h3>EMI Calculator</h3><p>Monthly loan EMI, interest & total</p></a>
+<a class="tool-card tilt reveal" data-roman="riayat chhoot dam hisaab" data-name="discount calculator sale price savings off" href="discount-calculator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Discount Calculator</h3><p>Sale price & savings from any discount</p></a>
+</div>
+<h2 class="subcat">Health & Body</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="wazan sehat motapa hisaab" data-name="bmi calculator body mass index weight" href="bmi-calculator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 12v6M9 9h.01M15 9h.01"/></svg></span><h3>BMI Calculator</h3><p>Calculate body mass index & health category</p></a>
+</div>
+<h2 class="subcat">Everyday</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="umar saal paidaish hisaab" data-name="age calculator birthday dob years" href="age-calculator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><h3>Age Calculator</h3><p>Exact age in years, months & days</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="converters">
+<div class="cat-head"><h2>Converters</h2><a class="view-all" href="converters.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Measure</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="nap tol tabdeel karo" data-name="unit converter length weight temperature metric" href="unit-converter.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 6l7-4 7 4M5 18l7 4 7-4"/></svg></span><h3>Unit Converter</h3><p>Length, weight & temperature converter</p></a>
+<a class="tool-card tilt reveal" data-roman="paisa dollar rupya tabdeel" data-name="currency converter pkr usd exchange rate" href="currency-converter.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M14.8 9.2H16a1 1 0 0 1 1 1v1a3 3 0 0 1-3 3H12v2M6.8 9.2H5a1 1 0 0 0-1 1v1a3 3 0 0 0 3 3h2v2"/></svg></span><h3>Currency Converter</h3><p>PKR, USD, EUR, GBP & more</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="generators">
+<div class="cat-head"><h2>Generators</h2><a class="view-all" href="generators.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Security</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="password banao mazboot" data-name="password generator strong random secure" href="password-generator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1"/></svg></span><h3>Password Generator</h3><p>Create strong, random passwords</p></a>
+</div>
+<h2 class="subcat">Connect</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="qr code banao scan" data-name="qr generator code scan" href="qr-generator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v3M14 21h3M21 18h-2"/></svg></span><h3>QR Generator</h3><p>Make QR codes for text & URLs</p></a>
+<a class="tool-card tilt reveal" data-roman="whatsapp link banao bhejo" data-name="whatsapp link generator wa.me chat message" href="whatsapp-link-generator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span><h3>WhatsApp Link Generator</h3><p>wa.me links with message</p></a>
+</div>
+<h2 class="subcat">Business</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="bill rasid banao" data-name="invoice generator bill pdf freelance receipt" href="invoice-generator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span><h3>Invoice Generator</h3><p>Professional invoices, print to PDF</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="developer">
+<div class="cat-head"><h2>Developer Tools</h2><a class="view-all" href="developer-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Code</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="json code theek karo" data-name="json formatter validate beautify minify" href="json-formatter.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v5M16 3h3a2 2 0 0 1 2 2v5M8 21H5a2 2 0 0 1-2-2v-5M16 21h3a2 2 0 0 0 2-2v-5"/><path d="M12 8v8"/></svg></span><h3>JSON Formatter</h3><p>Validate, format & minify JSON</p></a>
+<a class="tool-card tilt reveal" data-roman="time tabdeel karo" data-name="timestamp converter epoch unix time date" href="timestamp-converter.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Timestamp Converter</h3><p>Unix epoch ↔ human-readable date</p></a>
+<a class="tool-card tilt reveal" data-roman="link code tabdeel karo" data-name="url encoder decoder encode decode uri" href="url-encoder-decoder.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span><h3>URL Encoder Decoder</h3><p>Encode & decode URLs and text</p></a>
+</div>
+<h2 class="subcat">IDs & Tracking</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="id banao naya" data-name="uuid generator guid unique id random" href="uuid-generator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg></span><h3>UUID Generator</h3><p>Random v4 & time-ordered v7 IDs</p></a>
+<a class="tool-card tilt reveal" data-roman="link tracking banao" data-name="utm builder campaign url tracking analytics" href="utm-builder.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><h3>UTM Link Builder</h3><p>Campaign URLs for Google Analytics</p></a>
+</div>
+<h2 class="subcat">Design</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="rang chuno rangon" data-name="color picker hex rgb hsl eyedropper" href="color-picker.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><h3>Color Picker</h3><p>Pick any color, copy HEX / RGB / HSL</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="color">
+<div class="cat-head"><h2>Color Tools</h2><a class="view-all" href="color-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Create</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="rangon ka set banao" data-name="palette generator colors scheme" href="palette-generator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6M3 15h6"/></svg></span><h3>Palette Generator</h3><p>Generate harmonious color palettes</p></a>
+</div>
+<h2 class="subcat">Check</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="rang farq check" data-name="contrast checker accessibility wcag ratio" href="contrast-checker.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor" stroke="none"/></svg></span><h3>Contrast Checker</h3><p>Check WCAG text contrast ratio</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="datetime">
+<div class="cat-head"><h2>Date & Time</h2><a class="view-all" href="date-time.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Countdown</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="ulta gino waqt" data-name="countdown timer" href="countdown-timer.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span><h3>Countdown Timer</h3><p>Live countdown to any date & time</p></a>
+</div>
+<h2 class="subcat">Calculate</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="tarikh farq din gino" data-name="date difference days between" href="date-difference.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 15h8"/></svg></span><h3>Date Difference</h3><p>Days, weeks & months between dates</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="social">
+<div class="cat-head"><h2>Social Media</h2><a class="view-all" href="social-media.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Growth</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="hashtag banao" data-name="hashtag generator instagram tiktok" href="hashtag-generator.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/></svg></span><h3>Hashtag Generator</h3><p>Hashtags for any topic or niche</p></a>
+</div>
+<h2 class="subcat">Profile</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="bio banao profile" data-name="bio maker instagram profile" href="bio-maker.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span><h3>Bio Maker</h3><p>Catchy profile bios in seconds</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="fun">
+<div class="cat-head"><h2>Fun Tools</h2><a class="view-all" href="fun-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Decide</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="qismat chuno faisla" data-name="random picker winner choose" href="random-picker.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z"/></svg></span><h3>Random Picker</h3><p>Pick a random name or winner</p></a>
+</div>
+<h2 class="subcat">Play</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="gutti pasa khel" data-name="dice roller d6 random" href="dice-roller.html"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1"/><circle cx="15.5" cy="15.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/><circle cx="8.5" cy="15.5" r="1"/></svg></span><h3>Dice Roller</h3><p>Roll virtual dice with animation</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="seo">
+<div class="cat-head"><h2>SEO Tools</h2><a class="view-all" href="seo-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Analyze</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="lafz ginna seo check" data-name="keyword density checker seo word frequency keyword count" href="keyword-density-checker.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><h3>Keyword Density Checker</h3><p>Keyword density & top word frequency analysis</p></a>
+<a class="tool-card tilt reveal" data-roman="link preview dekho" data-name="open graph preview facebook twitter card link preview whatsapp" href="open-graph-preview.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span><h3>Open Graph Preview</h3><p>See your link card on Facebook, X & WhatsApp</p></a>
+</div>
+<h2 class="subcat">Generate</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="website meta tag banao" data-name="meta tag generator seo meta tags open graph twitter card title description" href="meta-tag-generator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Meta Tag Generator</h3><p>SEO, Open Graph & Twitter card tags in seconds</p></a>
+<a class="tool-card tilt reveal" data-roman="website robots banao" data-name="robots txt generator robots.txt allow disallow sitemap crawl" href="robots-txt-generator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span><h3>Robots.txt Generator</h3><p>Allow/disallow rules, sitemap & crawl-delay</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="finance">
+<div class="cat-head"><h2>Finance Tools</h2><a class="view-all" href="finance-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Invest & Grow</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="sood munafa hisaab" data-name="compound interest calculator investment growth maturity value" href="compound-interest-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></span><h3>Compound Interest Calculator</h3><p>Watch your money grow with compounding</p></a>
+<a class="tool-card tilt reveal" data-roman="mahana bachat hisaab" data-name="sip calculator systematic investment plan mutual fund returns" href="sip-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h3>SIP Calculator</h3><p>Project monthly investment growth & gains</p></a>
+</div>
+<h2 class="subcat">Tax & Bills</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="tax hisaab nikaalo" data-name="gst calculator tax add remove gst rate india" href="gst-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5L5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><h3>GST Calculator</h3><p>Add or remove GST at any rate instantly</p></a>
+<a class="tool-card tilt reveal" data-roman="bill banto hissa karo" data-name="bill splitter split bill tip calculator per person share" href="bill-splitter.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Bill Splitter</h3><p>Split bills with tip — fair share per person</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="health">
+<div class="cat-head"><h2>Health Tools</h2><a class="view-all" href="health-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Body Metrics</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="calories jism hisaab" data-name="bmr calculator basal metabolic rate tdee calories" href="bmr-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span><h3>BMR Calculator</h3><p>BMR, TDEE & calorie targets for your goals</p></a>
+<a class="tool-card tilt reveal" data-roman="charbi wazan hisaab" data-name="body fat calculator us navy method body fat percentage" href="body-fat-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><h3>Body Fat Calculator</h3><p>US Navy method body fat % estimate</p></a>
+</div>
+<h2 class="subcat">Daily & Life</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="pani piyo sehat hisaab" data-name="water intake calculator daily hydration liters glasses" href="water-intake-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.2 6 11a6 6 0 0 1-12 0c0-4.8 6-11 6-11z"/></svg></span><h3>Water Intake Calculator</h3><p>Your daily water goal in liters & glasses</p></a>
+<a class="tool-card tilt reveal" data-roman="bacha paidaish tarikh hisaab" data-name="pregnancy due date calculator edd trimester weeks pregnant" href="due-date-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><h3>Due Date Calculator</h3><p>Pregnancy due date, week & trimester</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="pdf">
+<div class="cat-head"><h2>PDF Tools</h2><a class="view-all" href="pdf-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Convert</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="tasveer pdf banao" data-name="images to pdf jpg png photo converter a4" href="images-to-pdf.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/><path d="M17 3l4 4-4 4"/></svg></span><h3>Images to PDF</h3><p>Turn JPG & PNG images into a PDF, one per A4 page</p></a>
+</div>
+<h2 class="subcat">Manage</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="pdf joro milao" data-name="merge pdf combine join append concatenate" href="merge-pdf.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6M9 15l3 3 3-3"/></svg></span><h3>Merge PDF</h3><p>Combine multiple PDFs into one, reorder & remove</p></a>
+<a class="tool-card tilt reveal" data-roman="pdf toro alag karo" data-name="split pdf extract pages ranges separate" href="split-pdf.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></span><h3>Split PDF</h3><p>Extract pages or ranges like 1-3, 5 into a new PDF</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="writing">
+<div class="cat-head"><h2>Writing Tools</h2><a class="view-all" href="writing-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Analyze</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="parhna asaan check" data-name="readability checker flesch reading ease grade level syllables" href="readability-checker.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><h3>Readability Checker</h3><p>Flesch score, grade level & syllable stats</p></a>
+<a class="tool-card tilt reveal" data-roman="surkhi check karo" data-name="headline analyzer title score blog seo copywriting" href="headline-analyzer.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><h3>Headline Analyzer</h3><p>Score your headline 0–100 with tips</p></a>
+</div>
+<h2 class="subcat">Create</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="khulasa banao mukhtasir" data-name="text summarizer article summary tldr" href="text-summarizer.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span><h3>Text Summarizer</h3><p>Auto-summarize articles to key sentences</p></a>
+<a class="tool-card tilt reveal" data-roman="hawala banao" data-name="citation generator apa mla bibliography" href="citation-generator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></span><h3>Citation Generator</h3><p>APA 7th & MLA 9th citations in one click</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="marketing">
+<div class="cat-head"><h2>Marketing Tools</h2><a class="view-all" href="marketing-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Paid Ads</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="munafa hisaab nikaalo" data-name="roi calculator roas ad spend return profit" href="roi-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></span><h3>ROI Calculator</h3><p>Ad ROI %, ROAS & profit in seconds</p></a>
+<a class="tool-card tilt reveal" data-roman="click kharcha hisaab" data-name="cpc calculator cpm cost per click impressions" href="cpc-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h3>CPC Calculator</h3><p>Cost per click or CPM from ad spend</p></a>
+</div>
+<h2 class="subcat">Social & Testing</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="likes hisaab nikaalo" data-name="engagement rate calculator instagram tiktok followers reach" href="engagement-rate-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span><h3>Engagement Rate Calculator</h3><p>Engagement rate by followers or reach</p></a>
+<a class="tool-card tilt reveal" data-roman="test mawazna karo" data-name="ab test calculator significance z-test conversion uplift" href="ab-test-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="16" rx="1"/><rect x="14" y="4" width="7" height="16" rx="1"/></svg></span><h3>A/B Test Calculator</h3><p>Z-test significance for A/B results</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="education">
+<div class="cat-head"><h2>Education Tools</h2><a class="view-all" href="education-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Grades</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="number grade hisaab" data-name="gpa calculator grade point average credits 4.0" href="gpa-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13l1.5 8-5-3-5 3 1.5-8"/></svg></span><h3>GPA Calculator</h3><p>GPA from credits & grades (4.0 scale)</p></a>
+<a class="tool-card tilt reveal" data-roman="imtihan number hisaab" data-name="final grade calculator exam score needed target" href="final-grade-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><h3>Final Grade Calculator</h3><p>What you need on the final exam</p></a>
+</div>
+<h2 class="subcat">Study Tools</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="hisaab kitab karo" data-name="scientific calculator trigonometry log sqrt power" href="scientific-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg></span><h3>Scientific Calculator</h3><p>Trig, logs, powers, √, π — in your browser</p></a>
+<a class="tool-card tilt reveal" data-roman="parhai timer lagao" data-name="pomodoro timer focus study 25 minute productivity" href="pomodoro-timer.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Pomodoro Timer</h3><p>25-min focus cycles with sound alerts</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="security">
+<div class="cat-head"><h2>Security Tools</h2><a class="view-all" href="security-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Passwords</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="password mazboot check karo" data-name="password strength checker secure crack time test" href="password-strength-checker.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><h3>Password Strength Checker</h3><p>Live score, crack-time estimate, checklist & tips</p></a>
+</div>
+<h2 class="subcat">Verify</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="code hash banao" data-name="hash generator sha256 sha384 sha512 sha1 checksum" href="hash-generator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg></span><h3>Hash Generator</h3><p>SHA-256, SHA-384, SHA-512 & SHA-1 from any text</p></a>
+<a class="tool-card tilt reveal" data-roman="card check karo" data-name="card validator luhn check demo brand visa mastercard" href="card-validator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/><path d="m17 15 1.5 1.5L21 14"/></svg></span><h3>Card Validator</h3><p>Luhn checksum check & brand detection (demo only)</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="business">
+<div class="cat-head"><h2>Business Tools</h2><a class="view-all" href="business-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Pricing</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="munafa hisaab" data-name="profit margin calculator markup pricing business" href="profit-margin-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><h3>Profit Margin Calculator</h3><p>Margin %, markup % & profit from cost and price</p></a>
+<a class="tool-card tilt reveal" data-roman="mazdoori rate hisaab" data-name="freelance rate calculator hourly day rate freelancer" href="freelance-rate-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h3>Freelance Rate Calculator</h3><p>Hourly & day rates from income and billable hours</p></a>
+</div>
+<h2 class="subcat">Planning</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="kharcha munafa barabar hisaab" data-name="break even calculator units revenue fixed costs" href="break-even-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></span><h3>Break-Even Calculator</h3><p>Units & revenue needed to cover fixed costs</p></a>
+<a class="tool-card tilt reveal" data-roman="dukaan naam banao" data-name="business name generator startup brand ideas company" href="business-name-generator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Business Name Generator</h3><p>Catchy business name ideas from a keyword</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="everyday">
+<div class="cat-head"><h2>Everyday Tools</h2><a class="view-all" href="everyday-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Time</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="ghari waqt napo" data-name="stopwatch timer laps online free" href="stopwatch.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6M12 2v4"/></svg></span><h3>Stopwatch</h3><p>Centisecond precision stopwatch with lap timer</p></a>
+</div>
+<h2 class="subcat">Random</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="sikka uchalo faisla" data-name="coin flip heads tails random toss" href="coin-flip.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v12M15 8.5c-.7-1-1.8-1.5-3-1.5-1.7 0-3 .9-3 2.5 0 3.4 6 1.6 6 5 0 1.6-1.3 2.5-3 2.5-1.2 0-2.3-.5-3-1.5"/></svg></span><h3>Coin Flip</h3><p>3D animated coin flip with heads/tails score</p></a>
+<a class="tool-card tilt reveal" data-roman="number qismat nikaalo" data-name="random number generator rng unique lottery draw" href="random-number-generator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8.5 8.5h.01M15.5 8.5h.01M8.5 15.5h.01M15.5 15.5h.01M12 12h.01"/></svg></span><h3>Random Number Generator</h3><p>Random numbers in any range, unique mode</p></a>
+</div>
+<h2 class="subcat">Device</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="mobile maloomat dekho" data-name="device info browser screen os specs my" href="device-info.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><h3>Device Info</h3><p>Browser, OS, screen, CPU & memory at a glance</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="pakistan">
+<div class="cat-head"><h2>Pakistan Utilities</h2><a class="view-all" href="pakistan-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Tax & Bills</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="tankha tax fbr hisaab" data-name="income tax calculator pakistan salary fbr slab fy 2026-27 monthly yearly" href="income-tax-calculator-pakistan.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></span><h3>Income Tax Calculator</h3><p>Pakistan FY 2026-27 salary tax — monthly & yearly</p></a>
+<a class="tool-card tilt reveal" data-roman="bijli bill wapda hisaab" data-name="electricity bill calculator pakistan lesco units slab estimate protected unprotected" href="electricity-bill-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span><h3>Electricity Bill Calculator</h3><p>LESCO-style slab-wise bill estimate from units</p></a>
+<a class="tool-card tilt reveal" data-roman="mobile tax pta hisaab" data-name="pta tax calculator mobile phone dirbs passport cnic import duty registration" href="pta-tax-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span><h3>PTA Tax Calculator</h3><p>Estimate DIRBS mobile registration tax & duty</p></a>
+</div>
+<h2 class="subcat">Money & Gold</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="sona rate tola hisaab" data-name="gold rate calculator pakistan tola gram ratti sona price value converter" href="gold-rate-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><circle cx="15" cy="15" r="6"/></svg></span><h3>Gold Rate Calculator</h3><p>Tola ↔ gram ↔ ratti converter + gold value</p></a>
+</div>
+<h2 class="subcat">Everyday Pakistan</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="cnic tasveer shanakhti photo" data-name="cnic photo maker passport photo 35x45mm picture crop resize download" href="cnic-photo-maker.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5 18c.5-2 2-3 3.5-3s3 1 3.5 3M14 9h5M14 13h5"/></svg></span><h3>CNIC Photo Maker</h3><p>35×45 mm crop with zoom — print-ready PNG</p></a>
+<a class="tool-card tilt reveal" data-roman="urdu likho tabdeel karo" data-name="roman urdu to urdu converter script transliteration translate" href="roman-urdu-to-urdu.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 3v2c0 3.5-2 6.5-4.5 8M6 9c1 2.5 3 4.5 6 5.5"/><path d="M13 21l4-9 4 9M14.5 17.5h5"/></svg></span><h3>Roman Urdu → Urdu</h3><p>Live Roman Urdu to Urdu script converter</p></a>
+</div>
+</section>
+
+<section class="cat-section reveal" data-cat="islamic">
+<div class="cat-head"><h2>Islamic Tools</h2><a class="view-all" href="islamic-tools.html">View all <span class="va-arrow">→</span></a></div>
+<h2 class="subcat">Worship</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="namaz time auqat dekho" data-name="prayer times namaz salah timing karachi lahore islamabad peshawar quetta" href="prayer-times.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><h3>Prayer Times</h3><p>Daily namaz timetable for major Pakistani cities</p></a>
+<a class="tool-card tilt reveal" data-roman="qibla rukh dekho" data-name="qibla direction finder compass mecca makkah kaaba direction" href="qibla-direction.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 13 13l-4.5 2.5L11 11z"/></svg></span><h3>Qibla Direction</h3><p>Live compass pointing toward the Kaaba</p></a>
+<a class="tool-card tilt reveal" data-roman="tasbeeh ginna zikr karo" data-name="tasbeeh counter dhikr tasbih digital counter allahumma" href="tasbeeh-counter.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="7" r="1" fill="currentColor"/><circle cx="17" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="17" r="1" fill="currentColor"/><circle cx="7" cy="12" r="1" fill="currentColor"/></svg></span><h3>Tasbeeh Counter</h3><p>Digital dhikr counter with target progress ring</p></a>
+</div>
+<h2 class="subcat">Calculators</h2>
+<div class="tool-grid">
+<a class="tool-card tilt reveal" data-roman="hijri tarikh chand tabdeel" data-name="hijri calendar converter islamic date gregorian to hijri lunar date" href="hijri-converter.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M17.5 15.5a3.5 3.5 0 1 1-4.7-4.7 2.8 2.8 0 0 0 4.7 4.7z"/></svg></span><h3>Hijri Converter</h3><p>Convert Gregorian dates to Hijri and back</p></a>
+<a class="tool-card tilt reveal" data-roman="zakat hisaab nikaalo" data-name="zakat calculator 2.5 percent nisab gold silver cash wealth" href="zakat-calculator.html"><span class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/><path d="M12 8v6M9 11h6"/></svg></span><h3>Zakat Calculator</h3><p>Calculate 2.5% zakat on cash, gold & silver</p></a>
+</div>
+</section>
+
+</main></div>
+<footer class="site-footer">
+<p class="foot-line">134 tools — free forever &bull; no registration required</p>
+<p><span class="js-year">© 2026</span> AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/bg.js"></script>
+<script src="js/music.js"></script>
+<script src="js/pwa.js"></script>
+</body></html>
