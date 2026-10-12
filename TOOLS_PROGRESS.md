@@ -55,8 +55,7 @@ so reports say "no visible errors observed" — never "zero console errors".
 
 ## External dependency audit (2026-10-12)
 Only 2 external JS libraries in the whole repo, both pinned and browser-ready —
-see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean); the old
-LLM7 key exists only in git history and must be revoked by the account owner.
+see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORRECTION 2026-10-12: a full scan of all 9,595 blobs in git history proved no real LLM7 key was ever committed — the code only ever contained the placeholder `Bearer unused`. The earlier 'exposed key' warning was a false alarm from the overnight QA report; nothing to revoke, no history scrub needed.
 
 ## Live verified (22 tools)
 

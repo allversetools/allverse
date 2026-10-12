@@ -87,7 +87,8 @@
 var $=function(id){return document.getElementById(id)};
 var box=$('chBox'),inp=$('chIn'),btn=$('chBtn'),eng=$('chEngine');
 var session=null, history=[];
-if('LanguageModel' in window){eng.textContent='✅ On-device AI available — chats stay private in your browser.';}
+if(window.SK_AI && SK_AI.forceCloud()){eng.textContent='☁️ Cloud AI mode — replies come from the free cloud service.';}
+else if('LanguageModel' in window){eng.textContent='✅ On-device AI available — chats stay private in your browser.';}
 else{eng.textContent='ℹ️ Using free cloud AI for replies.';}
 function bubble(who,text){
   var d=document.createElement('div');
@@ -110,11 +111,16 @@ function send(){
   if(q===null)return;
   inp.value=''; bubble('you',q);
   var ab=bubble('ai','…');
+  var slowNote=document.createElement('div');
+  slowNote.style.cssText='font-size:.78rem;color:var(--muted,#888);margin:6px 0 8px;text-align:center;';
+  slowNote.textContent='⏳ This can take up to 30–60 seconds on the free AI service. Please keep this tab open.';
+  box.appendChild(slowNote); box.scrollTop=box.scrollHeight;
   SK_AI.setBusy(btn,true,'…');
-  var done=function(t){SK_AI.setBusy(btn,false);ab.textContent='';SK_AI.typeInto(ab,t);};
+  var done=function(t){SK_AI.setBusy(btn,false);if(slowNote)slowNote.remove();ab.textContent='';SK_AI.typeInto(ab,t);};
   var fail=function(e){SK_AI.setBusy(btn,false);
     var msg=e.message;
     if(msg.indexOf('429')!==-1) msg='The AI is busy right now. Please wait 15 seconds and try again.';
+    if(slowNote)slowNote.remove();
     ab.innerHTML='';
     var sp=document.createElement('span');sp.textContent='⚠️ '+msg;ab.appendChild(sp);
     if(lastQ){
