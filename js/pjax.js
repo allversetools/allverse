@@ -55,10 +55,27 @@
         // Update title
         document.title = doc.title;
 
+        // Pull in any new external <head> scripts (CDN libraries like
+        // pdf-lib / qrcodejs) that the fetched page needs but this document
+        // doesn't have yet — <head> never re-executes on PJAX swaps.
+        var needed = doc.querySelectorAll('head script[src]');
+        for (var hs = 0; hs < needed.length; hs++) {
+          var needSrc = needed[hs].src;
+          var found = false;
+          var have = document.querySelectorAll('script[src]');
+          for (var hj = 0; hj < have.length; hj++) {
+            if (have[hj].src === needSrc) { found = true; break; }
+          }
+          if (!found) {
+            var inj = document.createElement('script');
+            inj.src = needSrc;
+            document.head.appendChild(inj);
+          }
+        }
+
         // Swap main content
         var newMain = doc.querySelector('main');
-        var oldMain = getContainer();
-        if (newMain && oldMain && oldMain.tagName === 'MAIN') {
+        var oldMain = getContainer();        if (newMain && oldMain && oldMain.tagName === 'MAIN') {
           oldMain.innerHTML = newMain.innerHTML;
           // Execute inline scripts (innerHTML doesn't run them)
           var scripts = oldMain.querySelectorAll('script');
@@ -138,10 +155,16 @@
   });
 
   // Handle back/forward buttons
-  window.addEventListener('popstate', function (e) {
-    if (e.state && e.state.url) {
-      loadPage(e.state.url, false);
+  // Stamp the initial history entry so Back to it carries a state to load —
+  // without this, e.state is null on the first entry and Back does nothing.
+  try {
+    if (!history.state || !history.state.url) {
+      history.replaceState({ url: window.location.href }, '', window.location.href);
     }
+  } catch (e) {}
+  window.addEventListener('popstate', function (e) {
+    var url = (e.state && e.state.url) || window.location.href;
+    loadPage(url, false);
   });
 
   // Expose for debugging
