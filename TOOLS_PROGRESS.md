@@ -19,7 +19,7 @@ clean the code looks.
 so reports say "no visible errors observed" — never "zero console errors".
 
 ## Summary
-- ✅ Live verified: **125**
+- ✅ Live verified: **127**
 - 🟧 Code only (fix deployed, unverified): **0** (AI Story Writer — backend quota)
 - 🟨 Code only (environment-limited): **2** (Voice Recorder — no mic in test env; Text to Speech — no voices in test env)
 - ⬜ Code only (unverified): **0**
@@ -58,7 +58,7 @@ so reports say "no visible errors observed" — never "zero console errors".
 Only 2 external JS libraries in the whole repo, both pinned and browser-ready —
 see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORRECTION 2026-10-12: a full scan of all 9,595 blobs in git history proved no real LLM7 key was ever committed — the code only ever contained the placeholder `Bearer unused`. The earlier 'exposed key' warning was a false alarm from the overnight QA report; nothing to revoke, no history scrub needed.
 
-## Live verified (125 tools)
+## Live verified (127 tools)
 
 | # | Tool | File | Category | Status | Verified how |
 |---|------|------|----------|--------|--------------|
@@ -178,25 +178,25 @@ see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORR
 | 114 | URL Encoder Decoder | url-encoder-decoder.html | Developer | ✅ Live verified | "hello world & co" -> hello%20world%20%26%20co. Batch 10. |
 | 115 | UTM Link Builder | utm-builder.html | Developer | ✅ Live verified | -> ?utm_source=google&utm_medium=cpc&utm_campaign=sale. Batch 10. |
 | 116 | UUID Generator | uuid-generator.html | Developer | ✅ Live verified | Valid v4 UUID e3969fda-...-90ca. Batch 10. |
-| 117 | YouTube Timestamp Link | video-timestamp-link.html | Video | ✅ Live verified | YT URL + 1:30 -> youtu.be?t=90, watch?t=1m30s, embed?start=90. Batch 11. |
-| 118 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. |
-| 119 | Water Intake Calculator | water-intake-calculator.html | Health | ✅ Live verified | 70kg moderate -> 3.1L/day. Batch 11. |
-| 120 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ✅ Live verified | 800000 budget -> category allocation + catering warning. Batch 11. |
-| 121 | Wedding Countdown | wedding-countdown.html | Wedding | ✅ Live verified | 30-day target -> live ticking countdown. Batch 11. |
-| 122 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ✅ Live verified | 100000/2 families -> 50000 each, settle-up correct. Batch 11. |
-| 123 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ✅ Live verified | 923001234567 + Hello -> wa.me link + copy/open. Batch 11. |
-| 124 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. |
-| 125 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. |
+| 117 | Video Metadata Viewer | video-metadata-viewer.html | Video | ✅ Live verified | test-video.mp4 upload -> 640x480, 0:03, 23.6KB, 4:3, preview rendered. Final batch. |
+| 118 | YouTube Timestamp Link | video-timestamp-link.html | Video | ✅ Live verified | YT URL + 1:30 -> youtu.be?t=90, watch?t=1m30s, embed?start=90. Batch 11. |
+| 119 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. |
+| 120 | Water Intake Calculator | water-intake-calculator.html | Health | ✅ Live verified | 70kg moderate -> 3.1L/day. Batch 11. |
+| 121 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ✅ Live verified | 800000 budget -> category allocation + catering warning. Batch 11. |
+| 122 | Wedding Countdown | wedding-countdown.html | Wedding | ✅ Live verified | 30-day target -> live ticking countdown. Batch 11. |
+| 123 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ✅ Live verified | 100000/2 families -> 50000 each, settle-up correct. Batch 11. |
+| 124 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ✅ Live verified | 923001234567 + Hello -> wa.me link + copy/open. Batch 11. |
+| 125 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. |
+| 126 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ✅ Live verified | 800x600 PNG -> valid 1280x720 JPEG downloads in Fill + Fit modes (byte-verified). Final batch. |
+| 127 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. |
 
-## Code only — not live-tested in browser (5 tools)
+## Code only — not live-tested in browser (3 tools)
 
 | # | Tool | File | Category | Status | Note |
 |---|------|------|----------|--------|------|
 | 1 | AI Story Writer | ai-story-writer.html | AI Tools | ⬜ Code only (fix deployed, unverified) | Code only - JSON-leak guard + STRICT retry deployed on js29 (code-verified, retry works); end-to-end unverified: free backend quota exhausted on all attempts. 2026-10-12. |
 | 2 | Text to Speech Studio | text-to-speech-studio.html | AI Tools | ⬜ Code only (environment-limited) | Code only - 0 voices in test environment; Speak produced no error; clear "no voices" message added; FAQ honestly states download unsupported. Audio output unverifiable here. |
-| 3 | Video Metadata Viewer | video-metadata-viewer.html | Video | ⬜ Code only (upload test pending) | Page loads (dropzone + trust pill OK); file-upload test in progress. |
-| 4 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. |
-| 5 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ⬜ Code only (upload test pending) | Page loads (1280x720 modes OK); file-upload test in progress. |
+| 3 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. |
 
 ## Tool-count reconciliation
 - **131** = actual tools (hub-link inventory, every file exists) — authoritative.
