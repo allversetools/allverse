@@ -41,32 +41,47 @@
     }
     function animate(el, from, to, decimals, suffix) {
       var start = null, dur = 650;
+      /* token: a newer animation (or a direct value update) invalidates this one,
+         so stale frames can never overwrite a fresher value */
+      var seq = el._fxSeq = (el._fxSeq || 0) + 1;
       function frame(ts) {
+        if (el._fxSeq !== seq || !el.isConnected) return;
         if (!start) start = ts;
         var t = Math.min((ts - start) / dur, 1);
         var v = from + (to - from) * easeOutBack(t);
+        el._fxSelf = true; /* mark our own writes so the observer ignores them */
         el.textContent = (decimals ? v.toFixed(decimals) : Math.round(v).toString()) + suffix;
         if (t < 1 && el.isConnected) requestAnimationFrame(frame);
-        else el.textContent = (decimals ? to.toFixed(decimals) : Math.round(to).toString()) + suffix;
+        else { el._fxSelf = true; el.textContent = (decimals ? to.toFixed(decimals) : Math.round(to).toString()) + suffix; }
       }
       requestAnimationFrame(frame);
+      return seq;
     }
     var io = new MutationObserver(function (muts) {
       muts.forEach(function (m) {
         var el = m.target.nodeType === 3 ? m.target.parentElement : m.target;
-        if (!el || el._fxTick) return;
+        if (!el) return;
+        if (el._fxSelf) { el._fxSelf = false; return; } /* our own animation frame */
         // only animate single-number values (e.g. "24.5 kg"); never rewrite rich text
         var clean = (el.textContent || '').trim();
         if (!/^-?[\d,]+(\.\d+)?\s*[^\d\s.,-]*$/.test(clean)) { el._fxPrevText = el.textContent; return; }
         var neu = parseNum(el.textContent);
         if (neu === null) return;
+        if (el._fxTick) {
+          /* a new value arrived mid-animation: cancel the stale animation and
+             accept the fresh value as-is (no animation on rapid updates) */
+          el._fxSeq = (el._fxSeq || 0) + 1;
+          el._fxTick = false;
+          el._fxPrevText = el.textContent;
+          return;
+        }
         var old = parseNum(el._fxPrevText);
         if (old === null || old === neu) { el._fxPrevText = el.textContent; return; }
         el._fxTick = true;
         var dec = (String(el.textContent).match(/\.(\d+)/) || [])[1];
         var suffix = (el.textContent.match(/[^\d.,\s-]+$/) || [''])[0];
-        animate(el, old, neu, dec ? dec.length : 0, suffix);
-        setTimeout(function () { el._fxTick = false; el._fxPrevText = el.textContent; }, 700);
+        var seq = animate(el, old, neu, dec ? dec.length : 0, suffix);
+        setTimeout(function () { if (el._fxSeq === seq) { el._fxTick = false; el._fxPrevText = el.textContent; } }, 700);
         // glow pulse on result panels
         var rp = el.closest ? el.closest('.result-panel') : null;
         if (rp) { rp.classList.remove('fx-glow'); void rp.offsetWidth; rp.classList.add('fx-glow'); }
