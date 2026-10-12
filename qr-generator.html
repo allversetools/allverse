@@ -159,7 +159,7 @@
     }
     result.hidden = false;
     if (window.SK_AI) SK_AI.scrollTo(result);
-    var size = qrSize ? parseInt(qrSize.value, 10) || 300 : 300;
+    var size = qrSize ? Math.trunc(skNum(qrSize, 300)) : 300;
     try {
       // Clear previous QR
       var container = document.getElementById('qrContainer');

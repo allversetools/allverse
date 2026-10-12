@@ -123,12 +123,11 @@
   }
 
   function g(id){ return document.getElementById(id); }
-  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(el.value); return isNaN(v)?null:v; }
   function money(n){ if(n===null||!isFinite(n)) return '—'; return Math.round(n).toLocaleString('en-US'); }
   function set(id,t){ var el=g(id); if(el) el.textContent=t; }
   function fv(M,r,n){ if(r===0) return M*n; return M*((Math.pow(1+r,n)-1)/r)*(1+r); }
   function update(){
-    var M=num('sipM'), annual=num('sipR'), y=num('sipY');
+    var M=skNum('sipM'), annual=skNum('sipR'), y=skNum('sipY');
     if(M===null||annual===null||y===null||M<=0||y<=0||annual<0){ set('sipMaturity','—'); set('sipInvested','—'); set('sipGains','—'); return; }
     var r=annual/100/12, n=Math.round(y*12);
     var mat=fv(M,r,n), inv=M*n;

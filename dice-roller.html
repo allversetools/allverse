@@ -157,7 +157,7 @@
     }
   }
   function getCount(){
-    var n = diceCount ? parseInt(diceCount.value, 10) : 2;
+    var n = diceCount ? Math.trunc(skNum(diceCount, 2)) : 2;
     if(isNaN(n) || n < 1) n = 1;
     if(n > 6) n = 6;
     return n;

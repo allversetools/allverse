@@ -268,6 +268,26 @@
   });
 
   /* ---------- 6. Global SK helpers ---------- */
+
+  /* Shared numeric input reader — use for EVERY numeric <input> on every tool.
+     Strips thousand-separator commas and spaces ("1,000" -> 1000), handles
+     empty/negative/decimal input safely. Returns null when not a number,
+     or `def` when provided (e.g. skNum('x', 0)). */
+  window.skNum = function (el, def) {
+    var raw;
+    if (typeof el === 'string') {
+      var node = document.getElementById(el);
+      raw = node ? node.value : el; /* id lookup, else treat as raw value */
+    } else if (el && typeof el.value !== 'undefined') {
+      raw = el.value;
+    } else {
+      return (def === undefined ? null : def);
+    }
+    var v = parseFloat(String(raw).replace(/[,\s ]/g, ''));
+    if (isNaN(v)) return (def === undefined ? null : def);
+    return v;
+  };
+
   window.SK = {
     copy: function (text) {
       text = String(text == null ? '' : text);

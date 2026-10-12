@@ -118,7 +118,7 @@
   function set(id, v) { var el = get(id); if (el) el.textContent = v; }
   function fmt(n) { return (Math.round(n * 100) / 100).toLocaleString('en-US'); }
   function calc() {
-    var c = parseFloat(cost.value), p = parseFloat(price.value);
+    var c = skNum(cost), p = skNum(price);
     msg.textContent = '';
     if (isNaN(c) || isNaN(p) || c < 0 || p < 0) {
       set('pmProfit', '–'); set('pmMargin', '–'); set('pmMarkup', '–');

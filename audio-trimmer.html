@@ -251,10 +251,10 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
     sR.value = s; eR.value = e; sN.value = s.toFixed(1); eN.value = e.toFixed(1);
     updateStats(); draw();
   }
-  sR.addEventListener('input', function () { setSel(parseFloat(sR.value), selE, 's'); });
-  eR.addEventListener('input', function () { setSel(selS, parseFloat(eR.value), 'e'); });
-  sN.addEventListener('change', function () { setSel(parseFloat(sN.value) || 0, selE, 's'); });
-  eN.addEventListener('change', function () { setSel(selS, parseFloat(eN.value) || 0, 'e'); });
+  sR.addEventListener('input', function () { setSel(skNum(sR, 0), selE, 's'); });
+  eR.addEventListener('input', function () { setSel(selS, skNum(eR, 0), 'e'); });
+  sN.addEventListener('change', function () { setSel(skNum(sN, 0), selE, 's'); });
+  eN.addEventListener('change', function () { setSel(selS, skNum(eN, 0), 'e'); });
 
   function updateStats() {
     var keep = document.querySelector('input[name=atMode]:checked').value === 'keep';
@@ -272,7 +272,7 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
   $('atZoomIn').addEventListener('click', function () { zoom = Math.min(16, zoom * 2); scroll = selS - viewDur() / 2; draw(); });
   $('atZoomOut').addEventListener('click', function () { zoom = Math.max(1, zoom / 2); draw(); });
   $('atZoomFit').addEventListener('click', function () { zoom = 1; scroll = 0; draw(); });
-  scrollR.addEventListener('input', function () { scroll = parseFloat(scrollR.value); draw(); });
+  scrollR.addEventListener('input', function () { scroll = skNum(scrollR, 0); draw(); });
 
   /* pointer: drag handles / click to move nearest */
   function xToT(x) { var r = canvas.getBoundingClientRect(); return scroll + (x - r.left) / pps(); }
@@ -315,11 +315,11 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
     if (!buf) return;
     stop(); ensureCtx();
     var src = actx.createBufferSource(); src.buffer = buf;
-    src.playbackRate.value = parseFloat(speedSel.value);
+    src.playbackRate.value = skNum(speedSel, 1);
     src.connect(actx.destination);
     if (loop) { src.loop = true; src.loopStart = offset; src.loopEnd = offset + length; }
     try { src.start(0, offset, loop ? undefined : length); } catch (e) { src.start(0, offset); }
-    playState = { src: src, t0: actx.currentTime, offset: offset, dur: length, loop: loop, rate: parseFloat(speedSel.value) };
+    playState = { src: src, t0: actx.currentTime, offset: offset, dur: length, loop: loop, rate: skNum(speedSel, 1) };
     if (!loop) src.onended = function () { playState = null; draw(); };
     (function tick() {
       if (!playState) return;
@@ -359,8 +359,8 @@ select.at-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
     segs = segs.filter(function (s) { return s[1] - s[0] > 0.01; });
     var totalDur = segs.reduce(function (a, s) { return a + (s[1] - s[0]); }, 0);
     if (!segs.length || totalDur < 0.05) { SK_AI.setBusy(btn,false); return; }
-    var fi = Math.min(parseFloat(fadeIn.value), totalDur / 2);
-    var fo = Math.min(parseFloat(fadeOut.value), totalDur / 2);
+    var fi = Math.min(skNum(fadeIn, 0), totalDur / 2);
+    var fo = Math.min(skNum(fadeOut, 0), totalDur / 2);
     var off = new OfflineAudioContext(nCh, Math.ceil(totalDur * sr), sr);
     var master = off.createGain(); master.connect(off.destination);
     master.gain.setValueAtTime(0.0001, 0);

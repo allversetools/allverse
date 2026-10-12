@@ -131,15 +131,14 @@
 <script src="js/pwa.js?v=js26"></script>
 <script>
 (function () {
-  function num(id) { var v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; }
   function fmt(n) { if (n === null || !isFinite(n)) return '—'; return (Math.round(n * 100) / 100).toLocaleString('en-US'); }
   function set(id, t) { document.getElementById(id).textContent = t; }
   function update() {
-    var p = num('pctA'), b = num('baseA');
+    var p = skNum('pctA'), b = skNum('baseA');
     set('resA', (p === null || b === null) ? '—' : fmt(p) + '% of ' + fmt(b) + ' = ' + fmt(p / 100 * b));
-    var x = num('partB'), y = num('wholeB');
+    var x = skNum('partB'), y = skNum('wholeB');
     set('resB', (x === null || y === null || y === 0) ? '—' : fmt(x) + ' is ' + fmt(x / y * 100) + '% of ' + fmt(y));
-    var o = num('oldC'), n = num('newC');
+    var o = skNum('oldC'), n = skNum('newC');
     if (o === null || n === null || o === 0) { set('resC', '—'); }
     else { var c = (n - o) / Math.abs(o) * 100; set('resC', 'Change: ' + (c >= 0 ? '+' : '') + fmt(c) + '% (' + (c >= 0 ? 'increase' : 'decrease') + ')'); }
   }
@@ -152,21 +151,20 @@
 <script>
 (function () {
   function g(id){return document.getElementById(id);}
-  function num(id){var el=g(id);if(!el)return null;var v=parseFloat(el.value);return isNaN(v)?null:v;}
   function fmt(n){if(n===null||!isFinite(n))return '\u2014';return (Math.round(n*100)/100).toLocaleString('en-US');}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
   function render(){
     var box=g('pctSteps');if(!box)return;
     var s=[];
-    var p=num('pctA'),b=num('baseA');
+    var p=skNum('pctA'),b=skNum('baseA');
     if(p!==null&&b!==null){
       s.push('<div class="w-step"><span class="w-label">A \u00B7 What is X% of Y?</span><br><span class="w-f">X% of Y = (X \u00F7 100) \u00D7 Y</span><br>= ('+esc(p)+' \u00F7 100) \u00D7 '+esc(b)+' = '+fmt(p/100)+' \u00D7 '+fmt(b)+' = <span class="w-f">'+fmt(p/100*b)+'</span></div>');
     }else{s.push('<div class="w-step"><span class="w-note">A: enter a percentage and a number.</span></div>');}
-    var x=num('partB'),y=num('wholeB');
+    var x=skNum('partB'),y=skNum('wholeB');
     if(x!==null&&y!==null&&y!==0){
       s.push('<div class="w-step"><span class="w-label">B \u00B7 X is what % of Y?</span><br><span class="w-f">(X \u00F7 Y) \u00D7 100</span><br>= ('+esc(x)+' \u00F7 '+esc(y)+') \u00D7 100 = <span class="w-f">'+fmt(x/y*100)+'%</span></div>');
     }else{s.push('<div class="w-step"><span class="w-note">B: enter a part and a non-zero whole.</span></div>');}
-    var o=num('oldC'),nn=num('newC');
+    var o=skNum('oldC'),nn=skNum('newC');
     if(o!==null&&nn!==null&&o!==0){
       var c=(nn-o)/Math.abs(o)*100;
       s.push('<div class="w-step"><span class="w-label">C \u00B7 Percentage change</span><br><span class="w-f">(Y \u2212 X) \u00F7 |X| \u00D7 100</span><br>= ('+esc(nn)+' \u2212 '+esc(o)+') \u00F7 '+fmt(Math.abs(o))+' \u00D7 100 = <span class="w-f">'+(c>=0?'+':'')+fmt(c)+'%</span> ('+(c>=0?'increase':'decrease')+')</div>');

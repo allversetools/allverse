@@ -139,7 +139,7 @@
     if(e.code==='Space'&&document.activeElement!==g('tbCustom')&&!/(INPUT|TEXTAREA|SELECT|BUTTON)/.test(document.activeElement&&document.activeElement.tagName||'')){e.preventDefault();tap();}
   });
   document.querySelectorAll('.tb-preset').forEach(function(b){b.addEventListener('click',function(){setTarget(parseInt(b.getAttribute('data-t'),10));});});
-  var cu=g('tbCustom');if(cu)cu.addEventListener('change',function(){var v=parseInt(cu.value,10);if(v>0)setTarget(v);cu.value='';});
+  var cu=g('tbCustom');if(cu)cu.addEventListener('change',function(){var v=Math.trunc(skNum(cu, 0));if(v>0)setTarget(v);cu.value='';});
   var bk=g('tbBack');if(bk)bk.addEventListener('click',function(){if(count>0){count--;render();}});
   var rs=g('tbReset');if(rs)rs.addEventListener('click',function(){count=0;render();});
   render();

@@ -132,7 +132,7 @@
     var h=g2h(d);set('hjOut',(h||'—')+(h?' — approximate ±1 day':''));
   }
   function updH2G(){
-    function n(id){var el=g(id);var v=el?parseInt(el.value,10):NaN;return isNaN(v)?null:v;}
+    function n(id){var el=g(id);var v=el?Math.trunc(skNum(el, NaN)):NaN;return isNaN(v)?null:v;}
     var hy=n('hjY'),hm=n('hjM'),hd=n('hjD');
     if(hy===null||hm===null||hd===null){set('hjGOut','—');return;}
     if(hd<1||hd>30){set('hjGOut','Day must be 1–30.');return;}

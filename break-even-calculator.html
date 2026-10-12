@@ -130,7 +130,7 @@
   function set(id, v) { var el = get(id); if (el) el.textContent = v; }
   function fmt(n) { return (Math.round(n * 100) / 100).toLocaleString('en-US'); }
   function calc() {
-    var f = parseFloat(fixed.value), p = parseFloat(price.value), v = parseFloat(vari.value);
+    var f = skNum(fixed, NaN), p = skNum(price, NaN), v = skNum(vari, NaN);
     msg.textContent = '';
     barWrap.hidden = true;
     if (isNaN(f) || isNaN(p) || isNaN(v) || f < 0 || p < 0 || v < 0) {

@@ -89,10 +89,10 @@
 <script src="js/pwa.js?v=js26"></script><script>
 
 (function(){
-function g(id){return document.getElementById(id);}function num(id){var e=g(id);if(!e)return null;var v=parseFloat(e.value);return isNaN(v)?null:v;}function set(id,t){var e=g(id);if(e)e.textContent=t;}function fmt(n,d){if(n===null||n===undefined||!isFinite(n))return '—';d=(d===undefined)?0:d;return (Math.round(n*Math.pow(10,d))/Math.pow(10,d)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}function pkr(n){return 'Rs ' + fmt(n,0);}
+function g(id){return document.getElementById(id);}function set(id,t){var e=g(id);if(e)e.textContent=t;}function fmt(n,d){if(n===null||n===undefined||!isFinite(n))return '—';d=(d===undefined)?0:d;return (Math.round(n*Math.pow(10,d))/Math.pow(10,d)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}function pkr(n){return 'Rs ' + fmt(n,0);}
 var SLABS=[[600000,0,0],[1200000,0,1],[2200000,6000,11],[3200000,116000,20],[4100000,316000,25],[5600000,541000,29],[7000000,976000,32],[Infinity,1424000,35]];
 function tax(annual){for(var i=0;i<SLABS.length;i++){if(annual<=SLABS[i][0]){var prev=i?SLABS[i-1][0]:0;return SLABS[i][1]+(annual-prev)*SLABS[i][2]/100;}}return 0;}
-function update(){var m=num('txMonthly');if(m===null||m<0){set('txMonthlyTax','—');set('txYearlyTax','—');set('txEff','—');set('txTake','—');return;}var a=m*12,t=tax(a);set('txMonthlyTax',pkr(t/12));set('txYearlyTax',pkr(t));set('txEff',a>0?fmt(t/a*100,2)+'%':'0%');set('txTake',pkr(m-t/12));}
+function update(){var m=skNum('txMonthly');if(m===null||m<0){set('txMonthlyTax','—');set('txYearlyTax','—');set('txEff','—');set('txTake','—');return;}var a=m*12,t=tax(a);set('txMonthlyTax',pkr(t/12));set('txYearlyTax',pkr(t));set('txEff',a>0?fmt(t/a*100,2)+'%':'0%');set('txTake',pkr(m-t/12));}
 var el=g('txMonthly');if(el){el.addEventListener('input',update);}update();
 })();
 

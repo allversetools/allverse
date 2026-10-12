@@ -99,16 +99,15 @@
 <script>
 (function () {
   function g(id){ return document.getElementById(id); }
-  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(el.value); return isNaN(v)?null:v; }
   function money(n){ if(n===null||!isFinite(n)) return '—'; return (Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   function set(id,t){ var el=g(id); if(el) el.textContent=t; }
   function update(){
-    var amt=num('gstAmt');
+    var amt=skNum('gstAmt');
     var rateSel=g('gstRate'), mode=g('gstMode');
     var wrap=g('gstCustomWrap');
     var custom=rateSel&&rateSel.value==='custom';
     if(wrap) wrap.style.display=custom?'block':'none';
-    var rate=custom?num('gstCustom'):(rateSel?parseFloat(rateSel.value):null);
+    var rate=custom?skNum('gstCustom'):(rateSel?skNum(rateSel):null);
     if(amt===null||rate===null||amt<0||rate<0){ set('gstTax','—'); set('gstNet','—'); set('gstTotal','—'); return; }
     var m=mode?mode.value:'add', tax, net, total;
     if(m==='add'){ tax=amt*rate/100; net=amt; total=amt+tax; }

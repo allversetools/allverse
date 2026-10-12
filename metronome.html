@@ -145,7 +145,7 @@ select.mn-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
   var queue = []; /* {t, beat, sub, acc} */
   var LOOKAHEAD = 25, AHEAD = 0.12;
 
-  function bpm() { return Math.max(40, Math.min(208, parseInt(bpmR.value, 10) || 120)); }
+  function bpm() { return Math.max(40, Math.min(208, Math.trunc(skNum(bpmR, 120)))); }
   function setBpm(v, silent) {
     v = Math.max(40, Math.min(208, Math.round(v) || 120));
     bpmR.value = v; bpmN.value = v; bpmV.textContent = v;
@@ -158,7 +158,7 @@ select.mn-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
   volR.addEventListener('input', function () { $('mnVolV').textContent = volR.value; if (master) master.gain.value = volR.value / 100; });
 
   function buildDots() {
-    var n = parseInt(beatsSel.value, 10);
+    var n = Math.trunc(skNum(beatsSel, 4));
     dotsEl.innerHTML = '';
     for (var i = 0; i < n; i++) {
       var d = document.createElement('div');
@@ -196,7 +196,7 @@ select.mn-sel{width:100%;padding:10px 12px;border:1.5px solid var(--border);bord
 
   function schedule() {
     while (nextT < actx.currentTime + AHEAD) {
-      var nBeats = parseInt(beatsSel.value, 10), nSub = parseInt(subSel.value, 10);
+      var nBeats = Math.trunc(skNum(beatsSel, 4)), nSub = Math.trunc(skNum(subSel, 1));
       var isDown = (beat === 0 && sub === 0);
       var acc = isDown && accentChk.checked;
       click(nextT, acc, sub > 0);

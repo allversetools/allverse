@@ -63,10 +63,9 @@
 (function(){
 function $(id){return document.getElementById(id);}
 function pkr(n){var a=Math.abs(n),s=n<0?'-':'';if(a>=1e7)return s+'Rs '+(a/1e7).toFixed(2).replace(/\.00$/,'')+' cr';if(a>=1e5)return s+'Rs '+(a/1e5).toFixed(2).replace(/\.00$/,'')+' L';return s+'Rs '+Math.round(a).toLocaleString('en-PK');}
-function num(id){var v=parseFloat($(id).value);return isNaN(v)?0:v;}
 function calc(){
-var P=num('rvbPrice'),dp=num('rvbDown')/100,rent0=num('rvbRent'),ir=num('rvbRate')/100,term=num('rvbTerm');
-var ap=num('rvbAppr')/100,rg=num('rvbRentG')/100,ret=num('rvbInv')/100,mt=num('rvbMaint')/100,cc=num('rvbClose'),sc=num('rvbSell');
+var P=skNum('rvbPrice', 0),dp=skNum('rvbDown', 0)/100,rent0=skNum('rvbRent', 0),ir=skNum('rvbRate', 0)/100,term=skNum('rvbTerm', 0);
+var ap=skNum('rvbAppr', 0)/100,rg=skNum('rvbRentG', 0)/100,ret=skNum('rvbInv', 0)/100,mt=skNum('rvbMaint', 0)/100,cc=skNum('rvbClose', 0),sc=skNum('rvbSell', 0);
 if(P<=0||term<=0||term>30){$('rvbVerdict').textContent='Please enter a valid home price and loan term (1–30 years).';return;}
 var down=P*dp,loan=P-down,closing=P*cc/100;
 var mi=ir/12,n=term*12;

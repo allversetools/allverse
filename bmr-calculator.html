@@ -101,14 +101,13 @@
 <script>
 (function () {
   function g(id){ return document.getElementById(id); }
-  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(el.value); return isNaN(v)?null:v; }
   function set(id,t){ var el=g(id); if(el) el.textContent=t; }
   function update(){
-    var age=num('bmrAge'), h=num('bmrHeight'), w=num('bmrWeight');
+    var age=skNum('bmrAge'), h=skNum('bmrHeight'), w=skNum('bmrWeight');
     var gen=g('bmrGender'), act=g('bmrAct');
     if(age===null||h===null||w===null||age<=0||h<=0||w<=0){ ['bmrVal','tdeeVal','loseVal','gainVal'].forEach(function(id){set(id,'—');}); return; }
     var bmr=10*w+6.25*h-5*age+(gen&&gen.value==='m'?5:-161);
-    var tdee=bmr*(act?parseFloat(act.value):1.2);
+    var tdee=bmr*(act?skNum(act, 1.2):1.2);
     set('bmrVal',Math.round(bmr).toLocaleString('en-US'));
     set('tdeeVal',Math.round(tdee).toLocaleString('en-US'));
     set('loseVal',Math.round(tdee-500).toLocaleString('en-US'));

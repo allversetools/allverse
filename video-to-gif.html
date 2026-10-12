@@ -321,7 +321,7 @@ function gifEncode(frames, w, h, palette, delayCs, loop) {
   });
   video.addEventListener('error', function () { SK_AI.loading($('vgOut'), false); msg('This video format could not be played. Try an MP4 file.'); });
   $('vgRange').addEventListener('input', function () {
-    var t = parseFloat(this.value) || 0;
+    var t = skNum(this, 0);
     try { video.currentTime = t; } catch (e) {}
     $('vgStart').value = t.toFixed(1);
   });

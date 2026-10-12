@@ -135,7 +135,7 @@
   }
   btn.addEventListener('click',function(){
     if(!SK_AI.requireInput(h,'Please enter your height.')||!SK_AI.requireInput(w,'Please enter your weight.')) return;
-    var hv=parseFloat(h.value), wv=parseFloat(w.value);
+    var hv=skNum(h), wv=skNum(w);
     var note=document.getElementById('bmiNote');
     if(!(hv>0)||!(wv>0)){
       res.hidden=false;
@@ -161,7 +161,7 @@
   function render(){
     var box=g('bmiSteps');if(!box)return;
     var h=g('height'),w=g('weight');if(!h||!w)return;
-    var hv=parseFloat(h.value),wv=parseFloat(w.value);
+    var hv=skNum(h),wv=skNum(w);
     if(!(hv>0)||!(wv>0)){
       box.innerHTML='<div class="w-step"><span class="w-note">Enter valid height and weight to see the step-by-step working.</span></div>';return;}
     var m=hv/100,m2=m*m,bmi=wv/m2,r=Math.round(bmi*10)/10;

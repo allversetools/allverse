@@ -138,11 +138,10 @@
   }
 
   function g(id){ return document.getElementById(id); }
-  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(el.value); return isNaN(v)?null:v; }
   function money(n){ if(n===null||!isFinite(n)) return '—'; return Math.round(n).toLocaleString('en-US'); }
   function set(id,t){ var el=g(id); if(el) el.textContent=t; }
   function update(){
-    var P=num('ciP'), r=num('ciR'), y=num('ciY');
+    var P=skNum('ciP'), r=skNum('ciR'), y=skNum('ciY');
     var f=parseFloat(g('ciF').value)||12;
     if(P===null||r===null||y===null||P<=0||y<=0||r<0){ set('ciMaturity','—'); set('ciInvested','—'); set('ciInterest','—'); return; }
     var per=r/100/f;
@@ -160,16 +159,15 @@
 <script>
 (function () {
   function g(id){return document.getElementById(id);}
-  function num(id){var el=g(id);if(!el)return null;var v=parseFloat(el.value);return isNaN(v)?null:v;}
   function f0(n){return Math.round(n).toLocaleString('en-US');}
   function f6(n){return String(Math.round(n*1000000)/1000000);}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
   var NAMES={1:'Yearly',2:'Half-yearly',4:'Quarterly',12:'Monthly'};
   function render(){
     var box=g('ciSteps');if(!box)return;
-    var P=num('ciP'),r=num('ciR'),y=num('ciY'),fEl=g('ciF');
+    var P=skNum('ciP'),r=skNum('ciR'),y=skNum('ciY'),fEl=g('ciF');
     if(!fEl)return;
-    var f=parseFloat(fEl.value)||12;
+    var f=skNum(fEl, 12);
     if(P===null||r===null||y===null||P<=0||y<=0||r<0){
       box.innerHTML='<div class="w-step"><span class="w-note">Enter valid investment details to see the step-by-step working.</span></div>';return;}
     var per=r/100/f,exp=f*y,pw=Math.pow(1+per,exp),mat=P*pw;

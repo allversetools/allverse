@@ -99,13 +99,12 @@
 <script>
 (function () {
   function g(id){ return document.getElementById(id); }
-  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(el.value); return isNaN(v)?null:v; }
   function set(id,t){ var el=g(id); if(el) el.textContent=t; }
   function log10(x){ return Math.log(x)/Math.LN10; }
   function update(){
     var gen=g('bfGender'), female=gen&&gen.value==='f';
     var wrap=g('bfHipsWrap'); if(wrap) wrap.style.display=female?'block':'none';
-    var h=num('bfHeight'), n=num('bfNeck'), w=num('bfWaist'), hp=num('bfHips');
+    var h=skNum('bfHeight'), n=skNum('bfNeck'), w=skNum('bfWaist'), hp=skNum('bfHips');
     if(h===null||n===null||w===null||h<=0||n<=0||w<=0){ set('bfPct','—'); set('bfCat','—'); return; }
     var bf=null;
     /* US Navy formula expects inches — inputs are cm, so convert (1 in = 2.54 cm) */

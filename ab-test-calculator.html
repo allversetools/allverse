@@ -102,8 +102,8 @@
         !SK_AI.requireInput(ca, 'Enter conversions for version A.') ||
         !SK_AI.requireInput(vb, 'Enter visitors for version B.') ||
         !SK_AI.requireInput(cb, 'Enter conversions for version B.')) return;
-    var nA = parseFloat(va.value) || 0, cA = parseFloat(ca.value) || 0,
-        nB = parseFloat(vb.value) || 0, cB = parseFloat(cb.value) || 0;
+    var nA = skNum(va, 0), cA = skNum(ca, 0),
+        nB = skNum(vb, 0), cB = skNum(cb, 0);
     if (!(nA > 0 && nB > 0) || cA > nA || cB > nB) {
       SK_AI.showError(res, 'Please enter visitors and conversions for both versions — conversions can\u2019t exceed visitors.');
       return;

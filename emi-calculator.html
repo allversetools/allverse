@@ -108,11 +108,10 @@
 <script src="js/pwa.js?v=js26"></script>
 <script>
 (function () {
-  function num(id) { var v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; }
   function money(n) { if (n === null || !isFinite(n)) return '—'; return (Math.round(n * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
   function set(id, t) { document.getElementById(id).textContent = t; }
   function update() {
-    var P = num('emiP'), annual = num('emiR'), t = num('emiT');
+    var P = skNum('emiP'), annual = skNum('emiR'), t = skNum('emiT');
     var per = parseFloat(document.getElementById('emiU').value) || 12;
     if (P === null || annual === null || t === null || P <= 0 || t <= 0 || annual < 0) {
       set('emiMonthly','—'); set('emiInterest','—'); set('emiTotal','—'); return;
@@ -133,15 +132,14 @@
 <script>
 (function () {
   function g(id){return document.getElementById(id);}
-  function num(id){var el=g(id);if(!el)return null;var v=parseFloat(el.value);return isNaN(v)?null:v;}
   function f2(n){return (Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
   function f6(n){return String(Math.round(n*1000000)/1000000);}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
   function render(){
     var box=g('emiSteps');if(!box)return;
-    var P=num('emiP'),annual=num('emiR'),t=num('emiT');
+    var P=skNum('emiP'),annual=skNum('emiR'),t=skNum('emiT');
     var uel=g('emiU');if(!uel)return;
-    var per=parseFloat(uel.value)||12;
+    var per=skNum(uel, 12);
     if(P===null||annual===null||t===null||P<=0||t<=0||annual<0){
       box.innerHTML='<div class="w-step"><span class="w-note">Enter valid loan details to see the step-by-step working.</span></div>';return;}
     var n=Math.round(t*per),r=annual/12/100,f=Math.pow(1+r,n);

@@ -125,7 +125,7 @@
   from.value='USD'; to.value='PKR';
   function trim(n){ return parseFloat(n.toPrecision(6)).toString(); }
   function convert(){
-    var v=parseFloat(amt.value);
+    var v=skNum(amt);
     var R=effectiveRates();
     var lbl=document.getElementById('curLabel'), out=document.getElementById('curValue'), inv=document.getElementById('curInverse');
     if(!isFinite(v)||v<0){ res.hidden=true; return; }

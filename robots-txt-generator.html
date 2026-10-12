@@ -116,7 +116,7 @@
       L.push(s.value+': '+p);
     });
     var delay=g('rtDelay'), sm=g('rtSitemap');
-    if(delay&&delay.value!==''&&parseFloat(delay.value)>=0) L.push('Crawl-delay: '+delay.value);
+    if(delay&&delay.value!==''&&skNum(delay, NaN)>=0) L.push('Crawl-delay: '+delay.value);
     L.push('');
     if(sm&&sm.value.trim()) L.push('Sitemap: '+sm.value.trim());
     out.value=L.join('\n').replace(/\n+$/,'')+'\n';

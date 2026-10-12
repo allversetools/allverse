@@ -171,7 +171,7 @@
 
   function keepRatio(src) {
     if (lock && lock.checked && hasImage && ratio && src) {
-      var v = parseInt(src.value, 10);
+      var v = Math.trunc(skNum(src, NaN));
       if (v > 0) {
         if (src === widthIn && heightIn) heightIn.value = Math.round(v / ratio);
         if (src === heightIn && widthIn) widthIn.value = Math.round(v * ratio);
@@ -194,8 +194,8 @@
     btn.addEventListener('click', function () {
       clearErr();
       if (!hasImage) { showErr('Please upload an image first.'); return; }
-      var w = widthIn ? parseInt(widthIn.value, 10) : NaN;
-      var h = heightIn ? parseInt(heightIn.value, 10) : NaN;
+      var w = widthIn ? Math.trunc(skNum(widthIn, NaN)) : NaN;
+      var h = heightIn ? Math.trunc(skNum(heightIn, NaN)) : NaN;
       if (!(w > 0) || !(h > 0)) { showErr('Width and height must be greater than 0.'); return; }
       var canvas = document.createElement('canvas');
       canvas.width = w; canvas.height = h;

@@ -138,7 +138,7 @@
   function fromC(v,u){ if(u==='C')return v; if(u==='F')return v*9/5+32; return v+273.15; }
   function trim(n){ return parseFloat(n.toPrecision(4)).toString(); }
   function convert(){
-    var v=parseFloat(amt.value), t=type.value;
+    var v=skNum(amt), t=type.value;
     var lbl=document.getElementById('convLabel'), out=document.getElementById('convValue');
     if(!isFinite(v)){ res.hidden=true; return; }
     var r;

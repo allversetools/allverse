@@ -100,7 +100,7 @@
   function fmt(ms){ var d=new Date(ms); return d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]+' '+d.getUTCFullYear(); }
   function update(){
     var lmpEl=g('ddLmp'), cycEl=g('ddCycle'), note=g('ddNote');
-    var lmpV=lmpEl&&lmpEl.value, cyc=cycEl?parseInt(cycEl.value,10):28;
+    var lmpV=lmpEl&&lmpEl.value, cyc=cycEl?Math.trunc(skNum(cycEl, 28)):28;
     if(!lmpV||isNaN(cyc)){ set('ddDue','—'); set('ddWeek','—'); set('ddTri','—'); return; }
     var p=lmpV.split('-'), lmp=Date.UTC(+p[0],+p[1]-1,+p[2]);
     var due=lmp+(280+(cyc-28))*864e5;

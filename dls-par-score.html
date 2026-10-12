@@ -133,14 +133,13 @@
     var fw = F[Math.max(0, Math.min(9, wktsLost))];
     return 100 * (1 - Math.exp(-B * oversLeft / fw)) / DEN;
   }
-  function num(id) { var v = parseFloat($(id).value); return isNaN(v) ? null : v; }
   function calc() {
     if (window.SK_AI) {
       var sRaw = SK_AI.requireInput($('dS'), 'Enter Team 1’s score.');
       if (sRaw === null) { blank('Enter Team 1’s score.'); return; }
     }
-    var S = num('dS'), o1 = num('dO1'), orig = num('dOrig') || 20;
-    var u = num('dU'), w = num('dW'), s2 = num('dScore2');
+    var S = skNum('dS'), o1 = skNum('dO1'), orig = skNum('dOrig') || 20;
+    var u = skNum('dU'), w = skNum('dW'), s2 = skNum('dScore2');
     var vd = $('dVerdict');
     function blank(msg) {
       ['dPar', 'dTarget', 'dRes', 'dR2'].forEach(function (id) { $(id).textContent = '—'; });
@@ -167,7 +166,7 @@
       vd.textContent = msg; vd.style.color = col;
     } else { vd.textContent = 'Par ' + par + ' to tie · ' + target + ' to win.'; vd.style.color = ''; }
     if ($('dResume').checked) {
-      var nw = num('dNew');
+      var nw = skNum('dNew');
       if (nw === null || nw <= 0 || nw > 50) { $('dRev').textContent = 'Enter Team 2’s new total overs.'; return; }
       var played = orig - u;
       var u2 = nw - played;

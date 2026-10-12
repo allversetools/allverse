@@ -96,12 +96,11 @@
 <script>
 (function () {
   function g(id){ return document.getElementById(id); }
-  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(el.value); return isNaN(v)?null:v; }
   function set(id,t){ var el=g(id); if(el) el.textContent=t; }
   function update(){
-    var w=num('wWeight'), act=g('wAct'), cl=g('wClimate');
+    var w=skNum('wWeight'), act=g('wAct'), cl=g('wClimate');
     if(w===null||w<=0){ set('wLiters','—'); set('wGlasses','—'); set('wBottles','—'); return; }
-    var liters=w*0.035+(act?parseFloat(act.value):0)+(cl?parseFloat(cl.value):0);
+    var liters=w*0.035+(act?skNum(act, 0):0)+(cl?skNum(cl, 0):0);
     set('wLiters',(Math.round(liters*10)/10)+' L');
     set('wGlasses',Math.round(liters*1000/250)+'');
     set('wBottles',(Math.round(liters*10)/10)+'');

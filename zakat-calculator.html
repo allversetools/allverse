@@ -101,12 +101,11 @@
 <script>
 (function(){
   function g(id){return document.getElementById(id);}
-  function num(id){var el=g(id);if(!el)return 0;var v=parseFloat(el.value);return isNaN(v)||v<0?0:v;}
   function set(id,t){var el=g(id);if(el)el.textContent=t;}
   function money(v,cur){return cur+' '+Math.round(v).toLocaleString('en-US');}
   function upd(){
     var cur=(function(){var e=g('zkCur');return e?e.value:'Rs';})();
-    var cash=num('zkCash'),gold=num('zkGold'),silver=num('zkSilver'),biz=num('zkBiz'),debt=num('zkDebt'),nisab=num('zkNisab');
+    var cash=Math.max(0, skNum('zkCash', 0)),gold=Math.max(0, skNum('zkGold', 0)),silver=Math.max(0, skNum('zkSilver', 0)),biz=Math.max(0, skNum('zkBiz', 0)),debt=Math.max(0, skNum('zkDebt', 0)),nisab=Math.max(0, skNum('zkNisab', 0));
     var assets=cash+gold+silver+biz,net=assets-debt,due=net>=nisab&&net>0?net*0.025:0;
     set('zkDue',net>=nisab&&net>0?money(due,cur)+' zakat due':(net<nisab?'No zakat due — below nisab':'—'));
     set('zkAssets',money(assets,cur));

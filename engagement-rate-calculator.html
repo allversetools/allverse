@@ -116,7 +116,7 @@
   if (byR) byR.addEventListener('click', function () { mode = 'reach'; paintMode(); });
   paintMode();
   btn.addEventListener('click', function () {
-    var total = (parseFloat(likes.value) || 0) + (parseFloat(comments.value) || 0) + (parseFloat(shares.value) || 0);
+    var total = (skNum(likes, 0)) + (skNum(comments, 0)) + (skNum(shares, 0));
     var bRaw = window.SK_AI ? SK_AI.requireInput(base, 'Enter your followers or reach number.') : (base.value || '').trim();
     if (bRaw === null || bRaw === '') { res.hidden = true; return; }
     var b = parseFloat(bRaw);

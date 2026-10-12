@@ -99,14 +99,13 @@
 <script src="js/pwa.js?v=js26"></script>
 <script>
 (function () {
-  function num(id) { var v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; }
   function money(n) { return (Math.round(n * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
   function set(id, t) { document.getElementById(id).textContent = t; }
   function update() {
-    var p = num('dPrice'), d = num('dPct');
+    var p = skNum('dPrice'), d = skNum('dPct');
     if (p === null || d === null || p < 0 || d < 0) { set('dSave','—'); set('dFinal','—'); }
     else { var s = p * d / 100; set('dSave', money(s)); set('dFinal', money(p - s)); }
-    var o = num('rOrig'), s2 = num('rSale');
+    var o = skNum('rOrig'), s2 = skNum('rSale');
     if (o === null || s2 === null || o <= 0) { set('rRes','—'); }
     else { set('rRes', 'Discount: ' + (Math.round((o - s2) / o * 100 * 100) / 100).toLocaleString('en-US') + '%'); }
   }

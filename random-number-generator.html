@@ -128,8 +128,8 @@
   if (!mn || !mx || !cnt || !uq || !genBtn || !copyBtn || !msg || !res) return;
   var last = [];
   function gen() {
-    var a = Math.floor(parseFloat(mn.value)), b = Math.floor(parseFloat(mx.value)),
-        n = Math.floor(parseFloat(cnt.value));
+    var a = Math.floor(skNum(mn, NaN)), b = Math.floor(skNum(mx, NaN)),
+        n = Math.floor(skNum(cnt, NaN));
     msg.textContent = '';
     if (isNaN(a) || isNaN(b) || isNaN(n)) { msg.textContent = 'Enter valid numbers for min, max and count.'; return; }
     if (a > b) { msg.textContent = 'Minimum cannot be larger than maximum.'; return; }

@@ -94,7 +94,7 @@
   function summarize() {
     var t = SK_AI.requireInput(ta, 'Paste some text above to generate a summary.');
     if (t === null) return;
-    var n = parseInt(len.value, 10) || 3;
+    var n = Math.trunc(skNum(len, 3));
     var sents = (t.match(/[^.!?]+[.!?]+["']?|[^.!?]+$/g) || []).map(function (s) { return s.trim(); }).filter(Boolean);
     var summary;
     if (sents.length <= n) { summary = t; }
