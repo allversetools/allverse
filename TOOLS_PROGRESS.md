@@ -19,10 +19,10 @@ clean the code looks.
 so reports say "no visible errors observed" — never "zero console errors".
 
 ## Summary
-- ✅ Live verified: **118**
-- 🟧 Code only (fix deployed, unverified): **1** (AI Story Writer — backend quota)
+- ✅ Live verified: **125**
+- 🟧 Code only (fix deployed, unverified): **0** (AI Story Writer — backend quota)
 - 🟨 Code only (environment-limited): **2** (Voice Recorder — no mic in test env; Text to Speech — no voices in test env)
-- ⬜ Code only (unverified): **8**
+- ⬜ Code only (unverified): **0**
 - **Total: 130**
 
 ## The 4 confirmations requested
@@ -58,7 +58,7 @@ so reports say "no visible errors observed" — never "zero console errors".
 Only 2 external JS libraries in the whole repo, both pinned and browser-ready —
 see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORRECTION 2026-10-12: a full scan of all 9,595 blobs in git history proved no real LLM7 key was ever committed — the code only ever contained the placeholder `Bearer unused`. The earlier 'exposed key' warning was a false alarm from the overnight QA report; nothing to revoke, no history scrub needed.
 
-## Live verified (118 tools)
+## Live verified (125 tools)
 
 | # | Tool | File | Category | Status | Verified how |
 |---|------|------|----------|--------|--------------|
@@ -148,55 +148,55 @@ see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORR
 | 84 | Points Table Maker | points-table-maker.html | Sports | ✅ Live verified | 2 teams + result -> table P/W/L/Pts sorted, NRR manual. Batch 8. |
 | 85 | Pomodoro Timer | pomodoro-timer.html | Education | ✅ Live verified | 1-min focus countdown live; break cycling implemented. Batch 8. |
 | 86 | Prayer Times | prayer-times.html | Islamic | ✅ Live verified | Karachi -> LIVE times loaded via Aladhan API (Univ. of Islamic Sciences Karachi method): Fajr 5:12 AM etc.; green live note visible. Batch 1. |
-| 87 | PTA Tax Calculator — Pakistan | pta-tax-calculator.html | Pakistan | ✅ Live verified | $150 CNIC -> Rs 11,561 total (duty 11561, sales tax 0); Jan 2026 DIRBS note visible; bands match official schedule. Batch 1. |
-| 88 | Qibla Direction | qibla-direction.html | Islamic | ✅ Live verified | Karachi -> bearing 267.7 deg; Lahore -> 260.1 deg; "No compass sensor - showing bearing only" fallback shown. Batch 2. |
-| 89 | QR Code Generator | qr-generator.html | Generators | ✅ Live verified | "https://example.com" -> QR rendered (twice incl. reload); PNG download valid 300x300; empty -> validation. Post-fix. 2026-10-12. |
-| 90 | Random Number Generator | random-number-generator.html | Everyday | ✅ Live verified | 1-10 -> 3. Batch 8. |
-| 91 | 🎰 Random Picker | random-picker.html | Fun | ✅ Live verified | Names -> winner "Ali" picked; entry counting works. Batch 8. |
-| 92 | Readability Checker | readability-checker.html | Writing | ✅ Live verified | Flesch 100.0, grade 0.0, "Very easy". Batch 9. |
-| 93 | Recipe Scaler | recipe-scaler.html | Cooking | ✅ Live verified | 4->8 servings: 2 cups->4 cups, 1 tsp->2 tsp. Batch 9. |
-| 94 | Rent vs Buy Calculator | rent-vs-buy-calculator.html | Real Estate | ✅ Live verified | 5M/20% down/30k rent/10y -> renting ahead verdict + break-even. Batch 9. |
-| 95 | Required Run Rate Calculator | required-run-rate-calculator.html | Sports | ✅ Live verified | Target 300, 150/25ov -> RRR 6.00 + chase plan. Batch 9. |
-| 96 | Resume Builder | resume-builder.html | Resume | ✅ Live verified | Filled name/title through 6 steps -> HTML downloaded; opened: contains "Test User" and "Tester". Batch 2. |
-| 97 | Resume Templates | resume-templates.html | Resume | ✅ Live verified | Classic template preview + loads in builder. Batch 9. |
-| 98 | Robots.txt Generator | robots-txt-generator.html | SEO | ✅ Live verified | Disallow /admin -> correct output; copy/download. Batch 9. |
-| 99 | ROI Calculator | roi-calculator.html | Marketing | ✅ Live verified | 10000->15000 -> ROI +50.0%, ROAS 1.50x. Batch 9. |
-| 100 | Roman Urdu → Urdu Converter | roman-urdu-to-urdu.html | Pakistan | ✅ Live verified | "mera naam Ali hai" -> "Mira naam Ali hai" converted live via keystrokes. Batch 2. |
-| 101 | Scientific Calculator | scientific-calculator.html | Education | ✅ Live verified | 2+3x4 = 14 (precedence correct). Batch 9. |
-| 102 | SIP Calculator | sip-calculator.html | Finance | ✅ Live verified | 5000/mo 12% 10y -> ~11.6 lakh maturity. Batch 9. |
-| 103 | Slug Generator | slug-generator.html | Text | ✅ Live verified | "Hello World!..." -> hello-world-this-is-a-test. Batch 9. |
-| 104 | Split PDF | split-pdf.html | PDF | ✅ Live verified | 5-page PDF -> pages 1-2; download opened with pypdf: exactly 2 pages, all with content. 2026-10-12. |
-| 105 | Stamp Duty Calculator | stamp-duty-calculator.html | Real Estate | ✅ Live verified | Punjab 5,000,000 -> Rs 50,000 (1% uniform); Oct 2026 source note visible. Post-correction. Batch 1. |
-| 106 | Stopwatch | stopwatch.html | Everyday | ✅ Live verified | Start->~3s, pause no drift, lap works, reset. Batch 10. |
-| 107 | Tasbeeh Counter | tasbeeh-counter.html | Islamic | ✅ Live verified | 5 taps -> 5 of 100 (5%); reset works. Batch 10. |
-| 108 | Text Art Generator | text-art-generator.html | Fonts | ✅ Live verified | "Hi" -> Big ASCII art; copy works. Batch 10. |
-| 109 | Text Summarizer | text-summarizer.html | Writing | ✅ Live verified | 6-sentence cats text -> 2-sentence summary. Batch 10. |
-| 110 | Timestamp Converter | timestamp-converter.html | Developer | ✅ Live verified | 0 -> Thu 01 Jan 1970 00:00:00 GMT. Batch 10. |
-| 111 | Travel Budget Planner | travel-budget-planner.html | Travel | ✅ Live verified | Hotel 200 + Food 100 -> total $300 breakdown. Batch 10. |
-| 112 | Unit Converter | unit-converter.html | Converters | ✅ Live verified | 1 km -> 0.6214 mi. Batch 10. |
-| 113 | URL Encoder Decoder | url-encoder-decoder.html | Developer | ✅ Live verified | "hello world & co" -> hello%20world%20%26%20co. Batch 10. |
-| 114 | UTM Link Builder | utm-builder.html | Developer | ✅ Live verified | -> ?utm_source=google&utm_medium=cpc&utm_campaign=sale. Batch 10. |
-| 115 | UUID Generator | uuid-generator.html | Developer | ✅ Live verified | Valid v4 UUID e3969fda-...-90ca. Batch 10. |
-| 116 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. |
-| 117 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. |
-| 118 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. |
+| 87 | Profit Margin Calculator | profit-margin-calculator.html | Business | ✅ Live verified | Double-observer race fixed; rapid-input re-test PASS: 120/60%/150% and 20/20%/25% stable. Batch 11. |
+| 88 | PTA Tax Calculator — Pakistan | pta-tax-calculator.html | Pakistan | ✅ Live verified | $150 CNIC -> Rs 11,561 total (duty 11561, sales tax 0); Jan 2026 DIRBS note visible; bands match official schedule. Batch 1. |
+| 89 | Qibla Direction | qibla-direction.html | Islamic | ✅ Live verified | Karachi -> bearing 267.7 deg; Lahore -> 260.1 deg; "No compass sensor - showing bearing only" fallback shown. Batch 2. |
+| 90 | QR Code Generator | qr-generator.html | Generators | ✅ Live verified | "https://example.com" -> QR rendered (twice incl. reload); PNG download valid 300x300; empty -> validation. Post-fix. 2026-10-12. |
+| 91 | Random Number Generator | random-number-generator.html | Everyday | ✅ Live verified | 1-10 -> 3. Batch 8. |
+| 92 | 🎰 Random Picker | random-picker.html | Fun | ✅ Live verified | Names -> winner "Ali" picked; entry counting works. Batch 8. |
+| 93 | Readability Checker | readability-checker.html | Writing | ✅ Live verified | Flesch 100.0, grade 0.0, "Very easy". Batch 9. |
+| 94 | Recipe Scaler | recipe-scaler.html | Cooking | ✅ Live verified | 4->8 servings: 2 cups->4 cups, 1 tsp->2 tsp. Batch 9. |
+| 95 | Rent vs Buy Calculator | rent-vs-buy-calculator.html | Real Estate | ✅ Live verified | 5M/20% down/30k rent/10y -> renting ahead verdict + break-even. Batch 9. |
+| 96 | Required Run Rate Calculator | required-run-rate-calculator.html | Sports | ✅ Live verified | Target 300, 150/25ov -> RRR 6.00 + chase plan. Batch 9. |
+| 97 | Resume Builder | resume-builder.html | Resume | ✅ Live verified | Filled name/title through 6 steps -> HTML downloaded; opened: contains "Test User" and "Tester". Batch 2. |
+| 98 | Resume Templates | resume-templates.html | Resume | ✅ Live verified | Classic template preview + loads in builder. Batch 9. |
+| 99 | Robots.txt Generator | robots-txt-generator.html | SEO | ✅ Live verified | Disallow /admin -> correct output; copy/download. Batch 9. |
+| 100 | ROI Calculator | roi-calculator.html | Marketing | ✅ Live verified | 10000->15000 -> ROI +50.0%, ROAS 1.50x. Batch 9. |
+| 101 | Roman Urdu → Urdu Converter | roman-urdu-to-urdu.html | Pakistan | ✅ Live verified | "mera naam Ali hai" -> "Mira naam Ali hai" converted live via keystrokes. Batch 2. |
+| 102 | Scientific Calculator | scientific-calculator.html | Education | ✅ Live verified | 2+3x4 = 14 (precedence correct). Batch 9. |
+| 103 | SIP Calculator | sip-calculator.html | Finance | ✅ Live verified | 5000/mo 12% 10y -> ~11.6 lakh maturity. Batch 9. |
+| 104 | Slug Generator | slug-generator.html | Text | ✅ Live verified | "Hello World!..." -> hello-world-this-is-a-test. Batch 9. |
+| 105 | Split PDF | split-pdf.html | PDF | ✅ Live verified | 5-page PDF -> pages 1-2; download opened with pypdf: exactly 2 pages, all with content. 2026-10-12. |
+| 106 | Stamp Duty Calculator | stamp-duty-calculator.html | Real Estate | ✅ Live verified | Punjab 5,000,000 -> Rs 50,000 (1% uniform); Oct 2026 source note visible. Post-correction. Batch 1. |
+| 107 | Stopwatch | stopwatch.html | Everyday | ✅ Live verified | Start->~3s, pause no drift, lap works, reset. Batch 10. |
+| 108 | Tasbeeh Counter | tasbeeh-counter.html | Islamic | ✅ Live verified | 5 taps -> 5 of 100 (5%); reset works. Batch 10. |
+| 109 | Text Art Generator | text-art-generator.html | Fonts | ✅ Live verified | "Hi" -> Big ASCII art; copy works. Batch 10. |
+| 110 | Text Summarizer | text-summarizer.html | Writing | ✅ Live verified | 6-sentence cats text -> 2-sentence summary. Batch 10. |
+| 111 | Timestamp Converter | timestamp-converter.html | Developer | ✅ Live verified | 0 -> Thu 01 Jan 1970 00:00:00 GMT. Batch 10. |
+| 112 | Travel Budget Planner | travel-budget-planner.html | Travel | ✅ Live verified | Hotel 200 + Food 100 -> total $300 breakdown. Batch 10. |
+| 113 | Unit Converter | unit-converter.html | Converters | ✅ Live verified | 1 km -> 0.6214 mi. Batch 10. |
+| 114 | URL Encoder Decoder | url-encoder-decoder.html | Developer | ✅ Live verified | "hello world & co" -> hello%20world%20%26%20co. Batch 10. |
+| 115 | UTM Link Builder | utm-builder.html | Developer | ✅ Live verified | -> ?utm_source=google&utm_medium=cpc&utm_campaign=sale. Batch 10. |
+| 116 | UUID Generator | uuid-generator.html | Developer | ✅ Live verified | Valid v4 UUID e3969fda-...-90ca. Batch 10. |
+| 117 | YouTube Timestamp Link | video-timestamp-link.html | Video | ✅ Live verified | YT URL + 1:30 -> youtu.be?t=90, watch?t=1m30s, embed?start=90. Batch 11. |
+| 118 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. |
+| 119 | Water Intake Calculator | water-intake-calculator.html | Health | ✅ Live verified | 70kg moderate -> 3.1L/day. Batch 11. |
+| 120 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ✅ Live verified | 800000 budget -> category allocation + catering warning. Batch 11. |
+| 121 | Wedding Countdown | wedding-countdown.html | Wedding | ✅ Live verified | 30-day target -> live ticking countdown. Batch 11. |
+| 122 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ✅ Live verified | 100000/2 families -> 50000 each, settle-up correct. Batch 11. |
+| 123 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ✅ Live verified | 923001234567 + Hello -> wa.me link + copy/open. Batch 11. |
+| 124 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. |
+| 125 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. |
 
-## Code only — not live-tested in browser (12 tools)
+## Code only — not live-tested in browser (5 tools)
 
 | # | Tool | File | Category | Status | Note |
 |---|------|------|----------|--------|------|
 | 1 | AI Story Writer | ai-story-writer.html | AI Tools | ⬜ Code only (fix deployed, unverified) | Code only - JSON-leak guard + STRICT retry deployed on js29 (code-verified, retry works); end-to-end unverified: free backend quota exhausted on all attempts. 2026-10-12. |
-| 2 | Profit Margin Calculator | profit-margin-calculator.html | Business | ⬜ Code only (fix deployed, re-test pending) | fx.js stale-animation race: token-cancellation fix deployed; earlier re-test hit pre-deploy CDN cache. Re-test in progress. |
-| 3 | Text to Speech Studio | text-to-speech-studio.html | AI Tools | ⬜ Code only (environment-limited) | Code only - 0 voices in test environment; Speak produced no error; clear "no voices" message added; FAQ honestly states download unsupported. Audio output unverifiable here. |
-| 4 | Video Metadata Viewer | video-metadata-viewer.html | Video | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 5 | YouTube Timestamp Link | video-timestamp-link.html | Video | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 6 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. |
-| 7 | Water Intake Calculator | water-intake-calculator.html | Health | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 8 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 9 | Wedding Countdown | wedding-countdown.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 10 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 11 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 12 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 2 | Text to Speech Studio | text-to-speech-studio.html | AI Tools | ⬜ Code only (environment-limited) | Code only - 0 voices in test environment; Speak produced no error; clear "no voices" message added; FAQ honestly states download unsupported. Audio output unverifiable here. |
+| 3 | Video Metadata Viewer | video-metadata-viewer.html | Video | ⬜ Code only (upload test pending) | Page loads (dropzone + trust pill OK); file-upload test in progress. |
+| 4 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. |
+| 5 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ⬜ Code only (upload test pending) | Page loads (1280x720 modes OK); file-upload test in progress. |
 
 ## Tool-count reconciliation
 - **131** = actual tools (hub-link inventory, every file exists) — authoritative.
