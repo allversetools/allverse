@@ -79,7 +79,22 @@
   function pollinations(prompt, system) {
     var full = system ? (system + '\n\nUser request: ' + prompt) : prompt;
     var url = POLLINATIONS_TEXT + encodeURIComponent(full);
-    return fetch(url, { method: 'GET' }).then(function (res) {
+    // 60s timeout — the free API can stall; never hang forever
+    var ctrl = null;
+    try { ctrl = new AbortController(); } catch (e) { ctrl = null; }
+    var timer = null;
+    var fetchP = ctrl ? fetch(url, { method: 'GET', signal: ctrl.signal })
+                      : fetch(url, { method: 'GET' });
+    var timeoutP = new Promise(function (_, reject) {
+      timer = setTimeout(function () {
+        if (ctrl) { try { ctrl.abort(); } catch (e) {} }
+        var e = new Error('The AI request timed out. Please try again.');
+        e.code = 'timeout';
+        reject(e);
+      }, 60000);
+    });
+    return Promise.race([fetchP, timeoutP]).then(function (res) {
+      clearTimeout(timer);
       if (res.status === 429) {
         var e = new Error('AI is busy, please retry in a moment.');
         e.code = 429;
@@ -87,6 +102,9 @@
       }
       if (!res.ok) throw new Error('pollinations:' + res.status);
       return res.text();
+    }, function (err) {
+      clearTimeout(timer);
+      throw err;
     }).then(function (txt) {
       txt = (txt || '').trim();
       if (!txt) throw new Error('pollinations:empty');
@@ -102,7 +120,7 @@
   /* ---------- public API ---------- */
   function aiChat(prompt, systemPrompt) {
     prompt = (prompt || '').trim();
-    if (!prompt) return Promise.reject(new Error('Empty prompt. / Khali request.'));
+    if (!prompt) return Promise.reject(new Error('Empty prompt.'));
     var key = hashStr((systemPrompt || '') + '||' + prompt);
     var cached = cacheGet(key);
     if (cached !== null) return Promise.resolve(cached);
@@ -213,9 +231,9 @@
      SK_AI.loading(panel, false) → hides skeleton, clears timers
      opts: { lines: 4, messages: [[ms, text], ...] } */
   var STAGED_DEFAULT = [
-    [0, 'Soch raha hai… / Thinking…'],
-    [5000, 'Content ko structure kiya ja raha hai… / Structuring…'],
-    [15000, 'Final touches diye ja rahe hain… / Final touches…']
+    [0, 'Thinking…'],
+    [5000, 'Structuring your answer…'],
+    [15000, 'Adding final touches…']
   ];
   function stopStaged(panel) {
     if (panel && panel._skTimers) {

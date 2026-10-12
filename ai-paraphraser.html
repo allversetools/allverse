@@ -116,9 +116,18 @@ btn.onclick=function(){
   SK_AI.setBusy(btn,true,'✨ Rewriting…'); SK_AI.loading(res,true); out.textContent='';
   var stopLoad=function(){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);};
   var run=function(){
-    return ('LanguageModel' in window)
-      ? window.LanguageModel.create({}).then(function(s){return s.prompt(prompt);})
-      : SK_AI.chat(prompt,'You rewrite text beautifully.');
+    // On-device AI with 20s timeout — falls back to cloud if it hangs or fails
+    if(!('LanguageModel' in window)) return SK_AI.chat(prompt,'You rewrite text beautifully.');
+    return new Promise(function(resolve,reject){
+      var finished=false;
+      var timer=setTimeout(function(){
+        if(!finished){ finished=true; SK_AI.chat(prompt,'You rewrite text beautifully.').then(resolve,reject); }
+      },20000);
+      window.LanguageModel.create({}).then(function(s){return s.prompt(prompt);}).then(
+        function(t){ if(!finished){ finished=true; clearTimeout(timer); resolve(t); } },
+        function(){ if(!finished){ finished=true; clearTimeout(timer); SK_AI.chat(prompt,'You rewrite text beautifully.').then(resolve,reject); } }
+      );
+    });
   };
   run().then(function(t){stopLoad();SK_AI.typeInto(out,t);})
        .catch(function(){ SK_AI.chat(prompt,'You rewrite text beautifully.')
