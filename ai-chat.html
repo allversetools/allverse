@@ -75,13 +75,13 @@
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
 <p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
 </footer>
-<script src="js/main.js?v=js25"></script>
-<script src="js/search.js?v=js25"></script>
-<script src="js/ai.js?v=js25"></script>
-<script src="js/fx.js?v=js25"></script>
-<script src="js/bg.js?v=js25"></script>
-<script src="js/music.js?v=js25"></script><script src="js/pjax.js?v=2"></script>
-<script src="js/pwa.js?v=js25"></script>
+<script src="js/main.js?v=js26"></script>
+<script src="js/search.js?v=js26"></script>
+<script src="js/ai.js?v=js26"></script>
+<script src="js/fx.js?v=js26"></script>
+<script src="js/bg.js?v=js26"></script>
+<script src="js/music.js?v=js26"></script><script src="js/pjax.js?v=2"></script>
+<script src="js/pwa.js?v=js26"></script>
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
@@ -105,13 +105,25 @@ async function deviceReply(prompt){
 }
 function send(){
   if(btn.disabled)return;
-  var q=SK_AI.requireInput(inp,'Kuch toh likho! / Please type a message first.');
+  var q=SK_AI.requireInput(inp,'Kuch toh likho! / Please type a message first.'); lastQ=q;
   if(q===null)return;
   inp.value=''; bubble('you',q);
   var ab=bubble('ai','…');
   SK_AI.setBusy(btn,true,'…');
   var done=function(t){SK_AI.setBusy(btn,false);ab.textContent='';SK_AI.typeInto(ab,t);};
-  var fail=function(e){SK_AI.setBusy(btn,false);ab.textContent='⚠️ '+e.message;};
+  var lastQ='';
+  var fail=function(e){SK_AI.setBusy(btn,false);
+    var msg=e.message;
+    if(msg.indexOf('429')!==-1) msg='AI thori busy hai, 15 second ruko phir try karo. / AI is busy, wait 15 seconds.';
+    ab.innerHTML='';
+    var sp=document.createElement('span');sp.textContent='⚠️ '+msg;ab.appendChild(sp);
+    if(lastQ){
+      var rb=document.createElement('button');rb.textContent='🔄 Retry';
+      rb.style.cssText='margin-left:8px;padding:6px 12px;background:#06b6d4;color:#fff;border:none;border-radius:6px;cursor:pointer;';
+      rb.onclick=function(){inp.value=lastQ;send();};
+      ab.appendChild(rb);
+    }
+  };
   if('LanguageModel' in window){
     deviceReply(q).then(done).catch(function(){ SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail); });
   }else{ SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail); }

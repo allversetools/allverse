@@ -75,13 +75,13 @@
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
 <p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
 </footer>
-<script src="js/main.js?v=js25"></script>
-<script src="js/search.js?v=js25"></script>
-<script src="js/ai.js?v=js25"></script>
-<script src="js/fx.js?v=js25"></script>
-<script src="js/bg.js?v=js25"></script>
-<script src="js/music.js?v=js25"></script><script src="js/pjax.js?v=2"></script>
-<script src="js/pwa.js?v=js25"></script>
+<script src="js/main.js?v=js26"></script>
+<script src="js/search.js?v=js26"></script>
+<script src="js/ai.js?v=js26"></script>
+<script src="js/fx.js?v=js26"></script>
+<script src="js/bg.js?v=js26"></script>
+<script src="js/music.js?v=js26"></script><script src="js/pjax.js?v=2"></script>
+<script src="js/pwa.js?v=js26"></script>
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
@@ -95,7 +95,7 @@ btn.onclick=function(){
   SK_AI.setBusy(btn,true,'✨ Preparing questions…'); SK_AI.loading(res,true); out.textContent='';
   SK_AI.chat(prompt,'You are an HR interview coach.').then(function(txt){
     SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
-  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message);});
+  }).catch(function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message,function(){btn.click();});});
 };
 if(copyBtn) copyBtn.onclick=function(){SK_AI.copyText(copyBtn,out.textContent);};
 })();

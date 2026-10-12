@@ -1,7 +1,7 @@
 /* ============================================================
    AllVerse — Shared AI helper (vanilla JS, no dependencies)
    - aiChat(prompt, systemPrompt): free text generation
-     tries LLM7 (OpenAI-compatible) first, falls back to
+     uses keyless Pollinations
      Pollinations text API. $0 cost, no API keys.
    - Request queue (1 concurrent), localStorage result cache,
      friendly 429 handling. Errors in Roman Urdu + English.
@@ -9,7 +9,6 @@
 (function () {
   'use strict';
 
-  var LLM7_URL = 'https://api.llm7.io/v1/chat/completions';
   var POLLINATIONS_TEXT = 'https://text.pollinations.ai/';
   var CACHE_PREFIX = 'sk_ai_cache_';
   var CACHE_MAX = 60;
@@ -76,37 +75,6 @@
   }
 
   /* ---------- providers ---------- */
-  function llm7(prompt, system) {
-    var body = {
-      model: 'default',
-      messages: [
-        { role: 'system', content: system || 'You are a helpful assistant.' },
-        { role: 'user', content: prompt }
-      ],
-      temperature: 0.8,
-      max_tokens: 1200
-    };
-    return fetch(LLM7_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer unused'
-      },
-      body: JSON.stringify(body)
-    }).then(function (res) {
-      if (res.status === 429) {
-        var e = new Error('AI busy, retry in a moment. / AI masroof hai, thori dair baad dobara try karein.');
-        e.code = 429;
-        throw e;
-      }
-      if (!res.ok) throw new Error('llm7:' + res.status);
-      return res.json();
-    }).then(function (data) {
-      var txt = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-      if (!txt) throw new Error('llm7:empty');
-      return txt.trim();
-    });
-  }
 
   function pollinations(prompt, system) {
     var full = system ? (system + '\n\nUser request: ' + prompt) : prompt;
@@ -127,7 +95,7 @@
   }
 
   function runRequest(prompt, system) {
-    // Direct to keyless Pollinations (llm7 key removed — was dead)
+    // Keyless Pollinations (free, no API key needed)
     return pollinations(prompt, system);
   }
 
@@ -359,7 +327,7 @@
   }
   /* Writes an error into a dedicated paragraph INSIDE el without wiping
      el's existing content. Adds .sk-error (red border, theme-aware). */
-  function showError(el, msg) {
+  function showError(el, msg, retryFn) {
     if (!el) return;
     el.hidden = false;
     el.classList.add('sk-error');
@@ -372,7 +340,30 @@
       else el.appendChild(p);
     }
     p.hidden = false;
-    p.textContent = '⚠️ ' + msg;
+    // Friendly message for rate limits
+    var friendly = msg;
+    if (msg && msg.indexOf('429') !== -1) {
+      friendly = 'AI thori busy hai (rate limit). 15 second ruko phir try karo. / AI is busy, wait 15 seconds and try again.';
+    }
+    p.textContent = '⚠️ ' + friendly;
+    // Add retry button if retryFn provided
+    var oldBtn = el.querySelector('[data-sk-retry]');
+    if (oldBtn) oldBtn.remove();
+    if (typeof retryFn === 'function') {
+      var btn = document.createElement('button');
+      btn.setAttribute('data-sk-retry', '1');
+      btn.className = 'sk-retry-btn';
+      btn.textContent = '🔄 Dobara try karo / Retry';
+      btn.style.cssText = 'margin-top:8px;padding:8px 16px;background:#06b6d4;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;';
+      btn.onclick = function() {
+        btn.remove();
+        p.hidden = true;
+        el.classList.remove('sk-error');
+        retryFn();
+      };
+      p.appendChild(document.createElement('br'));
+      p.appendChild(btn);
+    }
   }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
