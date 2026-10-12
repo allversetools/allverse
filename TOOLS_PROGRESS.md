@@ -3,6 +3,7 @@
 **Site:** https://allversetools.github.io/allverse/
 **Total tools:** 131 (not 134)
 **Started:** 2026-10-11
+**Phase 1 fix:** 2026-10-11 — Removed dead llm7 API call from js/ai.js, all 15 AI tools now go directly to keyless Pollinations (verified working)
 **Phase 0 completed:** 2026-10-12
 **Method:** Batch of 6 tools. Audit first (Phase 0), then fix (Phase 1).
 

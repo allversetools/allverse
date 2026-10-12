@@ -127,9 +127,8 @@
   }
 
   function runRequest(prompt, system) {
-    return llm7(prompt, system).catch(function () {
-      return pollinations(prompt, system); /* graceful fallback */
-    });
+    // Direct to keyless Pollinations (llm7 key removed — was dead)
+    return pollinations(prompt, system);
   }
 
   /* ---------- public API ---------- */
