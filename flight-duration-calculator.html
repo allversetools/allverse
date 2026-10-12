@@ -204,7 +204,7 @@ function calc(){
 $("fdBuffer").addEventListener("input",function(){$("fdBufferVal").textContent=this.value+" min";calc();});
 ["fdFrom","fdTo"].forEach(function(id){$(id).addEventListener("change",calc);$(id).addEventListener("input",calc);});
 $("fdSpeed").addEventListener("change",calc);
-$("fdDep").addEventListener("change",calc);
+$("fdDep").addEventListener("input",calc);$("fdDep").addEventListener("change",calc);
 $("fdSwap").onclick=function(){var a=$("fdFrom").value;$("fdFrom").value=$("fdTo").value;$("fdTo").value=a;calc();};
 calc();
 })();
