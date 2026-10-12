@@ -6,7 +6,7 @@
 <meta property="og:image" content="https://allversetools.github.io/allverse/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free QR Code Generator — Create Custom QR Codes Online">
-<meta name="twitter:description" content="Create free QR codes from any text, URL, Wi-Fi or contact. Customize size and download as PNG — no signup, no expiry."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run15"><script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/lib/browser.min.js"></script><link rel="canonical" href="https://allversetools.github.io/allverse/qr-generator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Free QR Code Generator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create free QR codes from any text, URL, Wi-Fi or contact. Customize size and download as PNG — no signup, no expiry.", "url": "https://allversetools.github.io/allverse/qr-generator.html"}</script><script type="application/ld+json">
+<meta name="twitter:description" content="Create free QR codes from any text, URL, Wi-Fi or contact. Customize size and download as PNG — no signup, no expiry."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run15"><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="canonical" href="https://allversetools.github.io/allverse/qr-generator.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Free QR Code Generator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create free QR codes from any text, URL, Wi-Fi or contact. Customize size and download as PNG — no signup, no expiry.", "url": "https://allversetools.github.io/allverse/qr-generator.html"}</script><script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What can I put in a QR code?", "acceptedAnswer": {"@type": "Answer", "text": "Links, plain text, Wi-Fi details and more — type it, get a scannable QR instantly."}}, {"@type": "Question", "name": "Is the QR Generator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free, no signup, no watermarks on the QR image."}}, {"@type": "Question", "name": "Do the QR codes expire?", "acceptedAnswer": {"@type": "Answer", "text": "No. The QR encodes your content directly, so it works forever and needs no account."}}]}
 </script>
 <script type="application/ld+json">
@@ -153,20 +153,51 @@
       if (!window.SK_AI) showError('Please enter some text or a URL first.');
       return;
     }
-    if (typeof QRCode === 'undefined' || !QRCode.toCanvas) {
+    if (typeof QRCode === 'undefined') {
       showError('QR library failed to load. Check your internet connection and reload the page.');
       return;
     }
     result.hidden = false;
     if (window.SK_AI) SK_AI.scrollTo(result);
     var size = qrSize ? parseInt(qrSize.value, 10) || 300 : 300;
-    QRCode.toCanvas(canvas, text, { width: size, margin: 2 }, function (err) {
-      if (err) {
-        showError('Could not generate QR code: ' + err.message);
-        return;
+    try {
+      // Clear previous QR
+      var container = document.getElementById('qrContainer');
+      if (!container) {
+        // Create container if not exists, hide old canvas
+        container = document.createElement('div');
+        container.id = 'qrContainer';
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
+        canvas.style.display = 'none';
+        canvas.parentNode.insertBefore(container, canvas);
       }
+      container.innerHTML = '';
+      container.style.width = size + 'px';
+      container.style.height = size + 'px';
+      new QRCode(container, {
+        text: text,
+        width: size,
+        height: size,
+        correctLevel: QRCode.CorrectLevel.M
+      });
+      // Store reference for download
+      setTimeout(function() {
+        var genCanvas = container.querySelector('canvas');
+        if (genCanvas) {
+          canvas.width = size;
+          canvas.height = size;
+          var ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, size, size);
+          ctx.drawImage(genCanvas, 0, 0);
+        }
+      }, 100);
       result.hidden = false;
-    });
+    } catch (err) {
+      showError('Could not generate QR code: ' + err.message);
+      return;
+    }
   }
 
   if (genBtn) genBtn.addEventListener('click', generate);
