@@ -31,7 +31,7 @@
 <option value="balochistan">Balochistan</option>
 </select></div>
 <div class="field" id="sdcUrbanWrap"><label for="sdcUrban">Area type (Punjab)</label>
-<select id="sdcUrban"><option value="urban" selected>Urban — 2%</option><option value="rural">Rural — 1%</option></select></div></div>
+<select id="sdcUrban"><option value="urban" selected>Urban — 1%</option><option value="rural">Rural — 1%</option></select></div></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 <div class="field"><label for="sdcFiler">Buyer filer status (FBR 236K)</label>
 <select id="sdcFiler">
@@ -58,6 +58,7 @@
 <div class="btn-row" style="margin-top:10px"><button class="btn" id="sdcCopy" type="button">⧉ Copy breakdown</button></div>
 <p class="hint" style="margin-top:8px"><b>Disclaimer:</b> Estimates based on Punjab Stamp (Amendment) Act 2026 (urban 2%, rural 1%), PLRA 2026-27 fee schedule and Finance Act 2025-26 advance-tax rates. Other provinces' rates are indicative. Actual charges apply on the higher of FBR/DC value and can change via SRO — confirm with your sub-registrar or tax consultant before the deal. This is not legal or tax advice.</p>
 </div></div>
+<p class="rate-stamp">Rates last updated: <b>October 2026</b> · Punjab uniform 1% (Stamp Amendment Act 2026, Apr 2026); Sindh 1% (e-stamping). KPK/Balochistan/ICT rates could not be verified against an official source — confirm with your provincial revenue authority.</p>
 </div><section class="faq-section"><h2>Stamp Duty Calculator — FAQs</h2><details class="faq-item"><summary>What is the stamp duty on property in Punjab in 2026?</summary><p>2% of the property value in urban areas and 1% in rural areas (Stamp Amendment Act 2026). It is charged on the DC rate or FBR valuation, whichever the sub-registrar applies, plus Rs 500–1,000 extra stamp duty for registration.</p></details><details class="faq-item"><summary>What is CVT / 236K advance tax for buyers?</summary><p>Section 236K advance tax is paid by the buyer: 1.25% of value for filers on the Active Taxpayers List, 10.5% for late filers and up to 18.5% for non-filers. It is adjustable against your income tax.</p></details><details class="faq-item"><summary>Do rates differ in other provinces?</summary><p>Yes — stamp duty, registration and mutation charges are set by each province. This tool uses indicative rates for Sindh, KPK, Islamabad and Balochistan; always confirm the current schedule from the provincial revenue authority before a deal.</p></details></section><section class="more-tools"><h2>Try More Free Tools</h2><div class="mini-grid"><a class="mini-tool" href="plot-price-calculator.html"><span>Plot Price Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="plot-area-converter.html"><span>Plot Area Converter</span><span class="mini-go">→</span></a><a class="mini-tool" href="rent-vs-buy-calculator.html"><span>Rent vs Buy Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="emi-calculator.html"><span>EMI Calculator</span><span class="mini-go">→</span></a></div></section></main></div><footer class="site-footer">
 <p><span class="js-year">© 2026</span> AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
 <p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
@@ -72,7 +73,7 @@
 (function(){
 function $(id){return document.getElementById(id);}
 function pkr(n){var a=Math.abs(n),s=n<0?'-':'';if(a>=1e7)return s+'Rs '+(a/1e7).toFixed(2).replace(/\.00$/,'')+' crore';if(a>=1e5)return s+'Rs '+(a/1e5).toFixed(2).replace(/\.00$/,'')+' lakh';return s+'Rs '+Math.round(a).toLocaleString('en-PK');}
-var STAMP={punjab:0.02,sindh:0.03,kpk:0.025,islamabad:0.03,balochistan:0.025};
+var STAMP={punjab:0.01,sindh:0.01,kpk:0.025,islamabad:0.03,balochistan:0.025};
 var ADV={filer:0.0125,late:0.105,non:0.185};
 function calc(){
 var v=parseFloat($('sdcVal').value)||0;

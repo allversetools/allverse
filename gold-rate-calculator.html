@@ -49,8 +49,8 @@
 <div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
 <script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script><div class="tool-panel">
 
-<div class="field"><label for="gdRate">Gold rate — 24K per tola (PKR)</label><input type="number" id="gdRate" value="436500" min="0" step="100"></div>
-<p class="rate-stamp">Rate prefilled: <b>Rs 436,500/tola (24K)</b> · last updated: <b>10 October 2026</b> (indicative; rates change daily). Edit the field for today's rate.</p>
+<div class="field"><label for="gdRate">Gold rate — 24K per tola (PKR)</label><input type="number" id="gdRate" value="441000" min="0" step="100"></div>
+<p class="rate-stamp">Rate prefilled: <b>Rs 441,000/tola (24K)</b> · last updated: <b>12 October 2026</b> (indicative; rates change daily — the Sarafa Association issues rates to media daily and has no public API, so always edit the field for today's rate).</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 <div class="field"><label for="gdAmt">Weight</label><input type="number" id="gdAmt" value="1" min="0" step="any"></div>
 <div class="field"><label for="gdUnit">Unit</label><select id="gdUnit"><option value="tola" selected>Tola</option><option value="gram">Gram</option><option value="ratti">Ratti</option></select></div>

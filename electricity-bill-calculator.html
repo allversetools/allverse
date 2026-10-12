@@ -58,19 +58,20 @@
 <div class="stat"><b id="elAvg">—</b><span>Avg. cost per unit</span></div>
 <div class="stat"><b id="elStatus">—</b><span>Status</span></div>
 </div><div id="elBreak" class="slab-break"></div></div>
-<p class="rate-stamp">Tariffs last updated: <b>October 2026</b> · based on NEPRA-approved LESCO domestic tariff (A-1).</p>
+<p class="rate-stamp">Tariffs last updated: <b>October 2026</b> · based on the federal notification of 12 Feb 2026 (NEPRA uniform domestic tariff A-1). Base tariff only — excludes fuel/quarterly adjustments, taxes and fees.</p>
 <table class="slab-table"><caption>LESCO domestic unit rates used</caption><thead><tr><th>Slab</th><th>Rate (Rs/unit)</th></tr></thead><tbody>
 <tr><td>Up to 50 (lifeline)</td><td>3.95</td></tr>
 <tr><td>51 – 100 (lifeline)</td><td>7.74</td></tr>
+<tr><td>Protected 1 – 100</td><td>10.54</td></tr>
 <tr><td>Protected 101 – 200</td><td>13.01</td></tr>
 <tr><td>Unprotected 1 – 100</td><td>22.44</td></tr>
 <tr><td>Unprotected 101 – 200</td><td>28.91</td></tr>
 <tr><td>201 – 300</td><td>33.10</td></tr>
-<tr><td>301 – 400</td><td>37.99</td></tr>
-<tr><td>401 – 500</td><td>40.22</td></tr>
-<tr><td>501 – 600</td><td>41.62</td></tr>
-<tr><td>601 – 700</td><td>42.76</td></tr>
-<tr><td>Above 700</td><td>47.69</td></tr>
+<tr><td>301 – 400</td><td>36.46</td></tr>
+<tr><td>401 – 500</td><td>38.95</td></tr>
+<tr><td>501 – 600</td><td>40.22</td></tr>
+<tr><td>601 – 700</td><td>41.85</td></tr>
+<tr><td>Above 700</td><td>47.20</td></tr>
 </tbody></table>
 <p class="disclaimer">Estimate only — excludes fuel price adjustment (FPA), quarterly tariff adjustment, TV licence fee, electricity duty and taxes. <b>Verify with your LESCO bill</b> or the official NEPRA schedule.</p>
 
@@ -95,16 +96,21 @@
 
 (function(){
 function g(id){return document.getElementById(id);}function num(id){var e=g(id);if(!e)return null;var v=parseFloat(e.value);return isNaN(v)?null:v;}function set(id,t){var e=g(id);if(e)e.textContent=t;}function fmt(n,d){if(n===null||n===undefined||!isFinite(n))return '—';d=(d===undefined)?0:d;return (Math.round(n*Math.pow(10,d))/Math.pow(10,d)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}function pkr(n){return 'Rs ' + fmt(n,0);}
-var UNP=[[100,22.44],[200,28.91],[300,33.10],[400,37.99],[500,40.22],[600,41.62],[700,42.76],[Infinity,47.69]];
+var UNP=[[100,22.44],[200,28.91],[300,33.10],[400,36.46],[500,38.95],[600,40.22],[700,41.85],[Infinity,47.20]];
+var PROT=[[100,10.54],[200,13.01]]; // protected: 1-100 @10.54, 101-200 @13.01
+var LIFE=[[50,3.95],[100,7.74]]; // lifeline: <=100 units/month
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 function update(){var u=num('elUnits');var tp=g('elType');tp=tp?tp.value:'auto';
 var br=g('elBreak');if(u===null||u<0){set('elTotal','—');set('elAvg','—');set('elStatus','—');if(br)br.innerHTML='';return;}
-var prot=(tp==='protected')||(tp==='auto'&&u<=200);
+var life=(tp==='auto'&&u<=100);
+var prot=!life&&((tp==='protected')||(tp==='auto'&&u<=200));
 var rows=[],total=0,prev=0;
-if(prot){var segs=[[50,3.95],[100,7.74],[200,13.01]];for(var i=0;i<segs.length&&u>prev;i++){var hi=Math.min(u,segs[i][0]);var un=hi-prev;if(un>0){var c=un*segs[i][1];total+=c;rows.push([segs[i][0]===50?'1 – 50':(segs[i][0]===100?'51 – 100':'101 – 200'),un,segs[i][1],c]);}prev=segs[i][0];}}
+function slabRows(segs,labels){for(var i=0;i<segs.length&&u>prev;i++){var hi=Math.min(u,segs[i][0]);var un=hi-prev;if(un>0){var c=un*segs[i][1];total+=c;rows.push([labels[i],un,segs[i][1],c]);}prev=segs[i][0];}}
+if(life){slabRows(LIFE,['1 – 50 (lifeline)','51 – 100 (lifeline)']);}
+else if(prot){slabRows(PROT,['1 – 100 (protected)','101 – 200 (protected)']);}
 else{for(var j=0;j<UNP.length&&u>prev;j++){var h2=Math.min(u,UNP[j][0]);var un2=h2-prev;if(un2>0){var c2=un2*UNP[j][1];total+=c2;rows.push([(prev+1)+' – '+(UNP[j][0]===Infinity?'700+':UNP[j][0]),un2,UNP[j][1],c2]);}prev=UNP[j][0];}}
 var fixed=75;total+=fixed;
-set('elTotal',pkr(total));set('elAvg',u>0?'Rs '+fmt(total/u,2):'—');set('elStatus',prot?'Protected':'Unprotected');
+set('elTotal',pkr(total));set('elAvg',u>0?'Rs '+fmt(total/u,2):'—');set('elStatus',life?'Lifeline':(prot?'Protected':'Unprotected'));
 if(br){var h='<table class="slab-table"><thead><tr><th>Slab (units)</th><th>Units</th><th>Rate</th><th>Amount</th></tr></thead><tbody>';for(var k=0;k<rows.length;k++){h+='<tr><td>'+esc(rows[k][0])+'</td><td>'+fmt(rows[k][1],0)+'</td><td>Rs '+fmt(rows[k][2],2)+'</td><td>'+pkr(rows[k][3])+'</td></tr>';}h+='<tr><td>Fixed charge</td><td></td><td></td><td>'+pkr(fixed)+'</td></tr></tbody></table>';br.innerHTML=h;}
 }
 ['elUnits','elType'].forEach(function(id){var e=g(id);if(e){e.addEventListener('input',update);e.addEventListener('change',update);}});

@@ -58,6 +58,7 @@
 <div class="field"><label for="ptCity">City</label><select id="ptCity"><option value="karachi">Karachi</option><option value="lahore">Lahore</option><option value="islamabad">Islamabad</option><option value="peshawar">Peshawar</option><option value="quetta">Quetta</option></select></div>
 <div class="result-panel"><h4>Next prayer · <span id="ptNextName">—</span></h4><div class="output" style="font-size:2rem;font-weight:800" id="ptCountdown">—</div><p class="hint" id="ptNextTime">—</p></div>
 <div class="result-panel"><h4 id="ptTableTitle">Today's timetable</h4>
+<p class="rate-note" id="ptStamp">🔄 Fetching live prayer times…</p>
 <table id="ptTable" style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr><th style="text-align:left;padding:8px 4px">Prayer</th><th style="text-align:right;padding:8px 4px">Time</th></tr></thead><tbody></tbody></table>
 <p class="hint" style="margin-top:12px">⏱ Timetable: <b>October 2026</b> (approximate). Times are approximate — please confirm with your local mosque.</p></div>
 </div>
@@ -100,9 +101,37 @@
   function mins(t){var p=t.split(':');return (+p[0])*60+(+p[1]);}
   function fmt12(t){var p=t.split(':'),h=+p[0],m=p[1];var ap=h>=12?'PM':'AM';h=h%12;if(h===0)h=12;return h+':'+m+' '+ap;}
   function pad(n){return (n<10?'0':'')+n;}
+  var live={}; // city -> {label,times} from Aladhan API
+  function getData(key){
+    if(live[key]) return live[key];
+    return TIMES[key]||TIMES.karachi;
+  }
+  function stamp(msg){ var el=g('ptStamp'); if(el) el.textContent=msg; }
+  function clean(t){ return String(t||'').replace(/\s*\([A-Z]+\)\s*$/,'').slice(0,5); }
+  function loadLive(){
+    var sel=g('ptCity'); if(!sel) return;
+    var key=sel.value, city=(TIMES[key]||TIMES.karachi).label;
+    var now=new Date();
+    var ds=('0'+now.getDate()).slice(-2)+'-'+('0'+(now.getMonth()+1)).slice(-2)+'-'+now.getFullYear();
+    stamp('🔄 Fetching live prayer times…');
+    fetch('https://api.aladhan.com/v1/timingsByCity/'+ds+'?city='+encodeURIComponent(city)+'&country=Pakistan&method=1')
+      .then(function(r){ return r.json(); }).then(function(d){
+        var t=d && d.data && d.data.timings;
+        if(t && t.Fajr){
+          live[key]={label:city,times:[['Fajr',clean(t.Fajr)],['Sunrise',clean(t.Sunrise)],['Dhuhr',clean(t.Dhuhr)],['Asr',clean(t.Asr)],['Maghrib',clean(t.Maghrib)],['Isha',clean(t.Isha)]]};
+          stamp('🟢 Live times for today · Source: Aladhan API (Univ. of Islamic Sciences, Karachi method). Confirm with your local mosque.');
+          tick();
+        } else {
+          stamp('🟡 Offline — showing approximate October 2026 timetable. Confirm with your local mosque.');
+        }
+      }).catch(function(){
+        stamp('🟡 Offline — showing approximate October 2026 timetable. Confirm with your local mosque.');
+      });
+    setTimeout(function(){ var el=g('ptStamp'); if(el && /Fetching/.test(el.textContent)) stamp('🟡 Offline — showing approximate October 2026 timetable. Confirm with your local mosque.'); }, 9000);
+  }
   function tick(){
     var sel=g('ptCity');if(!sel)return;
-    var data=TIMES[sel.value]||TIMES.karachi;
+    var data=getData(sel.value);
     var title=g('ptTableTitle');if(title)title.textContent='Today\'s timetable — '+data.label;
     var tbody=document.querySelector('#ptTable tbody');
     var now=new Date();var nowM=now.getHours()*60+now.getMinutes();
@@ -120,10 +149,11 @@
     var h=Math.floor(diff/60),m=diff%60,s=59-now.getSeconds();
     var nn=g('ptNextName');if(nn)nn.textContent=nextName+(tomorrow?' (tomorrow)':'');
     var cd=g('ptCountdown');if(cd)cd.textContent=h+'h '+pad(m)+'m '+pad(s)+'s';
-    var nt=g('ptNextTime');if(nt)nt.textContent='At '+fmt12(data.times[nextIdx][1])+' — approximate October 2026 timetable.';
+    var nt=g('ptNextTime');if(nt)nt.textContent='At '+fmt12(data.times[nextIdx][1])+(live[sel.value]?' — live times for today.':' — approximate October 2026 timetable.');
   }
-  var sel=g('ptCity');if(sel)sel.addEventListener('change',tick);
-  tick();setInterval(tick,1000);
+  var sel=g('ptCity');if(sel)sel.addEventListener('change',function(){ loadLive(); });
+  stamp('🔄 Fetching live prayer times…');
+  loadLive(); tick();setInterval(tick,1000);
 })();
 </script>
 </body></html>
