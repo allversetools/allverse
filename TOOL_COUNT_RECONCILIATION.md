@@ -24,3 +24,10 @@ ai-business-idea-generator, ai-caption-generator, ai-chat, ai-image-generator,
 ai-interview-questions, ai-logo-maker, ai-name-generator, ai-paraphraser,
 ai-poetry-generator, ai-story-writer, ai-text-summarizer, ai-thumbnail-maker,
 ai-translator, ai-wallpaper-generator
+
+## Correction 2026-10-12: real tools = 130
+`changelog.html` ("What's New") was counted in the 131 — but it is only linked from
+the site footer, not as a tool card. It is a page, not a tool. Every other page in
+the inventory has interactive tool elements (verified: 0 pages without
+button/input/select/textarea/onclick). **Authoritative real-tool count: 130.**
+Homepage copy, meta/OG/Twitter descriptions, hero, footer and llms.txt updated 131→130.

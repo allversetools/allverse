@@ -99,7 +99,7 @@
 </footer>
 <script src="js/main.js?v=js26"></script>
 <script src="js/search.js?v=js26"></script>
-<script src="js/ai.js?v=js28"></script>
+<script src="js/ai.js?v=js29"></script>
 <script src="js/fx.js?v=js26"></script>
 <script src="js/bg.js?v=js26"></script>
 <script src="js/music.js?v=js26"></script><script src="js/pjax.js?v=2"></script>
@@ -117,7 +117,7 @@ btn.onclick=function(){
   var stopLoad=function(){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);};
   var run=function(){
     // On-device AI with 20s timeout — falls back to cloud if it hangs or fails
-    if(!('LanguageModel' in window)) return SK_AI.chat(prompt,'You rewrite text beautifully.');
+    if(!('LanguageModel' in window) || (window.SK_AI && SK_AI.forceCloud())) return SK_AI.chat(prompt,'You rewrite text beautifully.');
     return new Promise(function(resolve,reject){
       var finished=false;
       var timer=setTimeout(function(){

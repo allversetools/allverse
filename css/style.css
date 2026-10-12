@@ -2021,6 +2021,11 @@ body { transition: background-color .45s ease, color .45s ease; }
   color: var(--muted);
   font-weight: 500;
 }
+.sk-slow-note {
+  margin: 8px 0 0;
+  font-size: .82rem;
+  color: var(--muted);
+}
 .sk-spinner {
   flex: 0 0 auto;
   width: 18px; height: 18px;

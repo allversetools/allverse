@@ -1,6 +1,6 @@
 # AllVerse
 
-AllVerse is a collection of 131 free online tools across 33 categories.
+AllVerse is a collection of 130 free online tools across 33 categories.
 100% free, no signup, no watermarks. Every tool runs entirely in the
 user's browser — uploaded files never leave the device.
 

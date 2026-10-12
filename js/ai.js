@@ -262,6 +262,7 @@
         html += '<p class="sk-status"><span class="sk-spinner"></span>' +
           '<span data-sk-status-text></span>' +
           '<span class="sk-elapsed" data-sk-elapsed>0s</span></p>';
+        html += '<p class="sk-slow-note" data-sk-slow-note>⏳ This can take up to 30&ndash;60 seconds on the free AI service. Please keep this tab open.</p>';
         box.innerHTML = html;
         if (panel.firstChild) panel.insertBefore(box, panel.firstChild);
         else panel.appendChild(box);
@@ -391,13 +392,20 @@
     });
   }
 
+  /* Test hook: ?forceCloud=1 skips on-device AI and goes straight to cloud.
+     Lets us verify the cloud-only path (as on browsers without on-device AI). */
+  function forceCloud() {
+    try { return /(?:^|[?&])forceCloud=1(?:&|$)/.test(location.search); }
+    catch (e) { return false; }
+  }
+
   /* On-device attempt with a timeout, falling back to cloud.
      deviceFn: () => Promise (on-device attempt) or null to skip
      cloudFn:  () => Promise (cloud fallback)
      Never hangs forever: after `ms` (default 20s) the cloud fallback runs. */
   function deviceOrCloud(deviceFn, cloudFn, ms) {
     ms = ms || 20000;
-    if (!deviceFn) return cloudFn();
+    if (!deviceFn || forceCloud()) return cloudFn();
     return new Promise(function (resolve, reject) {
       var finished = false;
       var timer = setTimeout(function () {
@@ -413,6 +421,7 @@
   window.SK_AI = {
     chat: aiChat,
     deviceOrCloud: deviceOrCloud,
+    forceCloud: forceCloud,
     typeInto: typeInto,
     pollinationsImage: pollinationsImage,
     canMakeImageRequest: canMakeImageRequest,

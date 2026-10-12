@@ -77,7 +77,7 @@
 </footer>
 <script src="js/main.js?v=js26"></script>
 <script src="js/search.js?v=js26"></script>
-<script src="js/ai.js?v=js28"></script>
+<script src="js/ai.js?v=js29"></script>
 <script src="js/fx.js?v=js26"></script>
 <script src="js/bg.js?v=js26"></script>
 <script src="js/music.js?v=js26"></script><script src="js/pjax.js?v=2"></script>
@@ -124,7 +124,7 @@ function send(){
       ab.appendChild(rb);
     }
   };
-  if('LanguageModel' in window){
+  if('LanguageModel' in window && !(window.SK_AI && SK_AI.forceCloud())){
     // On-device with 20s timeout — fallback to cloud if it hangs or fails
     var finished=false;
     var ok=function(t){ if(!finished){ finished=true; done(t); } };
