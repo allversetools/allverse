@@ -46,17 +46,7 @@
 </div>
 <p class="hint" style="margin-top:8px">Settle-up uses the greedy minimum-cash-flow algorithm: the fewest transfers needed so everyone ends at zero. Mark a transfer "Paid" once the money moves.</p>
 </div></div>
-</div><section class="faq-section"><h2>Wedding Expense Splitter — FAQs</h2><details class="faq-item"><summary>How does the settle-up calculation work?</summary><p>Each expense adds what a person paid and subtracts their share. Net balances are then matched with a greedy minimum-cash-flow algorithm — the largest debtor pays the largest creditor — producing the fewest transfers needed (at most n−1 for n people).</p></details><details class="faq-item"><summary>Can I split an expense among only some people?</summary><p>Yes. When adding an expense, untick anyone who should not share it — for example, only the groom's side for the barat dinner. Their balance is unaffected.</p></details><details class="faq-item"><summary>Is my data saved?</summary><p>Yes, in your browser's localStorage. Nothing is uploaded. Use Clear all to wipe the plan, or Mark paid as money actually moves.</p></details></section><section class="more-tools"><h2>Try More Free Tools</h2><div class="mini-grid"><a class="mini-tool" href="wedding-budget-planner.html"><span>Wedding Budget Planner</span><span class="mini-go">→</span></a><a class="mini-tool" href="guest-list-manager.html"><span>Guest List Manager</span><span class="mini-go">→</span></a><a class="mini-tool" href="bill-splitter.html"><span>Bill Splitter</span><span class="mini-go">→</span></a><a class="mini-tool" href="wedding-countdown.html"><span>Wedding Countdown</span><span class="mini-go">→</span></a></div></section></main></div><footer class="site-footer">
-<p><span class="js-year">© 2026</span> AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
-<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
-<p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
-</footer>
-<script src="js/main.js?v=js27"></script>
-<script src="js/search.js?v=js26"></script>
-<script src="js/fx.js?v=js26"></script>
-<script src="js/bg.js?v=js26"></script>
-<script src="js/music.js?v=js26"></script><script src="js/pjax.js?v=2"></script>
-<script src="js/pwa.js?v=js26"></script><script src="js/ai.js?v=js29"></script><script>
+</div><section class="faq-section"><h2>Wedding Expense Splitter — FAQs</h2><details class="faq-item"><summary>How does the settle-up calculation work?</summary><p>Each expense adds what a person paid and subtracts their share. Net balances are then matched with a greedy minimum-cash-flow algorithm — the largest debtor pays the largest creditor — producing the fewest transfers needed (at most n−1 for n people).</p></details><details class="faq-item"><summary>Can I split an expense among only some people?</summary><p>Yes. When adding an expense, untick anyone who should not share it — for example, only the groom's side for the barat dinner. Their balance is unaffected.</p></details><details class="faq-item"><summary>Is my data saved?</summary><p>Yes, in your browser's localStorage. Nothing is uploaded. Use Clear all to wipe the plan, or Mark paid as money actually moves.</p></details></section><section class="more-tools"><h2>Try More Free Tools</h2><div class="mini-grid"><a class="mini-tool" href="wedding-budget-planner.html"><span>Wedding Budget Planner</span><span class="mini-go">→</span></a><a class="mini-tool" href="guest-list-manager.html"><span>Guest List Manager</span><span class="mini-go">→</span></a><a class="mini-tool" href="bill-splitter.html"><span>Bill Splitter</span><span class="mini-go">→</span></a><a class="mini-tool" href="wedding-countdown.html"><span>Wedding Countdown</span><span class="mini-go">→</span></a></div></section><script>
 (function(){
 function $(id){return document.getElementById(id);}
 function pkr(n){var a=Math.abs(n),s=n<0?'-':'';if(a>=1e7)return s+'Rs '+(a/1e7).toFixed(2).replace(/\.00$/,'')+' cr';if(a>=1e5)return s+'Rs '+(a/1e5).toFixed(2).replace(/\.00$/,'')+' L';return s+'Rs '+Math.round(a).toLocaleString('en-PK');}
@@ -138,4 +128,15 @@ $('wesWA').onclick=function(){window.open('https://wa.me/?text='+encodeURICompon
 $('wesClear').onclick=function(){if(confirm('Clear all people and expenses?')){S={people:[],expenses:[],paid:[]};save();render();}};
 render();
 })();
-</script></body></html>
+</script>
+</main></div><footer class="site-footer">
+<p><span class="js-year">© 2026</span> AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
+<p class="foot-links"><a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="js/main.js?v=js27"></script>
+<script src="js/search.js?v=js26"></script>
+<script src="js/fx.js?v=js26"></script>
+<script src="js/bg.js?v=js26"></script>
+<script src="js/music.js?v=js26"></script><script src="js/pjax.js?v=2"></script>
+<script src="js/pwa.js?v=js26"></script><script src="js/ai.js?v=js29"></script></body></html>

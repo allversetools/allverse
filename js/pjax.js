@@ -81,12 +81,14 @@
         // Scroll to top
         window.scrollTo(0, 0);
 
-        // Re-initialize page scripts (tool functionality)
-        reinitializePage();
-
+        // Update URL BEFORE executing scripts so location.search/location.href
+        // reflect the new page when inline scripts run (e.g. ?template= deep links)
         if (pushState !== false) {
           history.pushState({ url: url }, '', url);
         }
+
+        // Re-initialize page scripts (tool functionality)
+        reinitializePage();
 
         document.body.classList.remove('pjax-loading');
         isLoading = false;
