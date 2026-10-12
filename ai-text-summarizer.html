@@ -125,13 +125,11 @@ btn.onclick=function(){
   SK_AI.setBusy(btn,true,'✨ Summarizing…'); SK_AI.loading(res,true); out.textContent='';
   var done=function(t){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.typeInto(out,t);};
   var fail=function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message,function(){btn.click();});};
-  if('Summarizer' in window){
-    summarizeOnDevice(text,length).then(done).catch(function(){
-      SK_AI.chat('Summarize this text ('+length+'):\n\n'+text,'You write crisp summaries.').then(done).catch(fail);
-    });
-  }else{
-    SK_AI.chat('Summarize this text ('+length+'):\n\n'+text,'You write crisp summaries.').then(done).catch(fail);
-  }
+  var cloudFn=function(){return SK_AI.chat('Summarize this text ('+length+'):\n\n'+text,'You write crisp summaries.');};
+  var run=('Summarizer' in window)
+    ? function(){return SK_AI.deviceOrCloud(function(){return summarizeOnDevice(text,length);},cloudFn);}
+    : cloudFn;
+  run().then(done).catch(fail);
 };
 $('smCopy').onclick=function(){SK_AI.copyText($('smCopy'),out.textContent);};
 })();

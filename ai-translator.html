@@ -112,17 +112,20 @@ btn.onclick=function(){
   var fail=function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message,function(){btn.click();});};
   var cloud=function(){
     var fl=from==='auto'?'auto-detected language':(NAMES[from]||from);
-    SK_AI.chat('Translate this text from '+fl+' to '+(NAMES[to]||to)+'. Reply with ONLY the translation, no explanations:\n\n'+text,
-      'You are a precise translator. Output only the translation.').then(done).catch(fail);
+    return SK_AI.chat('Translate this text from '+fl+' to '+(NAMES[to]||to)+'. Reply with ONLY the translation, no explanations:\n\n'+text,
+      'You are a precise translator. Output only the translation.');
   };
-  if('Translator' in window && from!=='auto'){
-    (async function(){
-      try{
-        var tr=await window.Translator.create({sourceLanguage:from,targetLanguage:to});
-        done(await tr.translate(text));
-      }catch(e){ cloud(); }
-    })();
-  }else{ cloud(); }
+  var run=function(){
+    if('Translator' in window && from!=='auto'){
+      // On-device with 20s timeout — falls back to cloud if it hangs or fails
+      return SK_AI.deviceOrCloud(function(){
+        return window.Translator.create({sourceLanguage:from,targetLanguage:to})
+          .then(function(tr){return tr.translate(text);});
+      },cloud);
+    }
+    return cloud();
+  };
+  run().then(done).catch(fail);
 };
 $('trCopy').onclick=function(){SK_AI.copyText($('trCopy'),out.textContent);};
 })();

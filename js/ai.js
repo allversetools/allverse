@@ -389,8 +389,28 @@
     });
   }
 
+  /* On-device attempt with a timeout, falling back to cloud.
+     deviceFn: () => Promise (on-device attempt) or null to skip
+     cloudFn:  () => Promise (cloud fallback)
+     Never hangs forever: after `ms` (default 20s) the cloud fallback runs. */
+  function deviceOrCloud(deviceFn, cloudFn, ms) {
+    ms = ms || 20000;
+    if (!deviceFn) return cloudFn();
+    return new Promise(function (resolve, reject) {
+      var finished = false;
+      var timer = setTimeout(function () {
+        if (!finished) { finished = true; cloudFn().then(resolve, reject); }
+      }, ms);
+      deviceFn().then(
+        function (t) { if (!finished) { finished = true; clearTimeout(timer); resolve(t); } },
+        function () { if (!finished) { finished = true; clearTimeout(timer); cloudFn().then(resolve, reject); } }
+      );
+    });
+  }
+
   window.SK_AI = {
     chat: aiChat,
+    deviceOrCloud: deviceOrCloud,
     typeInto: typeInto,
     pollinationsImage: pollinationsImage,
     canMakeImageRequest: canMakeImageRequest,
