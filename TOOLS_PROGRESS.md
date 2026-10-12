@@ -19,10 +19,10 @@ clean the code looks.
 so reports say "no visible errors observed" — never "zero console errors".
 
 ## Summary
-- ✅ Live verified: **108**
+- ✅ Live verified: **118**
 - 🟧 Code only (fix deployed, unverified): **1** (AI Story Writer — backend quota)
 - 🟨 Code only (environment-limited): **2** (Voice Recorder — no mic in test env; Text to Speech — no voices in test env)
-- ⬜ Code only (unverified): **18**
+- ⬜ Code only (unverified): **8**
 - **Total: 130**
 
 ## The 4 confirmations requested
@@ -58,7 +58,7 @@ so reports say "no visible errors observed" — never "zero console errors".
 Only 2 external JS libraries in the whole repo, both pinned and browser-ready —
 see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORRECTION 2026-10-12: a full scan of all 9,595 blobs in git history proved no real LLM7 key was ever committed — the code only ever contained the placeholder `Bearer unused`. The earlier 'exposed key' warning was a false alarm from the overnight QA report; nothing to revoke, no history scrub needed.
 
-## Live verified (108 tools)
+## Live verified (118 tools)
 
 | # | Tool | File | Category | Status | Verified how |
 |---|------|------|----------|--------|--------------|
@@ -167,36 +167,36 @@ see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORR
 | 103 | Slug Generator | slug-generator.html | Text | ✅ Live verified | "Hello World!..." -> hello-world-this-is-a-test. Batch 9. |
 | 104 | Split PDF | split-pdf.html | PDF | ✅ Live verified | 5-page PDF -> pages 1-2; download opened with pypdf: exactly 2 pages, all with content. 2026-10-12. |
 | 105 | Stamp Duty Calculator | stamp-duty-calculator.html | Real Estate | ✅ Live verified | Punjab 5,000,000 -> Rs 50,000 (1% uniform); Oct 2026 source note visible. Post-correction. Batch 1. |
-| 106 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. |
-| 107 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. |
-| 108 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. |
+| 106 | Stopwatch | stopwatch.html | Everyday | ✅ Live verified | Start->~3s, pause no drift, lap works, reset. Batch 10. |
+| 107 | Tasbeeh Counter | tasbeeh-counter.html | Islamic | ✅ Live verified | 5 taps -> 5 of 100 (5%); reset works. Batch 10. |
+| 108 | Text Art Generator | text-art-generator.html | Fonts | ✅ Live verified | "Hi" -> Big ASCII art; copy works. Batch 10. |
+| 109 | Text Summarizer | text-summarizer.html | Writing | ✅ Live verified | 6-sentence cats text -> 2-sentence summary. Batch 10. |
+| 110 | Timestamp Converter | timestamp-converter.html | Developer | ✅ Live verified | 0 -> Thu 01 Jan 1970 00:00:00 GMT. Batch 10. |
+| 111 | Travel Budget Planner | travel-budget-planner.html | Travel | ✅ Live verified | Hotel 200 + Food 100 -> total $300 breakdown. Batch 10. |
+| 112 | Unit Converter | unit-converter.html | Converters | ✅ Live verified | 1 km -> 0.6214 mi. Batch 10. |
+| 113 | URL Encoder Decoder | url-encoder-decoder.html | Developer | ✅ Live verified | "hello world & co" -> hello%20world%20%26%20co. Batch 10. |
+| 114 | UTM Link Builder | utm-builder.html | Developer | ✅ Live verified | -> ?utm_source=google&utm_medium=cpc&utm_campaign=sale. Batch 10. |
+| 115 | UUID Generator | uuid-generator.html | Developer | ✅ Live verified | Valid v4 UUID e3969fda-...-90ca. Batch 10. |
+| 116 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. |
+| 117 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. |
+| 118 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. |
 
-## Code only — not live-tested in browser (22 tools)
+## Code only — not live-tested in browser (12 tools)
 
 | # | Tool | File | Category | Status | Note |
 |---|------|------|----------|--------|------|
 | 1 | AI Story Writer | ai-story-writer.html | AI Tools | ⬜ Code only (fix deployed, unverified) | Code only - JSON-leak guard + STRICT retry deployed on js29 (code-verified, retry works); end-to-end unverified: free backend quota exhausted on all attempts. 2026-10-12. |
-| 2 | Profit Margin Calculator | profit-margin-calculator.html | Business | ⬜ Code only (fix deployed, re-test pending) | Stale animation frames overwrote fresh results (fx.js race). fx.js token-cancellation fix deployed 2026-10-12, re-test pending. |
-| 3 | Stopwatch | stopwatch.html | Everyday | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 4 | Tasbeeh Counter | tasbeeh-counter.html | Islamic | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 5 | Text Art Generator | text-art-generator.html | Fonts | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 6 | Text Summarizer | text-summarizer.html | Writing | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 7 | Text to Speech Studio | text-to-speech-studio.html | AI Tools | ⬜ Code only (environment-limited) | Code only - 0 voices in test environment; Speak produced no error; clear "no voices" message added; FAQ honestly states download unsupported. Audio output unverifiable here. |
-| 8 | Timestamp Converter | timestamp-converter.html | Developer | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 9 | Travel Budget Planner | travel-budget-planner.html | Travel | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 10 | Unit Converter | unit-converter.html | Converters | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 11 | URL Encoder Decoder | url-encoder-decoder.html | Developer | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 12 | UTM Link Builder | utm-builder.html | Developer | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 13 | UUID Generator | uuid-generator.html | Developer | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 14 | Video Metadata Viewer | video-metadata-viewer.html | Video | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 15 | YouTube Timestamp Link | video-timestamp-link.html | Video | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 16 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. |
-| 17 | Water Intake Calculator | water-intake-calculator.html | Health | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 18 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 19 | Wedding Countdown | wedding-countdown.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 20 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 21 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
-| 22 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 2 | Profit Margin Calculator | profit-margin-calculator.html | Business | ⬜ Code only (fix deployed, re-test pending) | fx.js stale-animation race: token-cancellation fix deployed; earlier re-test hit pre-deploy CDN cache. Re-test in progress. |
+| 3 | Text to Speech Studio | text-to-speech-studio.html | AI Tools | ⬜ Code only (environment-limited) | Code only - 0 voices in test environment; Speak produced no error; clear "no voices" message added; FAQ honestly states download unsupported. Audio output unverifiable here. |
+| 4 | Video Metadata Viewer | video-metadata-viewer.html | Video | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 5 | YouTube Timestamp Link | video-timestamp-link.html | Video | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 6 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. |
+| 7 | Water Intake Calculator | water-intake-calculator.html | Health | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 8 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 9 | Wedding Countdown | wedding-countdown.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 10 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 11 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
+| 12 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ⬜ Code only (unverified) | Not live-tested in browser yet; 2026-10-11 static audit found valid JS, wired buttons, no placeholder/fake signals. |
 
 ## Tool-count reconciliation
 - **131** = actual tools (hub-link inventory, every file exists) — authoritative.
