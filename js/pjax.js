@@ -83,6 +83,28 @@
           }
         }
 
+        // Pull in page-specific <style> blocks from the fetched page's
+        // <head>. PJAX only swaps <main>, so page-specific CSS (e.g.
+        // resume-builder's .rb-step wizard styles) would otherwise be
+        // missing and the page renders unstyled/broken. Compare by
+        // textContent to avoid duplicates across navigations.
+        var needStyles = doc.head ? doc.head.querySelectorAll('style') : [];
+        var haveStyles = document.head.querySelectorAll('style');
+        for (var st = 0; st < needStyles.length; st++) {
+          var css = needStyles[st].textContent;
+          if (!css || !css.trim()) continue;
+          var dup = false;
+          for (var sj = 0; sj < haveStyles.length; sj++) {
+            if (haveStyles[sj].textContent === css) { dup = true; break; }
+          }
+          if (!dup) {
+            var nst = document.createElement('style');
+            nst.textContent = css;
+            nst.setAttribute('data-pjax-style', '1');
+            document.head.appendChild(nst);
+          }
+        }
+
         // Swap main content
         var newMain = doc.querySelector('main');
         var oldMain = getContainer();        if (newMain && oldMain && oldMain.tagName === 'MAIN') {
