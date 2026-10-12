@@ -90,7 +90,7 @@
 </footer>
 <script src="js/main.js?v=js26"></script>
 <script src="js/search.js?v=js26"></script>
-<script src="js/ai.js?v=js27"></script>
+<script src="js/ai.js?v=js28"></script>
 <script src="js/fx.js?v=js26"></script>
 <script src="js/bg.js?v=js26"></script>
 <script src="js/music.js?v=js26"></script><script src="js/pjax.js?v=2"></script>
@@ -110,17 +110,18 @@ btn.onclick=function(){
   SK_AI.setBusy(btn,true,'🌐 Translating…'); SK_AI.loading(res,true); out.textContent='';
   var done=function(t){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.typeInto(out,t);};
   var fail=function(e){SK_AI.setBusy(btn,false);SK_AI.loading(res,false);SK_AI.showError(res,e.message,function(){btn.click();});};
+  var notEmpty=function(t){ if(t && t.trim()) return t; throw new Error('The translation came back empty. Please try again.'); };
   var cloud=function(){
     var fl=from==='auto'?'auto-detected language':(NAMES[from]||from);
     return SK_AI.chat('Translate this text from '+fl+' to '+(NAMES[to]||to)+'. Reply with ONLY the translation, no explanations:\n\n'+text,
-      'You are a precise translator. Output only the translation.');
+      'You are a precise translator. Output only the translation.').then(notEmpty);
   };
   var run=function(){
     if('Translator' in window && from!=='auto'){
-      // On-device with 20s timeout — falls back to cloud if it hangs or fails
+      // On-device with 20s timeout — falls back to cloud if it hangs, fails, or returns empty
       return SK_AI.deviceOrCloud(function(){
         return window.Translator.create({sourceLanguage:from,targetLanguage:to})
-          .then(function(tr){return tr.translate(text);});
+          .then(function(tr){return tr.translate(text);}).then(notEmpty);
       },cloud);
     }
     return cloud();

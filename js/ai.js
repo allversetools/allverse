@@ -358,10 +358,12 @@
       else el.appendChild(p);
     }
     p.hidden = false;
-    // Friendly message for rate limits
+    // Friendly messages for rate limits / quota errors
     var friendly = msg;
     if (msg && msg.indexOf('429') !== -1) {
       friendly = 'The AI is busy (rate limit). Please wait 15 seconds and try again.';
+    } else if (msg && msg.indexOf('402') !== -1) {
+      friendly = 'The free AI service hit its usage limit. Please wait a minute and try again.';
     }
     p.textContent = '⚠️ ' + friendly;
     // Add retry button if retryFn provided
@@ -371,7 +373,7 @@
       var btn = document.createElement('button');
       btn.setAttribute('data-sk-retry', '1');
       btn.className = 'sk-retry-btn';
-      btn.textContent = '🔄 Dobara try karo / Retry';
+      btn.textContent = '🔄 Retry';
       btn.style.cssText = 'margin-top:8px;padding:8px 16px;background:#06b6d4;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;';
       btn.onclick = function() {
         btn.remove();
