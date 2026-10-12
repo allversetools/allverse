@@ -58,145 +58,148 @@ so reports say "no visible errors observed" — never "zero console errors".
 Only 2 external JS libraries in the whole repo, both pinned and browser-ready —
 see CDN_AUDIT.md. No API keys in the current tree (full secret scan clean). CORRECTION 2026-10-12: a full scan of all 9,595 blobs in git history proved no real LLM7 key was ever committed — the code only ever contained the placeholder `Bearer unused`. The earlier 'exposed key' warning was a false alarm from the overnight QA report; nothing to revoke, no history scrub needed.
 
+
+**Verification methods.** `direct URL` = deep browser test on batches 1-11 (real input→output). `PJAX click` = 8-chunk regression (Oct 12): every tool reached by clicking from the homepage/category (exercises PJAX nav), one input→output, plus direct `?cb=` load and Back/Forward spot-checks; all PJAX-vs-direct differences found were fixed in `js/pjax.js` v5 and re-verified via CDP (script injection, SK_AI on 75/75 tools, Back/Forward content swap). `mobile` = headless Chromium at 412×915 Android-Chrome UA on all 131 pages (0 horizontal overflow, 0 console errors after `js/helpers.js` fix).
+
 ## Live verified (127 tools)
 
-| # | Tool | File | Category | Status | Verified how |
+| # | Tool | File | Category | Status | Verified how | Verified via |
 |---|------|------|----------|--------|--------------|
-| 1 | A/B Test Calculator | ab-test-calculator.html | Marketing | ✅ Live verified | A:1000/100 vs B:1000/120 -> rates 10.00%/12.00%, p=0.1529, correctly "no significant difference yet". Batch 3. |
-| 2 | Age Calculator | age-calculator.html | Calculators | ✅ Live verified | DOB 1990-01-01 -> "36 years, 9 months, 11 days" exact (441 months, 13,432 days). Batch 3. |
-| 3 | AI Business Idea Generator | ai-business-idea-generator.html | AI Tools | ✅ Live verified | "eco-friendly packaging" -> structured ideas ~60s. 2026-10-12. |
-| 4 | AI Caption Generator | ai-caption-generator.html | AI Tools | ✅ Live verified | "sunset beach photo" -> captions with Copy All ~60s. 2026-10-12. |
-| 5 | AI Chat | ai-chat.html | AI Tools | ✅ Live verified | "Hello, what is 2+2?" -> "4." in ~60-90s (on-device+20s cloud fallback); English-only. Post-fix js28. 2026-10-12. Cloud-only path (?forceCloud=1): "What is 5+5?" -> "10" quickly, no 20s stall. 2026-10-12. |
-| 6 | AI Image Generator | ai-image-generator.html | AI Tools | ✅ Live verified | "a red apple on a table" -> relevant image ~15-20s via Pollinations. 2026-10-12. |
-| 7 | AI Interview Questions | ai-interview-questions.html | AI Tools | ✅ Live verified | "software engineer" -> interview Q&A ~60s. 2026-10-12. |
-| 8 | AI Logo Maker | ai-logo-maker.html | AI Tools | ✅ Live verified | "coffee shop named BrewBox" -> logo image ~5-10s. 2026-10-12. |
-| 9 | AI Name Generator | ai-name-generator.html | AI Tools | ✅ Live verified | "fitness app" -> name ideas ~60s. 2026-10-12. |
-| 10 | AI Paraphraser | ai-paraphraser.html | AI Tools | ✅ Live verified | "The quick brown fox..." -> paraphrase in ~25s-1min. Post-fix. 2026-10-12. |
-| 11 | AI Poetry Generator | ai-poetry-generator.html | AI Tools | ✅ Live verified | "rain" -> 402 friendly msg + Retry; retry -> full poem ~60s. 2026-10-12. |
-| 12 | AI Text Summarizer | ai-text-summarizer.html | AI Tools | ✅ Live verified | Kyoto text -> coherent on-device summary ~22s; English-only. Post-fix js27. 2026-10-12. Cloud-only path: summary in seconds, 30-60s note visible. 2026-10-12. |
-| 13 | AI Thumbnail Maker | ai-thumbnail-maker.html | AI Tools | ✅ Live verified | "10 money tips" -> 1280x720 image ~5-10s. 2026-10-12. |
-| 14 | AI Translator | ai-translator.html | AI Tools | ✅ Live verified | "Hello, how are you?" EN->UR -> Urdu in seconds on-device. Post-fix js28. 2026-10-12. Cloud-only path: "Good morning" -> Urdu; one 402 then retry succeeded. 2026-10-12. |
-| 15 | AI Wallpaper Generator | ai-wallpaper-generator.html | AI Tools | ✅ Live verified | "mountain landscape at night" -> 1920x1080 image in seconds. 2026-10-12. |
-| 16 | ATS Resume Checker | ats-resume-checker.html | Resume | ✅ Live verified | Sample resume -> ATS score 35/100 with section breakdown + priority fixes. Batch 3. |
-| 17 | Audio Trimmer | audio-trimmer.html | Audio | ✅ Live verified | Uploaded 10s MP3, trimmed 2s-5s -> WAV download opened: valid mono 44.1kHz, exactly 3.0s. Batch 2. |
-| 18 | Bill Splitter | bill-splitter.html | Finance | ✅ Live verified | Bill "1,000" (with comma), tip 10, 4 people -> 275.00 / 100.00 / 1,100.00. Post comma-strip fix. Batch 3. |
-| 19 | ✨ Bio Maker | bio-maker.html | Social Media | ✅ Live verified | Name Ali, designer -> 3 bios generated, copy buttons work. Batch 3. |
-| 20 | BMI Calculator | bmi-calculator.html | Calculators | ✅ Live verified | 70kg/175cm -> BMI 22.9, "Normal/healthy". Batch 3. |
-| 21 | BMR Calculator | bmr-calculator.html | Health | ✅ Live verified | Male 70kg/175cm/30y -> BMR 1649 (Mifflin-St Jeor), TDEE 2556. Batch 3. |
-| 22 | Body Fat Calculator | body-fat-calculator.html | Health | ✅ Live verified | Male 90/40/175cm -> 19.3% "Average". Post cm-to-inches fix. Batch 3. |
-| 23 | Break-Even Calculator | break-even-calculator.html | Business | ✅ Live verified | Fixed 10000, price 100, var 40 -> 167 units (rounded up), revenue 16694. Batch 3. |
-| 24 | Business Name Generator | business-name-generator.html | Business | ✅ Live verified | Keyword "tech" -> 12 click-to-copy names. Batch 3. |
-| 25 | Card Validator | card-validator.html | Security | ✅ Live verified | 4111111111111111 -> Valid/Visa (Luhn); 1234567890123456 -> Invalid/Unknown. Batch 4. |
-| 26 | Case Converter | case-converter.html | Text | ✅ Live verified | "hello world" -> UPPER/lower/Title Case; copy works. Batch 4. |
-| 27 | Citation Generator | citation-generator.html | Writing | ✅ Live verified | Book -> APA 7th "Smith, J. (2020). Test Book. Test Press." + MLA 9th; copy buttons. Batch 4. |
-| 28 | CNIC / Passport Photo Maker | cnic-photo-maker.html | Pakistan | ✅ Live verified | Uploaded photo -> download opened: valid PNG 413x531 with crop guides; code draws uploaded image. Batch 2. |
-| 29 | Coin Flip | coin-flip.html | Everyday | ✅ Live verified | 3 flips -> Heads, Heads, Tails; live score 2H/1T. Batch 4. |
-| 30 | Color Picker | color-picker.html | Developer | ✅ Live verified | #ff0000 -> HEX/RGB 255,0,0 / HSL 0,100%,50%; copy works. Batch 4. |
-| 31 | Compound Interest Calculator | compound-interest-calculator.html | Finance | ✅ Live verified | 10000 @10% 5y yearly -> 16105 (10000x1.1^5). Batch 4. |
-| 32 | Contrast Checker | contrast-checker.html | Color | ✅ Live verified | #000 on #fff -> 21.00:1, AA + AAA pass. Batch 4. |
-| 33 | Cooking Timer | cooking-timer.html | Cooking | ✅ Live verified | 5s countdown -> DONE + alarm + tab title change. Batch 4. |
-| 34 | Cooking Unit Converter | cooking-unit-converter.html | Cooking | ✅ Live verified | 1 US cup -> 236.6 ml (US standard). Batch 4. |
-| 35 | Countdown Timer | countdown-timer.html | Date & Time | ✅ Live verified | 2-min target -> live decreasing countdown. Batch 4. |
-| 36 | Cover Letter Generator | cover-letter-generator.html | Resume | ✅ Live verified | Ali Khan / Designer / ABC Corp -> coherent letter; copy/download/print buttons. Batch 5. |
-| 37 | CPC Calculator | cpc-calculator.html | Marketing | ✅ Live verified | 500 spend / 250 clicks -> CPC $2.00 "High". Batch 5. |
-| 38 | Currency Converter | currency-converter.html | Converters | ✅ Live verified | 100 USD -> 27,720.6 PKR via LIVE ExchangeRate-API (1 USD=277.206); green live stamp; manual USD/PKR override present. Batch 1. |
-| 39 | Date Difference Calculator | date-difference.html | Date & Time | ✅ Live verified | 2020-01-01 to 2026-10-12 -> 2,476 days; 6y 9m 11d. Batch 5. |
-| 40 | Device Info | device-info.html | Everyday | ✅ Live verified | Live specs: Chrome 154, Linux, 1920x1080, 6 cores, 16GB; copy button. Batch 5. |
-| 41 | 🎲 Dice Roller | dice-roller.html | Fun | ✅ Live verified | 2 dice -> 4+4=8; pips render, total correct. Batch 5. |
-| 42 | Discount Calculator | discount-calculator.html | Calculators | ✅ Live verified | 100 @25% -> save 25.00, price 75.00; reverse 25%. Batch 5. |
-| 43 | DLS Par Score Calculator | dls-par-score.html | Sports | ✅ Live verified | DLS scenario -> par 80, target 81, verdict correct. Batch 5. |
-| 44 | Pregnancy Due Date Calculator | due-date-calculator.html | Health | ✅ Live verified | LMP 2026-01-01 -> due 8 Oct 2026 (+280d), 40w4d, third trimester. Batch 5. |
-| 45 | Electricity Bill Calculator — Pakistan | electricity-bill-calculator.html | Pakistan | ✅ Live verified | 250 units auto -> Rs 6,865 exact (100x22.44+100x28.91+50x33.10+75); Oct 2026 note citing 12 Feb 2026 NEPRA notification. Post-correction. Batch 1. |
-| 46 | EMI Calculator | emi-calculator.html | Calculators | ✅ Live verified | 100000 @12% 12mo -> EMI 8884.88. Batch 5. |
-| 47 | Engagement Rate Calculator | engagement-rate-calculator.html | Marketing | ✅ Live verified | 500 likes + 50 comments / 10000 -> 5.50% "Good". Batch 5. |
-| 48 | Fancy Text Generator | fancy-text-generator.html | Fonts | ✅ Live verified | "hello" -> 34 styles rendered (bold, italic, upside-down, mirror, strikethrough...); Copy -> "Copied!". Batch 2. |
-| 49 | Final Grade Calculator | final-grade-calculator.html | Education | ✅ Live verified | 80 current / 85 desired / 30% final -> need 96.7% (matches 96.67%). Batch 6. |
-| 50 | Flight Duration Calculator | flight-duration-calculator.html | Travel | ✅ Live verified | JFK->LHR 7h15m, 5541km; departure-time live-update fix re-tested PASS (09:00->21:15). Batch 7. |
-| 51 | Font Pairing | font-pairing.html | Fonts | ✅ Live verified | 3 pairings on load + vibe reshuffle; live previews + copy embed. Batch 6. |
-| 52 | Freelance Rate Calculator | freelance-rate-calculator.html | Business | ✅ Live verified | 60000/20h/50w/0% -> 60/hr base, 480/day. Batch 6. |
-| 53 | Gold Rate Calculator — Pakistan | gold-rate-calculator.html | Pakistan | ✅ Live verified | Prefill 441000; 1 tola -> Rs 441,000; 12 Oct 2026 note (Sarafa Assn has no public API - manual input). Batch 1. |
-| 54 | GPA Calculator | gpa-calculator.html | Education | ✅ Live verified | 3cr A + 3cr B -> GPA 3.50. Batch 6. |
-| 55 | GST Calculator | gst-calculator.html | Finance | ✅ Live verified | 1000 @18% add -> tax 180.00, total 1180.00. Batch 6. |
-| 56 | Guest List Manager | guest-list-manager.html | Wedding | ✅ Live verified | Ali+Sara added, 1 confirmed; headcount correct. Batch 6. |
-| 57 | Hash Generator | hash-generator.html | Security | ✅ Live verified | "hello" -> 2cf24dba5fb0a30e... exact SHA-256. Batch 6. |
-| 58 | #️⃣ Hashtag Generator | hashtag-generator.html | Social Media | ✅ Live verified | "fitness" -> 15 hashtags + Copy All. Batch 6. |
-| 59 | Headline Analyzer | headline-analyzer.html | Writing | ✅ Live verified | "10 Amazing Tips..." -> score 80/100 + word balance. Batch 6. |
-| 60 | Hijri Converter | hijri-converter.html | Islamic | ✅ Live verified | 2026-10-12 -> 2 Jumada I 1448 (+-1d disclaimer); both directions. Batch 7. |
-| 61 | Image Compressor | image-compressor.html | Image | ✅ Live verified | 1600x1200 photo 94.0KB -> 74.7KB (20% smaller); download: valid JPEG 1600x1200. 2026-10-12. |
-| 62 | Image Resizer | image-resizer.html | Image | ✅ Live verified | 800x600 PNG -> 500x300; download opened via PIL: valid PNG exactly 500x300. 2026-10-12. |
-| 63 | Images to PDF | images-to-pdf.html | PDF | ✅ Live verified | 3 PNGs -> download opened with pypdf: exactly 3 pages, all with content. 2026-10-12. |
-| 64 | Income Tax Calculator — Pakistan | income-tax-calculator-pakistan.html | Pakistan | ✅ Live verified | Monthly 208333.33 -> yearly tax Rs 176,000 (116000+20% of 300000) exact; slab table FY 2026-27; Oct 2026 FBR note visible. Batch 1. |
-| 65 | Ingredient Substitution | ingredient-substitution.html | Cooking | ✅ Live verified | "egg" -> flaxseed/banana/applesauce/aquafaba + variants. Batch 7. |
-| 66 | Invoice Generator | invoice-generator.html | Generators | ✅ Live verified | Item 2x500 -> Total due $1,000.00; preview rendered; Print/Save-as-PDF invoked (native dialog). Batch 2. |
-| 67 | JSON Formatter &amp; Validator | json-formatter.html | Developer | ✅ Live verified | Valid JSON -> correct 2-space format; invalid {"name":} -> clear token error; empty -> message. 2026-10-12. |
-| 68 | Keyword Density Checker | keyword-density-checker.html | SEO | ✅ Live verified | Top words + target "the" 31.69%; stopword note. Batch 7. |
-| 69 | Lorem Ipsum Generator | lorem-ipsum.html | Text | ✅ Live verified | 3 paragraphs generated; copy + download .txt. Batch 7. |
-| 70 | Meme Maker | meme-maker.html | Meme | ✅ Live verified | Uploaded photo + TOP/BOTTOM text -> download opened: valid PNG 800x600, classic meme text verified visually. Batch 2. |
-| 71 | Meme Templates | meme-templates.html | Meme | ✅ Live verified | PJAX deep-link re-test PASS: Drake paints, captions render. Batch 9. |
-| 72 | Merge PDF | merge-pdf.html | PDF | ✅ Live verified | 5-page PDF x2 -> download opened with pypdf: exactly 10 pages, all with content. 2026-10-12. |
-| 73 | Meta Tag Generator | meta-tag-generator.html | SEO | ✅ Live verified | Title/desc -> full tag set incl. OG/Twitter; copy + download. Batch 7. |
-| 74 | Metronome | metronome.html | Audio | ✅ Live verified | 120 BPM visual pulse + bar/beat counter (audio unverifiable in test env). Batch 7. |
-| 75 | Net Run Rate Calculator | net-run-rate-calculator.html | Sports | ✅ Live verified | 250/50 vs 200/50 -> NRR +1.000. Batch 7. |
-| 76 | Open Graph Preview | open-graph-preview.html | SEO | ✅ Live verified | FB/X/WhatsApp card previews render with image. Batch 7. |
-| 77 | Packing Checklist | packing-checklist.html | Travel | ✅ Live verified | Smart list + custom "Passport" add/check; progress 1/37. Batch 7. |
-| 78 | Color Palette Generator | palette-generator.html | Color | ✅ Live verified | Generate -> 5 harmonious HEX colors; lock/unlock works. Batch 8. |
-| 79 | Password Generator | password-generator.html | Generators | ✅ Live verified | Length 16 -> 16 chars; length 20 -> 20 chars; symbols toggle respected; copy showed Copied. 2026-10-12. |
-| 80 | Password Strength Checker | password-strength-checker.html | Security | ✅ Live verified | "P@ssw0rd123!" -> Strong, 2hr crack time, checklist all pass. Batch 8. |
-| 81 | Percentage Calculator | percentage-calculator.html | Calculators | ✅ Live verified | 20% of 150 = 30 with working shown. Batch 8. |
-| 82 | Plot Area Converter | plot-area-converter.html | Real Estate | ✅ Live verified | 1 kanal = 20 marla confirmed. Batch 8. |
-| 83 | Plot Price Calculator | plot-price-calculator.html | Real Estate | ✅ Live verified | 5 marla @100000 -> Rs 5 lakh total. Batch 8. |
-| 84 | Points Table Maker | points-table-maker.html | Sports | ✅ Live verified | 2 teams + result -> table P/W/L/Pts sorted, NRR manual. Batch 8. |
-| 85 | Pomodoro Timer | pomodoro-timer.html | Education | ✅ Live verified | 1-min focus countdown live; break cycling implemented. Batch 8. |
-| 86 | Prayer Times | prayer-times.html | Islamic | ✅ Live verified | Karachi -> LIVE times loaded via Aladhan API (Univ. of Islamic Sciences Karachi method): Fajr 5:12 AM etc.; green live note visible. Batch 1. |
-| 87 | Profit Margin Calculator | profit-margin-calculator.html | Business | ✅ Live verified | Double-observer race fixed; rapid-input re-test PASS: 120/60%/150% and 20/20%/25% stable. Batch 11. |
-| 88 | PTA Tax Calculator — Pakistan | pta-tax-calculator.html | Pakistan | ✅ Live verified | $150 CNIC -> Rs 11,561 total (duty 11561, sales tax 0); Jan 2026 DIRBS note visible; bands match official schedule. Batch 1. |
-| 89 | Qibla Direction | qibla-direction.html | Islamic | ✅ Live verified | Karachi -> bearing 267.7 deg; Lahore -> 260.1 deg; "No compass sensor - showing bearing only" fallback shown. Batch 2. |
-| 90 | QR Code Generator | qr-generator.html | Generators | ✅ Live verified | "https://example.com" -> QR rendered (twice incl. reload); PNG download valid 300x300; empty -> validation. Post-fix. 2026-10-12. |
-| 91 | Random Number Generator | random-number-generator.html | Everyday | ✅ Live verified | 1-10 -> 3. Batch 8. |
-| 92 | 🎰 Random Picker | random-picker.html | Fun | ✅ Live verified | Names -> winner "Ali" picked; entry counting works. Batch 8. |
-| 93 | Readability Checker | readability-checker.html | Writing | ✅ Live verified | Flesch 100.0, grade 0.0, "Very easy". Batch 9. |
-| 94 | Recipe Scaler | recipe-scaler.html | Cooking | ✅ Live verified | 4->8 servings: 2 cups->4 cups, 1 tsp->2 tsp. Batch 9. |
-| 95 | Rent vs Buy Calculator | rent-vs-buy-calculator.html | Real Estate | ✅ Live verified | 5M/20% down/30k rent/10y -> renting ahead verdict + break-even. Batch 9. |
-| 96 | Required Run Rate Calculator | required-run-rate-calculator.html | Sports | ✅ Live verified | Target 300, 150/25ov -> RRR 6.00 + chase plan. Batch 9. |
-| 97 | Resume Builder | resume-builder.html | Resume | ✅ Live verified | Filled name/title through 6 steps -> HTML downloaded; opened: contains "Test User" and "Tester". Batch 2. |
-| 98 | Resume Templates | resume-templates.html | Resume | ✅ Live verified | Classic template preview + loads in builder. Batch 9. |
-| 99 | Robots.txt Generator | robots-txt-generator.html | SEO | ✅ Live verified | Disallow /admin -> correct output; copy/download. Batch 9. |
-| 100 | ROI Calculator | roi-calculator.html | Marketing | ✅ Live verified | 10000->15000 -> ROI +50.0%, ROAS 1.50x. Batch 9. |
-| 101 | Roman Urdu → Urdu Converter | roman-urdu-to-urdu.html | Pakistan | ✅ Live verified | "mera naam Ali hai" -> "Mira naam Ali hai" converted live via keystrokes. Batch 2. |
-| 102 | Scientific Calculator | scientific-calculator.html | Education | ✅ Live verified | 2+3x4 = 14 (precedence correct). Batch 9. |
-| 103 | SIP Calculator | sip-calculator.html | Finance | ✅ Live verified | 5000/mo 12% 10y -> ~11.6 lakh maturity. Batch 9. |
-| 104 | Slug Generator | slug-generator.html | Text | ✅ Live verified | "Hello World!..." -> hello-world-this-is-a-test. Batch 9. |
-| 105 | Split PDF | split-pdf.html | PDF | ✅ Live verified | 5-page PDF -> pages 1-2; download opened with pypdf: exactly 2 pages, all with content. 2026-10-12. |
-| 106 | Stamp Duty Calculator | stamp-duty-calculator.html | Real Estate | ✅ Live verified | Punjab 5,000,000 -> Rs 50,000 (1% uniform); Oct 2026 source note visible. Post-correction. Batch 1. |
-| 107 | Stopwatch | stopwatch.html | Everyday | ✅ Live verified | Start->~3s, pause no drift, lap works, reset. Batch 10. |
-| 108 | Tasbeeh Counter | tasbeeh-counter.html | Islamic | ✅ Live verified | 5 taps -> 5 of 100 (5%); reset works. Batch 10. |
-| 109 | Text Art Generator | text-art-generator.html | Fonts | ✅ Live verified | "Hi" -> Big ASCII art; copy works. Batch 10. |
-| 110 | Text Summarizer | text-summarizer.html | Writing | ✅ Live verified | 6-sentence cats text -> 2-sentence summary. Batch 10. |
-| 111 | Timestamp Converter | timestamp-converter.html | Developer | ✅ Live verified | 0 -> Thu 01 Jan 1970 00:00:00 GMT. Batch 10. |
-| 112 | Travel Budget Planner | travel-budget-planner.html | Travel | ✅ Live verified | Hotel 200 + Food 100 -> total $300 breakdown. Batch 10. |
-| 113 | Unit Converter | unit-converter.html | Converters | ✅ Live verified | 1 km -> 0.6214 mi. Batch 10. |
-| 114 | URL Encoder Decoder | url-encoder-decoder.html | Developer | ✅ Live verified | "hello world & co" -> hello%20world%20%26%20co. Batch 10. |
-| 115 | UTM Link Builder | utm-builder.html | Developer | ✅ Live verified | -> ?utm_source=google&utm_medium=cpc&utm_campaign=sale. Batch 10. |
-| 116 | UUID Generator | uuid-generator.html | Developer | ✅ Live verified | Valid v4 UUID e3969fda-...-90ca. Batch 10. |
-| 117 | Video Metadata Viewer | video-metadata-viewer.html | Video | ✅ Live verified | test-video.mp4 upload -> 640x480, 0:03, 23.6KB, 4:3, preview rendered. Final batch. |
-| 118 | YouTube Timestamp Link | video-timestamp-link.html | Video | ✅ Live verified | YT URL + 1:30 -> youtu.be?t=90, watch?t=1m30s, embed?start=90. Batch 11. |
-| 119 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. |
-| 120 | Water Intake Calculator | water-intake-calculator.html | Health | ✅ Live verified | 70kg moderate -> 3.1L/day. Batch 11. |
-| 121 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ✅ Live verified | 800000 budget -> category allocation + catering warning. Batch 11. |
-| 122 | Wedding Countdown | wedding-countdown.html | Wedding | ✅ Live verified | 30-day target -> live ticking countdown. Batch 11. |
-| 123 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ✅ Live verified | 100000/2 families -> 50000 each, settle-up correct. Batch 11. |
-| 124 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ✅ Live verified | 923001234567 + Hello -> wa.me link + copy/open. Batch 11. |
-| 125 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. |
-| 126 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ✅ Live verified | 800x600 PNG -> valid 1280x720 JPEG downloads in Fill + Fit modes (byte-verified). Final batch. |
-| 127 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. |
+| 1 | A/B Test Calculator | ab-test-calculator.html | Marketing | ✅ Live verified | A:1000/100 vs B:1000/120 -> rates 10.00%/12.00%, p=0.1529, correctly "no significant difference yet". Batch 3. | direct URL · PJAX click · mobile |
+| 2 | Age Calculator | age-calculator.html | Calculators | ✅ Live verified | DOB 1990-01-01 -> "36 years, 9 months, 11 days" exact (441 months, 13,432 days). Batch 3. | direct URL · PJAX click · mobile |
+| 3 | AI Business Idea Generator | ai-business-idea-generator.html | AI Tools | ✅ Live verified | "eco-friendly packaging" -> structured ideas ~60s. 2026-10-12. | direct URL · PJAX click · mobile |
+| 4 | AI Caption Generator | ai-caption-generator.html | AI Tools | ✅ Live verified | "sunset beach photo" -> captions with Copy All ~60s. 2026-10-12. | direct URL · PJAX click · mobile |
+| 5 | AI Chat | ai-chat.html | AI Tools | ✅ Live verified | "Hello, what is 2+2?" -> "4." in ~60-90s (on-device+20s cloud fallback); English-only. Post-fix js28. 2026-10-12. Cloud-only path (?forceCloud=1): "What is 5+5?" -> "10" quickly, no 20s stall. 2026-10-12. | direct URL · PJAX click · mobile |
+| 6 | AI Image Generator | ai-image-generator.html | AI Tools | ✅ Live verified | "a red apple on a table" -> relevant image ~15-20s via Pollinations. 2026-10-12. | direct URL · PJAX click · mobile |
+| 7 | AI Interview Questions | ai-interview-questions.html | AI Tools | ✅ Live verified | "software engineer" -> interview Q&A ~60s. 2026-10-12. | direct URL · PJAX click · mobile |
+| 8 | AI Logo Maker | ai-logo-maker.html | AI Tools | ✅ Live verified | "coffee shop named BrewBox" -> logo image ~5-10s. 2026-10-12. | direct URL · PJAX click · mobile |
+| 9 | AI Name Generator | ai-name-generator.html | AI Tools | ✅ Live verified | "fitness app" -> name ideas ~60s. 2026-10-12. | direct URL · PJAX click · mobile |
+| 10 | AI Paraphraser | ai-paraphraser.html | AI Tools | ✅ Live verified | "The quick brown fox..." -> paraphrase in ~25s-1min. Post-fix. 2026-10-12. | direct URL · PJAX click · mobile |
+| 11 | AI Poetry Generator | ai-poetry-generator.html | AI Tools | ✅ Live verified | "rain" -> 402 friendly msg + Retry; retry -> full poem ~60s. 2026-10-12. | direct URL · PJAX click · mobile |
+| 12 | AI Text Summarizer | ai-text-summarizer.html | AI Tools | ✅ Live verified | Kyoto text -> coherent on-device summary ~22s; English-only. Post-fix js27. 2026-10-12. Cloud-only path: summary in seconds, 30-60s note visible. 2026-10-12. | direct URL · PJAX click · mobile |
+| 13 | AI Thumbnail Maker | ai-thumbnail-maker.html | AI Tools | ✅ Live verified | "10 money tips" -> 1280x720 image ~5-10s. 2026-10-12. | direct URL · PJAX click · mobile |
+| 14 | AI Translator | ai-translator.html | AI Tools | ✅ Live verified | "Hello, how are you?" EN->UR -> Urdu in seconds on-device. Post-fix js28. 2026-10-12. Cloud-only path: "Good morning" -> Urdu; one 402 then retry succeeded. 2026-10-12. | direct URL · PJAX click · mobile |
+| 15 | AI Wallpaper Generator | ai-wallpaper-generator.html | AI Tools | ✅ Live verified | "mountain landscape at night" -> 1920x1080 image in seconds. 2026-10-12. | direct URL · PJAX click · mobile |
+| 16 | ATS Resume Checker | ats-resume-checker.html | Resume | ✅ Live verified | Sample resume -> ATS score 35/100 with section breakdown + priority fixes. Batch 3. | direct URL · PJAX click · mobile |
+| 17 | Audio Trimmer | audio-trimmer.html | Audio | ✅ Live verified | Uploaded 10s MP3, trimmed 2s-5s -> WAV download opened: valid mono 44.1kHz, exactly 3.0s. Batch 2. | direct URL · PJAX click · mobile |
+| 18 | Bill Splitter | bill-splitter.html | Finance | ✅ Live verified | Bill "1,000" (with comma), tip 10, 4 people -> 275.00 / 100.00 / 1,100.00. Post comma-strip fix. Batch 3. | direct URL · PJAX click · mobile |
+| 19 | ✨ Bio Maker | bio-maker.html | Social Media | ✅ Live verified | Name Ali, designer -> 3 bios generated, copy buttons work. Batch 3. | direct URL · PJAX click · mobile |
+| 20 | BMI Calculator | bmi-calculator.html | Calculators | ✅ Live verified | 70kg/175cm -> BMI 22.9, "Normal/healthy". Batch 3. | direct URL · PJAX click · mobile |
+| 21 | BMR Calculator | bmr-calculator.html | Health | ✅ Live verified | Male 70kg/175cm/30y -> BMR 1649 (Mifflin-St Jeor), TDEE 2556. Batch 3. | direct URL · PJAX click · mobile |
+| 22 | Body Fat Calculator | body-fat-calculator.html | Health | ✅ Live verified | Male 90/40/175cm -> 19.3% "Average". Post cm-to-inches fix. Batch 3. | direct URL · PJAX click · mobile |
+| 23 | Break-Even Calculator | break-even-calculator.html | Business | ✅ Live verified | Fixed 10000, price 100, var 40 -> 167 units (rounded up), revenue 16694. Batch 3. | direct URL · PJAX click · mobile |
+| 24 | Business Name Generator | business-name-generator.html | Business | ✅ Live verified | Keyword "tech" -> 12 click-to-copy names. Batch 3. | direct URL · PJAX click · mobile |
+| 25 | Card Validator | card-validator.html | Security | ✅ Live verified | 4111111111111111 -> Valid/Visa (Luhn); 1234567890123456 -> Invalid/Unknown. Batch 4. | direct URL · PJAX click · mobile |
+| 26 | Case Converter | case-converter.html | Text | ✅ Live verified | "hello world" -> UPPER/lower/Title Case; copy works. Batch 4. | direct URL · PJAX click · mobile |
+| 27 | Citation Generator | citation-generator.html | Writing | ✅ Live verified | Book -> APA 7th "Smith, J. (2020). Test Book. Test Press." + MLA 9th; copy buttons. Batch 4. | direct URL · PJAX click · mobile |
+| 28 | CNIC / Passport Photo Maker | cnic-photo-maker.html | Pakistan | ✅ Live verified | Uploaded photo -> download opened: valid PNG 413x531 with crop guides; code draws uploaded image. Batch 2. | direct URL · PJAX click · mobile |
+| 29 | Coin Flip | coin-flip.html | Everyday | ✅ Live verified | 3 flips -> Heads, Heads, Tails; live score 2H/1T. Batch 4. | direct URL · PJAX click · mobile |
+| 30 | Color Picker | color-picker.html | Developer | ✅ Live verified | #ff0000 -> HEX/RGB 255,0,0 / HSL 0,100%,50%; copy works. Batch 4. | direct URL · PJAX click · mobile |
+| 31 | Compound Interest Calculator | compound-interest-calculator.html | Finance | ✅ Live verified | 10000 @10% 5y yearly -> 16105 (10000x1.1^5). Batch 4. | direct URL · PJAX click · mobile |
+| 32 | Contrast Checker | contrast-checker.html | Color | ✅ Live verified | #000 on #fff -> 21.00:1, AA + AAA pass. Batch 4. | direct URL · PJAX click · mobile |
+| 33 | Cooking Timer | cooking-timer.html | Cooking | ✅ Live verified | 5s countdown -> DONE + alarm + tab title change. Batch 4. | direct URL · PJAX click · mobile |
+| 34 | Cooking Unit Converter | cooking-unit-converter.html | Cooking | ✅ Live verified | 1 US cup -> 236.6 ml (US standard). Batch 4. | direct URL · PJAX click · mobile |
+| 35 | Countdown Timer | countdown-timer.html | Date & Time | ✅ Live verified | 2-min target -> live decreasing countdown. Batch 4. | direct URL · PJAX click · mobile |
+| 36 | Cover Letter Generator | cover-letter-generator.html | Resume | ✅ Live verified | Ali Khan / Designer / ABC Corp -> coherent letter; copy/download/print buttons. Batch 5. | direct URL · PJAX click · mobile |
+| 37 | CPC Calculator | cpc-calculator.html | Marketing | ✅ Live verified | 500 spend / 250 clicks -> CPC $2.00 "High". Batch 5. | direct URL · PJAX click · mobile |
+| 38 | Currency Converter | currency-converter.html | Converters | ✅ Live verified | 100 USD -> 27,720.6 PKR via LIVE ExchangeRate-API (1 USD=277.206); green live stamp; manual USD/PKR override present. Batch 1. | direct URL · PJAX click · mobile |
+| 39 | Date Difference Calculator | date-difference.html | Date & Time | ✅ Live verified | 2020-01-01 to 2026-10-12 -> 2,476 days; 6y 9m 11d. Batch 5. | direct URL · PJAX click · mobile |
+| 40 | Device Info | device-info.html | Everyday | ✅ Live verified | Live specs: Chrome 154, Linux, 1920x1080, 6 cores, 16GB; copy button. Batch 5. | direct URL · PJAX click · mobile |
+| 41 | 🎲 Dice Roller | dice-roller.html | Fun | ✅ Live verified | 2 dice -> 4+4=8; pips render, total correct. Batch 5. | direct URL · PJAX click · mobile |
+| 42 | Discount Calculator | discount-calculator.html | Calculators | ✅ Live verified | 100 @25% -> save 25.00, price 75.00; reverse 25%. Batch 5. | direct URL · PJAX click · mobile |
+| 43 | DLS Par Score Calculator | dls-par-score.html | Sports | ✅ Live verified | DLS scenario -> par 80, target 81, verdict correct. Batch 5. | direct URL · PJAX click · mobile |
+| 44 | Pregnancy Due Date Calculator | due-date-calculator.html | Health | ✅ Live verified | LMP 2026-01-01 -> due 8 Oct 2026 (+280d), 40w4d, third trimester. Batch 5. | direct URL · PJAX click · mobile |
+| 45 | Electricity Bill Calculator — Pakistan | electricity-bill-calculator.html | Pakistan | ✅ Live verified | 250 units auto -> Rs 6,865 exact (100x22.44+100x28.91+50x33.10+75); Oct 2026 note citing 12 Feb 2026 NEPRA notification. Post-correction. Batch 1. | direct URL · PJAX click · mobile |
+| 46 | EMI Calculator | emi-calculator.html | Calculators | ✅ Live verified | 100000 @12% 12mo -> EMI 8884.88. Batch 5. | direct URL · PJAX click · mobile |
+| 47 | Engagement Rate Calculator | engagement-rate-calculator.html | Marketing | ✅ Live verified | 500 likes + 50 comments / 10000 -> 5.50% "Good". Batch 5. | direct URL · PJAX click · mobile |
+| 48 | Fancy Text Generator | fancy-text-generator.html | Fonts | ✅ Live verified | "hello" -> 34 styles rendered (bold, italic, upside-down, mirror, strikethrough...); Copy -> "Copied!". Batch 2. | direct URL · PJAX click · mobile |
+| 49 | Final Grade Calculator | final-grade-calculator.html | Education | ✅ Live verified | 80 current / 85 desired / 30% final -> need 96.7% (matches 96.67%). Batch 6. | direct URL · PJAX click · mobile |
+| 50 | Flight Duration Calculator | flight-duration-calculator.html | Travel | ✅ Live verified | JFK->LHR 7h15m, 5541km; departure-time live-update fix re-tested PASS (09:00->21:15). Batch 7. | direct URL · PJAX click · mobile |
+| 51 | Font Pairing | font-pairing.html | Fonts | ✅ Live verified | 3 pairings on load + vibe reshuffle; live previews + copy embed. Batch 6. | direct URL · PJAX click · mobile |
+| 52 | Freelance Rate Calculator | freelance-rate-calculator.html | Business | ✅ Live verified | 60000/20h/50w/0% -> 60/hr base, 480/day. Batch 6. | direct URL · PJAX click · mobile |
+| 53 | Gold Rate Calculator — Pakistan | gold-rate-calculator.html | Pakistan | ✅ Live verified | Prefill 441000; 1 tola -> Rs 441,000; 12 Oct 2026 note (Sarafa Assn has no public API - manual input). Batch 1. | direct URL · PJAX click · mobile |
+| 54 | GPA Calculator | gpa-calculator.html | Education | ✅ Live verified | 3cr A + 3cr B -> GPA 3.50. Batch 6. | direct URL · PJAX click · mobile |
+| 55 | GST Calculator | gst-calculator.html | Finance | ✅ Live verified | 1000 @18% add -> tax 180.00, total 1180.00. Batch 6. | direct URL · PJAX click · mobile |
+| 56 | Guest List Manager | guest-list-manager.html | Wedding | ✅ Live verified | Ali+Sara added, 1 confirmed; headcount correct. Batch 6. | direct URL · PJAX click · mobile |
+| 57 | Hash Generator | hash-generator.html | Security | ✅ Live verified | "hello" -> 2cf24dba5fb0a30e... exact SHA-256. Batch 6. | direct URL · PJAX click · mobile |
+| 58 | #️⃣ Hashtag Generator | hashtag-generator.html | Social Media | ✅ Live verified | "fitness" -> 15 hashtags + Copy All. Batch 6. | direct URL · PJAX click · mobile |
+| 59 | Headline Analyzer | headline-analyzer.html | Writing | ✅ Live verified | "10 Amazing Tips..." -> score 80/100 + word balance. Batch 6. | direct URL · PJAX click · mobile |
+| 60 | Hijri Converter | hijri-converter.html | Islamic | ✅ Live verified | 2026-10-12 -> 2 Jumada I 1448 (+-1d disclaimer); both directions. Batch 7. | direct URL · PJAX click · mobile |
+| 61 | Image Compressor | image-compressor.html | Image | ✅ Live verified | 1600x1200 photo 94.0KB -> 74.7KB (20% smaller); download: valid JPEG 1600x1200. 2026-10-12. | direct URL · PJAX click · mobile |
+| 62 | Image Resizer | image-resizer.html | Image | ✅ Live verified | 800x600 PNG -> 500x300; download opened via PIL: valid PNG exactly 500x300. 2026-10-12. | direct URL · PJAX click · mobile |
+| 63 | Images to PDF | images-to-pdf.html | PDF | ✅ Live verified | 3 PNGs -> download opened with pypdf: exactly 3 pages, all with content. 2026-10-12. | direct URL · PJAX click · mobile |
+| 64 | Income Tax Calculator — Pakistan | income-tax-calculator-pakistan.html | Pakistan | ✅ Live verified | Monthly 208333.33 -> yearly tax Rs 176,000 (116000+20% of 300000) exact; slab table FY 2026-27; Oct 2026 FBR note visible. Batch 1. | direct URL · PJAX click · mobile |
+| 65 | Ingredient Substitution | ingredient-substitution.html | Cooking | ✅ Live verified | "egg" -> flaxseed/banana/applesauce/aquafaba + variants. Batch 7. | direct URL · PJAX click · mobile |
+| 66 | Invoice Generator | invoice-generator.html | Generators | ✅ Live verified | Item 2x500 -> Total due $1,000.00; preview rendered; Print/Save-as-PDF invoked (native dialog). Batch 2. | direct URL · PJAX click · mobile |
+| 67 | JSON Formatter &amp; Validator | json-formatter.html | Developer | ✅ Live verified | Valid JSON -> correct 2-space format; invalid {"name":} -> clear token error; empty -> message. 2026-10-12. | direct URL · PJAX click · mobile |
+| 68 | Keyword Density Checker | keyword-density-checker.html | SEO | ✅ Live verified | Top words + target "the" 31.69%; stopword note. Batch 7. | direct URL · PJAX click · mobile |
+| 69 | Lorem Ipsum Generator | lorem-ipsum.html | Text | ✅ Live verified | 3 paragraphs generated; copy + download .txt. Batch 7. | direct URL · PJAX click · mobile |
+| 70 | Meme Maker | meme-maker.html | Meme | ✅ Live verified | Uploaded photo + TOP/BOTTOM text -> download opened: valid PNG 800x600, classic meme text verified visually. Batch 2. | direct URL · PJAX click · mobile |
+| 71 | Meme Templates | meme-templates.html | Meme | ✅ Live verified | PJAX deep-link re-test PASS: Drake paints, captions render. Batch 9. | direct URL · PJAX click · mobile |
+| 72 | Merge PDF | merge-pdf.html | PDF | ✅ Live verified | 5-page PDF x2 -> download opened with pypdf: exactly 10 pages, all with content. 2026-10-12. | direct URL · PJAX click · mobile |
+| 73 | Meta Tag Generator | meta-tag-generator.html | SEO | ✅ Live verified | Title/desc -> full tag set incl. OG/Twitter; copy + download. Batch 7. | direct URL · PJAX click · mobile |
+| 74 | Metronome | metronome.html | Audio | ✅ Live verified | 120 BPM visual pulse + bar/beat counter (audio unverifiable in test env). Batch 7. | direct URL · PJAX click · mobile |
+| 75 | Net Run Rate Calculator | net-run-rate-calculator.html | Sports | ✅ Live verified | 250/50 vs 200/50 -> NRR +1.000. Batch 7. | direct URL · PJAX click · mobile |
+| 76 | Open Graph Preview | open-graph-preview.html | SEO | ✅ Live verified | FB/X/WhatsApp card previews render with image. Batch 7. | direct URL · PJAX click · mobile |
+| 77 | Packing Checklist | packing-checklist.html | Travel | ✅ Live verified | Smart list + custom "Passport" add/check; progress 1/37. Batch 7. | direct URL · PJAX click · mobile |
+| 78 | Color Palette Generator | palette-generator.html | Color | ✅ Live verified | Generate -> 5 harmonious HEX colors; lock/unlock works. Batch 8. | direct URL · PJAX click · mobile |
+| 79 | Password Generator | password-generator.html | Generators | ✅ Live verified | Length 16 -> 16 chars; length 20 -> 20 chars; symbols toggle respected; copy showed Copied. 2026-10-12. | direct URL · PJAX click · mobile |
+| 80 | Password Strength Checker | password-strength-checker.html | Security | ✅ Live verified | "P@ssw0rd123!" -> Strong, 2hr crack time, checklist all pass. Batch 8. | direct URL · PJAX click · mobile |
+| 81 | Percentage Calculator | percentage-calculator.html | Calculators | ✅ Live verified | 20% of 150 = 30 with working shown. Batch 8. | direct URL · PJAX click · mobile |
+| 82 | Plot Area Converter | plot-area-converter.html | Real Estate | ✅ Live verified | 1 kanal = 20 marla confirmed. Batch 8. | direct URL · PJAX click · mobile |
+| 83 | Plot Price Calculator | plot-price-calculator.html | Real Estate | ✅ Live verified | 5 marla @100000 -> Rs 5 lakh total. Batch 8. | direct URL · PJAX click · mobile |
+| 84 | Points Table Maker | points-table-maker.html | Sports | ✅ Live verified | 2 teams + result -> table P/W/L/Pts sorted, NRR manual. Batch 8. | direct URL · PJAX click · mobile |
+| 85 | Pomodoro Timer | pomodoro-timer.html | Education | ✅ Live verified | 1-min focus countdown live; break cycling implemented. Batch 8. | direct URL · PJAX click · mobile |
+| 86 | Prayer Times | prayer-times.html | Islamic | ✅ Live verified | Karachi -> LIVE times loaded via Aladhan API (Univ. of Islamic Sciences Karachi method): Fajr 5:12 AM etc.; green live note visible. Batch 1. | direct URL · PJAX click · mobile |
+| 87 | Profit Margin Calculator | profit-margin-calculator.html | Business | ✅ Live verified | Double-observer race fixed; rapid-input re-test PASS: 120/60%/150% and 20/20%/25% stable. Batch 11. | direct URL · PJAX click · mobile |
+| 88 | PTA Tax Calculator — Pakistan | pta-tax-calculator.html | Pakistan | ✅ Live verified | $150 CNIC -> Rs 11,561 total (duty 11561, sales tax 0); Jan 2026 DIRBS note visible; bands match official schedule. Batch 1. | direct URL · PJAX click · mobile |
+| 89 | Qibla Direction | qibla-direction.html | Islamic | ✅ Live verified | Karachi -> bearing 267.7 deg; Lahore -> 260.1 deg; "No compass sensor - showing bearing only" fallback shown. Batch 2. | direct URL · PJAX click · mobile |
+| 90 | QR Code Generator | qr-generator.html | Generators | ✅ Live verified | "https://example.com" -> QR rendered (twice incl. reload); PNG download valid 300x300; empty -> validation. Post-fix. 2026-10-12. | direct URL · PJAX click · mobile |
+| 91 | Random Number Generator | random-number-generator.html | Everyday | ✅ Live verified | 1-10 -> 3. Batch 8. | direct URL · PJAX click · mobile |
+| 92 | 🎰 Random Picker | random-picker.html | Fun | ✅ Live verified | Names -> winner "Ali" picked; entry counting works. Batch 8. | direct URL · PJAX click · mobile |
+| 93 | Readability Checker | readability-checker.html | Writing | ✅ Live verified | Flesch 100.0, grade 0.0, "Very easy". Batch 9. | direct URL · PJAX click · mobile |
+| 94 | Recipe Scaler | recipe-scaler.html | Cooking | ✅ Live verified | 4->8 servings: 2 cups->4 cups, 1 tsp->2 tsp. Batch 9. | direct URL · PJAX click · mobile |
+| 95 | Rent vs Buy Calculator | rent-vs-buy-calculator.html | Real Estate | ✅ Live verified | 5M/20% down/30k rent/10y -> renting ahead verdict + break-even. Batch 9. | direct URL · PJAX click · mobile |
+| 96 | Required Run Rate Calculator | required-run-rate-calculator.html | Sports | ✅ Live verified | Target 300, 150/25ov -> RRR 6.00 + chase plan. Batch 9. | direct URL · PJAX click · mobile |
+| 97 | Resume Builder | resume-builder.html | Resume | ✅ Live verified | Filled name/title through 6 steps -> HTML downloaded; opened: contains "Test User" and "Tester". Batch 2. | direct URL · PJAX click · mobile |
+| 98 | Resume Templates | resume-templates.html | Resume | ✅ Live verified | Classic template preview + loads in builder. Batch 9. | direct URL · PJAX click · mobile |
+| 99 | Robots.txt Generator | robots-txt-generator.html | SEO | ✅ Live verified | Disallow /admin -> correct output; copy/download. Batch 9. | direct URL · PJAX click · mobile |
+| 100 | ROI Calculator | roi-calculator.html | Marketing | ✅ Live verified | 10000->15000 -> ROI +50.0%, ROAS 1.50x. Batch 9. | direct URL · PJAX click · mobile |
+| 101 | Roman Urdu → Urdu Converter | roman-urdu-to-urdu.html | Pakistan | ✅ Live verified | "mera naam Ali hai" -> "Mira naam Ali hai" converted live via keystrokes. Batch 2. | direct URL · PJAX click · mobile |
+| 102 | Scientific Calculator | scientific-calculator.html | Education | ✅ Live verified | 2+3x4 = 14 (precedence correct). Batch 9. | direct URL · PJAX click · mobile |
+| 103 | SIP Calculator | sip-calculator.html | Finance | ✅ Live verified | 5000/mo 12% 10y -> ~11.6 lakh maturity. Batch 9. | direct URL · PJAX click · mobile |
+| 104 | Slug Generator | slug-generator.html | Text | ✅ Live verified | "Hello World!..." -> hello-world-this-is-a-test. Batch 9. | direct URL · PJAX click · mobile |
+| 105 | Split PDF | split-pdf.html | PDF | ✅ Live verified | 5-page PDF -> pages 1-2; download opened with pypdf: exactly 2 pages, all with content. 2026-10-12. | direct URL · PJAX click · mobile |
+| 106 | Stamp Duty Calculator | stamp-duty-calculator.html | Real Estate | ✅ Live verified | Punjab 5,000,000 -> Rs 50,000 (1% uniform); Oct 2026 source note visible. Post-correction. Batch 1. | direct URL · PJAX click · mobile |
+| 107 | Stopwatch | stopwatch.html | Everyday | ✅ Live verified | Start->~3s, pause no drift, lap works, reset. Batch 10. | direct URL · PJAX click · mobile |
+| 108 | Tasbeeh Counter | tasbeeh-counter.html | Islamic | ✅ Live verified | 5 taps -> 5 of 100 (5%); reset works. Batch 10. | direct URL · PJAX click · mobile |
+| 109 | Text Art Generator | text-art-generator.html | Fonts | ✅ Live verified | "Hi" -> Big ASCII art; copy works. Batch 10. | direct URL · PJAX click · mobile |
+| 110 | Text Summarizer | text-summarizer.html | Writing | ✅ Live verified | 6-sentence cats text -> 2-sentence summary. Batch 10. | direct URL · PJAX click · mobile |
+| 111 | Timestamp Converter | timestamp-converter.html | Developer | ✅ Live verified | 0 -> Thu 01 Jan 1970 00:00:00 GMT. Batch 10. | direct URL · PJAX click · mobile |
+| 112 | Travel Budget Planner | travel-budget-planner.html | Travel | ✅ Live verified | Hotel 200 + Food 100 -> total $300 breakdown. Batch 10. | direct URL · PJAX click · mobile |
+| 113 | Unit Converter | unit-converter.html | Converters | ✅ Live verified | 1 km -> 0.6214 mi. Batch 10. | direct URL · PJAX click · mobile |
+| 114 | URL Encoder Decoder | url-encoder-decoder.html | Developer | ✅ Live verified | "hello world & co" -> hello%20world%20%26%20co. Batch 10. | direct URL · PJAX click · mobile |
+| 115 | UTM Link Builder | utm-builder.html | Developer | ✅ Live verified | -> ?utm_source=google&utm_medium=cpc&utm_campaign=sale. Batch 10. | direct URL · PJAX click · mobile |
+| 116 | UUID Generator | uuid-generator.html | Developer | ✅ Live verified | Valid v4 UUID e3969fda-...-90ca. Batch 10. | direct URL · PJAX click · mobile |
+| 117 | Video Metadata Viewer | video-metadata-viewer.html | Video | ✅ Live verified | test-video.mp4 upload -> 640x480, 0:03, 23.6KB, 4:3, preview rendered. Final batch. | direct URL · PJAX click · mobile |
+| 118 | YouTube Timestamp Link | video-timestamp-link.html | Video | ✅ Live verified | YT URL + 1:30 -> youtu.be?t=90, watch?t=1m30s, embed?start=90. Batch 11. | direct URL · PJAX click · mobile |
+| 119 | Video to GIF | video-to-gif.html | Video | ✅ Live verified | Uploaded 5s MP4, 0-2s range -> GIF 334.3KB; download opened: valid GIF 320x240, 20 frames @10fps. Batch 2. | direct URL · PJAX click · mobile |
+| 120 | Water Intake Calculator | water-intake-calculator.html | Health | ✅ Live verified | 70kg moderate -> 3.1L/day. Batch 11. | direct URL · PJAX click · mobile |
+| 121 | Wedding Budget Planner | wedding-budget-planner.html | Wedding | ✅ Live verified | 800000 budget -> category allocation + catering warning. Batch 11. | direct URL · PJAX click · mobile |
+| 122 | Wedding Countdown | wedding-countdown.html | Wedding | ✅ Live verified | 30-day target -> live ticking countdown. Batch 11. | direct URL · PJAX click · mobile |
+| 123 | Wedding Expense Splitter | wedding-expense-splitter.html | Wedding | ✅ Live verified | 100000/2 families -> 50000 each, settle-up correct. Batch 11. | direct URL · PJAX click · mobile |
+| 124 | WhatsApp Link Generator | whatsapp-link-generator.html | Generators | ✅ Live verified | 923001234567 + Hello -> wa.me link + copy/open. Batch 11. | direct URL · PJAX click · mobile |
+| 125 | Word Counter | word-counter.html | Text | ✅ Live verified | Typed "Hello world this is a test" -> 6 words/26 chars live; 4-sentence para -> 38 words/4 sentences; empty -> zeros. 2026-10-12. | direct URL · PJAX click · mobile |
+| 126 | YouTube Thumbnail Resizer | youtube-thumbnail-resizer.html | Image | ✅ Live verified | 800x600 PNG -> valid 1280x720 JPEG downloads in Fill + Fit modes (byte-verified). Final batch. | direct URL · PJAX click · mobile |
+| 127 | Zakat Calculator | zakat-calculator.html | Islamic | ✅ Live verified | Cash 1,000,000, nisab 503529 -> Rs 25,000 zakat; official nisab note visible. Post-correction. Batch 1. | direct URL · PJAX click · mobile |
 
 ## Code only — not live-tested in browser (3 tools)
 
-| # | Tool | File | Category | Status | Note |
+| # | Tool | File | Category | Status | Note | Verified via |
 |---|------|------|----------|--------|------|
-| 1 | AI Story Writer | ai-story-writer.html | AI Tools | ⬜ Code only (fix deployed, unverified) | Code only - JSON-leak guard + STRICT retry deployed on js29 (code-verified, retry works); end-to-end unverified: free backend quota exhausted on all attempts. 2026-10-12. |
-| 2 | Text to Speech Studio | text-to-speech-studio.html | AI Tools | ⬜ Code only (environment-limited) | Code only - 0 voices in test environment; Speak produced no error; clear "no voices" message added; FAQ honestly states download unsupported. Audio output unverifiable here. |
-| 3 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. |
+| 1 | AI Story Writer | ai-story-writer.html | AI Tools | ⬜ Code only (fix deployed, unverified) | Code only - JSON-leak guard + STRICT retry deployed on js29 (code-verified, retry works); end-to-end unverified: free backend quota exhausted on all attempts. 2026-10-12. | direct URL (load-only) · mobile (load) |
+| 2 | Text to Speech Studio | text-to-speech-studio.html | AI Tools | ⬜ Code only (environment-limited) | Code only - 0 voices in test environment; Speak produced no error; clear "no voices" message added; FAQ honestly states download unsupported. Audio output unverifiable here. | direct URL (load-only) · mobile (load) |
+| 3 | Voice Recorder | voice-recorder.html | Audio | ⬜ Code only (environment-limited) | Code only - no microphone in test environment; graceful "Microphone blocked/unavailable" error verified live, no crash. Core recording untestable here. | direct URL (load-only) · mobile (load) |
 
 ## Tool-count reconciliation
 - **131** = actual tools (hub-link inventory, every file exists) — authoritative.
