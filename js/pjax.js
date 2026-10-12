@@ -55,24 +55,30 @@
         // Update title
         document.title = doc.title;
 
-        // Pull in any new external <head> scripts (js/ai.js, CDN libraries
-        // like pdf-lib / qrcodejs) that the fetched page needs but this
-        // document doesn't have yet — <head> never re-executes on PJAX swaps.
+        // Pull in any new external scripts (js/ai.js, CDN libraries like
+        // pdf-lib / qrcodejs) that the fetched page needs but this document
+        // doesn't have yet — only <main> scripts re-execute on PJAX swaps,
+        // so page-level scripts (end of <body>) and <head> scripts would
+        // otherwise never load (e.g. SK_AI undefined -> dead buttons).
         // NOTE: resolve against the fetched page URL explicitly — a
         // DOMParser document's base URL is not reliable for .src resolution.
-        var needed = doc.querySelectorAll('head script[src]');
+        // Compare by pathname (ignore ?v= cache-busters) so a version skew
+        // never double-loads the same library.
+        var needed = doc.querySelectorAll('script[src]');
+        var haveScripts = document.querySelectorAll('script[src]');
         for (var hs = 0; hs < needed.length; hs++) {
           var rawSrc = needed[hs].getAttribute('src');
-          var needSrc;
-          try { needSrc = new URL(rawSrc, url).href; } catch (e) { continue; }
+          var needPath;
+          try { needPath = new URL(rawSrc, url).pathname; } catch (e) { continue; }
           var found = false;
-          var have = document.querySelectorAll('script[src]');
-          for (var hj = 0; hj < have.length; hj++) {
-            if (have[hj].src === needSrc) { found = true; break; }
+          for (var hj = 0; hj < haveScripts.length; hj++) {
+            try {
+              if (new URL(haveScripts[hj].src).pathname === needPath) { found = true; break; }
+            } catch (e2) {}
           }
           if (!found) {
             var inj = document.createElement('script');
-            inj.src = needSrc;
+            inj.src = new URL(rawSrc, url).href;
             document.head.appendChild(inj);
           }
         }
