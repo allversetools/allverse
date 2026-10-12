@@ -105,7 +105,7 @@
   function set(id, v) { var el = get(id); if (el) el.textContent = v; }
   function fmt(n) { return (Math.round(n * 100) / 100).toLocaleString('en-US'); }
   function calc() {
-    var c = skNum(cost), p = skNum(price);
+    var c = skNum(cost, NaN), p = skNum(price, NaN);
     msg.textContent = '';
     if (isNaN(c) || isNaN(p) || c < 0 || p < 0) {
       set('pmProfit', '–'); set('pmMargin', '–'); set('pmMarkup', '–');

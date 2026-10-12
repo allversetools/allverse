@@ -82,7 +82,7 @@
       dRaw = SK_AI.requireInput(want, 'Enter your target grade.'); if (dRaw === null) { res.hidden = true; return; }
       wRaw = SK_AI.requireInput(wt, 'Enter the final exam weight (%).'); if (wRaw === null) { res.hidden = true; return; }
     } else { cRaw = cur.value; dRaw = want.value; wRaw = wt.value; }
-    var c = parseFloat(cRaw), d = parseFloat(dRaw), w = parseFloat(wRaw);
+    var c = skNum(cRaw, NaN), d = skNum(dRaw, NaN), w = skNum(wRaw, NaN);
     if (isNaN(c) || isNaN(d) || !(w > 0) || w > 100) { res.hidden = true; return; }
     var wf = w / 100;
     var need = (d - c * (1 - wf)) / wf;
