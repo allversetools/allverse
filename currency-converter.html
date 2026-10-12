@@ -64,7 +64,8 @@
 <div class="field"><label for="toCur">To</label><select id="toCur"></select></div>
 </div>
 <button class="btn" id="swapBtn" type="button">⇄ Swap</button>
-<p class="rate-note">Indicative rates for estimation only — not live market rates.</p>
+<div class="field" style="margin-top:10px"><label for="customPkr">Custom USD → PKR rate (optional — overrides live rate)</label><input id="customPkr" type="number" min="0" step="any" placeholder="e.g. 281.5"></div>
+<p class="rate-note" id="rateStamp">🔄 Fetching live rates…</p>
 </div>
 <div class="result-panel" id="result" hidden>
 <div class="result-label" id="curLabel">Result</div>
@@ -102,6 +103,22 @@
   var res=document.getElementById('result');
   if(!amt||!from||!to||!res) return;
   var RATES={USD:1,PKR:278,EUR:0.92,GBP:0.79,AED:3.67,SAR:3.75,INR:83.5,CNY:7.24};
+  var FALLBACK_DATE='Oct 2026';
+  var rateStamp=document.getElementById('rateStamp');
+  var customPkr=document.getElementById('customPkr');
+  function stampLive(d){
+    if(rateStamp) rateStamp.textContent='🟢 Live rates · updated '+d+' · Source: ExchangeRate-API (open.er-api.com). Indicative — check your bank for exact figures.';
+  }
+  function stampFallback(){
+    if(rateStamp) rateStamp.textContent='🟡 Offline — showing indicative rates as of '+FALLBACK_DATE+'. Enter a custom USD→PKR rate above for accuracy.';
+  }
+  function effectiveRates(){
+    var r={}, k;
+    for(k in RATES) r[k]=RATES[k];
+    var cp=parseFloat(customPkr && customPkr.value);
+    if(isFinite(cp) && cp>0) r.PKR=cp;
+    return r;
+  }
   Object.keys(RATES).forEach(function(c){
     from.appendChild(new Option(c,c)); to.appendChild(new Option(c,c));
   });
@@ -109,16 +126,29 @@
   function trim(n){ return parseFloat(n.toPrecision(6)).toString(); }
   function convert(){
     var v=parseFloat(amt.value);
+    var R=effectiveRates();
     var lbl=document.getElementById('curLabel'), out=document.getElementById('curValue'), inv=document.getElementById('curInverse');
     if(!isFinite(v)||v<0){ res.hidden=true; return; }
-    var usd=v/RATES[from.value], r=usd*RATES[to.value];
+    var usd=v/R[from.value], r=usd*R[to.value];
     res.hidden=false;
     if(lbl) lbl.textContent=v+' '+from.value+' =';
     if(out) out.textContent=trim(r)+' '+to.value;
-    if(inv) inv.textContent='1 '+from.value+' = '+trim(RATES[to.value]/RATES[from.value])+' '+to.value;
+    if(inv) inv.textContent='1 '+from.value+' = '+trim(R[to.value]/R[from.value])+' '+to.value;
   }
   [amt,from,to].forEach(function(el){ el.addEventListener('input',convert); el.addEventListener('change',convert); });
+  if(customPkr){ customPkr.addEventListener('input',convert); }
   if(swap) swap.addEventListener('click',function(){ var t=from.value; from.value=to.value; to.value=t; convert(); });
+  // Live rates (free, no key). Falls back to built-in indicative rates if offline.
+  try{
+    fetch('https://open.er-api.com/v6/latest/USD').then(function(r){ return r.json(); }).then(function(d){
+      if(d && d.result==='success' && d.rates){
+        ['PKR','EUR','GBP','AED','SAR','INR','CNY'].forEach(function(c){ if(d.rates[c]) RATES[c]=d.rates[c]; });
+        var upd=d.time_last_update_utc ? d.time_last_update_utc.slice(0,16) : 'today';
+        stampLive(upd); convert();
+      } else stampFallback();
+    }).catch(stampFallback);
+    setTimeout(function(){ if(rateStamp && /Fetching/.test(rateStamp.textContent)) stampFallback(); }, 8000);
+  }catch(e){ stampFallback(); }
   convert();
 })();
 </script>
