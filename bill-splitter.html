@@ -98,7 +98,7 @@
 <script>
 (function () {
   function g(id){ return document.getElementById(id); }
-  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(el.value); return isNaN(v)?null:v; }
+  function num(id){ var el=g(id); if(!el) return null; var v=parseFloat(String(el.value).replace(/[,\s]/g,'')); return isNaN(v)?null:v; }
   function money(n){ if(n===null||!isFinite(n)) return '—'; return (Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   function set(id,t){ var el=g(id); if(el) el.textContent=t; }
   function update(){

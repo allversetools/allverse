@@ -108,13 +108,14 @@
     var h=num('bfHeight'), n=num('bfNeck'), w=num('bfWaist'), hp=num('bfHips');
     if(h===null||n===null||w===null||h<=0||n<=0||w<=0){ set('bfPct','—'); set('bfCat','—'); return; }
     var bf=null;
+    /* US Navy formula expects inches — inputs are cm, so convert (1 in = 2.54 cm) */
     if(!female){
       if(w<=n){ set('bfPct','—'); set('bfCat','waist must exceed neck'); return; }
-      bf=86.010*log10(w-n)-70.041*log10(h)+36.76;
+      bf=86.010*log10((w-n)/2.54)-70.041*log10(h/2.54)+36.76;
     } else {
       if(hp===null||hp<=0){ set('bfPct','—'); set('bfCat','—'); return; }
       if(w+hp<=n){ set('bfPct','—'); set('bfCat','check measurements'); return; }
-      bf=163.205*log10(w+hp-n)-97.684*log10(h)-78.387;
+      bf=163.205*log10((w+hp-n)/2.54)-97.684*log10(h/2.54)-78.387;
     }
     if(!isFinite(bf)){ set('bfPct','—'); set('bfCat','—'); return; }
     set('bfPct',(Math.round(bf*10)/10)+'%');
