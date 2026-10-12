@@ -10,7 +10,7 @@
 
   function ensureAudio() {
     if (audio) return true;
-    audio = new Audio('audio/bg-music.mp3?v=3');
+    audio = new Audio('audio/bg-music.mp3?v=4');
     audio.loop = true;
     audio.volume = 0.5;
     audio.preload = 'auto';
