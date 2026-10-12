@@ -21,6 +21,7 @@ so reports say "no visible errors observed" — never "zero console errors".
 ## Summary
 - ✅ Live verified: **39**
 - 🟧 Code only (fix deployed, unverified): **1** (AI Story Writer — backend quota)
+- 🟨 Code only (environment-limited): **2** (Voice Recorder — no mic in test env; Text to Speech — no voices in test env)
 - ⬜ Code only (unverified): **88**
 - **Total: 130**
 
