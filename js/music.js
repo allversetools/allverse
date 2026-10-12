@@ -103,19 +103,36 @@
         if (wasPlaying && !playing) { wasPlaying = false; start(); }
       }
     });
-    // Auto-resume if was on (starts on first interaction due to browser policy)
-    if (wasOn()) {
-      var tryStart = function () {
-        if (playing) return;
-        start();
-        ['click', 'touchstart', 'keydown'].forEach(function (ev) {
-          document.removeEventListener(ev, tryStart);
+    // AUTO-PLAY for everyone: try on load, else start on first interaction
+    var autoPlayDone = false;
+    var tryAutoPlay = function () {
+      if (autoPlayDone || playing) return;
+      autoPlayDone = true;
+      // Try immediate play (works if browser allows)
+      if (ensureAudio()) {
+        audio.play().then(function () {
+          playing = true;
+          saveState(true);
+          setButtons(true);
+        }).catch(function () {
+          // Blocked by browser policy — start on FIRST click/tap/key anywhere
+          autoPlayDone = false;
+          var unlock = function () {
+            if (playing) return;
+            autoPlayDone = true;
+            start();
+            ['pointerdown', 'touchstart', 'keydown', 'click'].forEach(function (ev) {
+              document.removeEventListener(ev, unlock);
+            });
+          };
+          ['pointerdown', 'touchstart', 'keydown', 'click'].forEach(function (ev) {
+            document.addEventListener(ev, unlock, { passive: true });
+          });
         });
-      };
-      ['click', 'touchstart', 'keydown'].forEach(function (ev) {
-        document.addEventListener(ev, tryStart, { passive: true });
-      });
-    }
+      }
+    };
+    // Try autoplay shortly after page load
+    setTimeout(tryAutoPlay, 800);
   }
 
   if (document.readyState === 'loading') {
