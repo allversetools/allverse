@@ -96,7 +96,20 @@
         }
       });
     });
-    document.querySelectorAll('.stat b, .result-panel').forEach(function (el) {
+    /* Observe each animated element exactly once: a .stat b inside a
+       .result-panel is already covered by the panel's subtree observer —
+       attaching both makes two observers fight over the same element's
+       animation state (_fxSelf/_fxTick/_fxSeq) and leaves stale values stuck. */
+    var covered = [];
+    document.querySelectorAll('.result-panel').forEach(function (el) {
+      el._fxPrevText = el.textContent;
+      io.observe(el, { childList: true, characterData: true, subtree: true });
+      covered.push(el);
+    });
+    document.querySelectorAll('.stat b').forEach(function (el) {
+      for (var i = 0; i < covered.length; i++) {
+        if (covered[i].contains(el)) return; /* already observed via panel */
+      }
       el._fxPrevText = el.textContent;
       io.observe(el, { childList: true, characterData: true, subtree: true });
     });
