@@ -55,12 +55,16 @@
         // Update title
         document.title = doc.title;
 
-        // Pull in any new external <head> scripts (CDN libraries like
-        // pdf-lib / qrcodejs) that the fetched page needs but this document
-        // doesn't have yet — <head> never re-executes on PJAX swaps.
+        // Pull in any new external <head> scripts (js/ai.js, CDN libraries
+        // like pdf-lib / qrcodejs) that the fetched page needs but this
+        // document doesn't have yet — <head> never re-executes on PJAX swaps.
+        // NOTE: resolve against the fetched page URL explicitly — a
+        // DOMParser document's base URL is not reliable for .src resolution.
         var needed = doc.querySelectorAll('head script[src]');
         for (var hs = 0; hs < needed.length; hs++) {
-          var needSrc = needed[hs].src;
+          var rawSrc = needed[hs].getAttribute('src');
+          var needSrc;
+          try { needSrc = new URL(rawSrc, url).href; } catch (e) { continue; }
           var found = false;
           var have = document.querySelectorAll('script[src]');
           for (var hj = 0; hj < have.length; hj++) {
