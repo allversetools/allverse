@@ -119,7 +119,7 @@ async function summarizeOnDevice(text,length){
 btn.onclick=function(){
   var text=SK_AI.requireInput($('smText'),'Enter text first.');
   if(text===null) return;
-  if(text.length<50){SK_AI.showError(res,'Thora lamba text paste karein (50+ characters) / Paste longer text.');return;}
+  if(text.length<50){SK_AI.showError(res,'Please paste a longer text (50+ characters).');return;}
   var length=$('smLen').value;
   res.hidden=false; SK_AI.scrollTo(res);
   SK_AI.setBusy(btn,true,'✨ Summarizing…'); SK_AI.loading(res,true); out.textContent='';

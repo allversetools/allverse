@@ -52,11 +52,11 @@
 
 <div class="tool-panel">
 <div id="chBox" style="border:1px solid var(--border);border-radius:12px;padding:14px;min-height:280px;max-height:420px;overflow-y:auto;margin-bottom:12px;background:var(--soft)">
-<div style="color:var(--muted)">👋 Assalam-o-Alaikum! Kuch bhi poochein — homework, ideas, writing, ya bas gapshap.</div>
+<div style="color:var(--muted)">👋 Hello! Ask me anything — homework, ideas, writing, or just chat.</div>
 </div>
 <p class="hint" id="chEngine" style="margin:0 0 8px"></p>
 <div class="field-row" style="display:flex;gap:8px">
-<div class="field" style="flex:1;margin:0"><input type="text" id="chIn" placeholder="Apna sawal likhein…" maxlength="500" style="margin:0"></div>
+<div class="field" style="flex:1;margin:0"><input type="text" id="chIn" placeholder="Type your question…" maxlength="500" style="margin:0"></div>
 <button class="btn btn-primary" id="chBtn" type="button">Send ➤</button>
 </div>
 </div></div><section class="faq-section"><h2>AI Chat — FAQs</h2>
@@ -103,18 +103,18 @@ async function deviceReply(prompt){
   history.push({role:'assistant',content:ans});
   return ans;
 }
+var lastQ='';
 function send(){
   if(btn.disabled)return;
-  var q=SK_AI.requireInput(inp,'Kuch toh likho! / Please type a message first.'); lastQ=q;
+  var q=SK_AI.requireInput(inp,'Please type a message first.'); lastQ=q;
   if(q===null)return;
   inp.value=''; bubble('you',q);
   var ab=bubble('ai','…');
   SK_AI.setBusy(btn,true,'…');
   var done=function(t){SK_AI.setBusy(btn,false);ab.textContent='';SK_AI.typeInto(ab,t);};
-  var lastQ='';
   var fail=function(e){SK_AI.setBusy(btn,false);
     var msg=e.message;
-    if(msg.indexOf('429')!==-1) msg='AI thori busy hai, 15 second ruko phir try karo. / AI is busy, wait 15 seconds.';
+    if(msg.indexOf('429')!==-1) msg='The AI is busy right now. Please wait 15 seconds and try again.';
     ab.innerHTML='';
     var sp=document.createElement('span');sp.textContent='⚠️ '+msg;ab.appendChild(sp);
     if(lastQ){
@@ -126,21 +126,14 @@ function send(){
   };
   if('LanguageModel' in window){
     // On-device with 20s timeout — fallback to cloud if it hangs or fails
-    var deviceTimed=false;
-    var timer=setTimeout(function(){ deviceTimed=true; }, 20000);
-    deviceReply(q).then(function(t){
-      if(!deviceTimed){ clearTimeout(timer); done(t); }
-    }).catch(function(){
-      clearTimeout(timer);
-      SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail);
-    });
-    // Timeout fallback
-    setTimeout(function(){
-      if(deviceTimed && btn.disabled){
-        clearTimeout(timer);
-        SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail);
-      }
-    }, 20500);
+    var finished=false;
+    var ok=function(t){ if(!finished){ finished=true; done(t); } };
+    var no=function(e){ if(!finished){ finished=true; fail(e); } };
+    var timer=setTimeout(function(){
+      SK_AI.chat(q,'You are a helpful assistant.').then(ok).catch(no);
+    }, 20000);
+    deviceReply(q).then(function(t){ clearTimeout(timer); ok(t); })
+      .catch(function(){ clearTimeout(timer); SK_AI.chat(q,'You are a helpful assistant.').then(ok).catch(no); });
   }else{ SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail); }
 }
 btn.onclick=send;

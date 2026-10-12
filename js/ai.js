@@ -81,7 +81,7 @@
     var url = POLLINATIONS_TEXT + encodeURIComponent(full);
     return fetch(url, { method: 'GET' }).then(function (res) {
       if (res.status === 429) {
-        var e = new Error('AI busy, retry in a moment. / AI masroof hai, thori dair baad dobara try karein.');
+        var e = new Error('AI is busy, please retry in a moment.');
         e.code = 429;
         throw e;
       }
@@ -319,7 +319,7 @@
           host.appendChild(hint);
         }
         hint.hidden = false;
-        hint.textContent = msg || 'Kuch toh likho! / Please enter something.';
+        hint.textContent = msg || 'Please enter something first.';
       }
       try { input.focus(); } catch (e) {}
     }
@@ -343,7 +343,7 @@
     // Friendly message for rate limits
     var friendly = msg;
     if (msg && msg.indexOf('429') !== -1) {
-      friendly = 'AI thori busy hai (rate limit). 15 second ruko phir try karo. / AI is busy, wait 15 seconds and try again.';
+      friendly = 'The AI is busy (rate limit). Please wait 15 seconds and try again.';
     }
     p.textContent = '⚠️ ' + friendly;
     // Add retry button if retryFn provided

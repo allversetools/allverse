@@ -132,7 +132,7 @@
 var $=function(id){return document.getElementById(id)};
 var btn=$('igBtn'),res=$('igResult'),img=$('igImg');
 if(!btn||!res||!img) return;
-var IG_MSGS=[[0,'🎨 Creating your image…'],[10000,'🎨 Still rendering… please wait.'],[30000,'⏳ Almost there — big images take up to a minute.']];
+var IG_MSGS=[[0,'🎨 Creating your image…'],[10000,'🎨 Still rendering… please wait.'],[30000,'⏳ Almost there — big images take up to a minute.'],[60000,'⏳ Taking longer than usual — the free service may be busy.']];
 function makeUrl(){
   var p=$('igPrompt').value.trim(); if(!p){return null;}
   // Check rate limit (1 req per 15s)
@@ -152,8 +152,15 @@ function load(url){
   SK_AI.setBusy(btn,true,'🎨 Creating your image…');
   res.hidden=false; SK_AI.scrollTo(res); SK_AI.loading(res,true,{messages:IG_MSGS}); img.style.opacity='.4';
   var pre=new Image();
-  pre.onload=function(){_retryCount=0;img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);SK_AI.loading(res,false);};
+  // Timeout: free image API can stall — don't hang forever
+  var timer=setTimeout(function(){
+    pre.src=''; // cancel the stalled load
+    _retryCount=0;SK_AI.setBusy(btn,false);SK_AI.loading(res,false);img.style.opacity='1';
+    SK_AI.showError(res,'The image request timed out. The free image service may be busy — please try again.',function(){btn.click();});
+  },90000);
+  pre.onload=function(){clearTimeout(timer);_retryCount=0;img.src=url;img.style.opacity='1';SK_AI.setBusy(btn,false);SK_AI.loading(res,false);};
   pre.onerror=function(){
+    clearTimeout(timer);
     // Auto-retry once with a fresh seed (free API can hiccup)
     if(_retryCount<1){_retryCount++;load(makeUrl());return;}
     _retryCount=0;SK_AI.setBusy(btn,false);SK_AI.loading(res,false);img.style.opacity='1';
