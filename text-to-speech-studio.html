@@ -128,7 +128,9 @@ $('tsPitch').oninput=function(){$('tsPitchV').textContent=this.value;};
 $('tsSpeak').onclick=function(){
   var t=SK_AI.requireInput($('tsText'),'Type some text first.');
   if(t===null){note.textContent='⚠️ Type some text first.';return;}
-  note.textContent=synth.getVoices().length+' voices available on your device.';
+  var n=synth.getVoices().length;
+  if(!n){note.textContent='⚠️ No voices found on this device/browser — speech cannot play here. Try Chrome or Edge on desktop, or install a TTS voice in your OS settings.';return;}
+  note.textContent=n+' voices available on your device.';
   synth.cancel();
   var u=new SpeechSynthesisUtterance(t);
   var vs=synth.getVoices();
