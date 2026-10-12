@@ -125,7 +125,22 @@ function send(){
     }
   };
   if('LanguageModel' in window){
-    deviceReply(q).then(done).catch(function(){ SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail); });
+    // On-device with 20s timeout — fallback to cloud if it hangs or fails
+    var deviceTimed=false;
+    var timer=setTimeout(function(){ deviceTimed=true; }, 20000);
+    deviceReply(q).then(function(t){
+      if(!deviceTimed){ clearTimeout(timer); done(t); }
+    }).catch(function(){
+      clearTimeout(timer);
+      SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail);
+    });
+    // Timeout fallback
+    setTimeout(function(){
+      if(deviceTimed && btn.disabled){
+        clearTimeout(timer);
+        SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail);
+      }
+    }, 20500);
   }else{ SK_AI.chat(q,'You are a helpful assistant.').then(done).catch(fail); }
 }
 btn.onclick=send;

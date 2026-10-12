@@ -27,7 +27,7 @@ This audit was done via **static code analysis + logic verification** (subagent 
 
 ## Phase 0: Audit Results
 
-| # | Tool | File | Category | Status | Notes | Date |
+| # | Tool | File | Category | Status | Verified how | Notes | Date |
 |---|------|------|----------|--------|-------|------|
 | 1 | A/B Test Calculator | ab-test-calculator.html | Calculators | ✅ | Code verified | 2026-10-12 |
 | 2 | Age Calculator | age-calculator.html | Calculators | ✅ | Date logic verified | 2026-10-12 |
@@ -179,3 +179,13 @@ This audit was done via **static code analysis + logic verification** (subagent 
 
 ## Phase 1: Fix Log
 *(starts after user approves Phase 0)*
+
+## Live Browser Test Results (2026-10-11/12)
+
+| Tool | Input | Output | Console Errors | Verdict |
+|------|-------|--------|----------------|---------|
+| Word Counter | "Hello world this is a test" → 6 words, 26 chars; 4-sentence para → 38 words, 4 sentences; empty → all 0 | All correct, live updating, no button needed | None observed | ✅ Working (live browser) |
+| Password Generator | Default 16 chars → correct; length 20 → 20 chars; symbols off → no symbols; copy button | Length always matches, toggle respected, copy shows ✓ Copied! | None observed | ✅ Working (live browser) |
+| QR Generator | "https://example.com" → Generate clicked | NO QR appeared. Root cause: wrong CDN (lib/browser.min.js has require() calls, not browser bundle). FIXED: switched to qrcodejs@1.0.0, rewrote generate(). Awaiting re-test. | require is not defined (library load fail) | 🔴 Broken → Fixed, needs re-test |
+| JSON Formatter | Valid {"name":"Ali"...} → Format; invalid {"name":}; empty | Valid → properly indented 2-space; invalid → "Invalid JSON: Unexpected token"; empty → "Input is empty" | None observed | ✅ Working (live browser) |
+| AI Chat | "Hello, what is 2+2?" | NO response — stuck on "…" loading for 2+ min, button disabled, no error shown. Root cause: on-device AI (LanguageModel) hangs, no timeout/fallback. FIXED: 20s timeout → fallback to cloud Pollinations. Awaiting re-test. | None shown (hang, not error) | 🟡 Partial → Fixed, needs re-test |
