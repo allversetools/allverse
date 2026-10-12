@@ -120,7 +120,7 @@ This audit was done via **static code analysis + logic verification** (subagent 
 | 89 | Profit Margin Calculator | profit-margin-calculator.html | Calculators | ✅ | Code verified | 2026-10-12 |
 | 90 | PTA Tax Calculator Pakistan | pta-tax-calculator.html | Calculators | ✅ | Code verified | 2026-10-12 |
 | 91 | Qibla Direction | qibla-direction.html | Pakistan | ✅ | Calculation functions verified | 2026-10-12 |
-| 92 | QR Code Generator | qr-generator.html | Generators | 🟡 | Was broken 2026-10-11; code rewritten with qrcode@1.5.3 (CDN 200 OK) — needs live verification | 2026-10-12 |
+| 92 | QR Code Generator | qr-generator.html | Generators | ✅ | Live verified 2026-10-12 (post-fix). Verified how: live browser test — typed "https://example.com" → QR rendered (verified twice, incl. after page reload), "Download PNG" downloaded qrcode.png, empty input shows validation message. No visible errors. | 2026-10-12 |
 | 93 | Random Number Generator | random-number-generator.html | Text | ✅ | Code verified | 2026-10-12 |
 | 94 | Random Picker | random-picker.html | Everyday | ✅ | Code verified | 2026-10-12 |
 | 95 | Readability Checker | readability-checker.html | Text | ✅ | Code verified | 2026-10-12 |
@@ -164,7 +164,7 @@ This audit was done via **static code analysis + logic verification** (subagent 
 ## Summary
 - **Audited:** 131/131
 - ✅ Working (code-verified): 115
-- 🟡 Partial: 16 (15 AI tools + QR Generator)
+- 🟡 Partial: 15 (AI tools — live browser testing in progress)
 - 🔴 Broken: 0
 - ⚫ Fake: 0
 - 🔧 Needs backend: 0
@@ -173,7 +173,7 @@ This audit was done via **static code analysis + logic verification** (subagent 
 ## Key Findings
 1. **No broken or fake tools found in code.** All 131 tools have valid JS, wired buttons, and no placeholder signals.
 2. **AI tools (15):** `js/ai.js` line 93 has `'Authorization': 'Bearer <redacted>'` — llm7 primary API will 401. Fallback to Pollinations text API works (verified 200/OK). Recommend: remove dead llm7 call or get valid key.
-3. **QR Generator:** was confirmed broken 2026-10-11 (button did nothing). Code has since been rewritten to use qrcode@1.5.3 from jsdelivr (verified 200). Needs live click-test to confirm fix.
+3. **QR Generator:** was confirmed broken 2026-10-11 (button did nothing). Fixed: switched to qrcodejs@1.0.0 from cdnjs (browser-ready bundle, window.QRCode), rewrote generate(). **Live re-tested 2026-10-12: QR renders and PNG downloads — working.**
 4. **PDF tools (3):** pdf-lib@1.17.1 from cdnjs verified 200. Code correct.
 5. **Voice Recorder:** code correct (MediaRecorder), but live test needs real microphone.
 
@@ -186,6 +186,12 @@ This audit was done via **static code analysis + logic verification** (subagent 
 |------|-------|--------|----------------|---------|
 | Word Counter | "Hello world this is a test" → 6 words, 26 chars; 4-sentence para → 38 words, 4 sentences; empty → all 0 | All correct, live updating, no button needed | None observed | ✅ Working (live browser) |
 | Password Generator | Default 16 chars → correct; length 20 → 20 chars; symbols off → no symbols; copy button | Length always matches, toggle respected, copy shows ✓ Copied! | None observed | ✅ Working (live browser) |
-| QR Generator | "https://example.com" → Generate clicked | NO QR appeared. Root cause: wrong CDN (lib/browser.min.js has require() calls, not browser bundle). FIXED: switched to qrcodejs@1.0.0, rewrote generate(). Awaiting re-test. | require is not defined (library load fail) | 🔴 Broken → Fixed, needs re-test |
+| QR Generator | "https://example.com" → Generate clicked (2026-10-12 re-test after fix) | QR image rendered within ~250ms, verified twice incl. after full page reload; "Download PNG" triggered qrcode.png download; empty input shows "Please enter some text or a URL first." | None observed (console not directly accessible) | ✅ Live verified |
 | JSON Formatter | Valid {"name":"Ali"...} → Format; invalid {"name":}; empty | Valid → properly indented 2-space; invalid → "Invalid JSON: Unexpected token"; empty → "Input is empty" | None observed | ✅ Working (live browser) |
 | AI Chat | "Hello, what is 2+2?" | NO response — stuck on "…" loading for 2+ min, button disabled, no error shown. Root cause: on-device AI (LanguageModel) hangs, no timeout/fallback. FIXED: 20s timeout → fallback to cloud Pollinations. Awaiting re-test. | None shown (hang, not error) | 🟡 Partial → Fixed, needs re-test |
+| Image Resizer | test-image.png (800x600) → 500x300 | Upload ✅, preview ✅, "500 × 300 px · PNG" ✅, download resized-500x300.png ✅ | None observed | ✅ Working (live browser) |
+| Split PDF | 5-page PDF → extract pages 1-2 | Upload ✅ "5 pages", extract ✅, download test-doc-pages.pdf ✅, verified: valid PDF with exactly 2 pages (/Count 2) | None observed | ✅ Working (live browser) |
+| Images to PDF | 3 test images → Download PDF | Upload ✅ all 3, conversion ✅, download images.pdf ✅, verified: valid PDF with exactly 3 pages | None observed | ✅ Working (live browser) |
+| AI Image Generator | "a red apple on a table" | Image ✅ in ~15-20s, photorealistic red apple on wooden table ✅ relevant, Download + New Variation buttons ✅. Service: Pollinations.ai (image.pollinations.ai, model=flux, no key). Retry ("New Variation") works but 2nd gen was slow (API busy). | None observed | ✅ Working (live browser) |
+| Image Compressor | test-image.png (2.7KB) → 80% quality | Upload ✅, compress ✅, preview ✅, download compressed.jpg ✅. "0% smaller" honest (tiny PNG→JPEG overhead, expected). Slider responds correctly. | None observed | ✅ Working (live browser) |
+| Merge PDF | 2x 5-page PDFs → Merge | Upload ✅ both files, merge ✅, download merged.pdf ✅, verified: valid PDF with exactly 10 pages (5+5) | None observed | ✅ Working (live browser) |
