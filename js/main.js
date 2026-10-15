@@ -433,8 +433,11 @@
     var tag = (document.activeElement && document.activeElement.tagName) || '';
     var typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault();
-      if (palOverlay && palOverlay.classList.contains('open')) closePalette(); else openPalette();
+      if (palOverlay && palOverlay.classList.contains('open')) { e.preventDefault(); closePalette(); return; }
+      /* Header search bar removed: Ctrl+K now focuses the hero search
+         (homepage only). Elsewhere: do nothing, never error. */
+      var hero = document.getElementById('smartPasteInput');
+      if (hero) { e.preventDefault(); hero.focus(); hero.scrollIntoView({ block: 'center' }); }
     } else if (e.key === '/' && !typing) {
       e.preventDefault();
       openPalette();
