@@ -2532,3 +2532,58 @@ main, .site-footer { position: relative; z-index: 1; }
 .faq{border:1px solid var(--border,#e5e7eb);border-radius:10px;margin:8px 0;padding:0}
 .faq summary{cursor:pointer;font-weight:600;padding:12px 16px}
 .faq p{padding:0 16px 14px;margin:0;line-height:1.6}
+
+/* ============================================================
+   RESPONSIVE PASS (2026-10-15) — verified with headless Chrome
+   screenshots at 360/430/768/1024/1440/1920. Only fixes breakage;
+   no look-and-feel redesign. Appended last = wins.
+   ============================================================ */
+
+/* --- S1 Header: 3 rows -> 2 rows on small phones --- */
+@media (max-width: 900px) {
+  .header-inner { gap: 12px; }
+  #menuToggle { order: -1; }
+}
+@media (max-width: 480px) {
+  .header-inner { gap: 10px; padding: 10px 12px; }
+  .header-inner .theme-switch-label { display: none; }
+}
+@media (max-width: 360px) {
+  a.logo { font-size: 1.05rem; gap: 8px; }
+}
+
+/* --- S2 Hero search: full-width bar so the mono placeholder never clips --- */
+.sp-bar { width: 100%; }
+.sp-bar input { flex: 1 1 0%; min-width: 0; width: auto; }
+@media (max-width: 480px) {
+  .smart-paste { padding: 12px; }
+  .cc-big-search input { font-size: .88rem !important; padding: 11px 10px !important; }
+}
+
+/* --- S3 Sidebar: 2-col category grid must fit inside the 264px drawer --- */
+@media (max-width: 900px) {
+  .sidebar .side-nav { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .sidebar .side-nav > * { min-width: 0; }
+  .sidebar .side-nav .side-title,
+  .sidebar .side-nav .cc-home-link { grid-column: 1 / -1; }
+  .sidebar .side-nav .side-count { display: none; }
+  .sidebar .side-link { gap: 8px; padding: 9px 8px; }
+}
+
+/* --- S6 Game pages: 3D start overlays must never clip or show HUD through --- */
+.g-box .g-overlay, .sr-box .sr-overlay {
+  background: rgba(4, 10, 24, .97);
+  overflow-y: auto;
+  justify-content: safe center;
+}
+@media (max-width: 560px) {
+  .g-box .g-overlay, .sr-box .sr-overlay { padding: 16px 14px; gap: 8px; }
+  /* Start screens: hide the long description + keys line (both are
+     repeated in the How-to-play section below the game) so the
+     Play button is always visible without scrolling. */
+  #gStart > p:first-of-type, #srStart > p:first-of-type,
+  #gStart > p.keys, #srStart > p.sr-keys { display: none; }
+  /* HUD buttons: 44px min touch target (WCAG). Touch pads are already 52px+. */
+  .g-box .g-hud button, .g-box .g-hud select,
+  .sr-box .sr-hud button { min-height: 44px; min-width: 44px; }
+}
