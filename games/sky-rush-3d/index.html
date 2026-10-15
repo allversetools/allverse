@@ -7,7 +7,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SkyRush 3D — Free Endless Runner Game | AllVerse">
 <meta name="twitter:description" content="Dodge barriers, leap stalls and grab gems in SkyRush 3D — a free endless runner through a colourful South Asian street. No signup.">
-<meta name="twitter:image" content="https://allversetools.github.io/allverse/games/thumbs/sky-rush-3d.webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../css/style.css?v=run29"><script src="../../js/helpers.js?v=h1"></script><link rel="canonical" href="https://allversetools.github.io/allverse/games/sky-rush-3d/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "SkyRush 3D", "applicationCategory": "GameApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "SkyRush 3D is a free endless runner game. Steer an auto-rickshaw through a colourful South Asian street, dodge barriers, jump stalls, collect gems and beat the daily distance mission.", "url": "https://allversetools.github.io/allverse/games/sky-rush-3d/", "genre": ["Endless Runner", "Arcade"], "playMode": "SinglePlayer", "gamePlatform": "Web browser"}</script><script type="application/ld+json">
+<meta name="twitter:image" content="https://allversetools.github.io/allverse/games/thumbs/sky-rush-3d.webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript><link rel="stylesheet" href="../../css/style.css?v=run29"><script src="../../js/helpers.js?v=h1"></script><link rel="canonical" href="https://allversetools.github.io/allverse/games/sky-rush-3d/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "SkyRush 3D", "applicationCategory": "GameApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "SkyRush 3D is a free endless runner game. Steer an auto-rickshaw through a colourful South Asian street, dodge barriers, jump stalls, collect gems and beat the daily distance mission.", "url": "https://allversetools.github.io/allverse/games/sky-rush-3d/", "genre": ["Endless Runner", "Arcade"], "playMode": "SinglePlayer", "gamePlatform": "Web browser"}</script><script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is SkyRush 3D free to play?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — SkyRush 3D is completely free, runs in your browser and needs no download or signup."}}, {"@type": "Question", "name": "What are the controls for SkyRush 3D?", "acceptedAnswer": {"@type": "Answer", "text": "On a keyboard use the arrow keys or A/D to switch lanes, Up/W/Space to jump and Down/S to slide. On touch screens, swipe or use the on-screen buttons."}}, {"@type": "Question", "name": "How do magnet and shield power-ups work?", "acceptedAnswer": {"@type": "Answer", "text": "The magnet pulls nearby gems toward your rickshaw for 6 seconds. The shield absorbs one crash, then disappears."}}, {"@type": "Question", "name": "What is the daily mission?", "acceptedAnswer": {"@type": "Answer", "text": "Each day brings a new distance target. Beat it in a single run to keep your daily streak going."}}, {"@type": "Question", "name": "Does SkyRush 3D work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — it works on phones, tablets and desktops, with swipe controls and tap buttons on touch screens."}}]}
 </script>
 <script type="application/ld+json">
@@ -83,13 +83,15 @@
 <p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
 </footer>
 <script src="../../js/games-common.js?v=js1"></script>
-<script src="../../js/main.js?v=js30"></script>
-<script src="../../js/music.js?v=js27"></script><script src="../../js/pjax.js?v=7"></script>
+<script src="../../js/main.js?v=js31"></script>
+<script src="../../js/music.js?v=js28"></script><script src="../../js/pjax.js?v=7"></script>
 <script src="../../js/pwa.js?v=js26"></script>
 <script>window.__srBooted=false;setTimeout(function(){if(!window.__srBooted){var l=document.getElementById('srLoading');var e=document.getElementById('srError');if(l)l.style.display='none';if(e)e.style.display='flex';}},9000);document.getElementById('srRetryBtn').addEventListener('click',function(){location.reload();});</script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 <script type="module">
-import * as THREE from 'three';
+/* THREE is lazy-loaded on Play (dynamic import in bootThree below) —
+   the ~600KB engine is NOT downloaded on page load. */
+var THREE = null;
 /* PURE-LOGIC-START — no THREE references; extracted by QA test */
 function laneX(i){ return [-2.2, 0, 2.2][Math.max(0, Math.min(2, i))]; }
 function aabbOverlap(a, b){ return a.minX < b.maxX && a.maxX > b.minX && a.minY < b.maxY && a.maxY > b.minY && a.minZ < b.maxZ && a.maxZ > b.minZ; }
@@ -388,8 +390,8 @@ function pauseGame(){ if (state === 'playing'){ state = 'paused'; show(pausedEl,
 function resumeGame(){ if (state === 'paused'){ state = 'playing'; show(pausedEl, false); lastT = 0; } }
 $('srPauseBtn').addEventListener('click', function(){ if (state === 'playing') pauseGame(); else if (state === 'paused') resumeGame(); });
 $('srResumeBtn').addEventListener('click', function(){ ensureAudio(); resumeGame(); });
-$('srPlayBtn').addEventListener('click', startRun);
-$('srRestartBtn').addEventListener('click', startRun);
+$('srPlayBtn').addEventListener('click', playGame);
+$('srRestartBtn').addEventListener('click', playGame);
 $('srShareBtn').addEventListener('click', function(){
   var text = 'I scored ' + Math.floor(score) + ' points and ran ' + Math.floor(distance) + ' m in SkyRush 3D! Can you beat it?';
   safe(function(){
@@ -403,8 +405,38 @@ $('srFullBtn').addEventListener('click', function(){
 });
 document.addEventListener('visibilitychange', function(){ if (document.hidden) pauseGame(); });
 /* ---------- boot ---------- */
-try{ init(); if (state === 'ready') rafId = requestAnimationFrame(loop); }
-catch (err){ show(loadingEl, false); show(errorEl, true); }
+/* ---------- lazy 3D boot (PERF 2026-10-15) ----------
+   Three.js (~600KB) is NOT downloaded on page load. The start screen
+   shows immediately; the engine downloads only when the user presses
+   Play, then init() runs and the run starts. */
+var threePromise = null;
+var threeLoaded = false;
+function bootThree() {
+  if (threePromise) return threePromise;
+  threePromise = import('three').then(function (m) {
+    THREE = m;
+    threeLoaded = true;
+    init();
+    if (state === 'ready') rafId = requestAnimationFrame(loop);
+  }).catch(function (err) {
+    threePromise = null;
+    show(loadingEl, false);
+    show(errorEl, true);
+    throw err;
+  });
+  return threePromise;
+}
+function playGame() {
+  if (threeLoaded) { startRun(); return; }
+  show(loadingEl, true);
+  show(startEl, false);
+  bootThree().then(function () { startRun(); }).catch(function () {});
+}
+/* Page boots WITHOUT the 3D engine: show the start screen at once. */
+show(loadingEl, false);
+show(startEl, true);
+state = 'ready';
+window.__srBooted = true;
 })();
 </script>
 </body></html>

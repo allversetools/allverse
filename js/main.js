@@ -246,23 +246,39 @@
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
   }
 
-  /* ---------- 4. Card tilt + glare (CSS vars, desktop only) ---------- */
+  /* ---------- 4. Card tilt + glare (CSS vars, desktop only) ----------
+     PERF (2026-10-15): was 2 listeners per card (~260 listeners on
+     the hub) + a getBoundingClientRect + 4 style writes per mousemove
+     event. Now ONE delegated passive mousemove on document, rAF-
+     throttled to one update per frame, resetting the previous card
+     when the pointer moves to another card / off all cards. */
   if (HOVERABLE && !REDUCED) {
-    document.querySelectorAll('.tool-card.tilt').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.setProperty('--ry', (px * 11).toFixed(2) + 'deg');
-        card.style.setProperty('--rx', (-py * 11).toFixed(2) + 'deg');
-        card.style.setProperty('--gx', ((px + 0.5) * 100).toFixed(1) + '%');
-        card.style.setProperty('--gy', ((py + 0.5) * 100).toFixed(1) + '%');
-      });
-      card.addEventListener('mouseleave', function () {
-        card.style.setProperty('--rx', '0deg');
-        card.style.setProperty('--ry', '0deg');
-      });
-    });
+    var tiltCard = null, tiltRAF = 0, tiltEv = null;
+    function tiltApply() {
+      tiltRAF = 0;
+      var e = tiltEv;
+      if (!e) return;
+      var card = (e.target && e.target.closest) ? e.target.closest('.tool-card.tilt') : null;
+      if (card !== tiltCard) {
+        if (tiltCard) {
+          tiltCard.style.setProperty('--rx', '0deg');
+          tiltCard.style.setProperty('--ry', '0deg');
+        }
+        tiltCard = card;
+      }
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty('--ry', (px * 11).toFixed(2) + 'deg');
+      card.style.setProperty('--rx', (-py * 11).toFixed(2) + 'deg');
+      card.style.setProperty('--gx', ((px + 0.5) * 100).toFixed(1) + '%');
+      card.style.setProperty('--gy', ((py + 0.5) * 100).toFixed(1) + '%');
+    }
+    document.addEventListener('mousemove', function (e) {
+      tiltEv = e;
+      if (!tiltRAF) tiltRAF = requestAnimationFrame(tiltApply);
+    }, { passive: true });
   }
 
   /* ---------- 5. Button ripple (delegated) ---------- */

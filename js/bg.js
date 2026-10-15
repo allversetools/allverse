@@ -3,6 +3,12 @@
    Soft drifting gradient orbs on a fixed canvas + mouse parallax.
    Desktop only (hover:hover), honors prefers-reduced-motion,
    pauses when the tab is hidden. Zero dependencies.
+   PERF (2026-10-15): was a 60fps full-screen repaint forever —
+   4 full-screen gradient fills per frame on every page. Now:
+   30fps cap, orbs fill only their own circle (gradient fades to
+   transparent at the edge, so the circle edge is invisible), and
+   the loop SLEEPS after 4s with no pointer movement, resuming on
+   the next pointermove. Same look, a fraction of the paint cost.
    ============================================================ */
 (function () {
   'use strict';
@@ -63,22 +69,34 @@
   }
 
   var mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5;
+  var lastMove = 0; /* performance.now() of last pointermove */
+  var sleeping = false;
   window.addEventListener('pointermove', function (e) {
     tx = e.clientX / Math.max(W, 1);
     ty = e.clientY / Math.max(H, 1);
+    lastMove = (window.performance && performance.now) ? performance.now() : Date.now();
+    if (sleeping && running) { sleeping = false; requestAnimationFrame(frame); }
   }, { passive: true });
 
   var running = true;
   document.addEventListener('visibilitychange', function () {
     var was = running;
     running = !document.hidden;
-    if (running && !was) requestAnimationFrame(frame);
+    if (running && !was) { sleeping = false; requestAnimationFrame(frame); }
   });
 
   var t = 0;
-  function frame() {
+  var lastFrame = 0;
+  function frame(now) {
     if (!running) return;
-    t += 0.008;
+    /* 30fps cap: skip frames that arrive too soon after the last paint. */
+    if (now && lastFrame && now - lastFrame < 33) { requestAnimationFrame(frame); return; }
+    lastFrame = now || lastFrame;
+    /* Idle sleep: no pointer movement for 4s -> stop scheduling
+       frames (static gradient stays on screen). pointermove wakes us. */
+    var clock = (window.performance && performance.now) ? performance.now() : Date.now();
+    if (lastMove && clock - lastMove > 4000) { sleeping = true; return; }
+    t += 0.016;
     // eased mouse follow
     mx += (tx - mx) * 0.045;
     my += (ty - my) * 0.045;
@@ -103,7 +121,12 @@
       g.addColorStop(0, 'rgba(' + o.c[0] + ',' + o.c[1] + ',' + o.c[2] + ',' + alpha + ')');
       g.addColorStop(1, 'rgba(' + o.c[0] + ',' + o.c[1] + ',' + o.c[2] + ',0)');
       ctx.fillStyle = g;
-      ctx.fillRect(0, 0, W, H);
+      /* Fill only this orb's circle, not the whole screen: the
+         gradient is fully transparent at rad, so the edge is invisible
+         and we skip ~3/4 of the per-frame fill work. */
+      ctx.beginPath();
+      ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+      ctx.fill();
     }
     requestAnimationFrame(frame);
   }

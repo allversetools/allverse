@@ -12,9 +12,33 @@
      autoplay-unlock can never stack competing fade intervals that
      fight over volume / pause() — that overlap was the stutter +
      button-says-playing-while-paused desync.
+   - OFF-BUG FIX (2026-10-15): OFF used to only start a 2s fade-out
+     while THREE separate auto-paths could restart playback behind
+     the user's back — (1) the 800ms tryAutoPlay timer fired
+     unconditionally after any full page load, even if the user had
+     just pressed OFF; (2) the first-gesture unlock listener fired
+     start() on any later click/keydown; (3) stop() never invalidated
+     an in-flight play() promise. Net effect: button showed OFF while
+     music kept playing. Now: OFF pauses SYNCHRONOUSLY (no fade-out
+     tail), bumps playSeq so stale play() promises are ignored, and
+     records an explicit 'off' choice that tryAutoPlay, unlock and
+     tab-return resume all refuse to override. Tab-hide auto-pause
+     is NOT a user OFF (stop(false)) so resume-on-return still works.
+   - BANDWIDTH FIX (2026-10-15): preload='auto' downloaded the full
+     3.7MB MP3 on EVERY page load even when autoplay was blocked and
+     the user never wanted music. Now preload='none': zero bytes
+     until playback is actually wanted.
+   - SINGLE-INSTANCE GUARD: if this file ever executes twice (PJAX
+     re-inject, stale SW copy, double tag), the second copy returns
+     immediately instead of creating a second Audio that OFF could
+     never silence.
    ============================================================ */
 (function () {
   'use strict';
+
+  /* Second execution of this file must be a no-op: one Audio ever. */
+  if (window.__AV_MUSIC_LOADED) return;
+  window.__AV_MUSIC_LOADED = true;
 
   var SITE_ROOT = '/allverse/';
   var TARGET_VOLUME = 0.5;
@@ -34,7 +58,9 @@
     audio = new Audio(SITE_ROOT + 'audio/user-music.mp3?v=1');
     audio.loop = true;
     audio.volume = 0.5;
-    audio.preload = 'auto';
+    /* NEVER pre-download the 3.7MB file: fetch only when playback is
+       actually wanted (start() -> play()). */
+    audio.preload = 'none';
     // Resume position: if music was playing when the last page unloaded,
     // seek back to that spot as soon as metadata is available.
     audio.addEventListener('loadedmetadata', function () {
@@ -47,6 +73,12 @@
       var t = Math.floor(audio.currentTime || 0);
       if (t !== lastSavedPos && t % 5 === 0) { lastSavedPos = t; savePos(); }
     });
+    /* Honesty guard: if the element ever pauses behind our back
+       (browser interruption, OS), the button must show OFF too —
+       button state must always match real playback state. */
+    audio.addEventListener('pause', function () {
+      if (playing) { playing = false; setButtons(false); }
+    });
     return true;
   }
 
@@ -55,6 +87,22 @@
   }
   function wasOn() {
     try { return localStorage.getItem('av_music_on') === '1'; } catch (e) { return false; }
+  }
+  /* Explicit user choice: 'on' | 'off' | null (never chose). Falls back
+     to the legacy av_music_on flag so an OFF from an older build still
+     sticks after this update. */
+  function choice() {
+    try {
+      var c = localStorage.getItem('av_music_choice');
+      if (c === 'on' || c === 'off') return c;
+      var legacy = localStorage.getItem('av_music_on');
+      if (legacy === '0') return 'off';
+      if (legacy === '1') return 'on';
+    } catch (e) {}
+    return null;
+  }
+  function setChoice(v) {
+    try { localStorage.setItem('av_music_choice', v); } catch (e) {}
   }
   function savedPos() {
     try {
@@ -93,7 +141,8 @@
   }
 
   /* Ramp volume to target (0.5 = full, 0 = silent). Cancels any
-     in-flight fade first. Reaching 0 pauses the audio exactly once. */
+     in-flight fade first. Reaching 0 pauses the audio exactly once.
+     Used for fade-IN only now: OFF pauses synchronously (see stop). */
   function fadeTo(target) {
     clearFade();
     if (!audio) return;
@@ -120,6 +169,7 @@
     var mySeq = ++playSeq;
     playing = true;
     saveState(true);
+    setChoice('on');
     seekToSaved();
     // 2s fade in
     audio.volume = 0;
@@ -139,27 +189,41 @@
     });
   }
 
-  function stop() {
-    if (!audio) { playing = false; setButtons(false); saveState(false); return; }
-    if (!playing && audio.paused) { setButtons(false); return; }
+  /* THE single stop path.
+     userInitiated=true  = user pressed OFF: record explicit 'off'
+       choice (no auto-path may ever restart) + pause SYNCHRONOUSLY.
+     userInitiated=false = internal auto-pause (tab hide): choice
+       untouched so resume-on-return still works. */
+  function stop(userInitiated) {
+    /* Invalidate any in-flight play() promise: a stale resolve/reject
+       from an older start() must never touch state again. */
+    ++playSeq;
+    clearFade();
     playing = false;
     saveState(false);
-    savePos(); /* remember where we stopped so resume is seamless */
+    if (userInitiated) setChoice('off');
+    savePos();
     setButtons(false);
-    // 2s fade out — fadeTo pauses exactly once at volume 0.
-    fadeTo(0);
+    /* OFF means silent NOW: pause synchronously + drop volume to 0
+       (belt and braces — even if pause() threw, volume 0 = silent). */
+    if (audio) {
+      try { audio.pause(); } catch (e) {}
+      try { audio.volume = 0; } catch (e) {}
+    }
   }
 
-  function toggle() { if (playing) stop(); else start(); }
+  function toggle() { if (playing) stop(true); else start(); }
 
   /* Start on the FIRST user gesture if autoplay was blocked. Armed at
-     most once; the handler disarms itself before calling start(). */
+     most once; the handler disarms itself before calling start().
+     NEVER arms after an explicit user OFF. */
   function armUnlock() {
     if (unlockArmed) return;
+    if (choice() === 'off') return;
     unlockArmed = true;
     var unlock = function () {
       disarm();
-      if (!playing) start();
+      if (!playing && choice() !== 'off') start();
     };
     function disarm() {
       unlockArmed = false;
@@ -205,23 +269,27 @@
     // Persist position when leaving the page (full loads: game pages, etc.)
     window.addEventListener('pagehide', savePos);
     window.addEventListener('beforeunload', savePos);
-    // Pause on tab hide, resume on show
+    // Pause on tab hide, resume on show (auto-pause, NOT user OFF)
     var wasPlaying = false;
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) {
-        if (playing) { wasPlaying = true; stop(); saveState(true); }
+        if (playing) { wasPlaying = true; stop(false); saveState(true); }
       } else {
-        if (wasPlaying && !playing) {
+        if (wasPlaying && !playing && choice() !== 'off') {
           wasPlaying = false;
           start().then(function (ok) { if (!ok) armUnlock(); });
         }
       }
     });
-    // AUTO-PLAY for everyone: try on load, else start on first interaction.
+    // AUTO-PLAY for everyone who never explicitly turned it OFF:
+    // try on load, else start on first interaction.
     // ONE play path: tryAutoPlay goes through start(), never a direct
     // audio.play() that would bypass fade/seek/state.
     var tryAutoPlay = function () {
       if (playing) return;
+      /* Explicit user OFF is permanent: NEVER auto-restart — not on
+         full page loads, not on tab return, not on any later click. */
+      if (choice() === 'off') return;
       start().then(function (ok) { if (!ok) armUnlock(); });
     };
     // Try autoplay shortly after page load
