@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MergeMind — Free Number Merge Puzzle | AllVerse</title><meta name="description" content="Play MergeMind free — slide and merge number tiles on a 4×4 board, chase the 2048 tile, undo mistakes, and beat your best score. No signup.">
+<meta property="og:title" content="MergeMind — Free Number Merge Puzzle | AllVerse">
+<meta property="og:description" content="Slide and merge number tiles on a 4×4 board. Chase the 2048 tile, undo mistakes, and beat your best score. Free, no signup.">
+<meta property="og:url" content="https://allversetools.github.io/allverse/games/merge-mind/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../thumbs/merge-mind.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MergeMind — Free Number Merge Puzzle | AllVerse">
+<meta name="twitter:description" content="Slide and merge number tiles on a 4×4 board. Chase the 2048 tile, undo mistakes, and beat your best score. Free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../css/style.css?v=run27"><script src="../../js/helpers.js"></script><link rel="canonical" href="https://allversetools.github.io/allverse/games/merge-mind/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "MergeMind", "applicationCategory": "Game", "operatingSystem": "Any", "genre": "Puzzle", "playMode": "SinglePlayer", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Slide and merge number tiles on a 4×4 board, chase the 2048 tile, undo mistakes, and beat your best score. Free, no signup.", "url": "https://allversetools.github.io/allverse/games/merge-mind/"}</script><script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the goal of MergeMind?", "acceptedAnswer": {"@type": "Answer", "text": "Slide matching number tiles together so they merge into bigger tiles, and keep going until you build the 2048 tile. You can keep playing after reaching 2048 and push your score higher."}}, {"@type": "Question", "name": "Is MergeMind free to play?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. MergeMind is completely free on AllVerse. There is no signup, no download, and no limit on how many games you play."}}, {"@type": "Question", "name": "Can I undo a move in MergeMind?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Undo button steps back exactly one move, restoring the board and score from before your last slide. Use it when a slide goes wrong."}}, {"@type": "Question", "name": "Does MergeMind work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Play with swipe gestures on a phone or tablet, or use the on-screen arrow buttons. On a computer you can use the arrow keys or W, A, S, D."}}, {"@type": "Question", "name": "How does the daily target work?", "acceptedAnswer": {"@type": "Answer", "text": "Each day MergeMind sets a fresh score target of 512 or 1024. Reach the target before the game ends to keep your daily streak going."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://allversetools.github.io/allverse/index.html"}, {"@type": "ListItem", "position": 2, "name": "Games", "item": "https://allversetools.github.io/allverse/games/index.html"}, {"@type": "ListItem", "position": 3, "name": "MergeMind"}]}
+</script>
+<style>
+.mm-wrap{max-width:520px;margin:0 auto}
+.mm-hud{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin:6px 0 12px}
+.mm-score{flex:1;min-width:110px;background:var(--card,#f3f4f6);border-radius:10px;padding:8px 12px;text-align:center}
+.mm-score b{display:block;font-size:1.4rem;line-height:1.1}
+.mm-score span{font-size:.8rem;opacity:.75}
+.mm-daily{text-align:center;font-size:.9rem;margin:0 0 10px;opacity:.85}
+.mm-board{position:relative;width:100%;aspect-ratio:1/1;background:#bbada0;border-radius:12px;padding:8px;box-sizing:border-box;touch-action:none;overflow:hidden}
+.mm-grid{position:absolute;inset:8px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:8px}
+.mm-cell{background:rgba(238,228,218,.35);border-radius:6px}
+.mm-tiles{position:absolute;inset:8px}
+.mm-tile{position:absolute;width:calc(25% - 6px);height:calc(25% - 6px);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:2rem;color:#776e65;background:#eee4da;transition:left .13s ease,top .13s ease}
+.mm-tile.big{font-size:1.5rem}
+.mm-tile.huge{font-size:1.15rem}
+.mm-noanim .mm-tile{transition:none}
+.mm-new{animation:mmAppear .15s ease}
+.mm-pop{animation:mmPop .18s ease}
+@keyframes mmAppear{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes mmPop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+.mm-overlay{position:absolute;inset:0;z-index:5;background:rgba(238,228,218,.88);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}
+.mm-overlay h2{margin:0;font-size:1.5rem}
+.mm-overlay p{margin:0}
+.mm-hidden{display:none!important}
+.mm-win{background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;padding:10px 12px;text-align:center;margin:0 0 10px}
+.mm-win p{margin:0 0 6px;font-weight:700}
+.mm-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0 6px}
+.mm-controls .btn{min-height:44px}
+.mm-pad{display:grid;grid-template-columns:repeat(3,56px);gap:6px;justify-content:center;margin:12px auto 4px}
+.mm-pad button{width:56px;height:56px;border-radius:12px;border:0;background:var(--card,#e5e7eb);font-size:1.4rem;cursor:pointer}
+.mm-pad button:active{transform:scale(.94)}
+.mm-pad .mm-blank{background:transparent;cursor:default}
+.mm-ad{min-height:90px;border:1px dashed #cbd5e1;border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 0 14px;font-size:.85rem;opacity:.7}
+.mm-loading{text-align:center;padding:30px 0;font-weight:600}
+.mm-error{background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;text-align:center;margin:10px 0}
+.mm-muted{font-size:.85rem;opacity:.75;text-align:center;margin:6px 0 0}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="../../index.html"><span class="logo-mark">A</span>AllVerse</a><nav class="header-nav"><a href="../index.html">Games</a><a href="../../index.html">Tools</a></nav><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<a class="side-link active" href="../index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Games</a>
+<a class="side-link" href="../../ai-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>AI Tools</a>
+<a class="side-link" href="../../image-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Tools</a>
+<a class="side-link" href="../../text-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Text Tools</a>
+<a class="side-link" href="../../calculators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>Calculators</a>
+<a class="side-link" href="../../converters.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H8"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h13"/></svg>Converters</a>
+<a class="side-link" href="../../generators.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>Generators</a>
+<a class="side-link" href="../../fun-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2.5 4 2.5S16 14 16 14"/><path d="M9 9h.01M15 9h.01"/></svg>Fun Tools</a>
+<a class="side-link" href="../../everyday-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Everyday Tools</a>
+<a class="side-link" href="../../pakistan-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Pakistan Utilities</a>
+<a class="side-link" href="../../islamic-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Islamic Tools</a>
+<a class="side-link" href="../../sports-tools.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.5 2 4 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1c0 2.5-2 4-4 4"/></svg>Sports Tools</a>
+</nav></aside>
+<main class="main"><div class="tool-wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span>›</span><a href="../index.html">Games</a><span>›</span><span>MergeMind</span></nav>
+<h1>MergeMind</h1><p class="tool-desc">Slide the tiles, merge matching numbers, and chase the 2048 tile. Free number puzzle — no signup, no download.</p>
+<div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this game</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
+<script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
+<div class="tool-panel">
+<div id="mmAdTop" class="mm-ad" aria-label="Advertisement placeholder"></div>
+<div class="mm-wrap" id="mmGameWrap">
+<div id="mmLoading" class="mm-loading">Loading game...</div>
+<div id="mmError" class="mm-error mm-hidden"><p>Something went wrong while starting the game.</p><button class="btn btn-primary" id="mmRetry" type="button">Retry</button></div>
+<div id="mmGame" class="mm-hidden">
+<div class="mm-hud"><div class="mm-score"><span>Score</span><b id="mmScore">0</b></div><div class="mm-score"><span>Best</span><b id="mmBest">0</b></div></div>
+<p class="mm-daily" id="mmDaily">Daily target: reach 512</p>
+<div id="mmWin" class="mm-win mm-hidden"><p>🎉 You made 2048! Keep playing to push your score higher.</p><button class="btn btn-ghost" id="mmWinDismiss" type="button">Keep playing</button></div>
+<div class="mm-board" id="mmBoard"><div class="mm-grid" aria-hidden="true"><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div><div class="mm-cell"></div></div><div class="mm-tiles" id="mmTiles"></div>
+<div id="mmPaused" class="mm-overlay mm-hidden"><h2>Paused</h2><p>The game is waiting for you.</p><button class="btn btn-primary" id="mmResume" type="button">Resume</button></div>
+<div id="mmOver" class="mm-overlay mm-hidden"><h2>Game Over</h2><p>No moves left. Your score: <b id="mmFinalScore">0</b></p><div id="mmLeaderboard"></div><div class="btn-row" style="justify-content:center"><button class="btn btn-primary" id="mmShare" type="button">Share my score</button><button class="btn btn-primary" id="mmPlayAgain" type="button">Play Again</button></div></div>
+</div>
+<div class="mm-controls"><button class="btn btn-primary" id="mmUndo" type="button" disabled>↩ Undo</button><button class="btn btn-ghost" id="mmRestart" type="button">↻ Restart</button><button class="btn btn-ghost" id="mmSound" type="button" aria-pressed="true">🔊 Sound: On</button><button class="btn btn-ghost" id="mmFullscreen" type="button">⛶ Fullscreen</button></div>
+<div class="mm-pad" role="group" aria-label="Move tiles"><span class="mm-blank"></span><button type="button" data-dir="up" aria-label="Move up">↑</button><span class="mm-blank"></span><button type="button" data-dir="left" aria-label="Move left">←</button><button type="button" data-dir="down" aria-label="Move down">↓</button><button type="button" data-dir="right" aria-label="Move right">→</button><span class="mm-blank"></span><span class="mm-blank"></span><span class="mm-blank"></span></div>
+<p class="mm-muted">Arrow keys, WASD, swipe, or the arrow pad. Undo steps back one move.</p>
+</div>
+</div>
+</div>
+<section><h2>How to play</h2><p>MergeMind is a small number puzzle that fits on one screen. You start with two tiles on a four-by-four board. Every move slides every tile as far as it can go in the direction you choose. When two tiles carrying the same number collide, they merge into one tile worth double, and the merged value is added to your score. After each move a new tile appears — usually a 2, sometimes a 4 — so the board slowly fills up. The run ends when the board is full and no two neighbours match. Your goal is simple to state and hard to master: keep merging, keep space open, and chase the 2048 tile.</p></section>
+<section><h2>Controls</h2><p>Play with your keyboard, your finger, or the on-screen pad. Press the arrow keys or W, A, S, D to slide the board. On a phone or tablet, swipe in the direction you want the tiles to move. Prefer buttons? Tap the arrow pad under the board — each button is large enough to hit without looking. The Undo button steps back one move when a slide goes wrong, and Restart starts a fresh board at any time.</p></section>
+<section><h2>Tips</h2><p>Work toward one corner and keep your biggest tile there. Build a chain of descending values away from that corner, so a 512 sits beside a 256, a 256 beside a 128, and so on. Avoid sliding your big tile away from its corner unless a merge is waiting. Leave at least one row or column flexible so you can always escape a crowded board. Do not chase every small merge — a merge that traps your largest tile costs more than it pays. Finally, use Undo like a lifeline, not a habit: one step back fixes a slip, but the board still has to be solved by you.</p></section>
+</div>
+<section class="faq-section"><h2>MergeMind — FAQs</h2>
+<details class="faq-item"><summary>What is the goal of MergeMind?</summary><p>Slide matching number tiles together so they merge into bigger tiles, and keep going until you build the 2048 tile. You can keep playing after reaching 2048 and push your score higher.</p></details>
+<details class="faq-item"><summary>Is MergeMind free to play?</summary><p>Yes. MergeMind is completely free on AllVerse. There is no signup, no download, and no limit on how many games you play.</p></details>
+<details class="faq-item"><summary>Can I undo a move in MergeMind?</summary><p>Yes. The Undo button steps back exactly one move, restoring the board and score from before your last slide. Use it when a slide goes wrong.</p></details>
+<details class="faq-item"><summary>Does MergeMind work on mobile?</summary><p>Yes. Play with swipe gestures on a phone or tablet, or use the on-screen arrow buttons. On a computer you can use the arrow keys or W, A, S, D.</p></details>
+<details class="faq-item"><summary>How does the daily target work?</summary><p>Each day MergeMind sets a fresh score target of 512 or 1024. Reach the target before the game ends to keep your daily streak going.</p></details>
+</section>
+<section id="mmWhileYouHere"></section>
+<section class="more-tools"><h2>Try More Games &amp; Tools</h2>
+<div class="mini-grid">
+<a class="mini-tool" href="../sky-rush-3d/"><span>SkyRush 3D</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="../wordsprint-daily/"><span>WordSprint Daily</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="../mango-merge/"><span>Mango Merge</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="../../image-compressor.html"><span>Image Compressor</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="../../dice-roller.html"><span>Dice Roller</span><span class="mini-go">→</span></a>
+<a class="mini-tool" href="../../random-number-generator.html"><span>Random Number Generator</span><span class="mini-go">→</span></a>
+</div></section>
+</main></div>
+<footer class="site-footer">
+<p><span class="js-year">© 2026</span> AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
+<p class="foot-links"><a href="../../index.html">Home</a> · <a href="../../about.html">About</a> · <a href="../../privacy.html">Privacy</a> · <a href="../../terms.html">Terms</a> · <a href="../../contact.html">Contact</a> · <a href="../../changelog.html">What's New</a></p>
+<p class="foot-gh"><a href="https://github.com/allversetools/allverse">⭐ Open source on GitHub</a></p>
+</footer>
+<script src="../../js/games-common.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/pjax.js"></script>
+<script src="../../js/pwa.js"></script>
+<script>
+/* Pure merge logic — kept global so it can be unit-tested. */
+function mmSlideLine(line) {
+  var arr = line.filter(function (v) { return v !== 0; });
+  var out = [];
+  var gained = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (i + 1 < arr.length && arr[i] === arr[i + 1]) {
+      var m = arr[i] * 2;
+      out.push(m);
+      gained += m;
+      i++;
+    } else {
+      out.push(arr[i]);
+    }
+  }
+  while (out.length < 4) out.push(0);
+  var moved = false;
+  for (var j = 0; j < 4; j++) { if (out[j] !== line[j]) { moved = true; break; } }
+  return { line: out, gained: gained, moved: moved };
+}
+function mmHasMoves(board) {
+  for (var r = 0; r < 4; r++) {
+    for (var c = 0; c < 4; c++) {
+      if (board[r][c] === 0) return true;
+      if (c < 3 && board[r][c] === board[r][c + 1]) return true;
+      if (r < 3 && board[r][c] === board[r + 1][c]) return true;
+    }
+  }
+  return false;
+}
+</script>
+<script>
+(function () {
+  var boardEl = document.getElementById('mmBoard');
+  var tilesEl = document.getElementById('mmTiles');
+  var loadingEl = document.getElementById('mmLoading');
+  var errorEl = document.getElementById('mmError');
+  var gameEl = document.getElementById('mmGame');
+  var scoreEl = document.getElementById('mmScore');
+  var bestEl = document.getElementById('mmBest');
+  var dailyEl = document.getElementById('mmDaily');
+  var winEl = document.getElementById('mmWin');
+  var overEl = document.getElementById('mmOver');
+  var pausedEl = document.getElementById('mmPaused');
+  var finalEl = document.getElementById('mmFinalScore');
+  var leaderboardEl = document.getElementById('mmLeaderboard');
+  var undoBtn = document.getElementById('mmUndo');
+  var restartBtn = document.getElementById('mmRestart');
+  var soundBtn = document.getElementById('mmSound');
+  var fsBtn = document.getElementById('mmFullscreen');
+  var wrapEl = document.getElementById('mmGameWrap');
+  var adEl = document.getElementById('mmAdTop');
+  var whileEl = document.getElementById('mmWhileYouHere');
+  if (!boardEl || !tilesEl) { if (errorEl) errorEl.classList.remove('mm-hidden'); return; }
+
+  var AV = window.AV_Games || null;
+  var reduced = !!(AV && typeof AV.reducedMotion === 'function' && AV.reducedMotion());
+  if (reduced) boardEl.classList.add('mm-noanim');
+  var ANIM_MS = reduced ? 0 : 130;
+
+  var COLORS = { 2: ['#eee4da', '#776e65'], 4: ['#ede0c8', '#776e65'], 8: ['#f2b179', '#f9f6f2'], 16: ['#f59563', '#f9f6f2'], 32: ['#f67c5f', '#f9f6f2'], 64: ['#f65e3b', '#f9f6f2'], 128: ['#edcf72', '#f9f6f2'], 256: ['#edcc61', '#f9f6f2'], 512: ['#edc850', '#f9f6f2'], 1024: ['#edc53f', '#f9f6f2'], 2048: ['#edc22e', '#f9f6f2'] };
+  function tileColors(v) { return COLORS[v] || ['#3c3a32', '#f9f6f2']; }
+
+  var tiles = []; /* {id, value, row, col, el, newValue} */
+  var nextId = 1;
+  var score = 0, best = 0, prev = null, over = false, won = false, started = false, animating = false, paused = false;
+  var soundOn = true;
+  try { soundOn = window.localStorage.getItem('av_mm_sound') !== '0'; } catch (e) { soundOn = true; }
+  try { best = parseInt(window.localStorage.getItem('av_mm_best') || '0', 10) || 0; } catch (e) { best = 0; }
+
+  /* Daily target: 512 or 1024, derived from the shared daily seed. */
+  var dailyTarget = 512;
+  try {
+    if (AV && typeof AV.dailySeed === 'function') {
+      var seed = AV.dailySeed('merge-mind');
+      var n = (typeof seed === 'number') ? seed : 0;
+      if (typeof seed === 'string') { for (var si = 0; si < seed.length; si++) n = (n * 31 + seed.charCodeAt(si)) | 0; }
+      dailyTarget = (Math.abs(n) % 2 === 0) ? 512 : 1024;
+    }
+  } catch (e) { dailyTarget = 512; }
+
+  /* ---- sound (WebAudio, created only after a user gesture) ---- */
+  var audioCtx = null;
+  function tone(freq, dur, type, vol, slideTo) {
+    if (!soundOn) return;
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = type || 'sine';
+      o.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, audioCtx.currentTime + dur);
+      g.gain.setValueAtTime(vol || 0.08, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(); o.stop(audioCtx.currentTime + dur + 0.02);
+    } catch (e) { /* sound is decorative — never break the game */ }
+  }
+  function playMoveSound() { tone(220, 0.05, 'triangle', 0.05); }
+  function playMergeSound() { tone(520, 0.1, 'sine', 0.09, 940); }
+
+  function posStyle(el, row, col) {
+    el.style.left = 'calc(' + col + ' * (25% + 2px))';
+    el.style.top = 'calc(' + row + ' * (25% + 2px))';
+  }
+  function makeTileEl(value, row, col, fresh) {
+    var el = document.createElement('div');
+    el.className = 'mm-tile' + (value >= 1024 ? ' big' : '') + (value >= 10000 ? ' huge' : '') + (fresh ? ' mm-new' : '');
+    el.textContent = String(value);
+    var c = tileColors(value);
+    el.style.background = c[0]; el.style.color = c[1];
+    posStyle(el, row, col);
+    return el;
+  }
+  function refreshTileEl(t) {
+    t.el.textContent = String(t.value);
+    var c = tileColors(t.value);
+    t.el.style.background = c[0]; t.el.style.color = c[1];
+    t.el.classList.toggle('big', t.value >= 1024);
+    t.el.classList.toggle('huge', t.value >= 10000);
+  }
+  function addTile(value, row, col, fresh) {
+    var t = { id: nextId++, value: value, row: row, col: col, el: makeTileEl(value, row, col, fresh) };
+    tiles.push(t);
+    tilesEl.appendChild(t.el);
+    return t;
+  }
+  function gridValues() {
+    var b = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+    tiles.forEach(function (t) { b[t.row][t.col] = t.value; });
+    return b;
+  }
+  function updateHUD() {
+    if (scoreEl) scoreEl.textContent = String(score);
+    if (bestEl) bestEl.textContent = String(best);
+    if (undoBtn) undoBtn.disabled = !prev;
+  }
+  function saveBest() {
+    if (score > best) {
+      best = score;
+      try { window.localStorage.setItem('av_mm_best', String(best)); } catch (e) {}
+    }
+  }
+  function emptyCells() {
+    var taken = {};
+    tiles.forEach(function (t) { taken[t.row + ',' + t.col] = true; });
+    var out = [];
+    for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++) { if (!taken[r + ',' + c]) out.push([r, c]); }
+    return out;
+  }
+  function spawnTile() {
+    var cells = emptyCells();
+    if (!cells.length) return;
+    var cell = cells[Math.floor(Math.random() * cells.length)];
+    addTile(Math.random() < 0.9 ? 2 : 4, cell[0], cell[1], true);
+  }
+  function rebuildFromGrid(b, sc) {
+    tiles.forEach(function (t) { if (t.el.parentNode) t.el.parentNode.removeChild(t.el); });
+    tiles = [];
+    for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++) { if (b[r][c]) addTile(b[r][c], r, c, false); }
+    score = sc;
+    updateHUD();
+  }
+
+  /* ---- move engine: plan with tile objects so slides animate ---- */
+  function move(dir) {
+    if (over || paused || animating) return;
+    var preBoard = gridValues();
+    var preScore = score;
+    var grid = [[null, null, null, null], [null, null, null, null], [null, null, null, null], [null, null, null, null]];
+    tiles.forEach(function (t) { grid[t.row][t.col] = t; });
+    var gained = 0, changed = false, eaten = [], survivors = [];
+    var horiz = (dir === 'left' || dir === 'right');
+    for (var li = 0; li < 4; li++) {
+      var lineTiles = [];
+      for (var k = 0; k < 4; k++) {
+        var t = horiz ? grid[li][k] : grid[k][li];
+        if (t) lineTiles.push(t);
+      }
+      var ordered = (dir === 'right' || dir === 'down') ? lineTiles.slice().reverse() : lineTiles.slice();
+      var result = []; /* {tile, merged} in movement order */
+      ordered.forEach(function (t) {
+        var last = result[result.length - 1];
+        if (last && !last.merged && last.tile.value === t.value) {
+          last.merged = true;
+          last.newValue = t.value * 2;
+          gained += last.newValue;
+          eaten.push({ tile: t, survivor: last.tile });
+        } else {
+          result.push({ tile: t, merged: false, newValue: t.value });
+        }
+      });
+      result.forEach(function (res, idx) {
+        var pos = (dir === 'right' || dir === 'down') ? 3 - idx : idx;
+        var nr = horiz ? li : pos, nc = horiz ? pos : li;
+        if (res.tile.row !== nr || res.tile.col !== nc) changed = true;
+        res.tile.row = nr; res.tile.col = nc;
+        res.tile.newValue = res.newValue;
+        survivors.push(res);
+      });
+      eaten.forEach(function (e) {
+        e.tile.row = e.survivor.row; e.tile.col = e.survivor.col;
+      });
+      if (eaten.length) changed = true;
+    }
+    if (!changed) return;
+    /* One-step undo snapshot, taken BEFORE any position changed. */
+    prev = { board: preBoard, score: preScore };
+    updateHUD();
+    if (!started) {
+      started = true;
+      try { if (AV && typeof AV.markPlayed === 'function') AV.markPlayed('merge-mind'); } catch (e) {}
+      try { if (AV && typeof AV.track === 'function') AV.track('game_start'); } catch (e) {}
+    }
+    var hadMerge = eaten.length > 0;
+    tiles.forEach(function (t) { posStyle(t.el, t.row, t.col); });
+    if (hadMerge) playMergeSound(); else playMoveSound();
+    animating = true;
+    var done = function () {
+      if (!document.contains(boardEl)) return;
+      eaten.forEach(function (e) { if (e.tile.el.parentNode) e.tile.el.parentNode.removeChild(e.tile.el); });
+      tiles = tiles.filter(function (t) { return eaten.every(function (e) { return e.tile !== t; }); });
+      survivors.forEach(function (res) {
+        if (res.merged) {
+          res.tile.value = res.newValue;
+          refreshTileEl(res.tile);
+          res.tile.el.classList.remove('mm-pop');
+          void res.tile.el.offsetWidth;
+          res.tile.el.classList.add('mm-pop');
+        }
+      });
+      score += gained;
+      saveBest();
+      updateHUD();
+      spawnTile();
+      animating = false;
+      var b = gridValues();
+      if (!won) {
+        for (var r2 = 0; r2 < 4; r2++) for (var c2 = 0; c2 < 4; c2++) {
+          if (b[r2][c2] >= 2048) {
+            won = true;
+            if (winEl) winEl.classList.remove('mm-hidden');
+          }
+        }
+      }
+      if (!mmHasMoves(b)) endGame();
+    };
+    /* Undo snapshot fix: prev was computed after reassignment; capture it correctly by rebuilding from the pre-move board stored below. */
+    if (ANIM_MS > 0) { setTimeout(done, ANIM_MS); } else { done(); }
+  }
+
+  function endGame() {
+    over = true;
+    if (finalEl) finalEl.textContent = String(score);
+    if (overEl) overEl.classList.remove('mm-hidden');
+    try { if (AV && typeof AV.track === 'function') AV.track('game_over', { score: score }); } catch (e) {}
+    try {
+      if (AV && AV.leaderboard && typeof AV.leaderboard.render === 'function' && leaderboardEl) {
+        AV.leaderboard.render(leaderboardEl, 'merge-mind');
+      }
+    } catch (e) {}
+    try { if (score >= dailyTarget && AV && typeof AV.bumpStreak === 'function') AV.bumpStreak('merge-mind'); } catch (e) {}
+  }
+  function resetGame() {
+    over = false; won = false; started = false; animating = false; paused = false;
+    prev = null;
+    if (overEl) overEl.classList.add('mm-hidden');
+    if (pausedEl) pausedEl.classList.add('mm-hidden');
+    if (winEl) winEl.classList.add('mm-hidden');
+    rebuildFromGrid([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], 0);
+    spawnTile(); spawnTile();
+    updateHUD();
+  }
+  function undo() {
+    if (!prev || animating) return;
+    var p = prev;
+    prev = null;
+    over = false; paused = false;
+    if (overEl) overEl.classList.add('mm-hidden');
+    if (pausedEl) pausedEl.classList.add('mm-hidden');
+    rebuildFromGrid(p.board, p.score);
+  }
+
+  /* ---- wiring ---- */
+  function onKey(e) {
+    if (!document.contains(boardEl)) return; /* stale listener after PJAX navigation */
+    var k = (e.key || '').toLowerCase();
+    var map = { arrowup: 'up', w: 'up', arrowdown: 'down', s: 'down', arrowleft: 'left', a: 'left', arrowright: 'right', d: 'right' };
+    if (!map[k]) return;
+    if (k.indexOf('arrow') === 0) e.preventDefault();
+    move(map[k]);
+  }
+  document.addEventListener('keydown', onKey);
+  var touchX = null, touchY = null;
+  boardEl.addEventListener('touchstart', function (e) {
+    var t = e.changedTouches[0];
+    touchX = t.clientX; touchY = t.clientY;
+  }, { passive: true });
+  boardEl.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - touchX, dy = t.clientY - touchY;
+    touchX = null; touchY = null;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+    move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
+  }, { passive: true });
+  document.querySelectorAll('.mm-pad button[data-dir]').forEach(function (b) {
+    b.addEventListener('click', function () { move(b.getAttribute('data-dir')); });
+  });
+  if (undoBtn) undoBtn.addEventListener('click', undo);
+  if (restartBtn) restartBtn.addEventListener('click', resetGame);
+  var playAgainBtn = document.getElementById('mmPlayAgain');
+  if (playAgainBtn) playAgainBtn.addEventListener('click', resetGame);
+  var winDismiss = document.getElementById('mmWinDismiss');
+  if (winDismiss) winDismiss.addEventListener('click', function () { if (winEl) winEl.classList.add('mm-hidden'); });
+  var shareBtn2 = document.getElementById('mmShare');
+  if (shareBtn2) shareBtn2.addEventListener('click', function () {
+    var payload = { title: 'MergeMind', text: 'I scored ' + score + ' in MergeMind on AllVerse. Can you beat me?', url: location.href };
+    try {
+      if (AV && typeof AV.share === 'function') { AV.share(payload); return; }
+    } catch (e) {}
+    try {
+      if (navigator.share) { navigator.share(payload).catch(function () {}); return; }
+      if (navigator.clipboard) navigator.clipboard.writeText(payload.url);
+    } catch (e) {}
+  });
+  function refreshSoundBtn() {
+    if (!soundBtn) return;
+    soundBtn.textContent = soundOn ? '🔊 Sound: On' : '🔇 Sound: Off';
+    soundBtn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+  }
+  if (soundBtn) soundBtn.addEventListener('click', function () {
+    soundOn = !soundOn;
+    try { window.localStorage.setItem('av_mm_sound', soundOn ? '1' : '0'); } catch (e) {}
+    refreshSoundBtn();
+    if (soundOn) playMergeSound();
+  });
+  if (fsBtn) fsBtn.addEventListener('click', function () {
+    try {
+      if (document.fullscreenElement) { document.exitFullscreen(); }
+      else if (wrapEl && wrapEl.requestFullscreen) { wrapEl.requestFullscreen(); }
+    } catch (e) {}
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (!document.contains(boardEl)) return; /* stale listener after PJAX navigation */
+    if (document.hidden) {
+      if (started && !over) { paused = true; if (pausedEl) pausedEl.classList.remove('mm-hidden'); }
+    } else {
+      paused = false; if (pausedEl) pausedEl.classList.add('mm-hidden');
+    }
+  });
+  var resumeBtn = document.getElementById('mmResume');
+  if (resumeBtn) resumeBtn.addEventListener('click', function () { paused = false; if (pausedEl) pausedEl.classList.add('mm-hidden'); });
+
+  /* ---- shared modules ---- */
+  try {
+    if (AV && typeof AV.adSlot === 'function' && adEl) {
+      var adHtml = AV.adSlot('merge-mind-top');
+      if (typeof adHtml === 'string' && adHtml) adEl.innerHTML = adHtml;
+    }
+  } catch (e) {}
+  try {
+    if (AV && typeof AV.whileYouHere === 'function' && whileEl) AV.whileYouHere(whileEl, '../../');
+  } catch (e) {}
+  if (dailyEl) dailyEl.textContent = 'Daily target: reach ' + dailyTarget;
+
+  /* ---- init ---- */
+  function init() {
+    try {
+      if (errorEl) errorEl.classList.add('mm-hidden');
+      refreshSoundBtn();
+      updateHUD();
+      resetGame();
+      if (loadingEl) loadingEl.classList.add('mm-hidden');
+      if (gameEl) gameEl.classList.remove('mm-hidden');
+    } catch (err) {
+      if (loadingEl) loadingEl.classList.add('mm-hidden');
+      if (gameEl) gameEl.classList.add('mm-hidden');
+      if (errorEl) errorEl.classList.remove('mm-hidden');
+    }
+  }
+  var retryBtn = document.getElementById('mmRetry');
+  if (retryBtn) retryBtn.addEventListener('click', init);
+  init();
+})();
+</script>
+</body></html>
