@@ -2587,3 +2587,6 @@ main, .site-footer { position: relative; z-index: 1; }
   .g-box .g-hud button, .g-box .g-hud select,
   .sr-box .sr-hud button { min-height: 44px; min-width: 44px; }
 }
+
+/* --- S2 Card text: never clip long slash-joined words (e.g. Mehndi/Barat/Walima) --- */
+.tool-card h3, .tool-card p { overflow-wrap: anywhere; }
