@@ -53,31 +53,32 @@
 <div class="field"><label for="elUnits">Units consumed (kWh)</label><input type="number" id="elUnits" value="250" min="0" step="any"></div>
 <div class="field"><label for="elType">Consumer type</label><select id="elType"><option value="auto" selected>Auto (by units)</option><option value="protected">Protected (≤200 units)</option><option value="unprot">Unprotected</option></select></div>
 </div>
+<div class="field"><label for="elLoad">Sanctioned load (kW) — as printed on your bill</label><input type="number" id="elLoad" value="5" min="0" step="any"><p class="hint" style="margin:6px 0 0">The Feb-2026 tariff charges a monthly fixed charge per kW of sanctioned load (Rs 200–675/kW depending on your slab). Lifeline users pay no fixed charge.</p></div>
 <div class="result-box show"><h4>Estimated electricity bill</h4><div class="stat-row">
 <div class="stat"><b id="elTotal">—</b><span>Estimated bill</span></div>
 <div class="stat"><b id="elAvg">—</b><span>Avg. cost per unit</span></div>
 <div class="stat"><b id="elStatus">—</b><span>Status</span></div>
 </div><div id="elBreak" class="slab-break"></div></div>
 <p class="rate-stamp">Tariffs last updated: <b>October 2026</b> · based on the federal notification of 12 Feb 2026 (NEPRA uniform domestic tariff A-1). Base tariff only — excludes fuel/quarterly adjustments, taxes and fees.</p>
-<table class="slab-table"><caption>LESCO domestic unit rates used</caption><thead><tr><th>Slab</th><th>Rate (Rs/unit)</th></tr></thead><tbody>
-<tr><td>Up to 50 (lifeline)</td><td>3.95</td></tr>
-<tr><td>51 – 100 (lifeline)</td><td>7.74</td></tr>
-<tr><td>Protected 1 – 100</td><td>10.54</td></tr>
-<tr><td>Protected 101 – 200</td><td>13.01</td></tr>
-<tr><td>Unprotected 1 – 100</td><td>22.44</td></tr>
-<tr><td>Unprotected 101 – 200</td><td>28.91</td></tr>
-<tr><td>201 – 300</td><td>33.10</td></tr>
-<tr><td>301 – 400</td><td>36.46</td></tr>
-<tr><td>401 – 500</td><td>38.95</td></tr>
-<tr><td>501 – 600</td><td>40.22</td></tr>
-<tr><td>601 – 700</td><td>41.85</td></tr>
-<tr><td>Above 700</td><td>47.20</td></tr>
+<table class="slab-table"><caption>LESCO domestic rates used (Feb-2026 tariff)</caption><thead><tr><th>Slab</th><th>Rate (Rs/unit)</th><th>Fixed charge (Rs/kW/month)</th></tr></thead><tbody>
+<tr><td>Up to 50 (lifeline)</td><td>3.95</td><td>None</td></tr>
+<tr><td>51 – 100 (lifeline)</td><td>7.74</td><td>None</td></tr>
+<tr><td>Protected 1 – 100</td><td>10.54</td><td>200</td></tr>
+<tr><td>Protected 101 – 200</td><td>13.01</td><td>300</td></tr>
+<tr><td>Unprotected 1 – 100</td><td>22.44</td><td>275</td></tr>
+<tr><td>Unprotected 101 – 200</td><td>28.91</td><td>300</td></tr>
+<tr><td>201 – 300</td><td>33.10</td><td>350</td></tr>
+<tr><td>301 – 400</td><td>36.46</td><td>400</td></tr>
+<tr><td>401 – 500</td><td>38.95</td><td>500</td></tr>
+<tr><td>501 – 600</td><td>40.22</td><td>675</td></tr>
+<tr><td>601 – 700</td><td>41.85</td><td>675</td></tr>
+<tr><td>Above 700</td><td>47.20</td><td>675</td></tr>
 </tbody></table>
 <p class="disclaimer">Estimate only — excludes fuel price adjustment (FPA), quarterly tariff adjustment, TV licence fee, electricity duty and taxes. <b>Verify with your LESCO bill</b> or the official NEPRA schedule.</p>
 
 </div>
 <section class="faq-section"><h2>Electricity Bill Calculator Pakistan — FAQs</h2>
-<details class="faq-item"><summary>What is the difference between protected and unprotected consumers?</summary><p>A domestic consumer whose 6-month average stays at or below 200 units/month is 'protected' and pays subsidized rates. Cross 200 units and all units are billed at the higher unprotected slab rates.</p></details><details class="faq-item"><summary>Why is my actual LESCO bill higher than this estimate?</summary><p>This estimate covers only variable energy charges plus the Rs 75 fixed charge. Your real bill adds fuel price adjustment (FPA), quarterly tariff adjustment, TV licence fee, electricity duty and sales tax.</p></details><details class="faq-item"><summary>What is the lifeline tariff?</summary><p>Consumers using up to 50 units pay just Rs 3.95/unit and those between 51–100 units pay Rs 7.74/unit — Pakistan's subsidized lifeline rates.</p></details><details class="faq-item"><summary>Do three-phase and single-phase connections have the same rates?</summary><p>The per-unit slab rates are the same; the fixed monthly charge differs (Rs 75 single-phase vs Rs 150 three-phase).</p></details>
+<details class="faq-item"><summary>What is the difference between protected and unprotected consumers?</summary><p>A domestic consumer whose 6-month average stays at or below 200 units/month is 'protected' and pays subsidized rates. Cross 200 units and all units are billed at the higher unprotected slab rates.</p></details><details class="faq-item"><summary>Why is my actual LESCO bill higher than this estimate?</summary><p>This estimate covers variable energy charges plus the per-kW fixed charge (Rs 200–675/kW/month × your sanctioned load). Your real bill adds fuel price adjustment (FPA), quarterly tariff adjustment, TV licence fee, electricity duty and sales tax.</p></details><details class="faq-item"><summary>What is the lifeline tariff?</summary><p>Consumers using up to 50 units pay just Rs 3.95/unit and those between 51–100 units pay Rs 7.74/unit — Pakistan's subsidized lifeline rates.</p></details><details class="faq-item"><summary>Do three-phase and single-phase connections have the same rates?</summary><p>The per-unit slab rates are the same, and the fixed charge is per-kW of sanctioned load — it does not depend on single-phase vs three-phase. Time-of-Use (ToU) connections are billed on the higher of 50% of sanctioned load or recorded maximum demand, so this estimate (which uses full sanctioned load) may differ for ToU bills.</p></details>
 </section><section class="more-tools"><h2>Try More Free Tools</h2>
 <div class="mini-grid">
 <a class="mini-tool" href="income-tax-calculator-pakistan.html"><span>Income Tax Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="gold-rate-calculator.html"><span>Gold Rate Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="pta-tax-calculator.html"><span>PTA Tax Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="cnic-photo-maker.html"><span>CNIC Photo Maker</span><span class="mini-go">→</span></a>
@@ -92,17 +93,23 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 function update(){var u=skNum('elUnits');var tp=g('elType');tp=tp?tp.value:'auto';
 var br=g('elBreak');if(u===null||u<0){set('elTotal','—');set('elAvg','—');set('elStatus','—');if(br)br.innerHTML='';return;}
 var life=(tp==='auto'&&u<=100);
-var prot=!life&&((tp==='protected')||(tp==='auto'&&u<=200));
+var prot=!life&&(((tp==='protected')&&u<=200)||(tp==='auto'&&u<=200));
 var rows=[],total=0,prev=0;
 function slabRows(segs,labels){for(var i=0;i<segs.length&&u>prev;i++){var hi=Math.min(u,segs[i][0]);var un=hi-prev;if(un>0){var c=un*segs[i][1];total+=c;rows.push([labels[i],un,segs[i][1],c]);}prev=segs[i][0];}}
 if(life){slabRows(LIFE,['1 – 50 (lifeline)','51 – 100 (lifeline)']);}
 else if(prot){slabRows(PROT,['1 – 100 (protected)','101 – 200 (protected)']);}
 else{for(var j=0;j<UNP.length&&u>prev;j++){var h2=Math.min(u,UNP[j][0]);var un2=h2-prev;if(un2>0){var c2=un2*UNP[j][1];total+=c2;rows.push([(prev+1)+' – '+(UNP[j][0]===Infinity?'700+':UNP[j][0]),un2,UNP[j][1],c2]);}prev=UNP[j][0];}}
-var fixed=75;total+=fixed;
+var load=skNum('elLoad');if(load===null||load<0)load=0;
+/* Feb-2026 fixed charge: Rs per kW of sanctioned load, by slab. Lifeline: none. */
+var fixedRate=0;
+if(life){fixedRate=0;}
+else if(prot){fixedRate=(u<=100?200:300);}
+else{fixedRate=u<=100?275:u<=200?300:u<=300?350:u<=400?400:u<=500?500:675;}
+var fixed=fixedRate*load;total+=fixed;
 set('elTotal',pkr(total));set('elAvg',u>0?'Rs '+fmt(total/u,2):'—');set('elStatus',life?'Lifeline':(prot?'Protected':'Unprotected'));
-if(br){var h='<table class="slab-table"><thead><tr><th>Slab (units)</th><th>Units</th><th>Rate</th><th>Amount</th></tr></thead><tbody>';for(var k=0;k<rows.length;k++){h+='<tr><td>'+esc(rows[k][0])+'</td><td>'+fmt(rows[k][1],0)+'</td><td>Rs '+fmt(rows[k][2],2)+'</td><td>'+pkr(rows[k][3])+'</td></tr>';}h+='<tr><td>Fixed charge</td><td></td><td></td><td>'+pkr(fixed)+'</td></tr></tbody></table>';br.innerHTML=h;}
+if(br){var h='<table class="slab-table"><thead><tr><th>Slab (units)</th><th>Units</th><th>Rate</th><th>Amount</th></tr></thead><tbody>';for(var k=0;k<rows.length;k++){h+='<tr><td>'+esc(rows[k][0])+'</td><td>'+fmt(rows[k][1],0)+'</td><td>Rs '+fmt(rows[k][2],2)+'</td><td>'+pkr(rows[k][3])+'</td></tr>';}h+='<tr><td>'+(life?'Fixed charge (lifeline — none)':'Fixed charge ('+fmt(load,1)+' kW × Rs '+fmt(fixedRate,0)+'/kW)')+'</td><td></td><td></td><td>'+pkr(fixed)+'</td></tr></tbody></table>';br.innerHTML=h;}
 }
-['elUnits','elType'].forEach(function(id){var e=g(id);if(e){e.addEventListener('input',update);e.addEventListener('change',update);}});
+['elUnits','elType','elLoad'].forEach(function(id){var e=g(id);if(e){e.addEventListener('input',update);e.addEventListener('change',update);}});
 update();
 })();
 

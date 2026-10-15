@@ -115,7 +115,7 @@
       buffer = get('frBuffer'), btn = get('frCalc'), msg = get('frMsg'), note = get('frNote');
   if (!income || !hours || !weeks || !buffer || !btn || !msg || !note) return;
   function set(id, v) { var el = get(id); if (el) el.textContent = v; }
-  function money(n) { return (Math.round(n * 100) / 100).toLocaleString('en-US'); }
+  function money(n) { if (n === null || !isFinite(n)) return '—'; return (Math.round(n * 100) / 100).toLocaleString('en-US'); }
   function calc() {
     var incRaw;
     if (window.SK_AI) {

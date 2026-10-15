@@ -179,7 +179,7 @@
 /* AI hashtags (AllVerse AI) */
 (function(){
   var btn=document.getElementById('aiTagBtn'), res=document.getElementById('aiTagResult'), out=document.getElementById('aiTagOut');
-  if(!btn||!window.SK_AI) return;
+  function bind(){ if(!btn||!window.SK_AI) return;
   btn.addEventListener('click', function(){
     var topic=SK_AI.requireInput(document.getElementById('topic'),'Enter a topic first.');
     if(topic===null) return;
@@ -194,6 +194,9 @@
   document.getElementById('aiTagCopy').addEventListener('click', function(){
     SK_AI.copyText(document.getElementById('aiTagCopy'), out.textContent);
   });
+  }
+  /* ai.js loads after this inline script, so bind once it exists (direct loads) or at once (PJAX). */
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
 })();
 </script>
 </main></div>

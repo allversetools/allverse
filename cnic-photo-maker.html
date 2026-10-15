@@ -66,7 +66,7 @@
 <p class="photo-tip">Drag the photo to position your face inside the frame · use the zoom slider · head should fill ~70% of the frame.</p>
 <div class="field"><label for="phZoom">Zoom <span id="phZoomVal">1.0×</span></label><input type="range" id="phZoom" min="1" max="3" step="0.1" value="1"></div>
 <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" id="phDl" type="button">⬇ Download PNG (35×45 mm, 300 DPI)</button><button class="btn btn-ghost" id="phReset" type="button">Reset</button></div>
-<p class="disclaimer">This tool crops and resizes only — it cannot change your photo's background. Use a photo taken against a plain white/light background, face forward, no sunglasses. For US visa (51×51 mm) this crop still works as the ratio differs slightly — check requirements first.</p>
+<p class="disclaimer">This tool crops and resizes only — it cannot change your photo's background. Use a photo taken against a plain white/light background, face forward, no sunglasses. The blue face guides are only shown on screen to help you position your face — they are <b>not</b> included in the downloaded PNG. For US visa (51×51 mm) this 35×45 mm crop does not match — use a dedicated 2×2 inch crop for US visa applications.</p>
 
 </div>
 <section class="faq-section"><h2>CNIC Photo Maker — FAQs</h2>
@@ -87,12 +87,14 @@ function base(){return Math.max(W/img.width,H/img.height);}
 function clamp(){var s=base()*z,dw=img.width*s,dh=img.height*s;
 if(dw>=W)ox=Math.min(0,Math.max(W-dw,ox));else ox=(W-dw)/2;
 if(dh>=H)oy=Math.min(0,Math.max(H-dh,oy));else oy=(H-dh)/2;}
-function draw(){ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
-if(!img){ctx.fillStyle='#888';ctx.font='17px Inter,sans-serif';ctx.textAlign='center';ctx.fillText('Upload a photo to begin',W/2,H/2);return;}
-var s=base()*z;clamp();ctx.drawImage(img,ox,oy,img.width*s,img.height*s);
-ctx.strokeStyle='rgba(20,80,180,0.45)';ctx.lineWidth=2;ctx.setLineDash([10,8]);
-ctx.beginPath();ctx.ellipse(W/2,H*0.40,W*0.27,H*0.24,0,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
-ctx.strokeStyle='rgba(20,80,180,0.18)';ctx.beginPath();ctx.moveTo(W*0.5,H*0.16);ctx.lineTo(W*0.5,H*0.64);ctx.moveTo(W*0.5-2,H*0.16);ctx.lineTo(W*0.5-2,H*0.64);ctx.stroke();}
+function drawTo(c,guides){c.fillStyle='#fff';c.fillRect(0,0,W,H);
+if(!img){c.fillStyle='#888';c.font='17px Inter,sans-serif';c.textAlign='center';c.fillText('Upload a photo to begin',W/2,H/2);return;}
+var s=base()*z;clamp();c.drawImage(img,ox,oy,img.width*s,img.height*s);
+if(!guides)return;
+c.strokeStyle='rgba(20,80,180,0.45)';c.lineWidth=2;c.setLineDash([10,8]);
+c.beginPath();c.ellipse(W/2,H*0.40,W*0.27,H*0.24,0,0,Math.PI*2);c.stroke();c.setLineDash([]);
+c.strokeStyle='rgba(20,80,180,0.18)';c.beginPath();c.moveTo(W*0.5,H*0.16);c.lineTo(W*0.5,H*0.64);c.moveTo(W*0.5-2,H*0.16);c.lineTo(W*0.5-2,H*0.64);c.stroke();}
+function draw(){drawTo(ctx,true);}
 function zoomTo(nz){if(!img)return;var s0=base()*z;var px=(W/2-ox)/s0,py=(H/2-oy)/s0;z=nz;var s1=base()*z;ox=W/2-px*s1;oy=H/2-py*s1;if(zv)zv.textContent=z.toFixed(1)+'×';draw();}
 if(file)file.addEventListener('change',function(){var f=file.files&&file.files[0];if(!f)return;var url=URL.createObjectURL(f);var im=new Image();im.onload=function(){img=im;z=1;if(zm)zm.value=1;if(zv)zv.textContent='1.0×';var s=base();ox=(W-img.width*s)/2;oy=(H-img.height*s)/2;draw();URL.revokeObjectURL(url);};im.src=url;});
 if(zm)zm.addEventListener('input',function(){zoomTo(skNum(zm, 1));});
@@ -102,7 +104,7 @@ cv.addEventListener('pointermove',function(e){if(!dragging||!img)return;var p=po
 ['pointerup','pointercancel'].forEach(function(ev){cv.addEventListener(ev,function(){dragging=false;cv.classList.remove('dragging');});});
 cv.addEventListener('wheel',function(e){if(!img||!zm)return;e.preventDefault();var nz=Math.min(3,Math.max(1,z+(e.deltaY<0?0.15:-0.15)));zm.value=nz;zoomTo(nz);},{passive:false});
 if(rs)rs.addEventListener('click',function(){if(!img)return;z=1;if(zm)zm.value=1;if(zv)zv.textContent='1.0×';var s=base();ox=(W-img.width*s)/2;oy=(H-img.height*s)/2;draw();});
-if(dl)dl.addEventListener('click',function(){if(!img){alert('Please upload a photo first.');return;}cv.toBlob(function(b){if(!b)return;var u=URL.createObjectURL(b);if(window.SK&&window.SK.download)window.SK.download(u,'cnic-photo-35x45.png');else{var a=document.createElement('a');a.href=u;a.download='cnic-photo-35x45.png';a.click();}setTimeout(function(){URL.revokeObjectURL(u);},5000);},'image/png');});
+if(dl)dl.addEventListener('click',function(){if(!img){alert('Please upload a photo first.');return;}var off=document.createElement('canvas');off.width=W;off.height=H;drawTo(off.getContext('2d'),false);off.toBlob(function(b){if(!b)return;var u=URL.createObjectURL(b);if(window.SK&&window.SK.download)window.SK.download(u,'cnic-photo-35x45.png');else{var a=document.createElement('a');a.href=u;a.download='cnic-photo-35x45.png';a.click();}setTimeout(function(){URL.revokeObjectURL(u);},5000);},'image/png');});
 draw();
 })();
 

@@ -93,7 +93,7 @@
 <section class="faq-section"><h2>Why use this tool?</h2>
 <ul class="seo-why">
 <li>Instant result with clear healthy-weight ranges</li>
-<li>Metric and imperial units supported</li>
+<li>Metric units (cm / kg)</li>
 <li>Free, private — nothing is stored</li>
 </ul></section>
 <section class="faq-section"><h2>BMI Calculator — FAQs</h2>
@@ -121,7 +121,7 @@
     return ['Obese','#ef4444','Your BMI is well above the healthy range. Consider consulting a doctor.'];
   }
   btn.addEventListener('click',function(){
-    if(!SK_AI.requireInput(h,'Please enter your height.')||!SK_AI.requireInput(w,'Please enter your weight.')) return;
+    if(window.SK_AI){ if(!SK_AI.requireInput(h,'Please enter your height.')||!SK_AI.requireInput(w,'Please enter your weight.')) return; }
     var hv=skNum(h), wv=skNum(w);
     var note=document.getElementById('bmiNote');
     if(!(hv>0)||!(wv>0)){
@@ -137,7 +137,7 @@
     badge.textContent=c[0]; badge.style.background=c[1];
     if(note) note.textContent=c[2];
     res.hidden=false;
-    SK_AI.scrollTo(res);
+    if(window.SK_AI) SK_AI.scrollTo(res);
   });
 })();
 </script>
@@ -152,8 +152,8 @@
     if(!(hv>0)||!(wv>0)){
       box.innerHTML='<div class="w-step"><span class="w-note">Enter valid height and weight to see the step-by-step working.</span></div>';return;}
     var m=hv/100,m2=m*m,bmi=wv/m2,r=Math.round(bmi*10)/10;
-    var c=r<18.5?'Underweight':r<25?'Normal':r<30?'Overweight':'Obese';
-    var range=r<18.5?'below 18.5':r<25?'between 18.5 and 24.9':r<30?'between 25 and 29.9':'30 or above';
+    var c=bmi<18.5?'Underweight':bmi<25?'Normal':bmi<30?'Overweight':'Obese';
+    var range=bmi<18.5?'below 18.5':bmi<25?'between 18.5 and 24.9':bmi<30?'between 25 and 29.9':'30 or above';
     var mR=String(Math.round(m*100)/100),m2R=String(Math.round(m2*100)/100);
     var s=[];
     s.push('<div class="w-step"><span class="w-label">1 \u00B7 Height in metres</span><br>'+esc(hv)+' cm \u00F7 100 = <span class="w-f">'+mR+' m</span></div>');

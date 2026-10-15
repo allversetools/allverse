@@ -67,7 +67,7 @@
 <p class="hint" style="margin-top:12px">🌙 Approximate ±1 day — actual Hijri dates follow local moon sighting. <span id="hjErr"></span></p>
 </div>
 </div><section class="faq-section"><h2>Hijri Converter — FAQs</h2>
-<details class="faq-item"><summary>How accurate is the Hijri conversion?</summary><p>Hijri dates depend on actual moon sighting, which can shift a date by ±1 day versus calendar calculation. This tool uses the arithmetic Islamic calendar as an approximation — always confirm Ramadan, Eid and other occasions with your local mosque.</p></details>
+<details class="faq-item"><summary>How accurate is the Hijri conversion?</summary><p>Hijri dates depend on actual moon sighting, which can shift a date by ±1 day versus calendar calculation. This tool uses the arithmetic (civil/tabular) Islamic calendar as an approximation — always confirm Ramadan, Eid and other occasions with your local mosque. Both directions use the same calendar, so converting a date there and back returns the same date.</p></details>
 <details class="faq-item"><summary>Which direction conversions are supported?</summary><p>Both: Gregorian to Hijri, and Hijri to Gregorian.</p></details>
 <details class="faq-item"><summary>Why is the Hijri year shorter?</summary><p>The Islamic calendar is lunar: a year is about 354 days, so Hijri dates move about 11 days earlier each Gregorian year.</p></details>
 <details class="faq-item"><summary>What if my browser does not support the Islamic calendar?</summary><p>Modern browsers (Chrome, Edge, Firefox, Safari) support the Islamic calendar. If yours does not, the page shows a graceful message suggesting you update your browser.</p></details>
@@ -85,7 +85,7 @@
   function set(id,t){var el=g(id);if(el)el.textContent=t;}
   var islamicOK=false, fmt=null;
   try{
-    fmt=new Intl.DateTimeFormat('en-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'});
+    fmt=new Intl.DateTimeFormat('en-u-ca-islamic-civil',{day:'numeric',month:'long',year:'numeric'});
     islamicOK=/islamic/i.test(fmt.resolvedOptions().calendar);
   }catch(e){islamicOK=false;}
   function g2h(dt){
@@ -108,6 +108,11 @@
     var month=e<14?e-1:e-13, year=month>2?c-4716:c-4715;
     return new Date(year,month-1,Math.floor(day));
   }
+  function daysInHijriMonth(hy,hm){
+    var d1=h2g(hy,hm,1);
+    var d2=(hm===12)?h2g(hy+1,1,1):h2g(hy,hm+1,1);
+    return Math.round((d2-d1)/86400000);
+  }
   function today(){
     var now=new Date();
     if(islamicOK){var h=g2h(now);set('hjToday',(h?h+' (Hijri) — ':'')+now.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+' (Gregorian)');}
@@ -124,6 +129,8 @@
     var hy=n('hjY'),hm=n('hjM'),hd=n('hjD');
     if(hy===null||hm===null||hd===null){set('hjGOut','—');return;}
     if(hd<1||hd>30){set('hjGOut','Day must be 1–30.');return;}
+    var dim=daysInHijriMonth(hy,hm);
+    if(hd>dim){ var mSel=g('hjM'); var mName=(mSel&&mSel.selectedIndex>=0)?mSel.options[mSel.selectedIndex].text:('month '+hm); set('hjGOut',mName+' has only '+dim+' days in '+hy+' AH — day '+hd+' does not exist.'); return; }
     var d=h2g(hy,hm,hd);
     set('hjGOut',d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' — approximate ±1 day');
   }

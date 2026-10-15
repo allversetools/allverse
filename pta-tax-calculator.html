@@ -56,24 +56,24 @@
 <div class="field"><label for="ptId">Registration type</label><select id="ptId"><option value="p" selected>Passport (within 60 days of arrival)</option><option value="c">CNIC (local registration)</option></select></div>
 <div class="result-box show"><h4>Estimated PTA tax (DIRBS)</h4><div class="stat-grid">
 <div class="stat"><b id="ptDuty">—</b><span>Duty &amp; levies</span></div>
-<div class="stat"><b id="ptSales">—</b><span>Sales tax (17%)</span></div>
+<div class="stat"><b id="ptSales">—</b><span>Sales tax (18% · 25% above $500)</span></div>
 <div class="stat"><b id="ptTotal">—</b><span>Total PTA tax</span></div>
 <div class="stat"><b id="ptEff">—</b><span>Effective rate</span></div>
 </div><div id="ptBand" class="slab-break"></div></div>
 <p class="rate-stamp">DIRBS duty schedule last updated: <b>January 2026</b> · FBR/PTA mobile registration rates by customs value band.</p>
 <table class="slab-table"><caption>PTA duty bands used (fixed duty, USD value)</caption><thead><tr><th>Phone value</th><th>Passport</th><th>CNIC</th></tr></thead><tbody>
-<tr><td>Up to $30</td><td>Rs 430</td><td>Rs 550</td></tr>
-<tr><td>$30 – $100</td><td>Rs 3,200</td><td>Rs 4,323</td></tr>
-<tr><td>$100 – $200</td><td>Rs 9,580</td><td>Rs 11,561</td></tr>
-<tr><td>$200 – $350</td><td>Rs 12,200 + 17% sales tax</td><td>Rs 14,661 + 17% sales tax</td></tr>
-<tr><td>$350 – $500</td><td>Rs 17,800 + 17% sales tax</td><td>Rs 23,420 + 17% sales tax</td></tr>
-<tr><td>Above $500</td><td>Rs 27,600 + 17% sales tax</td><td>Rs 37,007 + 17% sales tax</td></tr>
+<tr><td>Up to $30</td><td>Rs 430 + 18% sales tax</td><td>Rs 550 + 18% sales tax</td></tr>
+<tr><td>$30 – $100</td><td>Rs 3,200 + 18% sales tax</td><td>Rs 4,323 + 18% sales tax</td></tr>
+<tr><td>$100 – $200</td><td>Rs 9,580 + 18% sales tax</td><td>Rs 11,561 + 18% sales tax</td></tr>
+<tr><td>$200 – $350</td><td>Rs 12,200 + 18% sales tax</td><td>Rs 14,661 + 18% sales tax</td></tr>
+<tr><td>$350 – $500</td><td>Rs 17,800 + 18% sales tax</td><td>Rs 23,420 + 18% sales tax</td></tr>
+<tr><td>Above $500</td><td>Rs 27,600 + 25% sales tax</td><td>Rs 37,007 + 25% sales tax</td></tr>
 </tbody></table>
 <p class="disclaimer">Approximate estimate — PTA/FBR applies the official customs valuation (not your invoice price), which changes periodically. <b>Verify at dirbs.pta.gov.pk</b> before paying.</p>
 
 </div>
 <section class="faq-section"><h2>PTA Tax Calculator Pakistan — FAQs</h2>
-<details class="faq-item"><summary>Is PTA tax cheaper with a passport or a CNIC?</summary><p>Passport registration (within 60 days of arrival) is cheaper — duties are roughly 15–30% lower than CNIC registration in most value bands.</p></details><details class="faq-item"><summary>How does PTA decide my phone's value?</summary><p>PTA/FBR uses its own customs valuation per model, not your purchase invoice. FBR revises these valuations periodically (e.g. the January 2026 cut for used phones).</p></details><details class="faq-item"><summary>Do I pay sales tax on all phones?</summary><p>Under the current schedule, 17% sales tax applies in the higher bands (above $200 value) on top of the fixed duty. Lower bands pay a fixed total duty.</p></details><details class="faq-item"><summary>How do I actually pay the PTA tax?</summary><p>Generate a payment slip (PSID) on the DIRBS portal after applying, then pay via bank, ATM or mobile banking. Registration completes once payment is confirmed.</p></details>
+<details class="faq-item"><summary>Is PTA tax cheaper with a passport or a CNIC?</summary><p>Passport registration (within 60 days of arrival) is cheaper — duties are roughly 15–30% lower than CNIC registration in most value bands.</p></details><details class="faq-item"><summary>How does PTA decide my phone's value?</summary><p>PTA/FBR uses its own customs valuation per model, not your purchase invoice. FBR revises these valuations periodically (e.g. the January 2026 cut for used phones).</p></details><details class="faq-item"><summary>Do I pay sales tax on all phones?</summary><p>Yes — 18% sales tax applies on the phone's value in every band, on top of the fixed duty. For phones valued above $500 the sales tax rate is 25%.</p></details><details class="faq-item"><summary>How do I actually pay the PTA tax?</summary><p>Generate a payment slip (PSID) on the DIRBS portal after applying, then pay via bank, ATM or mobile banking. Registration completes once payment is confirmed.</p></details>
 </section><section class="more-tools"><h2>Try More Free Tools</h2>
 <div class="mini-grid">
 <a class="mini-tool" href="income-tax-calculator-pakistan.html"><span>Income Tax Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="electricity-bill-calculator.html"><span>Electricity Bill Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="gold-rate-calculator.html"><span>Gold Rate Calculator</span><span class="mini-go">→</span></a><a class="mini-tool" href="cnic-photo-maker.html"><span>CNIC Photo Maker</span><span class="mini-go">→</span></a>
@@ -81,7 +81,7 @@
 
 (function(){
 function g(id){return document.getElementById(id);}function set(id,t){var e=g(id);if(e)e.textContent=t;}function fmt(n,d){if(n===null||n===undefined||!isFinite(n))return '—';d=(d===undefined)?0:d;return (Math.round(n*Math.pow(10,d))/Math.pow(10,d)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}function pkr(n){return 'Rs ' + fmt(n,0);}
-var BANDS=[[30,430,550,0],[100,3200,4323,0],[200,9580,11561,0],[350,12200,14661,1],[500,17800,23420,1],[Infinity,27600,37007,1]];
+var BANDS=[[30,430,550],[100,3200,4323],[200,9580,11561],[350,12200,14661],[500,17800,23420],[Infinity,27600,37007]];
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 function update(){var val=skNum('ptVal'),rate=skNum('ptUsd'),id=g('ptId');
 if(val===null||val<0||rate===null||rate<=0){['ptDuty','ptSales','ptTotal','ptEff'].forEach(function(x){set(x,'—');});var bb=g('ptBand');if(bb)bb.innerHTML='';return;}
@@ -90,7 +90,7 @@ for(var i=0;i<BANDS.length;i++){if(usd<=BANDS[i][0]){band=BANDS[i];idx=i;break;}
 if(!band){band=BANDS[BANDS.length-1];idx=BANDS.length-1;}
 var mode=(id&&id.value==='c')?'c':'p';
 var duty=mode==='c'?band[2]:band[1];
-var sales=band[3]?val*0.17:0;
+var sales=val*(usd>500?0.25:0.18);
 var total=duty+sales;
 set('ptDuty',pkr(duty));set('ptSales',pkr(sales));set('ptTotal',pkr(total));set('ptEff',val>0?fmt(total/val*100,1)+'%':'—');
 var b=g('ptBand');if(b){var lo=idx>0?('$'+(BANDS[idx-1][0]+1)+' – '):'up to ';var bl=band[0]===Infinity?'above $500':lo+'$'+band[0];b.innerHTML='<p style="font-size:14px;margin:8px 0 0">Value band: <b>'+esc(bl)+'</b> (approx. $'+fmt(usd,0)+') · registered via <b>'+(mode==='c'?'CNIC':'Passport')+'</b></p>';}

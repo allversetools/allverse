@@ -61,6 +61,7 @@
 <div class="field"><label for="startDate">Start date</label><input type="date" id="startDate"></div>
 <div class="field"><label for="endDate">End date</label><input type="date" id="endDate"></div>
 </div>
+<div class="field"><label style="display:flex;align-items:center;gap:8px;font-weight:500"><input type="checkbox" id="ddInclusive" style="width:auto"> Count the end date too (inclusive)</label></div>
 <div class="btn-row"><button class="btn btn-primary" id="calcBtn" type="button">Calculate</button></div>
 <p class="form-msg err" id="ddMsg" hidden></p>
 <div class="result-panel" id="result" hidden>
@@ -134,18 +135,22 @@
       showMsg('Start date must be before (or equal to) the end date.');
       return;
     }
+    var inclEl = document.getElementById('ddInclusive');
+    var inclusive = !!(inclEl && inclEl.checked);
+    var d2eff = new Date(d2.getTime());
+    if (inclusive) d2eff.setDate(d2eff.getDate() + 1);
 
-    var totalDays = Math.round((d2.getTime() - d1.getTime()) / MS_PER_DAY);
+    var totalDays = Math.round((d2eff.getTime() - d1.getTime()) / MS_PER_DAY);
     var weeks = (totalDays / 7).toFixed(1);
     var months = (totalDays / 30.44).toFixed(1);
     var years = (totalDays / 365.25).toFixed(1);
 
-    var y = d2.getFullYear() - d1.getFullYear();
-    var m = d2.getMonth() - d1.getMonth();
-    var d = d2.getDate() - d1.getDate();
+    var y = d2eff.getFullYear() - d1.getFullYear();
+    var m = d2eff.getMonth() - d1.getMonth();
+    var d = d2eff.getDate() - d1.getDate();
     if (d < 0) {
       m -= 1;
-      var prevMonthDays = new Date(d2.getFullYear(), d2.getMonth(), 0).getDate();
+      var prevMonthDays = new Date(d2eff.getFullYear(), d2eff.getMonth(), 0).getDate();
       d += prevMonthDays;
     }
     if (m < 0) { y -= 1; m += 12; }
@@ -160,11 +165,13 @@
     if (m) parts.push(m + (m === 1 ? ' month' : ' months'));
     if (d || parts.length === 0) parts.push(d + (d === 1 ? ' day' : ' days'));
     var bd = document.getElementById('ddBreakdown');
-    if (bd) bd.textContent = 'Calendar breakdown: ' + parts.join(', ') + '.';
+    if (bd) bd.textContent = 'Calendar breakdown: ' + parts.join(', ') + '.' + (inclusive ? ' End date counted (inclusive).' : '');
     if (result) { result.hidden = false; if (window.SK_AI) SK_AI.scrollTo(result); }
   }
 
   if (calcBtn) calcBtn.addEventListener('click', calculate);
+  var inclBox = document.getElementById('ddInclusive');
+  if (inclBox) inclBox.addEventListener('change', function () { if (d1El.value && d2El.value) calculate(); });
 })();
 </script>
 </main></div>

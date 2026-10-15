@@ -180,7 +180,7 @@
 /* AI bio (AllVerse AI) */
 (function(){
   var btn=document.getElementById('aiBioBtn'), res=document.getElementById('aiBioResult'), out=document.getElementById('aiBioOut');
-  if(!btn||!window.SK_AI) return;
+  function bind(){ if(!btn||!window.SK_AI) return;
   btn.addEventListener('click', function(){
     var name=(document.getElementById('name')||{}).value||'';
     var role=(document.getElementById('role')||{}).value||'';
@@ -194,6 +194,9 @@
       SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
     }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.showError(res,e.message); });
   });
+  }
+  /* ai.js loads after this inline script, so bind once it exists (direct loads) or at once (PJAX). */
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
 })();
 </script>
 </main></div>

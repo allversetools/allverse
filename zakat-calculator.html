@@ -90,7 +90,7 @@
 (function(){
   function g(id){return document.getElementById(id);}
   function set(id,t){var el=g(id);if(el)el.textContent=t;}
-  function money(v,cur){return cur+' '+Math.round(v).toLocaleString('en-US');}
+  function money(v,cur){if(v===null||!isFinite(v))return '—';return cur+' '+Math.round(v).toLocaleString('en-US');}
   function upd(){
     var cur=(function(){var e=g('zkCur');return e?e.value:'Rs';})();
     var cash=Math.max(0, skNum('zkCash', 0)),gold=Math.max(0, skNum('zkGold', 0)),silver=Math.max(0, skNum('zkSilver', 0)),biz=Math.max(0, skNum('zkBiz', 0)),debt=Math.max(0, skNum('zkDebt', 0)),nisab=Math.max(0, skNum('zkNisab', 0));

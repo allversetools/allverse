@@ -7,7 +7,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free Unit Converter — Length, Weight, Temperature &amp; More">
 <meta name="twitter:description" content="Convert length, weight, temperature and more units instantly — km to miles, kg to lbs, °C to °F. Free, no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run29"><script src="js/helpers.js?v=h1"></script><link rel="canonical" href="https://allversetools.github.io/allverse/unit-converter.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Unit Converter", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert length, weight, temperature and more units instantly — km to miles, kg to lbs, °C to °F. Free, no signup.", "url": "https://allversetools.github.io/allverse/unit-converter.html"}</script><script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which units can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "Length, weight, temperature, volume, speed and more — metric and imperial."}}, {"@type": "Question", "name": "Is the Unit Converter free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free forever, no account needed."}}, {"@type": "Question", "name": "How accurate are the conversions?", "acceptedAnswer": {"@type": "Answer", "text": "Conversions use standard international factors and update live as you type."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which units can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "Length, weight, temperature, volume and speed — metric and imperial."}}, {"@type": "Question", "name": "Is the Unit Converter free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free forever, no account needed."}}, {"@type": "Question", "name": "How accurate are the conversions?", "acceptedAnswer": {"@type": "Answer", "text": "Conversions use standard international factors and update live as you type."}}]}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://allversetools.github.io/allverse/index.html"}, {"@type": "ListItem", "position": 2, "name": "Converters", "item": "https://allversetools.github.io/allverse/converters.html"}, {"@type": "ListItem", "position": 3, "name": "Unit Converter"}]}
@@ -54,7 +54,7 @@
 <main class="main"><div class="tool-wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="converters.html">Converters</a><span>›</span><span>Unit Converter</span></nav>
 <h1>Unit Converter</h1>
-<p class="tool-desc">Convert between length, weight and temperature units. The result updates live as you type or change units.</p>
+<p class="tool-desc">Convert between length, weight, temperature, volume and speed units. The result updates live as you type or change units.</p>
 <div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
 <script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
 <div class="tool-panel">
@@ -63,6 +63,8 @@
 <option value="length">Length</option>
 <option value="weight">Weight</option>
 <option value="temperature">Temperature</option>
+<option value="volume">Volume</option>
+<option value="speed">Speed</option>
 </select></div>
 <div class="field-row">
 <div class="field"><label for="amount">Value</label><input id="amount" type="number" step="any" placeholder="e.g. 100"></div>
@@ -90,7 +92,7 @@
 <li>Free and precise</li>
 </ul></section>
 <section class="faq-section"><h2>Unit Converter — FAQs</h2>
-<details class="faq-item"><summary>Which units can I convert?</summary><p>Length, weight, temperature, volume, speed and more — metric and imperial.</p></details>
+<details class="faq-item"><summary>Which units can I convert?</summary><p>Length, weight, temperature, volume and speed — metric and imperial.</p></details>
 <details class="faq-item"><summary>Is the Unit Converter free?</summary><p>Yes — free forever, no account needed.</p></details>
 <details class="faq-item"><summary>How accurate are the conversions?</summary><p>Conversions use standard international factors and update live as you type.</p></details>
 </section>
@@ -112,7 +114,9 @@
   var UNITS={
     length:{km:1000,m:1,cm:0.01,mm:0.001,mi:1609.344,yd:0.9144,ft:0.3048,in:0.0254},
     weight:{kg:1,g:0.001,lb:0.453592,oz:0.0283495},
-    temperature:{C:1,F:1,K:1}
+    temperature:{C:1,F:1,K:1},
+    volume:{ml:0.001,l:1,m3:1000,gal:3.78541,floz:0.0295735,cup:0.236588},
+    speed:{'m/s':1,'km/h':0.277778,mph:0.44704,kn:0.514444}
   };
   function populate(){
     var t=type.value, u=Object.keys(UNITS[t]);
@@ -121,6 +125,8 @@
     if(t==='length'){ from.value='m'; to.value='km'; }
     if(t==='weight'){ from.value='kg'; to.value='lb'; }
     if(t==='temperature'){ from.value='C'; to.value='F'; }
+    if(t==='volume'){ from.value='l'; to.value='gal'; }
+    if(t==='speed'){ from.value='km/h'; to.value='mph'; }
   }
   function toC(v,u){ if(u==='C')return v; if(u==='F')return (v-32)*5/9; return v-273.15; }
   function fromC(v,u){ if(u==='C')return v; if(u==='F')return v*9/5+32; return v+273.15; }

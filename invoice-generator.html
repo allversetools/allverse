@@ -117,7 +117,7 @@
 (function () {
   var SYM = {USD:'$',EUR:'\u20AC',GBP:'\u00A3',PKR:'Rs ',INR:'\u20B9',AED:'AED ',SAR:'SAR ',CAD:'CA$',AUD:'A$'};
   var itemsBox = document.getElementById('ivItems');
-  function money(n, cur) { return (SYM[cur] || '') + (Math.round(n * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+  function money(n, cur) { if (n === null || !isFinite(n)) return '—'; return (SYM[cur] || '') + (Math.round(n * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
   function escH(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function addRow(d, q, r) {
     var row = document.createElement('div');

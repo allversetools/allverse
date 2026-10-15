@@ -7,7 +7,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free Case Converter — UPPERCASE, lowercase, Title Case">
 <meta name="twitter:description" content="Convert text to UPPERCASE, lowercase, Title Case, camelCase and more, instantly. Free online case converter — no signup."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run29"><script src="js/helpers.js?v=h1"></script><link rel="canonical" href="https://allversetools.github.io/allverse/case-converter.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Case Converter", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert text to UPPERCASE, lowercase, Title Case, camelCase and more, instantly. Free online case converter — no signup.", "url": "https://allversetools.github.io/allverse/case-converter.html"}</script><script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which case styles are supported?", "acceptedAnswer": {"@type": "Answer", "text": "UPPERCASE, lowercase, Title Case, Sentence case and more — one click each."}}, {"@type": "Question", "name": "Is the Case Converter free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free, instant, no signup needed."}}, {"@type": "Question", "name": "Does it work on long documents?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Paste text of any reasonable length; conversion is instant and private."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which case styles are supported?", "acceptedAnswer": {"@type": "Answer", "text": "UPPERCASE, lowercase, Title Case, Sentence case, aLtErNaTiNg, camelCase, snake_case and kebab-case — one click each."}}, {"@type": "Question", "name": "Is the Case Converter free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free, instant, no signup needed."}}, {"@type": "Question", "name": "Does it work on long documents?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Paste text of any reasonable length; conversion is instant and private."}}]}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://allversetools.github.io/allverse/index.html"}, {"@type": "ListItem", "position": 2, "name": "Text Tools", "item": "https://allversetools.github.io/allverse/text-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Case Converter"}]}
@@ -67,6 +67,9 @@
 <button class="btn secondary" type="button" data-case="title">Title Case</button>
 <button class="btn secondary" type="button" data-case="sentence">Sentence case</button>
 <button class="btn secondary" type="button" data-case="alt">aLtErNaTiNg cAsE</button>
+<button class="btn secondary" type="button" data-case="camel">camelCase</button>
+<button class="btn secondary" type="button" data-case="snake">snake_case</button>
+<button class="btn secondary" type="button" data-case="kebab">kebab-case</button>
 </div>
 <div class="btn-row" style="margin-top:14px">
 <button class="btn" type="button" id="ccCopy">Copy</button>
@@ -87,7 +90,7 @@
 <li>Free and unlimited</li>
 </ul></section>
 <section class="faq-section"><h2>Case Converter — FAQs</h2>
-<details class="faq-item"><summary>Which case styles are supported?</summary><p>UPPERCASE, lowercase, Title Case, Sentence case and more — one click each.</p></details>
+<details class="faq-item"><summary>Which case styles are supported?</summary><p>UPPERCASE, lowercase, Title Case, Sentence case, aLtErNaTiNg, camelCase, snake_case and kebab-case — one click each.</p></details>
 <details class="faq-item"><summary>Is the Case Converter free?</summary><p>Yes — free, instant, no signup needed.</p></details>
 <details class="faq-item"><summary>Does it work on long documents?</summary><p>Yes. Paste text of any reasonable length; conversion is instant and private.</p></details>
 </section>
@@ -121,7 +124,16 @@
         else { out += c; }
       }
       return out;
-    }
+    },
+    words: function (t) {
+      return t.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2').split(/[^A-Za-z0-9]+/).filter(Boolean);
+    },
+    camel: function (t) {
+      var w = fns.words(t);
+      return w.map(function (x, i) { x = x.toLowerCase(); return i === 0 ? x : x.charAt(0).toUpperCase() + x.slice(1); }).join('');
+    },
+    snake: function (t) { return fns.words(t).map(function (x) { return x.toLowerCase(); }).join('_'); },
+    kebab: function (t) { return fns.words(t).map(function (x) { return x.toLowerCase(); }).join('-'); }
   };
 
   var buttons = document.querySelectorAll('[data-case]');

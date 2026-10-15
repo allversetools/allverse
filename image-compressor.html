@@ -7,7 +7,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free Image Compressor — Compress JPG, PNG, WebP Online">
 <meta name="twitter:description" content="Compress JPG, PNG &amp; WebP images online free. Reduce image file size without visible quality loss — 100% private, works in your browser."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css?v=run29"><script src="js/helpers.js?v=h1"></script><link rel="canonical" href="https://allversetools.github.io/allverse/image-compressor.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Image Compressor", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Compress JPG, PNG & WebP images online free. Reduce image file size without visible quality loss — 100% private, works in your browser.", "url": "https://allversetools.github.io/allverse/image-compressor.html"}</script><script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the Image Compressor free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free forever, no account needed and no watermarks added to your images."}}, {"@type": "Question", "name": "Will compressing reduce image quality?", "acceptedAnswer": {"@type": "Answer", "text": "You control the quality slider, so you choose the balance between file size and visual quality."}}, {"@type": "Question", "name": "Are my photos private?", "acceptedAnswer": {"@type": "Answer", "text": "Completely. Compression runs locally in your browser — nothing is uploaded anywhere."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the Image Compressor free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free forever, no account needed and no watermarks added to your images."}}, {"@type": "Question", "name": "Will compressing reduce image quality?", "acceptedAnswer": {"@type": "Answer", "text": "You control the quality slider, so you choose the balance between file size and visual quality."}}, {"@type": "Question", "name": "Are my photos private?", "acceptedAnswer": {"@type": "Answer", "text": "Completely. Compression runs locally in your browser — nothing is uploaded anywhere."}}, {"@type": "Question", "name": "Which output format should I choose?", "acceptedAnswer": {"@type": "Answer", "text": "JPEG for photos (smallest files; transparent areas become white). PNG when you need lossless quality or transparency. WebP for small files that keep transparency."}}]}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://allversetools.github.io/allverse/index.html"}, {"@type": "ListItem", "position": 2, "name": "Image Tools", "item": "https://allversetools.github.io/allverse/image-tools.html"}, {"@type": "ListItem", "position": 3, "name": "Image Compressor"}]}
@@ -53,7 +53,7 @@
 </nav></aside>
 <main class="main"><div class="tool-wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="image-tools.html">Image Tools</a><span>›</span><span>Image Compressor</span></nav>
-<h1>Image Compressor</h1><p class="tool-desc">Shrink your image's file size with adjustable quality — all processed locally in your browser. Note: output is converted to JPEG.</p>
+<h1>Image Compressor</h1><p class="tool-desc">Shrink your image's file size with adjustable quality and a choice of JPEG, PNG or WebP output — all processed locally in your browser.</p>
 <div class="share-row"><button class="share-btn" id="shareBtn" type="button">🔗 Share this tool</button><button class="share-btn ghost" id="copyBtn" type="button">⧉ Copy link</button></div>
 <script>(function(){var u=location.href,t=document.title;var s=document.getElementById("shareBtn"),c=document.getElementById("copyBtn");if(s)s.onclick=function(){if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}else{c.click()}};if(c)c.onclick=function(){var done=function(){c.textContent="✓ Copied!";setTimeout(function(){c.textContent="⧉ Copy link"},1500)};if(navigator.clipboard)navigator.clipboard.writeText(u).then(done,done);else{done()}};})();</script>
 <div class="tool-panel">
@@ -65,6 +65,11 @@
 <div class="field">
 <img id="cmpPreview" alt="Uploaded preview" style="display:none;max-height:220px;border-radius:12px;border:1px solid var(--border)">
 <p id="origSize" style="font-weight:600;margin-top:10px"></p>
+</div>
+<div class="field">
+<label for="cmpFormat">Output format</label>
+<select id="cmpFormat"><option value="jpeg" selected>JPEG — smallest files (transparent areas become white)</option><option value="png">PNG — lossless, keeps transparency</option><option value="webp">WebP — small files, keeps transparency</option></select>
+<p class="hint" style="margin:6px 0 0">PNG is lossless, so the quality slider does not apply to it. JPEG and WebP use the quality slider.</p>
 </div>
 <div class="field">
 <label for="quality">Quality: <span id="qualityVal">80%</span></label>
@@ -86,18 +91,19 @@
 <section class="faq-section"><h2>How to use</h2>
 <ol class="seo-steps">
 <li>Upload your JPG, PNG or WebP image</li>
-<li>Choose a quality level (or target file size)</li>
+<li>Choose an output format and quality level</li>
 <li>Preview the result and download the compressed image</li>
 </ol></section>
 <section class="faq-section"><h2>Why use this tool?</h2>
 <ul class="seo-why">
 <li>No uploads to a server — your images never leave your device</li>
 <li>Shrink photos for websites, email and social media in seconds</li>
-<li>Batch-friendly, free forever, no signup or watermark</li>
+<li>Free forever, no signup or watermark</li>
 </ul></section>
 <section class="faq-section"><h2>Image Compressor — FAQs</h2>
 <details class="faq-item"><summary>Is the Image Compressor free?</summary><p>Yes — free forever, no account needed and no watermarks added to your images.</p></details>
 <details class="faq-item"><summary>Will compressing reduce image quality?</summary><p>You control the quality slider, so you choose the balance between file size and visual quality.</p></details>
+<details class="faq-item"><summary>Which output format should I choose?</summary><p>JPEG for photos (smallest files; transparent areas become white). PNG when you need lossless quality or transparency. WebP for small files that keep transparency.</p></details>
 <details class="faq-item"><summary>Are my photos private?</summary><p>Completely. Compression runs locally in your browser — nothing is uploaded anywhere.</p></details>
 </section>
 <section class="more-tools"><!-- seo-top20 --><h2>More free tools</h2>
@@ -122,7 +128,7 @@
       stats = document.getElementById('cmpStats'),
       dl = document.getElementById('cmpDownload'),
       err = document.getElementById('formError'),
-      img = new Image(), hasImage = false, fileBytes = 0, outUrl = '';
+      img = new Image(), hasImage = false, fileBytes = 0, outUrl = '', outExt = 'jpg';
 
   function fmtKB(b) { return (b / 1024).toFixed(1) + ' KB'; }
   function showErr(m) { if (err) { err.textContent = m; err.style.display = 'block'; } }
@@ -175,11 +181,17 @@
       var canvas = document.createElement('canvas');
       canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
       var ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height); /* avoid black bg on transparent sources */
+      var fmtSel = document.getElementById('cmpFormat');
+      var outFmt = fmtSel ? fmtSel.value : 'jpeg';
+      var mime = outFmt === 'png' ? 'image/png' : outFmt === 'webp' ? 'image/webp' : 'image/jpeg';
+      outExt = outFmt === 'png' ? 'png' : outFmt === 'webp' ? 'webp' : 'jpg';
+      if (mime === 'image/jpeg') { /* JPEG has no transparency: fill white so transparent areas don't go black */
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
       ctx.drawImage(img, 0, 0);
       var qv = q ? (Math.trunc(skNum(q, 80))) / 100 : 0.8;
-      outUrl = canvas.toDataURL('image/jpeg', qv);
+      outUrl = canvas.toDataURL(mime, qv);
       var bytes = Math.round((outUrl.length * 3) / 4); /* base64 → byte estimate */
       var saved = fileBytes > 0 ? Math.max(0, Math.round((1 - bytes / fileBytes) * 100)) : 0;
       if (cimg) cimg.src = outUrl;
@@ -188,7 +200,7 @@
     });
   }
 
-  if (dl) dl.addEventListener('click', function () { if (outUrl) doDownload(outUrl, 'compressed.jpg'); });
+  if (dl) dl.addEventListener('click', function () { if (outUrl) doDownload(outUrl, 'compressed.' + outExt); });
 })();
 </script>
 </main></div>

@@ -76,7 +76,7 @@
 (function () {
   var input = document.getElementById('haText'), btn = document.getElementById('haBtn'), res = document.getElementById('haResult');
   if (!input || !btn || !res) return;
-  function L(s) { return s.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean); }
+  function L(s) { return s.toLowerCase().split(/[^a-z0-9-]+/).map(function (w) { return w.replace(/^-+|-+$/g, ''); }).filter(Boolean); }
   var COMMON = ['the','your','you','how','why','what','best','new','free','top','ways','guide','tips','more','my','this','that','with','for','and'];
   var UNCOMMON = ['actually','boldly','breathtaking','brilliant','captivating','curious','daring','delightful','epic','extraordinary','fearless','hidden','huge','incredible','insane','jaw-dropping','little-known','mind-blowing','powerful','proven','rare','remarkable','shocking','stunning','surprising','ultimate','unusual','weird','wonderful'];
   var EMOTIONAL = ['love','hate','fear','angry','happy','amazing','awesome','beautiful','crazy','desperate','easy','exciting','fantastic','fun','genius','great','hope','joy','laugh','magic','miracle','secret','secrets','smile','terrifying','thrilling','triumph','warning','win','worry','worst'];
@@ -124,7 +124,7 @@
 /* AI improve (AllVerse AI) */
 (function(){
   var btn=document.getElementById('haAiBtn'), res=document.getElementById('haAiResult'), out=document.getElementById('haAiOut');
-  if(!btn||!window.SK_AI) return;
+  function bind(){ if(!btn||!window.SK_AI) return;
   btn.addEventListener('click', function(){
     var t=SK_AI.requireInput(document.getElementById('haText'),'Enter a headline first.');
     if(t===null) return;
@@ -135,6 +135,9 @@
       SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.typeInto(out,txt);
     }).catch(function(e){ SK_AI.setBusy(btn,false); SK_AI.loading(res,false); SK_AI.showError(res,e.message); });
   });
+  }
+  /* ai.js loads after this inline script, so bind once it exists (direct loads) or at once (PJAX). */
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
 })();
 </script>
 </main></div><footer class="site-footer">

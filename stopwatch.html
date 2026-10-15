@@ -99,9 +99,10 @@
   function fmt(ms) {
     var cs = Math.floor(ms / 10) % 100;
     var s = Math.floor(ms / 1000) % 60;
-    var m = Math.floor(ms / 60000);
+    var m = Math.floor(ms / 60000) % 60;
+    var h = Math.floor(ms / 3600000);
     function p(n) { return (n < 10 ? '0' : '') + n; }
-    return p(m) + ':' + p(s) + '.' + p(cs);
+    return (h > 0 ? h + ':' + p(m) : p(m)) + ':' + p(s) + '.' + p(cs);
   }
   function now() { return base + (running ? Date.now() - startAt : 0); }
   function tick() { disp.textContent = fmt(now()); }
