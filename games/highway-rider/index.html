@@ -287,6 +287,8 @@ show(loadingEl, false);
 show(startEl, true);
 state = 'ready';
 window.__gBooted = true;
+/* Skins are pure DOM (no THREE needed) — render now, or the picker only appears in the same tick startRun() hides the start screen. */
+renderSkins();
 })();
 </script>
 </body></html>
