@@ -8,6 +8,10 @@
 
   var container = null;
   var isLoading = false;
+  /* Latest navigation requested while a load was in flight (rapid
+     clicks). Served right after the current load finishes, so a fast
+     second tap is never silently lost. */
+  var pendingNav = null;
 
   function getContainer() {
     if (!container) {
@@ -121,7 +125,12 @@
   }
 
   function loadPage(url, pushState) {
-    if (isLoading) return;
+    /* Mobile: close the sidebar/scrim on EVERY navigation (incl. Back).
+       main.js also closes it on sidebar-link clicks; this covers
+       popstate. Without it the new page loads behind the open sidebar
+       and taps look dead on phones. */
+    try { if (window.AV && typeof window.AV.closeSidebar === 'function') window.AV.closeSidebar(); } catch (e) {}
+    if (isLoading) { pendingNav = { url: url, push: pushState }; return; }
     // HARD GUARD: never fetch / pushState a URL outside /allverse/.
     // Repair stale relative hrefs first; abort if unrepairable.
     var safe = resolveNavUrl(url, window.location.href);
@@ -218,6 +227,9 @@
         var oldAside = document.querySelector('aside.sidebar');
         if (newAside && oldAside) {
           oldAside.innerHTML = newAside.innerHTML;
+          /* Fresh sidebar ships without counts (main.js ran once, on
+             the original sidebar) — restore them after every swap. */
+          try { if (window.AV && typeof window.AV.applySideCounts === 'function') window.AV.applySideCounts(); } catch (e) {}
         }
 
         // Sync header hrefs (NOT a full header swap — the header holds
@@ -274,6 +286,13 @@
 
         document.body.classList.remove('pjax-loading');
         isLoading = false;
+        /* Serve the latest rapid-click navigation, if one queued up
+           while this load was in flight. */
+        if (pendingNav) {
+          var next = pendingNav;
+          pendingNav = null;
+          loadPage(next.url, next.push);
+        }
       })
       .catch(function () {
         // Fallback to normal navigation on error

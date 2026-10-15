@@ -167,6 +167,19 @@
     document.body.style.overflow = '';
   }
 
+  /* Shared with pjax.js (Back-button navigations also close the sidebar).
+     Delegated, so it survives PJAX sidebar swaps. */
+  window.AV = window.AV || {};
+  window.AV.closeSidebar = closeSidebar;
+
+  /* Sidebar links ALWAYS close the (mobile) sidebar. Without this, a
+     PJAX navigation loads behind the still-open sidebar + scrim, so on
+     phones every category tap looked like "nothing happens / clicks dead". */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('aside.sidebar a') : null;
+    if (a) closeSidebar();
+  });
+
   if (menuToggle && sidebar) {
     menuToggle.addEventListener('click', function () {
       var willOpen = !sidebar.classList.contains('open');
@@ -295,8 +308,10 @@
   });
 
   /* ---------- 7b. Sidebar category tool counts ----------
-     True per-category totals (audited from category pages). */
-  (function () {
+     True per-category totals (audited from category pages).
+     Named + shared: pjax.js re-runs it after every sidebar swap, or the
+     fresh sidebar ships with no counts (PJAX swaps innerHTML). */
+  function applySideCounts() {
     try {
       var COUNTS = {
         'ai tools': 15, 'image tools': 3, 'text tools': 4, 'calculators': 5,
@@ -321,7 +336,10 @@
         }
       });
     } catch (e) {}
-  })();
+  }
+  applySideCounts();
+  window.AV = window.AV || {};
+  window.AV.applySideCounts = applySideCounts;
 
   /* ---------- 8. Spotlight grid tracking (Gemini) ---------- */
   if (HOVERABLE && !REDUCED) {
