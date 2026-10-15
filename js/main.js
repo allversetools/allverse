@@ -277,17 +277,15 @@
   var themeSwitches = document.querySelectorAll('.themeToggle, #themeToggle');
   var themeLabel = document.getElementById('themeLabel');
   function currentTheme() {
-    try {
-      var saved = localStorage.getItem('sk_theme_v2');
-      if (saved) return saved;
-    } catch (e) {}
-    return 'light'; /* default: light mode first, user can switch to dark */
+    /* Site ALWAYS starts light (owner rule) — never restore a saved dark
+       theme on load. The toggle still works within the visit. */
+    try { localStorage.removeItem('sk_theme_v2'); } catch (e) {}
+    return 'light';
   }
   function applyTheme(t) {
     document.documentElement.setAttribute('data-theme', t);
     themeSwitches.forEach(function (s) { s.checked = (t === 'light'); });
     if (themeLabel) themeLabel.textContent = (t === 'light') ? 'Light' : 'Dark';
-    try { localStorage.setItem('sk_theme_v2', t); } catch (e) {}
   }
   applyTheme(currentTheme());
   themeSwitches.forEach(function (sw) {
