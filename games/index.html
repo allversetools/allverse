@@ -10,12 +10,38 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://allversetools.github.io/allverse/index.html"}, {"@type": "ListItem", "position": 2, "name": "Games", "item": "https://allversetools.github.io/allverse/games/"}]}
 </script>
-<style>.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}.game-card{background:#fff;border:1px solid #e8eaed;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.game-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}.game-card-body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}.game-card-body h3{margin:0;font-size:1.05rem}.game-card-body p{margin:0;color:#555;font-size:.92rem}.game-tag{align-self:flex-start;background:#e6f7ff;color:#0077b6;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:600}.game-play{margin-top:auto;padding-top:8px;font-weight:700;color:#00b2ff}.game-filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.game-filter{border:1px solid #e8eaed;background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer;font:inherit}.game-filter.active{background:#00b2ff;color:#fff;border-color:#00b2ff}.game-search{width:100%;max-width:420px;padding:10px 14px;border:1px solid #e8eaed;border-radius:12px;font:inherit}.game-shelf{margin-top:28px}.game-shelf h2{font-size:1.25rem}.game-card.hidden{display:none}.game-empty{color:#555}.side-link.active{background:#e6f7ff;color:#0077b6}</style>
+<style>
+/* Games hub — CapCut mirror. Hero, search bar, pills, grids and cards reuse the
+   shared homepage classes in style.css (.hero/.cc-*, .smart-paste/.sp-bar,
+   .tool-grid/.tool-card/.tag-pill, .cat-section/.cat-head); only hub-specific
+   bits (thumbnail cards, filter pills) live here. NO .reveal classes on the
+   hub: main.js observes .reveal once on load, so PJAX-swapped .reveal nodes
+   would stay invisible (opacity:0). */
+.tool-card.game-card{padding:0;overflow:hidden;display:flex;flex-direction:column;text-align:left}
+.tool-card.game-card .game-thumb{display:block;overflow:hidden;background:var(--soft)}
+.tool-card.game-card .game-thumb img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .3s ease}
+.tool-card.game-card:hover .game-thumb img{transform:scale(1.04)}
+.game-card-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.game-card-body .tag-pill{margin:0 0 10px;align-self:flex-start}
+.game-card-body h3{margin-bottom:6px}
+.game-card-body p{margin:0}
+.game-play{margin-top:auto;padding-top:12px;font-weight:700;color:var(--accent)}
+.game-filters{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 28px}
+.game-filter{border:1px solid var(--border);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 15px;cursor:pointer;font:inherit;font-weight:600;font-size:.88rem}
+.game-filter:hover{border-color:var(--accent)}
+.game-filter.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.game-card.hidden{display:none}
+.game-empty{color:var(--muted)}
+.game-how{color:var(--muted);line-height:1.65;max-width:70ch}
+@media (prefers-reduced-motion: reduce){.tool-card.game-card .game-thumb img{transition:none}}
+</style>
 </head>
 <body></div></div>
 <header class="site-header"><div class="header-inner"><a class="logo" href="../index.html"><span class="logo-mark">A</span>AllVerse</a><nav class="top-nav" aria-label="Main"><a href="../index.html">Tools</a><a href="./" class="active">Games</a></nav><label class="theme-switch-wrap" title="Light / dark mode"><span class="theme-switch-label" id="themeLabel">Light</span><span class="theme-switch"><input type="checkbox" id="themeToggle" checked aria-label="Toggle dark mode"><span class="ts-track"><span class="ts-icon">☀️</span><span class="ts-icon">🌙</span><span class="ts-knob"></span></span></span></label>
 <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button></div></header>
-<div class="layout"><aside class="sidebar" id="sidebar"><p class="side-title">Categories</p><nav class="side-nav">
+<div class="layout"><aside class="sidebar" id="sidebar"><a href="#trendingShelf" class="cc-create-btn"><span>▶</span> Play Games</a><nav class="side-nav">
+<a class="side-link cc-home-link" href="../index.html">🏠 Home</a>
+<p class="side-title">Categories</p>
 <a class="side-link active" href="./" data-cat="all">🎮 All Games <span class="side-count">9</span></a>
 <a class="side-link" href="./?cat=puzzle" data-cat="puzzle">🧩 Puzzle <span class="side-count">4</span></a>
 <a class="side-link" href="./?cat=word" data-cat="word">🔤 Word <span class="side-count">1</span></a>
@@ -39,10 +65,32 @@
 <a class="side-link" href="./?cat=dressup" data-cat="dressup">👗 Dress Up <span class="side-count">0</span></a>
 <a class="side-link" href="./?cat=cooking" data-cat="cooking">🍳 Cooking <span class="side-count">0</span></a>
 </nav></aside>
-<main class="main"><div class="tool-wrap">
+<main class="main">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>›</span><span>Games</span></nav>
-<h1>Free Online Games</h1><p class="tool-desc">Play puzzle, car, bike, sports, action, word and 3D games instantly in your browser — no sign-up, no download, works on mobile.</p>
-<input class="game-search" id="gameSearch" type="search" placeholder="Search games…" autocomplete="off" aria-label="Search games">
+<section class="hero cc-hero">
+<p class="micro-label cc-eyebrow">AllVerse &middot; Free online games</p>
+<h1 class="cc-headline">Free online games for everyone.</h1>
+<p class="cc-sub">9 games for puzzle, word, racing, sports &amp; 3D &mdash; no sign-up, no download, play instantly in your browser.</p>
+<div class="cc-cta">
+<a class="btn btn-primary" href="#trendingShelf">Explore Games</a>
+<button class="btn btn-ghost" type="button" data-hub-filter="puzzle">Puzzle Games</button>
+</div>
+<p class="cc-trust">No sign-up &middot; No download &middot; Free forever</p>
+<div class="smart-paste cc-search-box">
+<label class="sp-bar cc-big-search" for="gameSearch">
+<span class="sp-prompt" aria-hidden="true">›</span>
+<input id="gameSearch" type="text" placeholder="Search 9 free games…" autocomplete="off" spellcheck="false" aria-label="Search games">
+</label>
+<div class="sp-chips" id="gameChips"></div>
+</div>
+<div class="cc-toggle-pills" id="heroPills">
+<button class="cc-pill active" type="button" data-filter="all">All Games</button>
+<button class="cc-pill" type="button" data-filter="puzzle">Puzzle</button>
+<button class="cc-pill" type="button" data-filter="3d">3D</button>
+</div>
+<p class="cc-stats micro-label">9 games &middot; 22 categories &middot; 100% free</p>
+</section>
+
 <div class="game-filters" id="gameFilters" role="group" aria-label="Filter games by category">
 <button type="button" class="game-filter active" data-filter="all">All</button>
 <button type="button" class="game-filter" data-filter="puzzle">Puzzle</button>
@@ -58,35 +106,37 @@
 <button type="button" class="game-filter" data-filter="io">.io</button>
 </div>
 
-<section class="game-shelf" id="recentShelf" hidden><h2>Recently Played</h2><div class="games-grid" id="recentGrid"></div></section>
+<section class="cat-section" id="recentShelf" hidden><div class="cat-head"><h2>🕘 Recently Played</h2></div><div class="tool-grid" id="recentGrid"></div></section>
 
-<section class="game-shelf" id="trendingShelf"><h2>Trending</h2><div class="games-grid" id="trendingGrid">
-<article class="game-card" data-slug="merge-mind" data-category="puzzle" data-name="MergeMind"><a href="merge-mind/"><img src="thumbs/merge-mind.webp" alt="MergeMind number-tile puzzle game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Puzzle</span><h3><a href="merge-mind/">MergeMind</a></h3><p>Slide and merge number tiles to reach the top tile.</p><a class="game-play" href="merge-mind/">Play →</a></div></article>
-<article class="game-card" data-slug="sky-rush-3d" data-category="3d arcade running" data-name="SkyRush 3D"><a href="sky-rush-3d/"><img src="thumbs/sky-rush-3d.webp" alt="SkyRush 3D endless runner game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">3D</span><h3><a href="sky-rush-3d/">SkyRush 3D</a></h3><p>Dodge obstacles in a fast 3D endless runner.</p><a class="game-play" href="sky-rush-3d/">Play →</a></div></article>
-<article class="game-card" data-slug="wordsprint-daily" data-category="word puzzle" data-name="WordSprint Daily"><a href="wordsprint-daily/"><img src="thumbs/wordsprint-daily.webp" alt="WordSprint Daily word puzzle game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Word</span><h3><a href="wordsprint-daily/">WordSprint Daily</a></h3><p>A fresh 5-letter word puzzle every day.</p><a class="game-play" href="wordsprint-daily/">Play →</a></div></article>
-<article class="game-card" data-slug="mango-merge" data-category="puzzle arcade" data-name="Mango Merge"><a href="mango-merge/"><img src="thumbs/mango-merge.webp" alt="Mango Merge fruit-merging puzzle game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Puzzle</span><h3><a href="mango-merge/">Mango Merge</a></h3><p>Drop and merge mangoes into bigger fruits.</p><a class="game-play" href="mango-merge/">Play →</a></div></article>
-<article class="game-card" data-slug="highway-rider" data-category="car racing 3d" data-name="Highway Rider"><a href="highway-rider/"><img src="thumbs/highway-rider.webp" alt="Highway Rider 3D car game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Car</span><h3><a href="highway-rider/">Highway Rider</a></h3><p>Weave through traffic, chain near-miss bonuses, unlock skins.</p><a class="game-play" href="highway-rider/">Play →</a></div></article>
-<article class="game-card" data-slug="hill-rider" data-category="bike" data-name="Hill Rider"><a href="hill-rider/"><img src="thumbs/hill-rider.webp" alt="Hill Rider bike climbing game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Bike</span><h3><a href="hill-rider/">Hill Rider</a></h3><p>Climb endless hills, land flips, grab fuel cans.</p><a class="game-play" href="hill-rider/">Play →</a></div></article>
-<article class="game-card" data-slug="super-over-smash" data-category="sports" data-name="Super Over Smash"><a href="super-over-smash/"><img src="thumbs/super-over-smash.webp" alt="Super Over Smash cricket batting game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Sports</span><h3><a href="super-over-smash/">Super Over Smash</a></h3><p>Chase the target in 6 balls — time hits for sixes.</p><a class="game-play" href="super-over-smash/">Play →</a></div></article>
-<article class="game-card" data-slug="stack-tower-3d" data-category="puzzle casual 3d" data-name="Stack Tower 3D"><a href="stack-tower-3d/"><img src="thumbs/stack-tower-3d.webp" alt="Stack Tower 3D stacking puzzle game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Puzzle</span><h3><a href="stack-tower-3d/">Stack Tower 3D</a></h3><p>Drop sliding blocks, land perfects, build the tallest tower.</p><a class="game-play" href="stack-tower-3d/">Play →</a></div></article>
-<article class="game-card" data-slug="orb-arena" data-category="action io" data-name="Orb Arena"><a href="orb-arena/"><img src="thumbs/orb-arena.webp" alt="Orb Arena .io arena game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Action</span><h3><a href="orb-arena/">Orb Arena</a></h3><p>Eat smaller orbs, grow bigger, rule the arena.</p><a class="game-play" href="orb-arena/">Play →</a></div></article>
+<section class="cat-section" id="trendingShelf"><div class="cat-head"><h2>🔥 Trending</h2></div><div class="tool-grid" id="trendingGrid">
+<a class="tool-card tilt game-card" data-slug="merge-mind" data-category="puzzle" data-name="MergeMind" href="merge-mind/"><span class="game-thumb"><img src="thumbs/merge-mind.webp" alt="MergeMind number-tile puzzle game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Puzzle</span><h3>MergeMind</h3><p>Slide and merge number tiles to reach the top tile.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="sky-rush-3d" data-category="3d arcade running" data-name="SkyRush 3D" href="sky-rush-3d/"><span class="game-thumb"><img src="thumbs/sky-rush-3d.webp" alt="SkyRush 3D endless runner game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; 3D</span><h3>SkyRush 3D</h3><p>Dodge obstacles in a fast 3D endless runner.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="wordsprint-daily" data-category="word puzzle" data-name="WordSprint Daily" href="wordsprint-daily/"><span class="game-thumb"><img src="thumbs/wordsprint-daily.webp" alt="WordSprint Daily word puzzle game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Word</span><h3>WordSprint Daily</h3><p>A fresh 5-letter word puzzle every day.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="mango-merge" data-category="puzzle arcade" data-name="Mango Merge" href="mango-merge/"><span class="game-thumb"><img src="thumbs/mango-merge.webp" alt="Mango Merge fruit-merging puzzle game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Puzzle</span><h3>Mango Merge</h3><p>Drop and merge mangoes into bigger fruits.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="highway-rider" data-category="car racing 3d" data-name="Highway Rider" href="highway-rider/"><span class="game-thumb"><img src="thumbs/highway-rider.webp" alt="Highway Rider 3D car game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Car</span><h3>Highway Rider</h3><p>Weave through traffic, chain near-miss bonuses, unlock skins.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="hill-rider" data-category="bike" data-name="Hill Rider" href="hill-rider/"><span class="game-thumb"><img src="thumbs/hill-rider.webp" alt="Hill Rider bike climbing game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Bike</span><h3>Hill Rider</h3><p>Climb endless hills, land flips, grab fuel cans.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="super-over-smash" data-category="sports" data-name="Super Over Smash" href="super-over-smash/"><span class="game-thumb"><img src="thumbs/super-over-smash.webp" alt="Super Over Smash cricket batting game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Sports</span><h3>Super Over Smash</h3><p>Chase the target in 6 balls — time hits for sixes.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="stack-tower-3d" data-category="puzzle casual 3d" data-name="Stack Tower 3D" href="stack-tower-3d/"><span class="game-thumb"><img src="thumbs/stack-tower-3d.webp" alt="Stack Tower 3D stacking puzzle game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Puzzle</span><h3>Stack Tower 3D</h3><p>Drop sliding blocks, land perfects, build the tallest tower.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="orb-arena" data-category="action io" data-name="Orb Arena" href="orb-arena/"><span class="game-thumb"><img src="thumbs/orb-arena.webp" alt="Orb Arena .io arena game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Action</span><h3>Orb Arena</h3><p>Eat smaller orbs, grow bigger, rule the arena.</p><span class="game-play">Play &rarr;</span></span></a>
 </div></section>
 
-<section class="game-shelf" id="newShelf"><h2>New</h2><div class="games-grid" id="newGrid">
-<article class="game-card" data-slug="highway-rider" data-category="car racing 3d" data-name="Highway Rider"><a href="highway-rider/"><img src="thumbs/highway-rider.webp" alt="Highway Rider 3D car game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Car</span><h3><a href="highway-rider/">Highway Rider</a></h3><p>Weave through traffic, chain near-miss bonuses, unlock skins.</p><a class="game-play" href="highway-rider/">Play →</a></div></article>
-<article class="game-card" data-slug="hill-rider" data-category="bike" data-name="Hill Rider"><a href="hill-rider/"><img src="thumbs/hill-rider.webp" alt="Hill Rider bike climbing game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Bike</span><h3><a href="hill-rider/">Hill Rider</a></h3><p>Climb endless hills, land flips, grab fuel cans.</p><a class="game-play" href="hill-rider/">Play →</a></div></article>
-<article class="game-card" data-slug="super-over-smash" data-category="sports" data-name="Super Over Smash"><a href="super-over-smash/"><img src="thumbs/super-over-smash.webp" alt="Super Over Smash cricket batting game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Sports</span><h3><a href="super-over-smash/">Super Over Smash</a></h3><p>Chase the target in 6 balls — time hits for sixes.</p><a class="game-play" href="super-over-smash/">Play →</a></div></article>
-<article class="game-card" data-slug="stack-tower-3d" data-category="puzzle casual 3d" data-name="Stack Tower 3D"><a href="stack-tower-3d/"><img src="thumbs/stack-tower-3d.webp" alt="Stack Tower 3D stacking puzzle game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Puzzle</span><h3><a href="stack-tower-3d/">Stack Tower 3D</a></h3><p>Drop sliding blocks, land perfects, build the tallest tower.</p><a class="game-play" href="stack-tower-3d/">Play →</a></div></article>
-<article class="game-card" data-slug="orb-arena" data-category="action io" data-name="Orb Arena"><a href="orb-arena/"><img src="thumbs/orb-arena.webp" alt="Orb Arena .io arena game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">Action</span><h3><a href="orb-arena/">Orb Arena</a></h3><p>Eat smaller orbs, grow bigger, rule the arena.</p><a class="game-play" href="orb-arena/">Play →</a></div></article>
+<section class="cat-section" id="newShelf"><div class="cat-head"><h2>✨ New</h2></div><div class="tool-grid" id="newGrid">
+<a class="tool-card tilt game-card" data-slug="highway-rider" data-category="car racing 3d" data-name="Highway Rider" href="highway-rider/"><span class="game-thumb"><img src="thumbs/highway-rider.webp" alt="Highway Rider 3D car game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Car</span><h3>Highway Rider</h3><p>Weave through traffic, chain near-miss bonuses, unlock skins.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="hill-rider" data-category="bike" data-name="Hill Rider" href="hill-rider/"><span class="game-thumb"><img src="thumbs/hill-rider.webp" alt="Hill Rider bike climbing game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Bike</span><h3>Hill Rider</h3><p>Climb endless hills, land flips, grab fuel cans.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="super-over-smash" data-category="sports" data-name="Super Over Smash" href="super-over-smash/"><span class="game-thumb"><img src="thumbs/super-over-smash.webp" alt="Super Over Smash cricket batting game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Sports</span><h3>Super Over Smash</h3><p>Chase the target in 6 balls — time hits for sixes.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="stack-tower-3d" data-category="puzzle casual 3d" data-name="Stack Tower 3D" href="stack-tower-3d/"><span class="game-thumb"><img src="thumbs/stack-tower-3d.webp" alt="Stack Tower 3D stacking puzzle game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Puzzle</span><h3>Stack Tower 3D</h3><p>Drop sliding blocks, land perfects, build the tallest tower.</p><span class="game-play">Play &rarr;</span></span></a>
+<a class="tool-card tilt game-card" data-slug="orb-arena" data-category="action io" data-name="Orb Arena" href="orb-arena/"><span class="game-thumb"><img src="thumbs/orb-arena.webp" alt="Orb Arena .io arena game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; Action</span><h3>Orb Arena</h3><p>Eat smaller orbs, grow bigger, rule the arena.</p><span class="game-play">Play &rarr;</span></span></a>
 </div></section>
 
-<section class="game-shelf"><h2>How games work</h2><p>No sign-up, no download. Every game runs right in your browser on phone or desktop — open a game, play instantly, and your streaks and scores are saved on your own device.</p></section>
+<section class="cat-section"><div class="cat-head"><h2>How games work</h2></div><p class="game-how">No sign-up, no download. Every game runs right in your browser on phone or desktop — open a game, play instantly, and your streaks and scores are saved on your own device.</p></section>
 <p class="game-empty" id="noResults" hidden>No games match your search.</p>
-<section class="game-shelf" id="comingSoon" hidden><h2 id="comingSoonTitle">Coming soon</h2><p class="game-empty" id="comingSoonText"></p></section>
+<section class="cat-section" id="comingSoon" hidden><div class="cat-head"><h2 id="comingSoonTitle">Coming soon</h2></div><p class="game-empty" id="comingSoonText"></p></section>
 <script>
 (function () {
   var search = document.getElementById('gameSearch');
+  var chips = document.getElementById('gameChips');
   var filters = document.getElementById('gameFilters');
+  var heroPills = document.getElementById('heroPills');
   var activeFilter = 'all';
   var recentShelf = document.getElementById('recentShelf');
   var recentGrid = document.getElementById('recentGrid');
@@ -112,7 +162,23 @@
   function cardHTML(slug) {
     var g = GAMES[slug];
     if (!g) return '';
-    return '<article class="game-card" data-slug="' + slug + '" data-category="' + g.cat + '" data-name="' + g.title + '"><a href="' + slug + '/"><img src="' + g.thumb + '" alt="' + g.title + ' game" width="512" height="384" loading="lazy"></a><div class="game-card-body"><span class="game-tag">' + g.tag + '</span><h3><a href="' + slug + '/">' + g.title + '</a></h3><p>' + g.desc + '</p><a class="game-play" href="' + slug + '/">Play →</a></div></article>';
+    return '<a class="tool-card tilt game-card" data-slug="' + slug + '" data-category="' + g.cat + '" data-name="' + g.title + '" href="' + slug + '/"><span class="game-thumb"><img src="' + g.thumb + '" alt="' + g.title + ' game" width="512" height="384" loading="lazy" decoding="async"></span><span class="game-card-body"><span class="tag-pill">Free &bull; ' + g.tag + '</span><h3>' + g.title + '</h3><p>' + g.desc + '</p><span class="game-play">Play &rarr;</span></span></a>';
+  }
+  function renderChips() {
+    if (!chips) return;
+    var q = (search.value || '').trim().toLowerCase();
+    if (!q) { chips.innerHTML = ''; return; }
+    var html = '';
+    var n = 0;
+    Object.keys(GAMES).forEach(function (slug) {
+      if (n >= 5) return;
+      var g = GAMES[slug];
+      if (g.title.toLowerCase().indexOf(q) !== -1 || g.cat.indexOf(q) !== -1) {
+        html += '<a class="sp-chip" href="' + slug + '/">' + g.title + '</a>';
+        n++;
+      }
+    });
+    chips.innerHTML = html;
   }
   function applyFilter() {
     var q = (search.value || '').trim().toLowerCase();
@@ -155,6 +221,7 @@
   function setFilter(cat) {
     activeFilter = cat;
     filters.querySelectorAll('.game-filter').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-filter') === cat); });
+    if (heroPills) heroPills.querySelectorAll('.cc-pill').forEach(function (p) { p.classList.toggle('active', p.getAttribute('data-filter') === cat); });
     sideLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-cat') === cat); });
     applyFilter();
   }
@@ -173,6 +240,24 @@
       pushCatUrl(cat);
     });
   }
+  if (heroPills) {
+    heroPills.addEventListener('click', function (e) {
+      var pill = e.target.closest('.cc-pill');
+      if (!pill) return;
+      var cat = pill.getAttribute('data-filter');
+      setFilter(cat);
+      pushCatUrl(cat);
+    });
+  }
+  document.querySelectorAll('[data-hub-filter]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cat = btn.getAttribute('data-hub-filter');
+      setFilter(cat);
+      pushCatUrl(cat);
+      var shelf = document.getElementById('trendingShelf');
+      if (shelf) shelf.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
   sideLinks.forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
@@ -188,7 +273,7 @@
       setFilter(initialCat);
     }
   } catch (err) {}
-  if (search) search.addEventListener('input', applyFilter);
+  if (search) search.addEventListener('input', function () { applyFilter(); renderChips(); });
   try {
     var recent = (window.AV_Games && AV_Games.getRecent()) || [];
     var html = '';
@@ -197,7 +282,7 @@
   } catch (e) { /* recently played unavailable */ }
 })();
 </script>
-</div></main></div>
+</main></div>
 <footer class="site-footer">
 <p><span class="js-year">© 2026</span> AllVerse · Free online tools, no signup · Made by Amaan Arshad</p>
 <p class="foot-links"><a href="../index.html">Home</a> · <a href="../about.html">About</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../contact.html">Contact</a> · <a href="../changelog.html">What's New</a></p>
