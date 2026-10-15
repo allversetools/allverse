@@ -370,6 +370,15 @@ var WS_WORDS = ['APPLE', 'BRAVE', 'CLOUD', 'DANCE', 'EAGLE', 'FLAME', 'GRAPE', '
     updateCountdown();
     countdownTimer = setInterval(updateCountdown, 1000);
   }
+  /* PJAX: stop the countdown when this page is swapped out (shared
+     cleanup registry — pjax.js runs it before every swap). */
+  try {
+    if (window.AV_Games && typeof AV_Games.onPageLeave === 'function') {
+      AV_Games.onPageLeave(function () {
+        if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+      });
+    }
+  } catch (e) {}
 
   /* ---- game flow ---- */
   function finishGame(won) {

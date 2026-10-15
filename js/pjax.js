@@ -23,14 +23,28 @@
     return container;
   }
 
+  var SITE_ROOT = '/allverse/';
+
+  /* Game pages (/games/<slug>/) are NEVER PJAX targets: their game
+     scripts live OUTSIDE <main> (end of <body>), so a PJAX swap would
+     leave a dead canvas. They always full-load; music.js resumes the
+     track from its saved position so the music still never restarts. */
+  function isGamePageUrl(u) {
+    var p = (typeof u === 'string') ? u : u.pathname;
+    return /^\/allverse\/games\/[^/]+\/(index\.html)?$/.test(p);
+  }
+
   function isInternalLink(a) {
     if (!a || !a.href) return false;
     if (a.target === '_blank') return false;
     if (a.hasAttribute('download')) return false;
-    var url = new URL(a.href, window.location.origin);
-    // Same origin, HTML page
+    var url;
+    try { url = new URL(a.href, window.location.href); } catch (e) { return false; }
+    // Same origin, under the site root
     if (url.origin !== window.location.origin) return false;
-    if (!url.pathname.endsWith('.html') && url.pathname !== '/') return false;
+    if (url.pathname.indexOf(SITE_ROOT) !== 0) return false;
+    // Game pages: full load (see isGamePageUrl)
+    if (isGamePageUrl(url)) return false;
     // Skip hash-only navigation on same page
     if (url.pathname === window.location.pathname && url.hash) return false;
     return true;
@@ -38,7 +52,21 @@
 
   function loadPage(url, pushState) {
     if (isLoading) return;
+    // Game pages always full-load (their scripts live outside <main>).
+    try {
+      var target = new URL(url, window.location.href);
+      if (isGamePageUrl(target)) { window.location.href = url; return; }
+    } catch (e) {}
     isLoading = true;
+
+    // Let the outgoing page stop its loops/timers (games register via
+    // AV_Games.onPageLeave). Shared registry — future games inherit it.
+    try { document.dispatchEvent(new Event('pjax:beforeunload')); } catch (e) {}
+    try {
+      if (window.AV_Games && typeof window.AV_Games.runLeaveCleanups === 'function') {
+        window.AV_Games.runLeaveCleanups();
+      }
+    } catch (e) {}
 
     // Show subtle loading indicator
     document.body.classList.add('pjax-loading');
@@ -149,16 +177,25 @@
   }
 
   function updateNav(url) {
-    // Update sidebar active states
+    // Update sidebar active states — compare fully-resolved URLs
+    // (pathname + search), so hub ?cat= links match exactly.
     var links = document.querySelectorAll('.side-link');
     for (var i = 0; i < links.length; i++) {
       var href = links[i].getAttribute('href');
-      if (href && url.endsWith(href)) {
-        links[i].classList.add('active');
-      } else {
-        links[i].classList.remove('active');
-      }
+      if (!href) continue;
+      try {
+        var resolved = new URL(href, url).href;
+        links[i].classList.toggle('active', resolved === url);
+      } catch (e) {}
     }
+    // Update top-nav section (Tools vs Games) — the header survives swaps,
+    // so its active state would otherwise go stale after PJAX navigation.
+    var inGames = false;
+    try { inGames = new URL(url, window.location.href).pathname.indexOf(SITE_ROOT + 'games/') === 0; } catch (e) {}
+    document.querySelectorAll('.top-nav a').forEach(function (a) {
+      var isGamesLink = /games/.test(a.getAttribute('href') || '');
+      a.classList.toggle('active', inGames ? isGamesLink : !isGamesLink);
+    });
   }
 
   function reinitializePage() {
@@ -176,6 +213,9 @@
 
   // Intercept clicks
   document.addEventListener('click', function (e) {
+    // Respect handlers that already claimed the click (e.g. the games
+    // hub sidebar filter, which is in-page and must not ALSO PJAX).
+    if (e.defaultPrevented) return;
     var a = e.target.closest('a');
     if (!a || !isInternalLink(a)) return;
 

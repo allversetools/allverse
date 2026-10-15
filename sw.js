@@ -36,7 +36,10 @@
     // Only handle same-origin requests under /allverse/
     if (url.origin !== self.location.origin) return;
     if (url.pathname.indexOf('/allverse/') !== 0) return;
-    var isHtml = /\.html$/.test(url.pathname) || url.pathname === '/allverse/';
+    // Directory URLs (trailing slash) are HTML pages too — the old check
+    // only matched *.html and the site root, so /games/ etc. were
+    // treated as static assets and could serve stale/wrong content.
+    var isHtml = /\.html$/.test(url.pathname) || url.pathname === '/allverse/' || /\/$/.test(url.pathname);
     e.respondWith(
       isHtml
         // HTML: network-first (always fresh), cache as offline fallback
@@ -61,7 +64,9 @@
               }
               return res;
             }).catch(function () {
-              return caches.match('/allverse/index.html');
+              // Asset genuinely unavailable: return a real 404, never
+              // index.html (HTML served as JS/CSS breaks the page).
+              return new Response('', { status: 404, statusText: 'Not Found' });
             });
           })
     );

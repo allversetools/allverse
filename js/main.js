@@ -414,7 +414,10 @@
 
   function openPal() {
     if (palActive >= 0 && palItems[palActive]) {
-      window.location.href = palItems[palActive].href;
+      /* TOOLS hrefs are bare filenames (root-relative). Resolve against
+         the site root so the palette never 404s from nested pages
+         (e.g. /games/<game>/image-compressor.html). */
+      window.location.href = '/allverse/' + palItems[palActive].href;
     }
   }
 
@@ -554,7 +557,7 @@
       pill.addEventListener('click', function () {
         wrap.querySelectorAll('.cc-pill').forEach(function (p) { p.classList.remove('active'); });
         pill.classList.add('active');
-        if (pill.dataset.goto) { window.location.href = pill.dataset.goto; }
+        if (pill.dataset.goto) { window.location.href = '/allverse/' + pill.dataset.goto; }
       });
     });
   });

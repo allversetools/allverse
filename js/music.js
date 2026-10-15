@@ -1,19 +1,41 @@
 /* ============================================================
    AllVerse Music — background MP3 (reliable, no glitches)
    Simple HTML5 audio loop. Toggle button with animation.
+   - Audio URL is SITE-ROOT ABSOLUTE so it works from any depth
+     (/games/<game>/ pages used to 404 on the relative path).
+   - Playback POSITION is persisted (localStorage) so music RESUMES
+     where it left off across full page loads — it never restarts
+     from the beginning when you switch tools/games/categories.
    ============================================================ */
 (function () {
   'use strict';
 
+  var SITE_ROOT = '/allverse/';
   var audio = null;
   var playing = false;
+  var lastSavedPos = -1;
 
   function ensureAudio() {
     if (audio) return true;
-    audio = new Audio('audio/user-music.mp3?v=1');
+    audio = new Audio(SITE_ROOT + 'audio/user-music.mp3?v=1');
     audio.loop = true;
     audio.volume = 0.5;
     audio.preload = 'auto';
+    // Resume position: if music was playing when the last page unloaded,
+    // seek back to that spot as soon as metadata is available.
+    audio.addEventListener('loadedmetadata', function () {
+      if (!wasOn()) return;
+      var p = savedPos();
+      if (p > 0 && isFinite(audio.duration) && p < audio.duration - 3) {
+        try { audio.currentTime = p; } catch (e) {}
+      }
+    });
+    // Persist position every ~5s while playing (throttled timeupdate).
+    audio.addEventListener('timeupdate', function () {
+      if (!playing) return;
+      var t = Math.floor(audio.currentTime || 0);
+      if (t !== lastSavedPos && t % 5 === 0) { lastSavedPos = t; savePos(); }
+    });
     return true;
   }
 
@@ -22,6 +44,19 @@
   }
   function wasOn() {
     try { return localStorage.getItem('av_music_on') === '1'; } catch (e) { return false; }
+  }
+  function savedPos() {
+    try {
+      var v = parseFloat(localStorage.getItem('av_music_pos'));
+      return (isFinite(v) && v > 0) ? v : 0;
+    } catch (e) { return 0; }
+  }
+  function savePos() {
+    try {
+      if (audio && isFinite(audio.currentTime)) {
+        localStorage.setItem('av_music_pos', String(Math.floor(audio.currentTime)));
+      }
+    } catch (e) {}
   }
 
   function setButtons(on) {
@@ -36,6 +71,14 @@
     if (!ensureAudio()) return;
     playing = true;
     saveState(true);
+    // If metadata is already loaded and we have a saved spot, seek now
+    // (loadedmetadata handler covers the not-yet-loaded case).
+    if (audio.readyState >= 1) {
+      var p = savedPos();
+      if (p > 0 && isFinite(audio.duration) && p < audio.duration - 3) {
+        try { audio.currentTime = p; } catch (e) {}
+      }
+    }
     // 2s fade in
     audio.volume = 0;
     var fadeIn = setInterval(function () {
@@ -56,6 +99,7 @@
     if (!audio) { playing = false; setButtons(false); saveState(false); return; }
     playing = false;
     saveState(false);
+    savePos(); /* remember where we stopped so resume is seamless */
     // 2s fade out
     var fadeOut = setInterval(function () {
       audio.volume = Math.max(0, audio.volume - 0.025);
@@ -94,6 +138,9 @@
   function init() {
     inject();
     setButtons(false);
+    // Persist position when leaving the page (full loads: game pages, etc.)
+    window.addEventListener('pagehide', savePos);
+    window.addEventListener('beforeunload', savePos);
     // Pause on tab hide, resume on show
     var wasPlaying = false;
     document.addEventListener('visibilitychange', function () {

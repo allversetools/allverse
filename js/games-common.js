@@ -251,6 +251,22 @@
     });
   }
 
+  /* ---- PJAX leave-cleanup registry (shared, future-proof) ----
+     Games with persistent loops/timers register a cleanup here; pjax.js
+     runs them before every swap so nothing keeps running on a page that
+     is no longer shown. Mango Merge / SkyRush 3D loops already
+     self-stop (document.contains(canvas) guard); this covers the rest
+     (e.g. WordSprint's countdown interval) and all future games. */
+  var leaveCleanups = [];
+  function onPageLeave(fn) {
+    if (typeof fn === 'function') leaveCleanups.push(fn);
+  }
+  function runLeaveCleanups() {
+    var fns = leaveCleanups.slice();
+    leaveCleanups = [];
+    fns.forEach(function (fn) { try { fn(); } catch (e) {} });
+  }
+
   window.AV_Games = {
     share: share,
     dailySeed: dailySeed,
@@ -264,6 +280,16 @@
     getRecent: getRecent,
     fmt: fmt,
     reducedMotion: reducedMotion,
-    onVisibility: onVisibility
+    onVisibility: onVisibility,
+    onPageLeave: onPageLeave,
+    runLeaveCleanups: runLeaveCleanups
   };
+
+  /* Game pages call AV.whileYouHere (short alias) — expose it.
+     Without this alias the "While you're here" boxes silently never
+     rendered (AV.whileYouHere did not exist). */
+  window.AV = window.AV || {};
+  window.AV.whileYouHere = whileYouHere;
+  window.AV.onPageLeave = onPageLeave;
+  window.AV.runLeaveCleanups = runLeaveCleanups;
 })();

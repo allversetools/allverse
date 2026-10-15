@@ -227,7 +227,7 @@
     activeIdx = -1;
     if (best && bestScore > 0.3) {
       drop.innerHTML = '<div class="sk-sr-empty">No results for "<b>' + esc(q) + '</b>"</div>' +
-        '<div class="sk-sr-dym">Did you mean <a href="' + best.href + '"><b>' + esc(best.name) + '</b></a>?</div>';
+        '<div class="sk-sr-dym">Did you mean <a href="/allverse/' + best.href + '"><b>' + esc(best.name) + '</b></a>?</div>';
     } else {
       drop.innerHTML = '<div class="sk-sr-empty">No tools found for "<b>' + esc(q) + '</b>"</div>';
     }
@@ -271,7 +271,9 @@
     drop.querySelectorAll('.sk-sr-item[data-href]').forEach(function (el) {
       el.addEventListener('mousedown', function (e) {
         e.preventDefault();
-        window.location.href = el.getAttribute('data-href');
+        /* data-href values are bare filenames (root-relative). Resolve
+           against the site root so search never 404s from nested pages. */
+        window.location.href = '/allverse/' + el.getAttribute('data-href');
       });
     });
     drop.hidden = false;
@@ -302,7 +304,7 @@
     var t = currentItems[i];
     if (!t) return;
     addRecent(currentQuery || t.name);
-    window.location.href = t.href;
+    window.location.href = '/allverse/' + t.href;
   }
 
   function onInput() {
