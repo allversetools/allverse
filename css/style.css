@@ -54,10 +54,10 @@ img { max-width: 100%; display: block; }
 }
 
 /* Main header nav: Tools / Games (replaces header search bar) */
-.top-nav{display:flex;gap:16px;align-items:center}
-.top-nav a{font-weight:600;color:inherit;text-decoration:none}
-.top-nav a:hover{color:#00b2ff}
-.top-nav a.active{color:#00b2ff}
+.top-nav{display:flex;gap:8px;align-items:center;margin-left:8px}
+.top-nav a{font-weight:600;color:inherit;text-decoration:none;padding:8px 16px;border-radius:999px;line-height:1}
+.top-nav a:hover{color:#00b2ff;background:var(--blue-tint)}
+.top-nav a.active{background:#00b2ff;color:#fff}
 .header-inner {
   max-width: 1680px;
   margin: 0 auto;
@@ -65,8 +65,10 @@ img { max-width: 100%; display: block; }
   padding: 0 20px;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 24px;
 }
+/* Theme toggle (+ music button injected right after it) stays pinned to the far right */
+.header-inner > .theme-switch-wrap { margin-left: auto; }
 
 a.logo {
   display: inline-flex;
@@ -579,6 +581,8 @@ a.logo {
   .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
 
   .header-inner { flex-wrap: wrap; height: auto; padding: 12px 16px; }
+  /* Mobile: nav drops to its own row so theme/music stay pinned top-right, no overlap */
+  .top-nav { order: 3; flex-basis: 100%; margin-left: 0; }
   .search-wrap { order: 3; flex-basis: 100%; max-width: none; margin-left: 0; }
 
   .layout { display: block; }
