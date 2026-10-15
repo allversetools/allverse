@@ -25,6 +25,66 @@
 
   var SITE_ROOT = '/allverse/';
 
+  /* ---- URL guard: resolveNavUrl (BUGFIX 2026-10-15) ----
+     ROOT CAUSE of the "https://allversetools.github.io/index.html" 404:
+     PJAX swaps ONLY <main>. Header + sidebar keep the PREVIOUS page's
+     page-relative hrefs (e.g. a game page's "../../index.html"). After a
+     PJAX hop, clicking one resolves against the NEW url — one "../" too
+     many — escaping /allverse/ to the org root (/index.html = GitHub's
+     own 404). Repeated Games<->Tools switching hit it deterministically:
+     game pages always full-load (planting "../../" hrefs), the next PJAX
+     hop leaves them stale, the next header/sidebar click escapes.
+     This resolver: (1) resolves normally; (2) if the result escapes
+     /allverse/, repairs by resolving against the site root with leading
+     ../ segments stripped; (3) if it STILL escapes, returns null — the
+     caller must NOT pushState / navigate to it. Never resolve nav
+     hrefs against window.location.origin (that strips /allverse/). */
+  function resolveNavUrl(raw, base) {
+    if (raw == null) return null;
+    var trimmed = String(raw).trim();
+    if (!trimmed || trimmed.charAt(0) === '#') return null;
+    if (/^(javascript|mailto|tel|data):/i.test(trimmed)) return null;
+    var baseUrl = base || window.location.href;
+    var out = null;
+    try { out = new URL(trimmed, baseUrl); } catch (e) { return null; }
+    if (out.origin !== window.location.origin) return null; // external
+    // Games-hub category links ("../?cat=puzzle", "./?cat=puzzle") can
+    // naively land on the site root + ?cat= (e.g. from /allverse/games/).
+    // No legitimate link points at the site root with ?cat=, so those are
+    // always hub category links — rewrite to the hub.
+    if ((out.pathname === SITE_ROOT || out.pathname === SITE_ROOT + 'index.html')
+        && /(?:^|[?&])cat=/.test(out.search)) {
+      try { return new URL(SITE_ROOT + 'games/' + out.search, window.location.origin).href; } catch (e0) { return null; }
+    }
+    if (out.pathname.indexOf(SITE_ROOT) === 0) return out.href;
+    // ESCAPED /allverse/ — repair. Root-relative hrefs ("/x") are
+    // re-rooted under /allverse/; relative hrefs get leading ../
+    // stripped (they belonged to the previous page's depth).
+    if (trimmed.charAt(0) === '/') {
+      try {
+        var rerooted = new URL(SITE_ROOT + trimmed.replace(/^\//, ''), window.location.origin);
+        if (rerooted.pathname.indexOf(SITE_ROOT) === 0) return rerooted.href;
+      } catch (e1) {}
+      return null;
+    }
+    var stripped = trimmed.replace(/^(\.\.\/)+/, '').replace(/^\.\//, '');
+    // Special case: games-hub category links look like "../?cat=puzzle".
+    // Stripped they become "?cat=puzzle", which would land on the site
+    // root — but the ONLY ?cat= links are hub category links.
+    if (/^\?cat=/.test(stripped)) {
+      try { return new URL(SITE_ROOT + 'games/' + stripped, window.location.origin).href; } catch (e2) { return null; }
+    }
+    try {
+      var repaired = new URL(stripped, window.location.origin + SITE_ROOT);
+      if (repaired.pathname.indexOf(SITE_ROOT) === 0) return repaired.href;
+    } catch (e3) {}
+    return null;
+  }
+  function isInSite(urlStr) {
+    try { return new URL(urlStr, window.location.href).pathname.indexOf(SITE_ROOT) === 0; }
+    catch (e) { return false; }
+  }
+
   /* Game pages (/games/<slug>/) are NEVER PJAX targets: their game
      scripts live OUTSIDE <main> (end of <body>), so a PJAX swap would
      leave a dead canvas. They always full-load; music.js resumes the
@@ -34,13 +94,11 @@
     return /^\/allverse\/games\/[^/]+\/(index\.html)?$/.test(p);
   }
 
-  function isInternalLink(a) {
-    if (!a || !a.href) return false;
-    if (a.target === '_blank') return false;
-    if (a.hasAttribute('download')) return false;
+  function isInternalUrl(urlStr) {
+    if (!urlStr) return false;
     var url;
-    try { url = new URL(a.href, window.location.href); } catch (e) { return false; }
-    // Same origin, under the site root
+    try { url = new URL(urlStr, window.location.href); } catch (e) { return false; }
+    // Same origin, under the site root (guard: never PJAX outside /allverse/)
     if (url.origin !== window.location.origin) return false;
     if (url.pathname.indexOf(SITE_ROOT) !== 0) return false;
     // Game pages: full load (see isGamePageUrl)
@@ -50,8 +108,25 @@
     return true;
   }
 
+  function isInternalLink(a) {
+    if (!a || !a.href) return false;
+    if (a.target === '_blank') return false;
+    if (a.hasAttribute('download')) return false;
+    // Resolve via the guard (raw attribute, NOT a.href): a.href is
+    // browser-resolved against the CURRENT url, which is wrong when the
+    // header/sidebar still carry the previous page's relative hrefs.
+    var target = resolveNavUrl(a.getAttribute('href'), window.location.href);
+    if (!target) return false;
+    return isInternalUrl(target);
+  }
+
   function loadPage(url, pushState) {
     if (isLoading) return;
+    // HARD GUARD: never fetch / pushState a URL outside /allverse/.
+    // Repair stale relative hrefs first; abort if unrepairable.
+    var safe = resolveNavUrl(url, window.location.href);
+    if (!safe) return;
+    url = safe;
     // Game pages always full-load (their scripts live outside <main>).
     try {
       var target = new URL(url, window.location.href);
@@ -133,6 +208,30 @@
           }
         }
 
+        // Swap the sidebar too (BEFORE <main>): it carries page-relative
+        // hrefs, so a stale sidebar is the other half of the 404 bug.
+        // Swapping innerHTML keeps the <aside id="sidebar"> node, so
+        // main.js's cached reference + menu toggle keep working, and the
+        // hub inline script (in <main>, runs next) binds the FRESH sidebar.
+        // The header is NOT swapped: main.js binds the theme toggle once.
+        var newAside = doc.querySelector('aside.sidebar');
+        var oldAside = document.querySelector('aside.sidebar');
+        if (newAside && oldAside) {
+          oldAside.innerHTML = newAside.innerHTML;
+        }
+
+        // Sync header hrefs (NOT a full header swap — the header holds
+        // once-bound listeners: theme toggle, menu toggle, music
+        // button). Copying only the href attributes keeps the live
+        // elements (listeners intact) while their targets stay fresh.
+        // Without this, a stale header "games/" clicked on the hub
+        // resolves to /allverse/games/games/ (in-site but nonexistent).
+        var newHeaderLinks = doc.querySelectorAll('header.site-header a[href]');
+        var oldHeaderLinks = document.querySelectorAll('header.site-header a[href]');
+        for (var hl = 0; hl < Math.min(newHeaderLinks.length, oldHeaderLinks.length); hl++) {
+          oldHeaderLinks[hl].setAttribute('href', newHeaderLinks[hl].getAttribute('href'));
+        }
+
         // Swap main content
         var newMain = doc.querySelector('main');
         var oldMain = getContainer();        if (newMain && oldMain && oldMain.tagName === 'MAIN') {
@@ -160,8 +259,14 @@
 
         // Update URL BEFORE executing scripts so location.search/location.href
         // reflect the new page when inline scripts run (e.g. ?template= deep links)
+        // HARD GUARD: never pushState a URL outside /allverse/.
         if (pushState !== false) {
-          history.pushState({ url: url }, '', url);
+          if (isInSite(url)) {
+            history.pushState({ url: url }, '', url);
+          } else {
+            window.location.href = url;
+            return;
+          }
         }
 
         // Re-initialize page scripts (tool functionality)
@@ -222,15 +327,21 @@
     // Allow Ctrl/Cmd+click for new tab
     if (e.ctrlKey || e.metaKey || e.shiftKey) return;
 
+    // Resolve via the guard (raw attribute): a.href is browser-resolved
+    // against the current url and is WRONG for stale header/sidebar
+    // hrefs left over from the previous page (the /index.html 404 bug).
+    var target = resolveNavUrl(a.getAttribute('href'), window.location.href);
+    if (!target) return;
+
     e.preventDefault();
-    loadPage(a.href, true);
+    loadPage(target, true);
   });
 
   // Handle back/forward buttons
   // Stamp the initial history entry so Back to it carries a state to load —
   // without this, e.state is null on the first entry and Back does nothing.
   try {
-    if (!history.state || !history.state.url) {
+    if ((!history.state || !history.state.url) && isInSite(window.location.href)) {
       history.replaceState({ url: window.location.href }, '', window.location.href);
     }
   } catch (e) {}

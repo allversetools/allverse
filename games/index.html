@@ -126,7 +126,10 @@
     applyFilter();
   }
   function pushCatUrl(cat) {
-    try { history.replaceState(null, '', cat === 'all' ? './' : './?cat=' + cat); } catch (err) {}
+    // Absolute URL under /allverse/: during a PJAX swap this script runs
+    // while window.location is still the PREVIOUS page, so a relative
+    // './' would resolve against the wrong base (same 404-bug class).
+    try { history.replaceState(null, '', '/allverse/games/' + (cat === 'all' ? '' : '?cat=' + cat)); } catch (err) {}
   }
   if (filters) {
     filters.addEventListener('click', function (e) {
