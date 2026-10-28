@@ -71,6 +71,7 @@
 <p class="form-msg err" id="mpMsg" style="margin-top:10px"></p>
 <div class="btn-row">
 <button class="btn btn-primary" id="mpMerge" type="button">&#x29C9; Merge PDFs</button>
+<button class="btn btn-ghost" id="mpSort" type="button">Order by name</button>
 <button class="btn btn-ghost" id="mpClear" type="button">Clear all</button>
 </div>
 </div>
@@ -158,6 +159,8 @@
     render();
   });
   clearBtn.onclick = function () { files = []; showMsg(''); render(); };
+  var sortBtn = get('mpSort');
+  if (sortBtn) sortBtn.onclick = function () { files.sort(function (a, b) { return a.name.localeCompare(b.name); }); render(); };
   mergeBtn.onclick = function () {
     if (!window.PDFLib) { showMsg('PDF library failed to load — check connection'); return; }
     if (files.length < 2) { showMsg('Select at least 2 PDF files to merge.'); return; }

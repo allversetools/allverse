@@ -1,10 +1,10 @@
 # Product Hunt description
 
 ## Short (260 chars max)
-AllVerse is 130 free online tools in one clean site — AI image generator, AI chat, calculators, converters, QR maker, PDF tools and more. No signup, no paywall, works on any device. Open a tool, get your result, done.
+AllVerse is 136 free online tools in one clean site — AI image generator, AI chat, calculators, converters, QR maker, PDF tools and more. No signup, no paywall, works on any device. Open a tool, get your result, done.
 
 ## Long version
-AllVerse ("everything" in Urdu/Hindi) is a free all-in-one tools website: 130 tools across 33 categories, each with its own page.
+AllVerse ("everything" in Urdu/Hindi) is a free all-in-one tools website: 136 tools across 33 categories, each with its own page.
 
 **What you get:**
 - 15 AI tools — image generator, logo maker, thumbnail maker, chat assistant, story writer, translator, text-to-speech studio and more (all free, no API keys)

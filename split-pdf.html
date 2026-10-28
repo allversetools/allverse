@@ -73,6 +73,18 @@
 <input id="spRanges" type="text" placeholder="e.g. 1-3, 5" autocomplete="off">
 <p class="hint">Comma-separated page numbers or ranges, like <b>1-3, 5, 8-10</b>.</p>
 </div>
+<div class="field" style="margin-top:18px">
+<label for="spMode">Split mode</label>
+<select id="spMode">
+<option value="custom" selected>Custom range — one file with the pages you pick</option>
+<option value="fixed">Fixed ranges — every N pages becomes its own file</option>
+<option value="every">Every page separately — one file per page</option>
+</select>
+</div>
+<div class="field">
+<label for="spN">Pages per file (fixed mode only)</label>
+<input id="spN" type="number" value="1" min="1" step="1">
+</div>
 <p class="form-msg err" id="spMsg" style="margin-top:10px"></p>
 <div class="btn-row">
 <button class="btn btn-primary" id="spExtract" type="button">&#x2702; Extract Pages</button>
@@ -152,25 +164,48 @@
   btn.onclick = function () {
     if (!window.PDFLib) { showMsg('PDF library failed to load — check connection'); return; }
     if (!pdfBytes || !pageCount) { showMsg('Select a PDF file first.'); return; }
-    var idx = parseRanges(ranges.value, pageCount);
-    if (!idx) { showMsg('Invalid range. Use numbers or ranges like 1-3, 5 (max page ' + pageCount + ').'); return; }
+    var mode = get('spMode') ? get('spMode').value : 'custom';
+    var groups = [];
+    if (mode === 'custom') {
+      var idx = parseRanges(ranges.value, pageCount);
+      if (!idx) { showMsg('Invalid range. Use numbers or ranges like 1-3, 5 (max page ' + pageCount + ').'); return; }
+      groups = [idx];
+    } else if (mode === 'fixed') {
+      var n = get('spN') ? parseInt(get('spN').value, 10) : 1;
+      if (isNaN(n) || n < 1) { showMsg('Pages per file must be at least 1.'); return; }
+      for (var s = 0; s < pageCount; s += n) {
+        var g = [];
+        for (var k = s; k < Math.min(s + n, pageCount); k++) g.push(k);
+        groups.push(g);
+      }
+    } else {
+      for (var e = 0; e < pageCount; e++) groups.push([e]);
+    }
     showMsg('');
     SK_AI.setBusy(btn, true, 'Extracting… / Nikal rahe hain…');
-    PDFLib.PDFDocument.create().then(function (out) {
-      return PDFLib.PDFDocument.load(pdfBytes).then(function (src) {
-        return out.copyPages(src, idx).then(function (pages) {
-          pages.forEach(function (pg) { out.addPage(pg); });
-          return out.save();
+    PDFLib.PDFDocument.load(pdfBytes).then(function (src) {
+      var chain = Promise.resolve();
+      groups.forEach(function (idx2, gi) {
+        chain = chain.then(function () {
+          return PDFLib.PDFDocument.create().then(function (out) {
+            return out.copyPages(src, idx2).then(function (pages) {
+              pages.forEach(function (pg) { out.addPage(pg); });
+              return out.save();
+            });
+          }).then(function (bytes) {
+            var blob = new Blob([bytes], { type: 'application/pdf' });
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = (fileName || 'split') + (groups.length > 1 ? '-part-' + (gi + 1) : '-pages') + '.pdf';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1200);
+            return new Promise(function (res) { setTimeout(res, 500); });
+          });
         });
       });
-    }).then(function (bytes) {
-      var blob = new Blob([bytes], { type: 'application/pdf' });
-      var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = (fileName || 'split') + '-pages.pdf';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1200);
+      return chain;
+    }).then(function () {
       SK_AI.setBusy(btn, false);
     }).catch(function () {
       SK_AI.setBusy(btn, false);

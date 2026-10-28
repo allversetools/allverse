@@ -62,7 +62,25 @@
 <div class="field">
 <label for="ipFiles">Select images (JPG / PNG)</label>
 <input id="ipFiles" type="file" accept="image/jpeg,image/png,image/jpg,.jpg,.jpeg,.png" multiple>
-<p class="hint">Each image becomes one full A4 page, scaled to fit. Everything runs in your browser.</p>
+<p class="hint">Each image becomes one page, scaled to fit. Pick page size, orientation and margin below. Everything runs in your browser.</p>
+</div>
+<div class="field" style="margin-top:18px">
+<label for="ipSize">Page size</label>
+<select id="ipSize">
+<option value="A4" selected>A4</option><option value="Letter">Letter</option>
+</select>
+</div>
+<div class="field">
+<label for="ipOrient">Orientation</label>
+<select id="ipOrient">
+<option value="portrait" selected>Portrait</option><option value="landscape">Landscape</option><option value="auto">Auto (match each image)</option>
+</select>
+</div>
+<div class="field">
+<label for="ipMargin">Margin</label>
+<select id="ipMargin">
+<option value="0" selected>None</option><option value="18">Small</option><option value="36">Large</option>
+</select>
 </div>
 <div class="result-panel">
 <h4>Selected images</h4>
@@ -165,11 +183,17 @@
             var isPng = it.type === 'image/png' || /\.png$/i.test(it.name);
             var embed = isPng ? doc.embedPng(it.bytes) : doc.embedJpg(it.bytes);
             return embed.then(function (img) {
-              var page = doc.addPage(PDFLib.PageSizes.A4);
-              var pw = page.getWidth(), ph = page.getHeight();
+              var ps = get('ipSize') ? get('ipSize').value : 'A4';
+              var dims = ps === 'Letter' ? [612, 792] : [595.28, 841.89];
+              var orient = get('ipOrient') ? get('ipOrient').value : 'portrait';
+              var landscape = orient === 'landscape' || (orient === 'auto' && img.width > img.height);
+              var pw0 = landscape ? dims[1] : dims[0], ph0 = landscape ? dims[0] : dims[1];
+              var page = doc.addPage([pw0, ph0]);
+              var mg = get('ipMargin') ? parseInt(get('ipMargin').value, 10) || 0 : 0;
+              var pw = pw0 - mg * 2, ph = ph0 - mg * 2;
               var s = Math.min(pw / img.width, ph / img.height);
               var w = img.width * s, h = img.height * s;
-              page.drawImage(img, { x: (pw - w) / 2, y: (ph - h) / 2, width: w, height: h });
+              page.drawImage(img, { x: mg + (pw - w) / 2, y: mg + (ph - h) / 2, width: w, height: h });
             });
           });
         });
