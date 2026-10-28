@@ -4,7 +4,7 @@ Hey Product Hunt! 👋 I'm the maker of AllVerse.
 
 **The story:** I kept needing small everyday tools — resize an image, count words, generate a QR code, calculate EMI — and every site I found was either plastered with ads, demanded a signup, or locked the good stuff behind a paywall. So I built the site I wished existed: everything in one place, free, no account, no tracking.
 
-**What AllVerse is today:** 96 tools across 23 categories, each with its own page:
+**What AllVerse is today:** 130 tools across 33 categories, each with its own page:
 - 🤖 15 AI tools — image generator, logo maker, YouTube thumbnail maker, AI chat, story writer, translator, text-to-speech studio (all free, no API keys needed)
 - 🖼️ Image tools, 📝 text tools, 🧮 20+ calculators (EMI, BMI, tax, electricity bill…)
 - 💻 developer tools, 📄 PDF tools, 🔍 SEO tools, 🌙 Islamic tools, and more
