@@ -194,7 +194,7 @@
     var panel = btn.closest('.tool-panel').querySelector('.result-panel');
     busy(btn, panel, true, 'Converting…', [[0, 'Rendering pages…'], [10000, 'Still rendering — large PDFs take longer…']]);
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    pdfjsLib.getDocument({ data: pdfBytes }).promise.then(function (pdf) {
+    pdfjsLib.getDocument({ data: pdfBytes.slice() }).promise.then(function (pdf) {
       var chain = Promise.resolve();
       var done = 0;
       for (var p = 1; p <= pdf.numPages; p++) {

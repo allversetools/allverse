@@ -172,7 +172,7 @@
     setBusy(true);
     try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } catch (e) {}
     var breaks = get('dwBreaks').checked;
-    window.pdfjsLib.getDocument({ data: pdfBytes }).promise.then(function (pdf) {
+    window.pdfjsLib.getDocument({ data: pdfBytes.slice() }).promise.then(function (pdf) {
       var pageJobs = [];
       for (var p = 1; p <= pdf.numPages; p++) pageJobs.push(pdf.getPage(p));
       return Promise.all(pageJobs).then(function (pages) {
